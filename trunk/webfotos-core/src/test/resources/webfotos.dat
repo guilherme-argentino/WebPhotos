@@ -1,0 +1,130 @@
+###############################################
+# Arquivo de configura��o do Webfotos         #
+###############################################
+
+# local onde as fotos selecionada s�o descarregadas ( //pinkfloyd/fotografia/bancoimagemii/eleicoes2004)
+diretorioAdicionarFotos=~/
+
+# diretorio do site serra ( //ledzeppelin/sites/www.serra45.org/www/bancoimagem )
+albunsRoot=~/bancoimagens/albuns
+
+chaveCripto=Soltar pipa � muito legal
+
+# Preencher automaticamente a tela de login
+autoPreencher.Login=root
+autoPreencher.Pass=root
+
+###############################################
+# Instru��es SQL personalizadas               #
+###############################################
+# pre-sql: select albumID as ID, categorias.nmcategoria as Categoria, nmalbum as Pauta, DATE_FORMAT(DtInsercao, '%d/%m/%y') as Data from albuns left join categorias using(categoriaID)
+
+relatorio1=�ltimos 500 �lbuns / order by albumID desc limit 500
+relatorio2=Por data decrescente / order by DtInsercao desc limit 500
+relatorio3=Por data crescente / order by DtInsercao limit 500
+
+###############################################
+# Servidor FTP                                #
+###############################################
+servidorFTP=192.168.0.2
+FTPRoot=/centrosp/web/bancoimagens
+FTPport=21
+FTPproxyHost=
+FTPproxyPort=
+enviarAltaResolucao=false
+
+qualidadeJPEG=90
+
+! imagens com prefixo _a,_b,_c,_d respectivamente
+thumbnail1=115
+thumbnail2=200
+thumbnail3=250
+thumbnail4=300
+
+! Ativa a transmiss�o ao alterar/inserir/excluir um �lbum/foto
+autoTransferir=true
+
+###############################################
+# Marca d'agua aplicada ao thumbnail 4        #
+###############################################
+! imagem formato gif ou jpg que servir� como marca d'agua
+! pode ser utilizado um gif transparente
+marcadagua=logoA2_t.gif
+
+! imagem para testes com posicionamento de marca d'agua
+#marcadagua.teste=images/foto.jpg
+
+! Posi��o da marca d'agua
+! 1---2---3
+! 4---5---6
+! 7---8---9
+#marcadagua.posicao=7
+
+! margem da marca d'agua at� a borda.
+! n�o tem efeito quando o posicionamento da marca d'agua � central
+#marcadagua.margem=0
+
+! transpar�ncia valores de 0 a 100, sendo 100 opaco e 0 transparente
+#marcadagua.transparencia=30
+
+###############################################
+# Informa��es textuais aplicada ao thumbnail 4#
+###############################################
+! para desabilitar essa fun��o, deixe o texto em branco
+texto=
+texto.posicao=8
+texto.margem=5
+
+! fam�lia da fonte
+texto.familia=SansSerif
+
+! estilo da fonte 0 normal, 1 bold, 2 it�lico
+texto.estilo=1
+texto.tamanho=15
+
+! cor rgb
+texto.corFrente=0\,0\,0
+texto.corFundo=255\,255\,255
+
+###############################################
+# BANCO DE DADOS                              #
+###############################################
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost/webfotos
+
+###############################################
+# INSTRUCOES SQL E PARAMETROS DE TABELA       #
+###############################################
+# Nao altere as instrucoes abaixo sem saber
+# exatamente a funcao de cada uma
+
+# indice da tabela - sem parametros (primeira opcao de listagem.. nao deve retornar um numero muito grande de registros)
+sql1=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data FROM albuns LEFT JOIN categorias ON categorias.categoriaID=albuns.categoriaID LIMIT 100
+
+# define a largura inicial de cada coluna (o mesmo numero de parametros retornados por sqls 1,3,4 e 5) 760
+#colunas1=35,100,550,60
+#colunas1=*,*,*,*
+colunas1=35\,100\,*\,60
+
+# lista de categorias - sem parametros (forma a lista combo box)
+sql2=SELECT categoriaID\, NmCategoria FROM categorias WHERE subcategoria=1 ORDER BY NmCategoria
+
+# instrucao para pesquisa - [?1 palavra chave] [?2 categoriaID]
+sql3=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data FROM albuns LEFT JOIN categorias USING(categoriaID) WHERE MATCH (NmAlbum\,Descricao) AGAINST('?1')
+sql4=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data FROM albuns LEFT JOIN categorias USING(categoriaID) WHERE MATCH (NmAlbum\,Descricao) AGAINST('?1') AND albuns.categoriaID=?2
+sql5=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data FROM albuns LEFT JOIN categorias USING(categoriaID) WHERE albuns.categoriaID=?2
+
+# instrucao para retornar dados de um album, fornecido o albumID (nao trocar a ordem desses campos)
+sql6=SELECT nmalbum\, categoriaID\, DATE_FORMAT(DtInsercao\, '%d/%m/%y')\, descricao FROM albuns WHERE albumID=?
+
+# instrucao sql para retornar a lista de creditos
+sql7=SELECT creditoID\, nome FROM creditos ORDER BY nome
+
+# define largura das colunas de fotos (sql8)
+colunas2=20\,400\,60
+
+##########
+# Extras #
+##########
+
+BotoesPersonalizados = false

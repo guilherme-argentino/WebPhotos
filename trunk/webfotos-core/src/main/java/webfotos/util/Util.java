@@ -1,0 +1,298 @@
+package webfotos.util;
+
+import java.io.*;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
+import java.util.StringTokenizer;
+
+import javax.swing.JTable;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.DefaultTableColumnModel;
+import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.SystemConfiguration;
+import org.apache.commons.configuration.XMLPropertiesConfiguration;
+import org.apache.log4j.Logger;
+
+/**
+ * Esta classe armazena alguns métodos de utilidade para o funcionamento de todo o programa.
+ * <PRE>
+ * Exemplo: PrintStream out que desvia a saída padrão de texto.
+ * </PRE>
+ */
+public class Util {
+
+    private static Util instancia = new Util();
+
+    // caixa de texto para dar saída ao log
+    private static JTextArea saida;
+    private static File albunsRoot = null;
+    private static CompositeConfiguration config;
+    /**
+     * Para desviar a saída padrão de texto (em produção).
+     */
+    public static PrintStream out;
+    /**
+     * Para desviar a saída padrão de texto (em produção).
+     */
+    public static PrintStream err;
+    private static Logger log;
+
+    static {
+        out = System.out;
+        err = System.err;
+        log = Logger.getLogger(Util.class);
+
+        config = new CompositeConfiguration();
+        config.addConfiguration(new SystemConfiguration());
+        try {
+            config.addConfiguration(new PropertiesConfiguration("webfotos.dat"));
+        } catch (ConfigurationException ex) {
+            log.error("Can't load webfotos.dat", ex);
+            System.exit(-1);
+        }
+        try {
+            config.addConfiguration(new XMLPropertiesConfiguration("webfotos.xml"));
+        } catch (ConfigurationException ex) {
+            log.warn("Can't load webfotos.xml");
+            log.debug("Stack Trace : ", ex);
+        }
+    }
+
+    public static CompositeConfiguration getConfig() {
+        return config;
+    }
+
+    public static void setConfig(CompositeConfiguration _config) {
+        config = _config;
+    }
+
+    private Util() {
+    }
+
+    /**
+     * Retorna a instância da própria classe.
+     * @return Retorna a instância de Util.
+     */
+    public static Util getInstance() {
+        return instancia;
+    }
+
+    /**
+     * Retorna o diretório raiz de albuns.
+     * Checa se a variável albunsRoot já possui o valor, caso não, busca o arquivo nas propriedades
+     * através do método {@link webfotos.util.Util#getProperty(String) getProperty}(String chave) e faz um teste para checar se ï¿½ um diretório mesmo.
+     * Caso tudo esteja correto, retorna o diretório.
+     * @return Retorna um diretório.
+     */
+    public static File getAlbunsRoot() {
+        if (albunsRoot == null) {
+            albunsRoot = new File(getProperty("albunsRoot"));
+            if (!albunsRoot.isDirectory()) {
+                StringBuffer errMsg = new StringBuffer();
+                errMsg.append("O diretório fornecido no parâmetro albunsRoot (arquivo de configuração)\n");
+                errMsg.append("não pode ser utilizado, ou não existe.\n");
+                errMsg.append("O programa será encerrado.");
+                JOptionPane.showMessageDialog(null, errMsg.toString(), "Erro no arquivo de configuração", JOptionPane.ERROR_MESSAGE);
+                //throw new RuntimeException(errMsg.toString());
+                System.exit(-1);
+            }
+        }
+        return albunsRoot;
+    }
+
+    /**
+     * Retorna o diretório raiz de albuns.
+     * Checa se a variável albunsRoot já possui o valor, caso não, busca o arquivo nas propriedades
+     * através do método {@link webfotos.util.Util#getProperty(String) getProperty}(String chave) e faz um teste para checar se ï¿½ um diretório mesmo.
+     * Caso tudo esteja correto, retorna o diretório.
+     * @return Retorna um diretório.
+     */
+    public static File getFolder(String param) {
+        File folder = new File(getProperty(param));
+        if (!folder.isDirectory()) {
+            StringBuffer errMsg = new StringBuffer();
+            errMsg.append("O diretório fornecido no parâmetro albunsRoot (arquivo de configuração)\n");
+            errMsg.append("não pode ser utilizado, ou não existe.\n");
+            errMsg.append("O programa será encerrado.");
+            JOptionPane.showMessageDialog(null, errMsg.toString(), "Erro no arquivo de configuração", JOptionPane.ERROR_MESSAGE);
+            //throw new RuntimeException(errMsg.toString());
+            System.exit(-1);
+        }
+        return folder;
+    }
+
+    /**
+     * Trabalha o texto recebido para impressão do log.
+     * Se existir algum erro contido no texto, separa o erro e imprime separado do resto da saída.
+     * TODO: enviar o log para arquivo e um componente swing.
+     * @param texto Texto para impressão.
+     */
+    public static void log(String texto) {
+        if (texto == null) {
+            saida = null;
+        }
+        if (saida == null) {
+            log.info("LOG: " + texto);
+        } else {
+            if (texto.startsWith("[")) {
+                Util.err.println(texto);
+                texto = texto.substring(texto.indexOf("/") + 1);
+            }
+            saida.append(texto);
+            saida.append("\n");
+            saida.setCaretPosition(saida.getText().length() - 1);
+        }
+    }
+
+    /**
+     * Retorna uma String que substitui alguns caracteres especiais em Java pelos do formato HTM.
+     * @param valor Texto a ser formatado.
+     * @return Retorna texto formatado em HTM.
+     */
+    public static String stringToHtm(String valor) {
+        valor = valor.replaceAll("\n", "<br>");
+        valor = valor.replaceAll("\"", "&quot;");
+        valor = valor.replaceAll("\'", "&quot;");
+        return "\'" + valor + "\'";
+    }
+
+    /**
+     * Recebe uma String e adequa ao formato SQL.
+     * Apenas adequa aspas simples ou aspas duplas nas pontas do campo de texto.
+     * Verifica se já não existe aspas simples na String, caso não implementa as simples nas pontas, caso exista implementa aspas duplas.
+     * não possui utilizações.
+     * TODO: avaliar a exclusão desse método.
+     * @param valor Texto a ser formatado.
+     * @return Retorna um texto formatado para o SQL.
+     */
+    public static String stringToSql(String valor) {
+        if (valor.indexOf("'") >= 0) {
+            return "\"" + valor + "\"";
+        }
+        return "\'" + valor + "\'";
+    }
+
+    /**
+     * Recebe um textarea e seta esse valor na variável saida.
+     * @param saidaGUI textarea para indicar a saída.
+     */
+    public static void setLogOut(JTextArea saidaGUI) {
+        saida = saidaGUI;
+    }
+
+    /**
+     * Retorna uma String contendo a propriedade.
+     * Testa se é necessário carregar o arquivo de propriedades, então busca a propriedade no arquivo através da variável passada como parâmetro.
+     * @param chave Propriedade.
+     * @return Retorna o valor da propriedade.
+     */
+    public static String getProperty(String chave) {
+        try {
+            return (config.getString(chave) == null || config.getString(chave).equals("")) ? null : config.getString(chave);
+        } catch (Exception e) {
+            log.error("Error trying to get a property", e);
+            return null;
+        }
+    }
+
+    /**
+     * Ajusta a largura das colunas do modelo.
+     * @param tabela Tabela que deseja ajustar as colunas.
+     * @param parametros Tamanhos das colunas separadas por vírgula.
+     */
+    public static void ajustaLargura(JTable tabela, String parametros) {
+        int temR = -1;
+        TableColumnModel modeloColunas = tabela.getColumnModel();
+        if (parametros == null) {
+            return;
+        }
+        if (parametros.length() > 0) {
+            StringTokenizer tok = new StringTokenizer(parametros, ",");
+            int ct = 0;
+            String l;
+            while (tok.hasMoreTokens()) {
+                l = tok.nextToken();
+                try {
+                    modeloColunas.getColumn(ct).setPreferredWidth(Integer.parseInt(l));
+                } catch (NumberFormatException nE) {
+                    if (l.equals("*")) {
+                        log.info("Packing column " + ct);
+                        packColumn(tabela, ct, 1);
+                    } else if (l.equals("R")) {
+                        temR = ct;
+                    }
+                } catch (Exception e) {
+                }
+                ct++;
+            }
+
+            if (temR > 0) {
+                modeloColunas.getColumn(temR).setPreferredWidth(modeloColunas.getColumn(temR).getPreferredWidth() + tabela.getWidth() - modeloColunas.getTotalColumnWidth());
+                log.debug("Tamanho da tabela: " + (modeloColunas.getColumn(temR).getPreferredWidth() + tabela.getWidth() - modeloColunas.getTotalColumnWidth()));
+            }
+
+            //Testes
+            log.debug("Tamanho Total: " + modeloColunas.getTotalColumnWidth());
+            log.debug("Tamanho da tabela: " + tabela.getWidth());
+        }
+    }
+
+    /**
+     * PackColumn sets the preferred width of the visible column specified by vColIndex.
+     * The column will be just wide enough to show the column head and the widest cell
+     * in the column. margin pixels are added to the left and right
+     * (resulting in an additional width of 2*margin pixels).
+     * @param table The table you want to resize a column.
+     * @param vColIndex The column number.
+     * @param margin Extra spaces for each side of column.
+     */
+    public static void packColumn(JTable table, int vColIndex, int margin) {
+        DefaultTableColumnModel colModel = (DefaultTableColumnModel) table.getColumnModel();
+        TableColumn col = colModel.getColumn(vColIndex);
+        int width = 0;
+
+        // Get width of column header
+        javax.swing.table.TableCellRenderer renderer = col.getHeaderRenderer();
+        if (renderer == null) {
+            renderer = table.getTableHeader().getDefaultRenderer();
+        }
+        java.awt.Component comp = renderer.getTableCellRendererComponent(
+                table, col.getHeaderValue(), false, false, 0, 0);
+        width = comp.getPreferredSize().width;
+
+        // Get maximum width of column data
+        for (int r = 0; r < table.getRowCount(); r++) {
+            renderer = table.getCellRenderer(r, vColIndex);
+            comp = renderer.getTableCellRendererComponent(
+                    table, table.getValueAt(r, vColIndex), false, false, r, vColIndex);
+            width = Math.max(width, comp.getPreferredSize().width);
+        }
+
+        // Add margin
+        width += 2 * margin;
+
+        // Set the width
+        col.setPreferredWidth(width);
+    }
+
+    /**
+     * Seta um PrintStream para um campo específico.
+     * não possui utilizações.
+     * TODO: avaliar a exclusão desse método.
+     */
+    public void setStream(String varName, PrintStream psN) {
+        try {
+            getClass().getDeclaredField(varName).set(this, psN);
+        } catch (Exception e) {
+            log.error(e.toString(), e);
+        }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Singleton Object");
+    }
+}

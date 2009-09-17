@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<!--
+    Document   : mysql-ds.xml
+    Created on : 31 de Julho de 2008, 00:56
+    Author     : Guilhe
+    Description:
+        Purpose of the document follows.
+-->
+
+<!-- $Id: mysql-ds.xml 63175 2007-05-21 16:26:06Z rrajesh $ -->
+<!--  Datasource config for MySQL using 3.0.9 available from:
+http://www.mysql.com/downloads/api-jdbc-stable.html
+-->
+<datasources>
+    <local-tx-datasource>
+        <jndi-name>mysql_remote</jndi-name>
+        <connection-url>jdbc:mysql://localhost:3306/webfotos</connection-url>
+        <driver-class>com.mysql.jdbc.Driver</driver-class>
+        <user-name>root</user-name>
+        <password>root</password>
+    
+        <!-- The minimum connections in a pool/sub-pool. Pools are lazily constructed on first use -->
+        <min-pool-size>5</min-pool-size>
+
+        <!-- The maximum connections in a pool/sub-pool -->
+        <max-pool-size>20</max-pool-size>
+
+        <!-- The time before an unused connection is destroyed -->
+        <idle-timeout-minutes>5</idle-timeout-minutes>
+        <exception-sorter-class-name>com.mysql.jdbc.integration.jboss.ExtendedMysqlExceptionSorter</exception-sorter-class-name>
+        <valid-connection-checker-class-name>com.mysql.jdbc.integration.jboss.MysqlValidConnectionChecker</valid-connection-checker-class-name>
+        <!-- should only be used on drivers after 3.22.1 with "ping" support
+        <valid-connection-checker-class-name>org.jboss.resource.adapter.jdbc.vendor.MySQLValidConnectionChecker</valid-connection-checker-class-name>
+        -->
+        <!-- sql to call when connection is created
+        <new-connection-sql>some arbitrary sql</new-connection-sql>
+        -->
+        <!-- sql to call on an existing pooled connection when it is obtained from pool - MySQLValidConnectionChecker is preferred for newer drivers
+        <check-valid-connection-sql>some arbitrary sql</check-valid-connection-sql>
+        -->
+
+        <!-- corresponding type-mapping in the standardjbosscmp-jdbc.xml -->
+        <!-- Typemapping for JBoss 4.0 -->
+        <metadata>
+            <type-mapping>mySQL</type-mapping>
+        </metadata>
+    </local-tx-datasource>
+</datasources>
