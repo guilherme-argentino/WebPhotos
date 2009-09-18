@@ -13,7 +13,7 @@ import webfotos.util.Util;
 
 /**
  * A classe Foto armazena dados especï¿½ficos de uma foto.
- * Dentre os dados estï¿½o ID da foto,ID do albï¿½m e ID do crï¿½dito, legenda, crï¿½dito e resoluï¿½ï¿½o de tela.
+ * Dentre os dados estï¿½o ID da foto,ID do albï¿½m e ID do crï¿½dito, legenda, crï¿½dito e resolução de tela.
  */
 public class Foto {
     private int fotoID=0;
@@ -69,7 +69,7 @@ public class Foto {
             altura=a.getIconHeight();
             tamanhoBytes=new File(arquivo).length();
         } else {
-            Util.log("[Foto.Foto]/ERRO: " + arquivo + " nï¿½o pode ser lido");
+            Util.log("[Foto.Foto]/ERRO: " + arquivo + " Não pode ser lido");
         }
     }
 
@@ -104,9 +104,9 @@ public class Foto {
      */
     public int getAltura() { return altura; }
     /**
-     * Retorna uma resoluï¿½ï¿½o especï¿½fica com os valores de altura e largura.
-     * Para entender melhor os conceitos de dimensï¿½o veja {@link java.awt.Dimension Dimension}
-     * @return Retorna uma resoluï¿½ï¿½o.
+     * Retorna uma resolução especï¿½fica com os valores de altura e largura.
+     * Para entender melhor os conceitos de dimensão veja {@link java.awt.Dimension Dimension}
+     * @return Retorna uma resolução.
      */
     public Dimension getResolucao() { return new Dimension(largura,altura); }
     /**
@@ -141,9 +141,9 @@ public class Foto {
      */
     public void setAltura(int a) { altura=a; }
     /**
-     * Seta o valor da resoluï¿½ï¿½o da foto.
-     * @param r Dimensï¿½o da foto.
-     * Para entender melhor os conceitos de dimensï¿½o veja {@link java.awt.Dimension Dimension}
+     * Seta o valor da resolução da foto.
+     * @param r Dimensão da foto.
+     * Para entender melhor os conceitos de dimensão veja {@link java.awt.Dimension Dimension}
      */
     public void setResolucao(Dimension r) {
         largura=r.width;
@@ -168,7 +168,7 @@ public class Foto {
 
     /**
      * Retorna um vetor com os valores de crï¿½dito.
-     * Checa se o vetor jï¿½ possui valores, caso contrï¿½rio utiliza a funï¿½ï¿½o {@link webfotos.Foto#populaCreditos() populaCreditos()} completar os valores.
+     * Checa se o vetor jï¿½ possui valores, caso contrï¿½rio utiliza a função {@link webfotos.Foto#populaCreditos() populaCreditos()} completar os valores.
      * @return Retorna uma lista com os crï¿½ditos.
      */
     public static String[] getCreditosArray() {
@@ -180,7 +180,7 @@ public class Foto {
                 populaCreditos();
                 tamanho = creditos.length;
             } catch (SQLException ex) {
-                Util.log("[Foto.getCreditosArray]/ERRO: Impossï¿½vel popular crï¿½ditos - " + ex);
+                Util.log("[Foto.getCreditosArray]/ERRO: Impossível popular crï¿½ditos - " + ex);
                 tamanho = 0;
             }
         } else {
@@ -222,7 +222,7 @@ public class Foto {
 
     /**
      * Busca no banco de dados, os valores para setar a matriz creditos
-     * @throws java.sql.SQLException Lanï¿½a exceï¿½ï¿½o caso ocorra algum erro no acesso ao banco de dados.
+     * @throws java.sql.SQLException Lanï¿½a exceção caso ocorra algum erro no acesso ao banco de dados.
      */
     public static void populaCreditos() throws SQLException {
         String sql=Util.getConfig().getString("sql7");
@@ -257,16 +257,16 @@ public class Foto {
     public void resetCaminhoArquivo() { caminhoArquivo=""; }
     
     /**
-     * Faz a atualizaï¿½ï¿½o dos dados da foto.
-     * Checa se a foto jï¿½ possui cadastro, caso nï¿½o possui faz inclusï¿½o e faz a atualizaï¿½ï¿½o. Caso jï¿½ possua cadastro, sï¿½ atualiza os dados.
-     * @throws java.lang.Exception Lanï¿½a qualquer tipo de exceï¿½ï¿½o que possa interromper o fluxo da funï¿½ï¿½o.
+     * Faz a atualização dos dados da foto.
+     * Checa se a foto jï¿½ possui cadastro, caso Não possui faz inclusão e faz a atualização. Caso jï¿½ possua cadastro, sï¿½ atualiza os dados.
+     * @throws java.lang.Exception Lanï¿½a qualquer tipo de exceção que possa interromper o fluxo da função.
      */
     public void atualizaFoto() throws Exception {
         int ultimoFotoID=-1;
         String sql;
         Statement st = null;
         
-        // INSERT para fotos ainda nï¿½o cadastradas
+        // INSERT para fotos ainda Não cadastradas
         if(caminhoArquivo.length() > 0) {
            try {
                 sql="select max(fotoID) from fotos";

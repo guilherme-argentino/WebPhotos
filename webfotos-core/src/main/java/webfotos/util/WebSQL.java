@@ -2,6 +2,8 @@ package webfotos.util;
 
 import java.net.*;
 import java.io.*;
+
+import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.CompositeConfiguration;
 
 /**
@@ -23,7 +25,7 @@ public class WebSQL implements Runnable {
      * @param sql Query de consulta.
      */
     public WebSQL(String sql) {
-        CompositeConfiguration c = Util.getConfig();
+        CombinedConfiguration c = Util.getConfig();
         webServer = c.getString("enderecoWWW");
         chave = c.getString("chaveCripto");
         sqlPlain = sql;

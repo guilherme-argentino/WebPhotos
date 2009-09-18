@@ -1,19 +1,22 @@
 package webfotos.util;
 
-import java.io.*;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.StringTokenizer;
 
-import javax.swing.JTable;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.DefaultTableColumnModel;
-import org.apache.commons.configuration.CompositeConfiguration;
+
+import org.apache.commons.configuration.CombinedConfiguration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
-import org.apache.commons.configuration.XMLPropertiesConfiguration;
+import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.log4j.Logger;
 
 /**
@@ -29,7 +32,7 @@ public class Util {
     // caixa de texto para dar saída ao log
     private static JTextArea saida;
     private static File albunsRoot = null;
-    private static CompositeConfiguration config;
+    private static CombinedConfiguration config;
     /**
      * Para desviar a saída padrão de texto (em produção).
      */
@@ -45,28 +48,41 @@ public class Util {
         err = System.err;
         log = Logger.getLogger(Util.class);
 
-        config = new CompositeConfiguration();
+        config = new CombinedConfiguration();
+        CombinedConfiguration userPrefs = new CombinedConfiguration(); 
         config.addConfiguration(new SystemConfiguration());
         try {
-            config.addConfiguration(new PropertiesConfiguration("webfotos.dat"));
+        	PropertiesConfiguration props = new PropertiesConfiguration("webfotos.dat"); 
+            config.addConfiguration(props);
+            userPrefs.append(props);
         } catch (ConfigurationException ex) {
             log.error("Can't load webfotos.dat", ex);
             System.exit(-1);
         }
         try {
-            config.addConfiguration(new XMLPropertiesConfiguration("webfotos.xml"));
+        	XMLConfiguration xmlProps = new XMLConfiguration("webfotos.xml");
+            config.addConfiguration(xmlProps);
+            userPrefs.append(xmlProps);
         } catch (ConfigurationException ex) {
             log.warn("Can't load webfotos.xml");
             log.debug("Stack Trace : ", ex);
+        } finally {
+        	try {
+        		XMLConfiguration savedUserPrefs = new XMLConfiguration(userPrefs);
+        		savedUserPrefs.setEncoding("ISO-8859-1");
+        		savedUserPrefs.save(new FileOutputStream("webfotos.xml"));
+			} catch (Exception e) {
+	            log.error("Can't save webfotos.xml", e);
+			}
         }
     }
 
-    public static CompositeConfiguration getConfig() {
+    public static CombinedConfiguration getConfig() {
         return config;
     }
 
-    public static void setConfig(CompositeConfiguration _config) {
-        config = _config;
+    public static void setConfig(CombinedConfiguration config) {
+        Util.config = config;
     }
 
     private Util() {
@@ -156,22 +172,6 @@ public class Util {
         valor = valor.replaceAll("\n", "<br>");
         valor = valor.replaceAll("\"", "&quot;");
         valor = valor.replaceAll("\'", "&quot;");
-        return "\'" + valor + "\'";
-    }
-
-    /**
-     * Recebe uma String e adequa ao formato SQL.
-     * Apenas adequa aspas simples ou aspas duplas nas pontas do campo de texto.
-     * Verifica se já não existe aspas simples na String, caso não implementa as simples nas pontas, caso exista implementa aspas duplas.
-     * não possui utilizações.
-     * TODO: avaliar a exclusão desse método.
-     * @param valor Texto a ser formatado.
-     * @return Retorna um texto formatado para o SQL.
-     */
-    public static String stringToSql(String valor) {
-        if (valor.indexOf("'") >= 0) {
-            return "\"" + valor + "\"";
-        }
         return "\'" + valor + "\'";
     }
 
@@ -276,19 +276,6 @@ public class Util {
 
         // Set the width
         col.setPreferredWidth(width);
-    }
-
-    /**
-     * Seta um PrintStream para um campo específico.
-     * não possui utilizações.
-     * TODO: avaliar a exclusão desse método.
-     */
-    public void setStream(String varName, PrintStream psN) {
-        try {
-            getClass().getDeclaredField(varName).set(this, psN);
-        } catch (Exception e) {
-            log.error(e.toString(), e);
-        }
     }
 
     @Override
