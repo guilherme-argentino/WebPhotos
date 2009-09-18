@@ -41,7 +41,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     }
 
     /**
-     * Repassa para a funï¿½ï¿½o {@link java.util.TableModelAlbum#update(String) update(String sql)} enviando a variï¿½vel ï¿½ltimoSQL como parï¿½metro.
+     * Repassa para a função {@link java.util.TableModelAlbum#update(String) update(String sql)} enviando a variï¿½vel últimoSQL como parï¿½metro.
      */
     public void update() {
         update(getUltimoSQL());
@@ -51,8 +51,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * Executa um update no banco. Caso ocorra algum problema, o sistema tenta
      * reconectar ao Banco de Dados.
      * Recebe uma variï¿½vel para realizar um comando no banco.
-     * Executa a funï¿½ï¿½o atravï¿½s da biblioteca {@link java.sql.RowSet RowSet}.
-     * Ao tï¿½rmino armazena a descriï¿½ï¿½o de {@link java.sql.ResultSet#getMetaData() MetaData} em uma variï¿½vel.
+     * Executa a função atravï¿½s da biblioteca {@link java.sql.RowSet RowSet}.
+     * Ao tï¿½rmino armazena a descrição de {@link java.sql.ResultSet#getMetaData() MetaData} em uma variï¿½vel.
      * @param sql Comando de sql.
      */
     public void update(String sql) {
@@ -69,7 +69,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
             if (selecao == JOptionPane.YES_OPTION) {
-                /** TODO: extrair para um mï¿½todo */
+                /** TODO: extrair para um método */
                 try {
                     BancoImagem.setRSet(new JdbcRowSetImpl(BancoImagem.getConnection()));
                     this.rowSet = BancoImagem.getRSet();
@@ -93,7 +93,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     /**
      * Retorna o nome de uma coluna.
      * Faz a busca atravï¿½s de um nï¿½mero passado como parï¿½metro.
-     * Busca a informaï¿½ï¿½o atravï¿½s do mï¿½todo {@link java.sql.ResultSet#getMetaData() getMetaData()}.
+     * Busca a informação atravï¿½s do método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
      * @param col Nï¿½mero da coluna.
      * @return Retorna o nome da coluna.
      */
@@ -114,7 +114,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
 
     /**
      * Retorna o nï¿½mero de colunas.
-     * Busca a informaï¿½ï¿½o atravï¿½s do mï¿½todo {@link java.sql.ResultSet#getMetaData() getMetaData()}.
+     * Busca a informação atravï¿½s do método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
      * @return Retorna o nï¿½mero de colunas.
      */
     public int getColumnCount() {
@@ -133,7 +133,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
 
     /**
      * Retorna o nï¿½mero de linhas.
-     * Busca a informaï¿½ï¿½o atravï¿½s do mï¿½todo {@link java.sql.ResultSet#getRow() getRow()}.
+     * Busca a informação atravï¿½s do método {@link java.sql.ResultSet#getRow() getRow()}.
      * @return Retorna o nï¿½mero de linhas.
      */
     public int getRowCount() {
@@ -170,8 +170,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
 
     /**
      * Retorna o valor false.
-     * Recebe os valores numï¿½ricos da linha e coluna, porï¿½m nï¿½o os utiliza.
-     * TODO: avaliar a funcionalidade desse mï¿½todo.
+     * Recebe os valores numï¿½ricos da linha e coluna, porï¿½m Não os utiliza.
+     * TODO: avaliar a funcionalidade desse método.
      * @param l Nï¿½mero da linha.
      * @param c Nï¿½mero da coluna.
      * @return Retorna <I>false</I>.
@@ -184,7 +184,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
 
     /**
      * Busca qual o tipo de uma coluna especï¿½fica e retorna sua classe.
-     * Recebe um valor numï¿½rico para indicar a coluna e busca os dados atravï¿½s do mï¿½todo {@link java.sql.ResultSet#getMetaData() getMetaData()}.
+     * Recebe um valor numï¿½rico para indicar a coluna e busca os dados atravï¿½s do método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
      * @param column Nï¿½mero da coluna.
      * @return Retorna uma classe.
      */
@@ -318,16 +318,16 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
 
     /**
      * Notifica aos listenners que a estrutura da tabela foi modificada.
-     * Apenas chama o mï¿½todo {@link javax.swing.table.AbstractTableModel#fireTableStructureChanged() fireTableStructureChanged()}.
-     * @param event Evento de aï¿½ï¿½o na tabela.
+     * Apenas chama o método {@link javax.swing.table.AbstractTableModel#fireTableStructureChanged() fireTableStructureChanged()}.
+     * @param event Evento de ação na tabela.
      */
     public void rowSetChanged(RowSetEvent event) {
         fireTableStructureChanged();
     }
 
     /**
-     * Notifica que a estrutura da talela foi modificada, porï¿½m informa qual a funï¿½ï¿½o foi feita (insert, delete ou update).
-     * @param event Evento de aï¿½ï¿½o na tabela.
+     * Notifica que a estrutura da talela foi modificada, porï¿½m informa qual a função foi feita (insert, delete ou update).
+     * @param event Evento de ação na tabela.
      */
     public void rowChanged(RowSetEvent event) {
         try {
@@ -346,8 +346,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     }
 
     /**
-     * Nï¿½o possui corpo.
-     * TODO: avaliar a exclusï¿½o dessa funï¿½ï¿½o.
+     * Não possui corpo.
+     * TODO: avaliar a exclusão dessa função.
      * @param event Evento.
      */
     public void cursorMoved(RowSetEvent event) {

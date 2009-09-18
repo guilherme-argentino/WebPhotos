@@ -20,6 +20,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import java.io.File;
+
+import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.log4j.Logger;
 
@@ -62,7 +64,7 @@ public class BancoImagem {
 
     // inicializa o banco de dados
     private BancoImagem() {
-        CompositeConfiguration c = Util.getConfig();
+        CombinedConfiguration c = Util.getConfig();
         log.info("inicializando banco de imagem...");
         webServer=c.getString("enderecoWWW");
         chaveCripto=c.getString("chaveCripto");

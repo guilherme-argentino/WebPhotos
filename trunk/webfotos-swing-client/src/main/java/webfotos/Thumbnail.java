@@ -20,6 +20,8 @@ import java.awt.AlphaComposite;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+
+import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.CompositeConfiguration;
 
 import webfotos.util.Util;
@@ -53,7 +55,7 @@ public final class Thumbnail {
     private static void inicializar() {
 
         // le as configurações do usuário
-        CompositeConfiguration c = Util.getConfig();				
+        CombinedConfiguration c = Util.getConfig();				
 
         // tamanhos de thumbnails
         t1 = c.getInt("thumbnail1");

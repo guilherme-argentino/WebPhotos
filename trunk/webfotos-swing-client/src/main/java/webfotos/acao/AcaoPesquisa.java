@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.CompositeConfiguration;
 
 import webfotos.Album;
@@ -27,7 +28,7 @@ public class AcaoPesquisa extends AbstractAction {
 	
 	private JComboBox lstCategoriasPesquisa;
     private JTextField txtPesquisa;
-    private CompositeConfiguration c=Util.getConfig();
+    private CombinedConfiguration c=Util.getConfig();
 
     /**
      * Construtro da classe.

@@ -1,30 +1,30 @@
 package webfotos;
 
+import java.io.File;
+
 import javax.swing.UIManager;
-import java.io.*;
-import javax.swing.*;
+
 import org.apache.log4j.Logger;
-//import webfotos.gui.SplashScreenA2;
-import webfotos.util.*;
 
 import webfotos.gui.FrameWebFotos;
+import webfotos.util.Util;
 
 /**
- * Classe responsï¿½vel pelo inicio do sistema WebFotos.
- * Realiza algumas rotinas para inï¿½cio do sistema.
- * Os dados sï¿½o trabalhados somente no mï¿½todo principal.
+ * Classe responsável pelo inicio do sistema WebFotos.
+ * Realiza algumas rotinas para início do sistema.
+ * Os dados são trabalhados somente no método principal.
  */
 public class WebFotos {
 
     private static Logger log = Logger.getLogger(WebFotos.class);
 
     /**
-     * Contï¿½m uma sï¿½rie de rotinas para inicializaï¿½ï¿½o do programa.
+     * Contêm uma série de rotinas para inicialização do programa.
      * No primeiro momento, o cache do FTP ï¿½ apagado.
-     * Logo apï¿½s ï¿½ feita uma busca do arquivo de configuraï¿½ï¿½o.
-     * ï¿½ obtido o driver do DB, e sï¿½o preparadas as conexï¿½es para usar Socks Proxy.
-     * Por ï¿½ltimo ï¿½ exibida a tela de login ao usuï¿½rio.
-     * @param args Argumentos do mï¿½todo main.
+     * Logo após ï¿½ feita uma busca do arquivo de configuração.
+     * ï¿½ obtido o driver do DB, e são preparadas as conexões para usar Socks Proxy.
+     * Por último ï¿½ exibida a tela de login ao usuário.
+     * @param args Argumentos do método main.
      */
     public static void main(String args[]) {
 
@@ -42,16 +42,13 @@ public class WebFotos {
                 socksPort = Util.getConfig().getInt("socks.port");
             }
 
-            // obtï¿½m driver do db
+            // obtém driver do db
             String url = Util.getConfig().getString("jdbc.url");
             String driver = Util.getConfig().getString("jdbc.driver");
             
             String lookAndFeel = Util.getConfig().getString("UIManager.lookAndFeel");
 
-            //TODO: Rever
-            //Util.getConfig().storeXML(new FileOutputStream("webfotos.xml"));
-
-            //Prepara as conexï¿½es para usar Socks Proxy (se configurado)
+            //Prepara as conexões para usar Socks Proxy (se configurado)
             if (socksHost != null && ! socksHost.equals("")) {
                 System.getProperties().put("socksProxyHost", socksHost);
                 if (socksPort > 0 && socksPort < 65534) {
@@ -72,7 +69,7 @@ public class WebFotos {
 
             //SplashScreenA2.getInstance().setVisible(true);
 
-            // Eficiente para produï¿½ï¿½o - Ruim para depuraï¿½ï¿½o
+            // Eficiente para produção - Ruim para depuração
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     FrameWebFotos.getInstance().setVisible(true);
@@ -80,7 +77,7 @@ public class WebFotos {
             });
 
         } catch (Exception e) {
-            log.error("Nï¿½o foi possï¿½vel iniciar o WebFotos", e);
+            log.error("Não foi possível iniciar o WebFotos", e);
         }
 
     }
