@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.guilherme.webfotos.exception;
+package br.com.guilherme.webphotos.exception;
 
 /**
  * @author Guilhe
