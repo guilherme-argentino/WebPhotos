@@ -13,6 +13,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import org.apache.commons.configuration.CombinedConfiguration;
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
@@ -77,12 +78,8 @@ public class Util {
         }
     }
 
-    public static CombinedConfiguration getConfig() {
+    public static Configuration getConfig() {
         return config;
-    }
-
-    public static void setConfig(CombinedConfiguration config) {
-        Util.config = config;
     }
 
     private Util() {

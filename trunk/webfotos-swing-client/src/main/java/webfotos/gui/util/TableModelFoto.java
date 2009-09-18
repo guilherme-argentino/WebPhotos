@@ -11,7 +11,10 @@ import webfotos.gui.PainelWebFotos;
  * Gera o modelo da tabela de fotos.
  */
 public class TableModelFoto extends AbstractTableModel {
-    private static final TableModelFoto instancia=new TableModelFoto();
+	
+	private static final long serialVersionUID = -3797898104363613961L;
+	
+	private static final TableModelFoto instancia=new TableModelFoto();
     private Object[][] fotoTabela;
     private String[] fotoColunas;
     
@@ -135,7 +138,7 @@ public class TableModelFoto extends AbstractTableModel {
      * @return Retorna uma classe.
      */
     @Override
-    public Class getColumnClass(int column) { return fotoTabela[0][column].getClass(); }
+    public Class<? extends Object> getColumnClass(int column) { return fotoTabela[0][column].getClass(); }
 
     @Override
     public Object clone() throws CloneNotSupportedException {

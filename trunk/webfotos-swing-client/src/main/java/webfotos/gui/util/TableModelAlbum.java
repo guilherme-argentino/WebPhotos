@@ -18,11 +18,13 @@ import javax.sql.RowSetListener;
 import org.apache.log4j.Logger;
 
 /**
- * Gera o modelo da tabela de alb�ns.
+ * Gera o modelo da tabela de albuns.
  */
 public class TableModelAlbum extends AbstractTableModel implements RowSetListener {
 
-    private static final TableModelAlbum instancia = new TableModelAlbum();
+	private static final long serialVersionUID = 8393087620197315052L;
+
+	private static final TableModelAlbum instancia = new TableModelAlbum();
     private String ultimoSQL;
     private RowSet rowSet = null;
     private static Logger log = Logger.getLogger(TableModelAlbum.class);
@@ -189,7 +191,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * @return Retorna uma classe.
      */
     @Override
-    public Class getColumnClass(int column) {
+    public Class<?> getColumnClass(int column) {
         String cname;
         int type;
 

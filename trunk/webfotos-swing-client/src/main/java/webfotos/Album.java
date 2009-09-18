@@ -120,10 +120,10 @@ public class Album {
      * @return Retorna uma foto.
      */
     public Foto getFoto(int fotoID) {
-        Iterator iter=fotos.iterator();
+        Iterator<Foto> iter=fotos.iterator();
 
         while(iter.hasNext()) {
-            Foto f=(Foto) iter.next();
+            Foto f = iter.next();
             if (f.getFotoID()==fotoID) return f;
         }
         return null;
@@ -136,10 +136,10 @@ public class Album {
      * @return Retorna uma foto.
      */
     public Foto getFoto(String caminho) {
-        Iterator iter=fotos.iterator();
+        Iterator<Foto> iter=fotos.iterator();
 
         while(iter.hasNext()) {
-            Foto f=(Foto) iter.next();
+            Foto f = iter.next();
             if(caminho.equals(f.getCaminhoArquivo())) return f;
         }
         return null;
@@ -161,11 +161,11 @@ public class Album {
     public Object[][] getFotosArray() {
         if(fotos==null) return null;
         Object[][] resultado=new Object[fotos.size()][3];
-        Iterator iter=fotos.iterator();
+        Iterator<Foto> iter=fotos.iterator();
         int ct=0;
 
         while(iter.hasNext()) {
-            Foto f=(Foto) iter.next();
+            Foto f = iter.next();
             if(f.getCaminhoArquivo().length() > 0) {
                 // imagem acabou de ser adicionada... sem ID
                 resultado[ct][0]=(Object) f.getCaminhoArquivo();
@@ -434,11 +434,11 @@ public class Album {
         Foto foto;
 
         for(int i=0; i < nomes.length; i++) {
-            Iterator iter=fotos.iterator();
+            Iterator<Foto> iter=fotos.iterator();
             nome=nomes[i];
 
             while(iter.hasNext()) {
-                foto=(Foto) iter.next();
+                foto = iter.next();
                 if(nome.equals(foto.getCaminhoArquivo())) {
                     iter.remove();
                     break;
@@ -490,9 +490,9 @@ public class Album {
         for(int i=0; i < fotosID.length; i++) {
             // pesquisa a foto na coleção deste álbum e remove da colecao
             encontrou=false;
-            Iterator iter=fotos.iterator();
+            Iterator<Foto> iter = fotos.iterator();
             while(iter.hasNext() && !encontrou) {
-                Foto f=(Foto) iter.next();
+                Foto f = iter.next();
                 if(f.getFotoID()==fotosID[i]) {
                     encontrou=true;
                     iter.remove();
@@ -597,7 +597,7 @@ public class Album {
      */
     @Override
     public String toString() {
-        Iterator iter=fotos.iterator();
+        Iterator<Foto> iter=fotos.iterator();
 
         String msg="--------------------------------------" +
                 "\nalbumID    : " + albumID +
@@ -610,7 +610,7 @@ public class Album {
                 "\n--------------------------------------";
 
         while(iter.hasNext()) {
-            Foto f=(Foto) iter.next();
+            Foto f = iter.next();
             msg=msg + "\n" + f.toString() + "\n--------------------------------------";
         }
 
@@ -632,9 +632,9 @@ public class Album {
                 "\n" +
                 "\n\t<fotos>";
 
-        Iterator iter=fotos.iterator();
+        Iterator<Foto> iter = fotos.iterator();
         while(iter.hasNext()) {
-                Foto f=(Foto) iter.next();
+                Foto f = iter.next();
                 r+="\n\t\t<foto id=\"" + f.getFotoID() + "\">" +
                     "\n\t\t\t<legenda>" + f.getLegenda() + "</legenda>" +
                     "\n\t\t\t<credito>" + f.getCreditoNome() + "</credito>" +
@@ -663,11 +663,11 @@ public class Album {
                 "descricao=" + Util.stringToHtm(descricao) + ";\n\n" +			
                 "fotos = new Array (";
 
-        Iterator iter=fotos.iterator();
+        Iterator<Foto> iter=fotos.iterator();
         String cc="";
 
         while(iter.hasNext()) {
-                Foto f=(Foto) iter.next();
+                Foto f = iter.next();
                 r += cc + "\n\tnew Foto(" + f.getFotoID() + "," + Util.stringToHtm(f.getLegenda()) + ",'" + f.getCreditoNome() + "')";
                 cc=",";
         }

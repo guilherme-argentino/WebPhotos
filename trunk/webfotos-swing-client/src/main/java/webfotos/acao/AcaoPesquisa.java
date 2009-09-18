@@ -1,13 +1,13 @@
 package webfotos.acao;
 
 import java.awt.event.ActionEvent;
+
 import javax.swing.AbstractAction;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.Configuration;
 
 import webfotos.Album;
 import webfotos.gui.PainelWebFotos;
@@ -28,7 +28,7 @@ public class AcaoPesquisa extends AbstractAction {
 	
 	private JComboBox lstCategoriasPesquisa;
     private JTextField txtPesquisa;
-    private CombinedConfiguration c=Util.getConfig();
+    private Configuration c=Util.getConfig();
 
     /**
      * Construtro da classe.

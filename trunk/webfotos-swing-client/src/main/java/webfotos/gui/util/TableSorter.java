@@ -63,7 +63,10 @@ import javax.swing.table.*;
  */
 
 public class TableSorter extends AbstractTableModel {
-    protected TableModel tableModel;
+	
+	private static final long serialVersionUID = -5572044930561418466L;
+
+	protected TableModel tableModel;
 
     public static final int DESCENDING = -1;
     public static final int NOT_SORTED = 0;
@@ -71,13 +74,13 @@ public class TableSorter extends AbstractTableModel {
 
     private static Directive EMPTY_DIRECTIVE = new Directive(-1, NOT_SORTED);
 
-    public static final Comparator COMPARABLE_COMPARATOR = new Comparator() {
-        public int compare(Object o1, Object o2) {
-            return ((Comparable) o1).compareTo(o2);
+    public static final Comparator<Comparable<Object>> COMPARABLE_COMPARATOR = new Comparator<Comparable<Object>>() {
+        public int compare(Comparable<Object> o1, Comparable<Object> o2) {
+            return o1.compareTo(o2);
         }
     };
-    public static final Comparator LEXICAL_COMPARATOR = new Comparator() {
-        public int compare(Object o1, Object o2) {
+    public static final Comparator<Comparable<Object>> LEXICAL_COMPARATOR = new Comparator<Comparable<Object>>() {
+        public int compare(Comparable<Object> o1, Comparable<Object> o2) {
             return o1.toString().compareTo(o2.toString());
         }
     };
@@ -88,8 +91,8 @@ public class TableSorter extends AbstractTableModel {
     private JTableHeader tableHeader;
     private MouseListener mouseListener;
     private TableModelListener tableModelListener;
-    private Map columnComparators = new HashMap();
-    private List sortingColumns = new ArrayList();
+    private Map<Class<?>, Comparator<?>> columnComparators = new HashMap<Class<?>, Comparator<?>>();
+    private List<Directive> sortingColumns = new ArrayList<Directive>();
 
     public TableSorter() {
         this.mouseListener = new MouseHandler();
@@ -200,7 +203,7 @@ public class TableSorter extends AbstractTableModel {
         sortingStatusChanged();
     }
 
-    public void setColumnComparator(Class type, Comparator comparator) {
+    public void setColumnComparator(Class<?> type, Comparator<?> comparator) {
         if (comparator == null) {
             columnComparators.remove(type);
         } else {
@@ -208,9 +211,10 @@ public class TableSorter extends AbstractTableModel {
         }
     }
 
-    protected Comparator getComparator(int column) {
-        Class columnType = tableModel.getColumnClass(column);
-        Comparator comparator = (Comparator) columnComparators.get(columnType);
+    @SuppressWarnings("unchecked")
+	protected Comparator<Comparable<Object>> getComparator(int column) {
+        Class<?> columnType = tableModel.getColumnClass(column);
+        Comparator<Comparable<Object>> comparator = (Comparator<Comparable<Object>>) columnComparators.get(columnType);
         if (comparator != null) {
             return comparator;
         }
@@ -264,7 +268,7 @@ public class TableSorter extends AbstractTableModel {
         return tableModel.getColumnName(column);
     }
 
-    public Class getColumnClass(int column) {
+    public Class<?> getColumnClass(int column) {
         return tableModel.getColumnClass(column);
     }
 
@@ -282,18 +286,19 @@ public class TableSorter extends AbstractTableModel {
 
     // Helper classes
     
-    private class Row implements Comparable {
+    private class Row implements Comparable<Row> {
         private int modelIndex;
 
         public Row(int index) {
             this.modelIndex = index;
         }
 
-        public int compareTo(Object o) {
+        @SuppressWarnings("unchecked")
+		public int compareTo(Row o) {
             int row1 = modelIndex;
-            int row2 = ((Row) o).modelIndex;
+            int row2 = o.modelIndex;
 
-            for (Iterator it = sortingColumns.iterator(); it.hasNext();) {
+            for (Iterator<Directive> it = sortingColumns.iterator(); it.hasNext();) {
                 Directive directive = (Directive) it.next();
                 int column = directive.column;
                 Object o1 = tableModel.getValueAt(row1, column);
@@ -308,7 +313,7 @@ public class TableSorter extends AbstractTableModel {
                 } else if (o2 == null) {
                     comparison = 1;
                 } else {
-                    comparison = getComparator(column).compare(o1, o2);
+                    comparison = getComparator(column).compare((Comparable<Object>)o1, (Comparable<Object>)o2);
                 }
                 if (comparison != 0) {
                     return directive.direction == DESCENDING ? -comparison : comparison;

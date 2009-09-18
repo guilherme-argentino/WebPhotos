@@ -1,30 +1,32 @@
 package webfotos;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import javax.imageio.*;
-import javax.imageio.stream.*;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Toolkit;
-import java.awt.AlphaComposite;
+
+import org.apache.commons.configuration.Configuration;
+
+import webfotos.util.Util;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
-
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.CompositeConfiguration;
-
-import webfotos.util.Util;
 
 /**
  * Molda diferentes tamanhos de dimensão para as imagens.
@@ -55,7 +57,7 @@ public final class Thumbnail {
     private static void inicializar() {
 
         // le as configurações do usuário
-        CombinedConfiguration c = Util.getConfig();				
+        Configuration c = Util.getConfig();				
 
         // tamanhos de thumbnails
         t1 = c.getInt("thumbnail1");
@@ -329,14 +331,14 @@ public final class Thumbnail {
             ImageInputStream iis = ImageIO.createImageInputStream(o);
     
             // Find all image readers that recognize the image format
-            java.util.Iterator iter = ImageIO.getImageReaders(iis);
+            Iterator<ImageReader> iter = ImageIO.getImageReaders(iis);
             if (!iter.hasNext()) {
                 // No readers found
                 return null;
             }
     
             // Use the first reader
-            ImageReader reader = (ImageReader)iter.next();
+            ImageReader reader = iter.next();
     
             // Close stream
             iis.close();
@@ -376,8 +378,8 @@ public final class Thumbnail {
 
         try {
             db.configure("jdbc:mysql://mysql.iphotel.com.br/serra45","com.mysql.jdbc.Driver");
-            db.login();
-            java.sql.Connection conn = db.getConnection();
+            BancoImagem.login();
+            java.sql.Connection conn = BancoImagem.getConnection();
             java.sql.Statement st = conn.createStatement();
             java.sql.ResultSet rs = st.executeQuery("select * from fotos");
 
