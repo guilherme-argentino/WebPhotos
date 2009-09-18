@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.guilherme.webfotos.locator;
+package br.com.guilherme.webphotos.locator;
 
 /**
  * @author Guilhe
