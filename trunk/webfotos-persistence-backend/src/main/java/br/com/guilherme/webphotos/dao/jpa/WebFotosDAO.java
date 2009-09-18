@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package br.com.guilherme.webfotos.dao.jpa;
+package br.com.guilherme.webphotos.dao.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

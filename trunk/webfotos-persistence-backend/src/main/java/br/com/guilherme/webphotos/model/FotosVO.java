@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package br.com.guilherme.webfotos.model;
+package br.com.guilherme.webphotos.model;
 
 import java.io.Serializable;
 

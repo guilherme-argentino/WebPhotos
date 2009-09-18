@@ -1,11 +1,11 @@
 /**
  * 
  */
-package br.com.guilherme.webfotos.dao.jpa;
+package br.com.guilherme.webphotos.dao.jpa;
 
 import java.util.List;
 
-import br.com.guilherme.webfotos.model.AlbunsVO;
+import br.com.guilherme.webphotos.model.AlbunsVO;
 
 /**
  * @author Guilhe
