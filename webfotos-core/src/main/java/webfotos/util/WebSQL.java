@@ -1,10 +1,13 @@
 package webfotos.util;
 
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
 
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.Configuration;
 
 /**
  * Recebe uma query de consulta e transmite os dados com criptografia aplicada no método {@link webfotos.util.WebSQL#run() run}() da classe.
@@ -15,9 +18,7 @@ public class WebSQL implements Runnable {
     String webServer;
     String chave;
     String sqlPlain;
-    private static final int RETORNO_BINARIO = 1;
-    private static final int RETORNO_CHAR = 2;
-
+    
     /**
      * Instancia um objeto da classe {@link webfotos.util.Config Config} para obter informações da configuração.
      * Através desse objeto, pega e seta os valores do endereço do site, chave de criptografia.
@@ -25,7 +26,7 @@ public class WebSQL implements Runnable {
      * @param sql Query de consulta.
      */
     public WebSQL(String sql) {
-        CombinedConfiguration c = Util.getConfig();
+        Configuration c = Util.getConfig();
         webServer = c.getString("enderecoWWW");
         chave = c.getString("chaveCripto");
         sqlPlain = sql;

@@ -4,12 +4,11 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 import javax.swing.AbstractAction;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
-import javax.swing.JComboBox;
 
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.configuration.Configuration;
 
 import webfotos.Album;
 import webfotos.gui.PainelWebFotos;
@@ -47,7 +46,7 @@ public class AcaoAdicionarFoto extends AbstractAction {
      * @param tituloDialogo Título da caixa de diálogo.
      */
     public AcaoAdicionarFoto(JTable tabela, JComboBox combo, String tituloDialogo) {
-        CombinedConfiguration c=Util.getConfig();
+        Configuration c=Util.getConfig();
         diretorioInicial=Util.getFolder("diretorioAdicionarFotos");
         tbFotos=tabela;
         lstCreditosTabelaFotos = combo;

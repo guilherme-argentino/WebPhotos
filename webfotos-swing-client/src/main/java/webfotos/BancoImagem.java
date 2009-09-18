@@ -7,23 +7,24 @@
 
 package webfotos;
 
-import java.sql.ResultSet;
-import com.sun.rowset.JdbcRowSetImpl;
-import java.sql.SQLException;
-import javax.sql.RowSet;
-import javax.sql.rowset.JdbcRowSet;
-
-import webfotos.gui.util.Login;
-import webfotos.util.*;
-
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import javax.swing.JOptionPane;
-import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import org.apache.commons.configuration.CombinedConfiguration;
-import org.apache.commons.configuration.CompositeConfiguration;
+import javax.sql.RowSet;
+import javax.sql.rowset.JdbcRowSet;
+import javax.swing.JOptionPane;
+
+import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;
+
+import webfotos.gui.util.Login;
+import webfotos.util.Util;
+import webfotos.util.WebSQL;
+
+import com.sun.rowset.JdbcRowSetImpl;
 
 /**
  * A classe BancoImagem manipula dados das imagens através da conexão com banco de dados.
@@ -64,7 +65,7 @@ public class BancoImagem {
 
     // inicializa o banco de dados
     private BancoImagem() {
-        CombinedConfiguration c = Util.getConfig();
+        Configuration c = Util.getConfig();
         log.info("inicializando banco de imagem...");
         webServer=c.getString("enderecoWWW");
         chaveCripto=c.getString("chaveCripto");

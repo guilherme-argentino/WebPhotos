@@ -13,7 +13,10 @@ import webfotos.util.Util;
  * </PRE>
  */
 public class CacheFTP extends ArrayList<ComandoFTP> {
-    /**
+	
+	private static final long serialVersionUID = -3489616830358888490L;
+
+	/**
      * Número de opção da ação UPLOAD.
      */
     public static final int UPLOAD=1;
@@ -90,7 +93,7 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
             ! (acao==DELETE) ) return false;
 
         // percorremos a coleçao aplicando as regras
-        Iterator i=this.iterator();
+        Iterator<ComandoFTP> i=this.iterator();
         ComandoFTP l;
 
         // se fotoID==0, então procura e remove entradas menores desse albumID
@@ -98,7 +101,7 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
             i=this.iterator();
 
             while(i.hasNext()) {
-                l=(ComandoFTP) i.next();
+                l = i.next();
 
                 if( (l.getOperacao()==acao && l.getAlbumID()==albumID) ||
                     (acao==DELETE && l.getOperacao()==UPLOAD && l.getAlbumID()==albumID)
@@ -188,11 +191,11 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
         }
 
         // Arquivo aberto...
-        Iterator i=this.iterator();
+        Iterator<ComandoFTP> i=this.iterator();
         ComandoFTP l;
 
         while(i.hasNext()) {
-            l=(ComandoFTP) i.next();
+            l = i.next();
             try {
                 saida.write(l.getOperacao() + " " + l.getAlbumID() + " " + l.getFotoID() + "\r\n");	
             } catch (Exception e) {
@@ -213,12 +216,12 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
      * @return Retorna os comandos FTP.
      */
     public String toString() {
-        Iterator i=this.iterator();
+        Iterator<ComandoFTP> i=this.iterator();
         ComandoFTP l;
         String t=this.size() + " comando(s)\n-------------------------------------\n";		
 
         while(i.hasNext()) {
-            l=(ComandoFTP) i.next();
+            l = i.next();
             t+=l.getOperacao() + " " + l.getAlbumID() + " " + l.getFotoID() + "\n";			
         }
         return t + "-------------------------------------\n";

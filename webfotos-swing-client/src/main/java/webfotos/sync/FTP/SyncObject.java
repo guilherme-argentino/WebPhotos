@@ -32,6 +32,7 @@ import webfotos.sync.SyncException;
 import webfotos.sync.SyncListener;
 import webfotos.util.Arquivo;
 import webfotos.util.CacheFTP;
+import webfotos.util.ComandoFTP;
 import webfotos.util.Util;
 
 /**
@@ -168,10 +169,11 @@ public class SyncObject extends FTPClient implements Sync {
         ftpPort=Util.getConfig().getInt("FTPport");
         
         String ftpProxyHost=Util.getProperty("FTPproxyHost");
+        int ftpProxyPort;
         try {
-            int ftpProxyPort=Util.getConfig().getInt("FTPproxyPort");
+            ftpProxyPort=Util.getConfig().getInt("FTPproxyPort");
         } catch (Exception e) {
-            int ftpProxyPort=0;
+            ftpProxyPort=0;
         }
 
         Util.log("Iniciando conexão com " + ftpHost);
@@ -183,9 +185,14 @@ public class SyncObject extends FTPClient implements Sync {
             setDefaultTimeout(25000);
             Util.out.println("Timeout (depois): " + getDefaultTimeout());
 
-            //TODO: Implementar o acesso via Proxy
+            //TODO: Testar o acesso via Proxy
             //      usando System.getProperties().put()
             //      http://java.sun.com/j2se/1.5.0/docs/guide/net/properties.html
+            if(ftpProxyHost.equals(null) && ftpProxyPort != 0) {
+	            System.getProperties().put("ftp.proxyHost", ftpProxyHost);
+	            System.getProperties().put("ftp.proxyPort", ftpProxyPort);
+            }
+            
             super.connect(ftpHost, ftpPort);
             reply = getReplyCode();
 
@@ -254,10 +261,10 @@ public class SyncObject extends FTPClient implements Sync {
             conectado = false;
             e.printStackTrace();
             disconnect("[FtpClient.connect]/ERRO: não foi possivel manter esta conexão");
-        } finally {
-            return conectado;
         }
-
+        
+        return conectado;
+        
     }
     
     /**
@@ -301,7 +308,7 @@ public class SyncObject extends FTPClient implements Sync {
      */
     public void loadSyncCache() {
 
-        Iterator i=CacheFTP.getCache().iterator();
+        Iterator<ComandoFTP> i = CacheFTP.getCache().iterator();
         String linha;
         Util.out.println ("Numero de linhas: " + CacheFTP.getCache().toString());
         // primeiro delete		
