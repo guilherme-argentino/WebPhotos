@@ -509,7 +509,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     private void menuItemAlbumRedoJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAlbumRedoJSActionPerformed
 
-        (new SwingWorker() {
+        (new SwingWorker<Void, Object>() {
 
             protected Void doInBackground() throws Exception {
                 String caminhoAlbum;
@@ -546,7 +546,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     private void menuItemAlbumRedoXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAlbumRedoXMLActionPerformed
 
-        (new SwingWorker() {
+        (new SwingWorker<Void, Object>() {
 
             protected Void doInBackground() throws Exception {
                 String caminhoAlbum;
@@ -604,7 +604,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     private void menuItemFotoRedoThumbsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFotoRedoThumbsActionPerformed
 
-        (new SwingWorker() {
+        (new SwingWorker<Void, Object>() {
 
             protected Void doInBackground() throws Exception {
                 setCursorWait(true);
@@ -976,7 +976,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         // checagem especial para o campo data
 
         try {
-            java.util.Date d = dataBR.parse(data);
+            dataBR.parse(data);
         } catch (Exception e) {
             msgErro = "\nData (" + data + ") inválida";
         }
@@ -1302,7 +1302,6 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     // linhas selecionada para tbAlbum e tbFoto
     private int linhaSelecionadaAlbum;
-    private int linhaSelecionadaFoto;
     private int indiceFoto;
 
     // armazena a representação string do último álbum para controlar alterações
@@ -1312,8 +1311,6 @@ public class PainelWebFotos extends javax.swing.JPanel {
     private static boolean controlarAlteracoes;
     private static boolean documentoAlterado;
 
-    // ouvinte para creditos
-    private AcaoItemListener acaoItemListener;
     // Máscara para data
     private static javax.swing.text.MaskFormatter mascaraData;
 
