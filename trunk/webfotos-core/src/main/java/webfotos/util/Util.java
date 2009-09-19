@@ -279,4 +279,19 @@ public class Util {
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException("Singleton Object");
     }
+
+	public static void loadSocksProxy() {
+	    String socksHost = getConfig().getString("socks.host");
+	    int socksPort = 0;
+	    if (getConfig().containsKey("socks.port")) {
+	        socksPort = getConfig().getInt("socks.port");
+	    }
+	    //Prepara as conexões para usar Socks Proxy (se configurado)
+	    if (socksHost != null && !socksHost.equals("")) {
+	        System.getProperties().put("socksProxyHost", socksHost);
+	        if (socksPort > 0 && socksPort < 65534) {
+	            System.getProperties().put("socksProxyPort", socksPort);
+	        }
+	    }
+	}
 }

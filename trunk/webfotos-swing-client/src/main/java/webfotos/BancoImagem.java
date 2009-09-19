@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import javax.sql.RowSet;
 import javax.sql.rowset.JdbcRowSet;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;
@@ -265,5 +266,22 @@ public class BancoImagem {
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException("Singleton Object");
     }
+
+	public static void loadUIManager() {
+	    String lookAndFeel = Util.getConfig().getString("UIManager.lookAndFeel");
+	    try {
+	        UIManager.setLookAndFeel(lookAndFeel);
+	    } catch (Exception e) {
+	        log.warn("Caution: Theme not correctly configured");
+	        //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+	    }
+	}
+
+	public static void loadDBDriver() throws IllegalAccessException, SQLException, ClassNotFoundException, InstantiationException {
+	    // obtém driver do db
+	    String url = Util.getConfig().getString("jdbc.url");
+	    String driver = Util.getConfig().getString("jdbc.driver");
+	    getBancoImagem().configure(url, driver);
+	}
 
 }
