@@ -93,11 +93,23 @@ public class Arquivo {
     }
     
     /**
-     * Limpa os dados passados no Vector
-     * @param _data dados da foto
+     * <pre>
+     * Constructor thar loads the data from a {@link java.util.Vector Vector}
+     * Vector Data Format
+     * Position 0: Status
+     * Position 1: nomeAcao
+     * Position 2: albumID
+     * Position 3: fotoID
+     * Position 4: nmArquivo
+     * Position 5: tamanho
+     * </pre>
+     * 
+     * TODO: review
+     * @param _data photo data
      */
-    public Arquivo(Vector _data) {
-        Vector data = (Vector)_data.clone();
+    @SuppressWarnings("unchecked")
+	public Arquivo(Vector<String> _data) {
+        Vector<String> data = (Vector<String>) _data.clone();
         status=data.remove(0).toString();
         nomeAcao=data.remove(0).toString();
         albumID=Integer.parseInt(data.remove(0).toString());

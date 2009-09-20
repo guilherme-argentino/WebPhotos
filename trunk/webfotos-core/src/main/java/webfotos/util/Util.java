@@ -28,7 +28,11 @@ import org.apache.log4j.Logger;
  */
 public class Util {
 
-    private static Util instancia = new Util();
+    private static final String WEBFOTOS_USER_CONFIG = "webfotos.xml";
+
+	public static final String WEBFOTOS_DEFAULT_CONFIG = "webfotos.dat";
+
+	private static Util instancia = new Util();
 
     // caixa de texto para dar saída ao log
     private static JTextArea saida;
@@ -53,27 +57,28 @@ public class Util {
         CombinedConfiguration userPrefs = new CombinedConfiguration(); 
         config.addConfiguration(new SystemConfiguration());
         try {
-        	PropertiesConfiguration props = new PropertiesConfiguration("webfotos.dat"); 
+        	PropertiesConfiguration props = new PropertiesConfiguration(WEBFOTOS_DEFAULT_CONFIG); 
             config.addConfiguration(props);
             userPrefs.append(props);
         } catch (ConfigurationException ex) {
-            log.error("Can't load webfotos.dat", ex);
+            log.error("Can't load " + WEBFOTOS_DEFAULT_CONFIG, ex);
             System.exit(-1);
         }
+        
         try {
-        	XMLConfiguration xmlProps = new XMLConfiguration("webfotos.xml");
+        	XMLConfiguration xmlProps = new XMLConfiguration(WEBFOTOS_USER_CONFIG);
             config.addConfiguration(xmlProps);
             userPrefs.append(xmlProps);
         } catch (ConfigurationException ex) {
-            log.warn("Can't load webfotos.xml");
+            log.warn("Can't load " + WEBFOTOS_USER_CONFIG);
             log.debug("Stack Trace : ", ex);
         } finally {
         	try {
         		XMLConfiguration savedUserPrefs = new XMLConfiguration(userPrefs);
         		savedUserPrefs.setEncoding("ISO-8859-1");
-        		savedUserPrefs.save(new FileOutputStream("webfotos.xml"));
+        		savedUserPrefs.save(new FileOutputStream(WEBFOTOS_USER_CONFIG));
 			} catch (Exception e) {
-	            log.error("Can't save webfotos.xml", e);
+	            log.error("Can't save " + WEBFOTOS_USER_CONFIG, e);
 			}
         }
     }

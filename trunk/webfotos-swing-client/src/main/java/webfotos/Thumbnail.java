@@ -95,7 +95,7 @@ public final class Thumbnail {
      * Cria thumbs para as imagens.
      * Testa se já existem valores setados para o thumb,
      * se não existir chama o método
-     * {@link webfotos.Thumbnail#inicializar() inicializar}()
+     * {@link webfotos.Thumbnail#inicializar() inicializar}
      * para setar seus valores.
      * Abre o arquivo de imagem passado como parâmetro
      * e checa se é uma foto válida.
@@ -352,8 +352,8 @@ public final class Thumbnail {
     }
     
     /**
-     * Faz um load no arquivo de configuração 'webfotos.dat' e chama o método
-     * {@link webfotos.Thumbnail#makeThumbs(String) makeThumbs}() para fazer
+     * Faz um load no arquivo de configuração e chama o método
+     * {@link webfotos.Thumbnail#makeThumbs(String) makeThumbs} para fazer
      * thumbs de uma foto específica.
      * @param args args do método main.
      */
