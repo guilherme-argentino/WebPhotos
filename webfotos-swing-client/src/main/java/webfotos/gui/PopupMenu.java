@@ -1,8 +1,6 @@
 package webfotos.gui;
 
 import webfotos.util.*;
-import java.awt.event.*;
-
 
 import javax.swing.*;
 

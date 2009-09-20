@@ -16,7 +16,6 @@ import webfotos.*;
 import java.io.*;
 
 import javax.swing.*;
-import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -246,6 +245,7 @@ public class FtpClient extends JFrame implements Runnable {
      * Checa se existem comandos a executar, caso positivo, tenta a conexão
      * com FTP e executa os comandos (UPLOAD, DELETE ou DOWNLOAD).
      */
+    @Override
     public void run() {
 
         String acao = null;
@@ -582,12 +582,12 @@ public class FtpClient extends JFrame implements Runnable {
      * @param args args do método main.
      */
     public static void main(String args[]) {
-        // obtém driver do db
-        String url = Util.getConfig().getString("jdbc.url");
-        String driver = Util.getConfig().getString("jdbc.driver");
         try {
+            Util.loadSocksProxy();
+            BancoImagem.loadUIManager();
+            BancoImagem.loadDBDriver();
+
             // mostra tela de login
-            BancoImagem.getBancoImagem().configure(url,driver);
             BancoImagem.login();
 
             Thread cl=new Thread(new FtpClient());
