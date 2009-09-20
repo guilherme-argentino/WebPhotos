@@ -9,13 +9,13 @@ import webfotos.gui.FrameWebFotos;
 import webfotos.util.Util;
 
 /**
- * Classe responsável pelo inicio do sistema WebFotos.
+ * Classe responsável pelo inicio do sistema WebPhotos.
  * Realiza algumas rotinas para início do sistema.
  * Os dados são trabalhados somente no método principal.
  */
-public class WebFotos {
+public class WebPhotos {
 
-    private static Logger log = Logger.getLogger(WebFotos.class);
+    private static Logger log = Logger.getLogger(WebPhotos.class);
 
     /**
      * Contêm uma série de rotinas para inicialização do programa.
