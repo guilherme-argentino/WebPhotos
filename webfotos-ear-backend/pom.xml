@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>webfotos</artifactId>
+        <artifactId>webphotos</artifactId>
         <groupId>br.com.guilherme</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>br.com.guilherme.webfotos</groupId>
+    <groupId>br.com.guilherme.webphotos</groupId>
     <artifactId>webfotos-ear-backend</artifactId>
-    <name>[WF] Backend EAR</name>
+    <name>[WP] Backend EAR</name>
     <packaging>ear</packaging>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
-            <groupId>br.com.guilherme.webfotos</groupId>
+            <groupId>br.com.guilherme.webphotos</groupId>
             <artifactId>webfotos-persistence-backend</artifactId>
             <version>${version}</version>
             <scope>compile</scope>
@@ -36,7 +36,7 @@
                 <configuration>
                     <modules>
                         <ejbModule>
-                            <groupId>br.com.guilherme.webfotos</groupId>
+                            <groupId>br.com.guilherme.webphotos</groupId>
                             <artifactId>webfotos-persistence-backend</artifactId>
                         </ejbModule>
                     </modules>
