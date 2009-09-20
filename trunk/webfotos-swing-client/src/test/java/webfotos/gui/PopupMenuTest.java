@@ -8,9 +8,6 @@
 package webfotos.gui;
 
 import junit.framework.*;
-import webfotos.util.*;
-import java.awt.event.*;
-import javax.swing.*;
 
 /**
  *

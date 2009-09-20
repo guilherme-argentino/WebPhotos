@@ -13,16 +13,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-import webfotos.Thumbnail;
-
 /**
  * Cria um visualizador de fotos numa janela popup.
  * Calcula as dimensões da imagem e implementa a imagem na janela.
  */
 public class Visualizador extends JDialog implements ActionListener {
-	private Image foto;
-	private int largura;
-	private int altura;
+
+    private Image foto;
+    private int largura;
+    private int altura;
 
     /**
      * Construtor da classe.
@@ -34,32 +33,32 @@ public class Visualizador extends JDialog implements ActionListener {
      * @param frame Janela frame para alocar a foto.
      * @param titulo Título da janela.
      */
-	public Visualizador(String caminhoImagem, Frame frame, String titulo) {
-		super(frame, titulo, true);
-		Container cp=this.getContentPane();
-		
-		cp.setLayout(new BorderLayout());
-		foto=new ImageIcon(caminhoImagem).getImage();
-		largura=foto.getWidth(this);
-		altura=foto.getHeight(this);
-		
-		// no caso de uma imagem muito grande, utiliza de redução
-		// (por ex. usuário acabou de adicionar uma imagem ao album)
-		if(largura > 550 || altura > 550) {
-			Dimension d=calculaReducao(new Dimension(largura,altura), 550);
-			largura=d.width;
-			altura=d.height;
-		}
-		
-		this.setSize(largura + 10,altura + 60);
-		JButton btFechar=new JButton("fechar");
-		cp.add(btFechar,BorderLayout.SOUTH);
-		btFechar.addActionListener(this);
-		this.setLocationRelativeTo(null);	
-		show();
+    public Visualizador(String caminhoImagem, Frame frame, String titulo) {
+        super(frame, titulo, true);
+        Container cp = this.getContentPane();
 
-	}
-	
+        cp.setLayout(new BorderLayout());
+        foto = new ImageIcon(caminhoImagem).getImage();
+        largura = foto.getWidth(this);
+        altura = foto.getHeight(this);
+
+        // no caso de uma imagem muito grande, utiliza de redução
+        // (por ex. usuário acabou de adicionar uma imagem ao album)
+        if (largura > 550 || altura > 550) {
+            Dimension d = calculaReducao(new Dimension(largura, altura), 550);
+            largura = d.width;
+            altura = d.height;
+        }
+
+        this.setSize(largura + 10, altura + 60);
+        JButton btFechar = new JButton("fechar");
+        cp.add(btFechar, BorderLayout.SOUTH);
+        btFechar.addActionListener(this);
+        this.setLocationRelativeTo(null);
+        show();
+
+    }
+
     /**
      * Faz uma redução de dimensão da foto.
      * Recebe um valor de dimensão e um tamanho máximo.
@@ -69,24 +68,24 @@ public class Visualizador extends JDialog implements ActionListener {
      * @param tamMaximo Tamanho máximo da nova dimensão.
      * @return Retorna a nova dimensão.
      */
-	public static Dimension calculaReducao(Dimension original, int tamMaximo) {
-		
-		Dimension d = new Dimension();
-		// proporção
-		double p = original.getWidth() / original.getHeight();
-		
-		// imagem horizontal
-		if(p > 1) {
-			d.width = tamMaximo;
-			d.height = (int) (tamMaximo / p);			
-			
-		// imagem vertical
-		} else {
-			d.width = (int) (tamMaximo * p);
-			d.height = tamMaximo;
-		}
-		return d;
-	}
+    public static Dimension calculaReducao(Dimension original, int tamMaximo) {
+
+        Dimension d = new Dimension();
+        // proporção
+        double p = original.getWidth() / original.getHeight();
+
+        // imagem horizontal
+        if (p > 1) {
+            d.width = tamMaximo;
+            d.height = (int) (tamMaximo / p);
+
+            // imagem vertical
+        } else {
+            d.width = (int) (tamMaximo * p);
+            d.height = tamMaximo;
+        }
+        return d;
+    }
 
     /**
      * Faz uma chamada a classe base e pinta todos os componentes.
@@ -94,11 +93,12 @@ public class Visualizador extends JDialog implements ActionListener {
      * TODO: avaliar a funcionalidade deste método.
      * @param g Contexto gráfico.
      */
-	public void paint(Graphics g) {
-		super.paintComponents(g);
-		g.drawImage(foto, 5 , 28, largura, altura, null);
-	}
-	
+    @Override
+    public void paint(Graphics g) {
+        super.paintComponents(g);
+        g.drawImage(foto, 5, 28, largura, altura, null);
+    }
+
     /**
      * Desabilita a tela.
      * Desabilita sua visibilidade e encerra seus dados.
@@ -106,11 +106,12 @@ public class Visualizador extends JDialog implements ActionListener {
      * TODO: avaliar a funcionalidade deste método.
      * @param e Evento de ação.
      */
-	public void actionPerformed(ActionEvent e) {
-		this.setVisible(false);
-		this.dispose();
-	}
-	
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.setVisible(false);
+        this.dispose();
+    }
+
     /**
      * Método principal.
      * Cria um objeto {@link java.awt.Dimension Dimension} e seta seus valores.
@@ -118,10 +119,10 @@ public class Visualizador extends JDialog implements ActionListener {
      * Ao final, imprime as duas dimensões.
      * @param a args do método main.
      */
-	public static void main(String a[]) {
-		Dimension dim = new Dimension(1154,1772);
-		Dimension novo = calculaReducao(dim, 550);
-		System.out.println ("original:" + dim.toString());
-		System.out.println ("reduzido:" + novo.toString());
-	}
+    public static void main(String a[]) {
+        Dimension dim = new Dimension(1154, 1772);
+        Dimension novo = calculaReducao(dim, 550);
+        System.out.println("original:" + dim.toString());
+        System.out.println("reduzido:" + novo.toString());
+    }
 }
