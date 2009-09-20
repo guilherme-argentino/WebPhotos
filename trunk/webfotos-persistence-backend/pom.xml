@@ -2,19 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>br.com.guilherme</groupId>
-        <artifactId>webfotos</artifactId>
+        <artifactId>webphotos</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>br.com.guilherme.webfotos</groupId>
+    <groupId>br.com.guilherme.webphotos</groupId>
     <artifactId>webfotos-persistence-backend</artifactId>
     <packaging>ejb</packaging>
-    <name>[WF] Backend Persistence</name>
+    <name>[WP] Backend Persistence</name>
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -47,3 +46,4 @@
         <netbeans.hint.deploy.server>JBoss4</netbeans.hint.deploy.server>
     </properties>
 </project>
+
