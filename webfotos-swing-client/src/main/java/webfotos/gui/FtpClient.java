@@ -18,6 +18,7 @@ import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import webfotos.util.ApplicationContextResource;
 
 
 /**
@@ -78,23 +79,15 @@ public class FtpClient extends JFrame implements Runnable {
         retry = 3;
         try {
             //TODO: transformar este acesso em parâmetro do sistema
-            ftp = (Sync)Class.forName("webfotos.sync.FTP.SyncObject").newInstance();
+            ftp = (Sync)ApplicationContextResource.getBean("syncObject");
             /**
              * Configuração do sistema de sincronização
              */
             ftp.setSyncFolder(ftpRoot);
             enviarAltaResolucao = ftp.isEnviarAltaResolucao();
             ftp.loadSyncCache();
-        } catch (IllegalAccessException ex) {
-            Util.log("[FtpClient.run]/ERRO: Acesso Ilegal a classe.");
-            ex.printStackTrace();
-            System.exit(1);
-        } catch (InstantiationException ex) {
-            Util.log("[FtpClient.run]/ERRO: Não foi possível instanciar a classe.");
-            ex.printStackTrace();
-            System.exit(1);
-        } catch (ClassNotFoundException ex) {
-            Util.log("[FtpClient.run]/ERRO: Classe não encontrada.");
+        } catch (Exception ex) {
+            Util.log("[FtpClient.run]/ERRO: Inexperado.");
             ex.printStackTrace();
             System.exit(1);
         }

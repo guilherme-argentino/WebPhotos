@@ -58,6 +58,7 @@ public class SyncAdapter implements SyncListener {
      * {@link webfotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
+    @Override
     public void disconnected(SyncEvent event) { }
     
     /**
@@ -67,6 +68,7 @@ public class SyncAdapter implements SyncListener {
      * {@link webfotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
+    @Override
     public void connected(SyncEvent event) { }
 
     /**
@@ -76,6 +78,7 @@ public class SyncAdapter implements SyncListener {
      * {@link webfotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
+    @Override
     public void logonStarted(SyncEvent event) {
     }
     

@@ -279,8 +279,8 @@ public class BancoImagem {
 
 	public static void loadDBDriver() throws IllegalAccessException, SQLException, ClassNotFoundException, InstantiationException {
 	    // obtém driver do db
-	    String url = Util.getConfig().getString("jdbc.url");
-	    String driver = Util.getConfig().getString("jdbc.driver");
+	    url = Util.getConfig().getString("jdbc.url");
+	    driver = Util.getConfig().getString("jdbc.driver");
 	    getBancoImagem().configure(url, driver);
 	}
 

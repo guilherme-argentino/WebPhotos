@@ -7,20 +7,15 @@ import org.apache.log4j.Logger;
 import webfotos.gui.FtpClient;
 import webfotos.gui.PainelWebFotos;
 
-
 /**
  * Identifica uma ação obtida ao clique de um dos botões da barra de ferramentas localizada no canto inferior direito do painel principal.
  * Na classe {@link webfotos.gui.BotaoIcone BotaoIcone}, onde será realizada uma instância de AcaoToolbar, será transmitido o evento para posteriormente implementar a ação do botão nesta classe.
  */
 public class AcaoToolbar extends AbstractAction {
-    
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5232557211589840659L;
-	
-	private Logger log = Logger.getLogger(this.getClass());
-	
+
+    private static final long serialVersionUID = 5232557211589840659L;
+    private Logger log = Logger.getLogger(this.getClass());
+
     /**
      * Construtor da classe.
      * Inicialmente vazio, pois a classe não possui atributos.
@@ -38,18 +33,17 @@ public class AcaoToolbar extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        String comando=e.getActionCommand();
+        String comando = e.getActionCommand();
 
-        if(comando.equals("ftp")) {
-            Thread t=new Thread(new FtpClient());
+        if (comando.equals("ftp")) {
+            Thread t = new Thread(new FtpClient());
             t.start();
-        } else if(comando.equals("down")) {
+        } else if (comando.equals("down")) {
             PainelWebFotos.marcaAlbunsFTP(2);
-        } else if(comando.equals("up")) {
+        } else if (comando.equals("up")) {
             PainelWebFotos.marcaAlbunsFTP(1);
-        } else if(comando.equals("camera")) {
-            log.debug ("adicionar fotos");
-        }		
+        } else if (comando.equals("camera")) {
+            log.debug("adicionar fotos");
+        }
     }
-
 }
