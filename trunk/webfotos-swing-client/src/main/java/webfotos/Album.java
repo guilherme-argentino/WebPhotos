@@ -14,8 +14,6 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
-import webfotos.BancoImagem;
-import webfotos.Foto;
 import webfotos.util.CacheFTP;
 import webfotos.util.Util;
 

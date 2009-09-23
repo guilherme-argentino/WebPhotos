@@ -3,8 +3,6 @@ package webfotos.gui;
 import javax.swing.*;
 import java.awt.Container;
 import webfotos.acao.AcaoToolbar;
-import java.io.*;
-import java.net.*;
 import webfotos.util.Util;
 
 /**

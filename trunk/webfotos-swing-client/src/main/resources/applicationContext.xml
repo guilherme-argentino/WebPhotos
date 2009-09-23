@@ -19,4 +19,6 @@
 
   <bean id="acaoDocumentListener" class="webfotos.acao.AcaoDocumentListener" />
 
+  <bean id="syncObject" class="webfotos.sync.FTP.SyncObject" />
+
 </beans>

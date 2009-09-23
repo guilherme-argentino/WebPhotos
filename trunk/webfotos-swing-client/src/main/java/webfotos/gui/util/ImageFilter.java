@@ -25,6 +25,7 @@ public class ImageFilter extends FileFilter {
      * @param f Arquivo ou diretório.
      * @return Retorna um valor lógico.
      */
+    @Override
     public boolean accept(File f) {
         if (f.isDirectory()) return true;
             String nmArquivo=f.getName();
@@ -41,6 +42,7 @@ public class ImageFilter extends FileFilter {
      * Retorna a descrição "Imagens jpeg e jpg".
      * @return Retorna uma descrição.
      */
+    @Override
     public String getDescription() {
         return "Imagens jpeg e jpg";
     }

@@ -7,7 +7,6 @@
 package webfotos.gui;
 
 import webfotos.acao.AcaoPesquisa;
-import webfotos.gui.PopupMenu;
 
 /**
  * Desenvolve um painel para pesquisas.
@@ -26,7 +25,7 @@ public class PainelPesquisa extends javax.swing.JPanel {
         
         // ACAO PESQUISA
         // TODO: Reformular essa Ação
-        javax.swing.Action acaoPesquisa=new AcaoPesquisa(lstCategoriasPesquisa,txtPesquisa,((PainelWebFotos)getParent()).getTbAlbuns());
+        javax.swing.Action acaoPesquisa=new AcaoPesquisa(lstCategoriasPesquisa,txtPesquisa,PainelWebFotos.getTbAlbuns());
         btPesquisar.addActionListener(acaoPesquisa);
         txtPesquisa.registerKeyboardAction(acaoPesquisa,
             javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER,0),
