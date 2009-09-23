@@ -29,13 +29,14 @@ public class AcaoToolbar extends AbstractAction {
     }
 
     /**
-     * Armazena o nome setado em ActionCommand numa String.
+     * Recupera o nome setado em ActionCommand numa String.
      * Executa testes para checar qual o comando desejado.
      * Caso clique no primeiro botão, inicia uma thread de FtpClient.
      * Se for um dos botões do meio, executa o método {@link webfotos.gui.PainelWebFotos#marcaAlbunsFTP(int) marcaAlbunsFTP(int comando)} e marca para download ou upload.
      * E caso seja o último botão, adiciona fotos.
      * @param e Evento da ação
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         String comando=e.getActionCommand();
 

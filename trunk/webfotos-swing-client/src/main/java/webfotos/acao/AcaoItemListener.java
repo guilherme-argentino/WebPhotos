@@ -39,6 +39,7 @@ public class AcaoItemListener implements ItemListener {
      * Caso contrário busca qual item, no caso foto, foi selecionado pelo usuário, seta creditoNome com o item afetado pelo evento, atualiza o modelo do albúm e muda o flag de alteração detectada.
      * @param e Evento de item (selecionado ou não selecionado).
      */
+    @Override
     public void itemStateChanged(ItemEvent e) {
         Foto f;
         // quando for evento de lstCategoriasAlbum, somente muda a flag

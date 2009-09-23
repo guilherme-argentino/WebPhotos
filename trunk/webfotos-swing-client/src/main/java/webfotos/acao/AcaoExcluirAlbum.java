@@ -39,6 +39,7 @@ public class AcaoExcluirAlbum extends AbstractAction {
      * Caso o usuário confirme, exclui os albúns selecionados através da função {@link webfotos.Album#excluirAlbuns(int[]) excluirAlbuns(albunsID)} em webfotos.Album e atualiza a lista e a aréa dos albúns no programa.
      * @param e Evento de ação de exclusão de albúns.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
 
         JTable tbAlbuns=PainelWebFotos.getTbAlbuns();
