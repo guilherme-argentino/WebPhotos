@@ -50,6 +50,7 @@ public class AcaoAtualizaLegenda extends AbstractAction {
      * Seta o valor da legenda da foto, pelo valor armazenado em txtLegenda e ao final atualiza os valores.
      * @param e Evento de ação de atualização de legenda.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         Util.out.println ("indiceFoto:" + indiceFoto);
         int fID=Integer.parseInt(tbFotos.getModel().getValueAt(tbFotos.getSelectedRow(),0).toString());

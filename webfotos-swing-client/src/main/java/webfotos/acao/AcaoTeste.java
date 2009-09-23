@@ -33,6 +33,7 @@ public class AcaoTeste extends AbstractAction {
      * Instancia um objeto Album para receber os dados do albúm e faz um print no formato XML, através da função {@link webfotos.Album#toXML() toXML()} localizada em webfotos.Album.
      * @param e Evento da ação de teste.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
             //Util.out.println ("acao teste");
             Album a=Album.getAlbum();

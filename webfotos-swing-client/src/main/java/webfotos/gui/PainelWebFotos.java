@@ -5,6 +5,7 @@
  */
 package webfotos.gui;
 
+import java.awt.event.KeyEvent;
 import webfotos.gui.util.TableSorter;
 import webfotos.gui.util.TableModelFoto;
 import webfotos.gui.util.TableModelAlbum;
@@ -16,6 +17,10 @@ import webfotos.util.*;
 import webfotos.acao.*;
 
 import java.io.*;
+import javax.swing.Action;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 /**
@@ -511,6 +516,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         (new SwingWorker<Void, Object>() {
 
+            @Override
             protected Void doInBackground() throws Exception {
                 String caminhoAlbum;
                 FileWriter out;
@@ -548,6 +554,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         (new SwingWorker<Void, Object>() {
 
+            @Override
             protected Void doInBackground() throws Exception {
                 String caminhoAlbum;
                 FileWriter out;
@@ -606,6 +613,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         (new SwingWorker<Void, Object>() {
 
+            @Override
             protected Void doInBackground() throws Exception {
                 setCursorWait(true);
                 int[] rowsID = tbFotos.getSelectedRows();
@@ -722,7 +730,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         // TECLAS DE ATALHO GLOBAL
 
         // ACAO EXCLUIR ALBUM
-        javax.swing.Action acaoExcluirAlbum = new AcaoExcluirAlbum();
+        Action acaoExcluirAlbum = (Action) ApplicationContextResource.getBean("acaoExcluirAlbum");
         tbAlbuns.registerKeyboardAction(acaoExcluirAlbum,
                 javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, 0),
                 javax.swing.JComponent.WHEN_FOCUSED);
@@ -745,8 +753,8 @@ public class PainelWebFotos extends javax.swing.JPanel {
         lstCategoriasAlbum.addItemListener(new AcaoItemListener());
 
         // tecla tab na descrição, pula pro botão
-        /*txtDescricao.registerKeyboardAction(null,
-        KeyStroke.getKeyStroke(KeyEvent.VK_TAB,0),JComponent.WHEN_FOCUSED);*/
+        txtDescricao.registerKeyboardAction(null,
+                KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0), JComponent.WHEN_FOCUSED);
 
         // ouvinte para créditos é adicionado e removido no metodo carregaFoto()
         // primeira adição do ouvinte - para ser retirado da primeira vez
@@ -772,7 +780,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         ((javax.swing.MutableComboBoxModel) painelPesquisa.getCategoriasPesquisaComboBoxModel()).setSelectedItem(painelPesquisa.getCategoriasPesquisaComboBoxModel().getElementAt(0));
 
         // prepara outras variáveis utilizadas pelo sistema
-        AcaoDocumentListener acaoDocumentListener = new AcaoDocumentListener();
+        DocumentListener acaoDocumentListener = (DocumentListener) ApplicationContextResource.getBean("acaoDocumentListener");;
 
         txtTitulo.getDocument().addDocumentListener(acaoDocumentListener);
         txtData.getDocument().addDocumentListener(acaoDocumentListener);
@@ -780,11 +788,12 @@ public class PainelWebFotos extends javax.swing.JPanel {
         txtLegenda.getDocument().addDocumentListener(acaoDocumentListener);
 
         // Adiciona uma mascara
-        getMascaraData().install(txtData);
+        mascaraData.install(txtData);
 
         // Ouvinte para itens selecionados (Fotos)
         tbFotos.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 
+            @Override
             public void valueChanged(javax.swing.event.ListSelectionEvent e) {
                 //Ignore extra messages.
                 if (e.getValueIsAdjusting()) {
@@ -803,6 +812,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         // Ouvinte para mudança nos dados (Fotos)
         tbFotos.getModel().addTableModelListener(new javax.swing.event.TableModelListener() {
 
+            @Override
             public void tableChanged(TableModelEvent e) {
                 Util.ajustaLargura(tbFotos, Util.getProperty("colunas2"));
             }
@@ -811,6 +821,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         // Ouvinte para itens selecionados (Álbuns)
         tbAlbuns.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 
+            @Override
             public void valueChanged(javax.swing.event.ListSelectionEvent e) {
                 //Ignore extra messages.
                 if (e.getValueIsAdjusting()) {
@@ -829,6 +840,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         // Ouvinte para mudança nos dados (Álbuns)
         tbAlbuns.getModel().addTableModelListener(new javax.swing.event.TableModelListener() {
 
+            @Override
             public void tableChanged(TableModelEvent e) {
                 Util.ajustaLargura(tbAlbuns, Util.getProperty("colunas1"));
             }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<!--
+    Document   : applicationContext.xml
+    Created on : 22 de Setembro de 2009, 21:44
+    Author     : Guilhe
+    Description:
+        Purpose of the document follows.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <bean id="acaoExcluirAlbum" class="webfotos.acao.AcaoExcluirAlbum">
+    <!-- collaborators and configuration for this bean go here -->
+  </bean>
+
+  <bean id="acaoDocumentListener" class="webfotos.acao.AcaoDocumentListener" />
+
+</beans>
