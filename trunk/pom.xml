@@ -7,6 +7,10 @@
     <version>1.0-SNAPSHOT</version>
     <name>WebPhotos</name>
     <description>Project WebPhotos</description>
+    <scm>
+        <connection>scm:svn:https://webphotos.svn.sourceforge.net/svnroot/webphotos/trunk/</connection>
+        <developerConnection>scm:svn:https://webphotos.svn.sourceforge.net/svnroot/webphotos/trunk/</developerConnection>
+    </scm>
     <build>
         <plugins>
             <plugin>
