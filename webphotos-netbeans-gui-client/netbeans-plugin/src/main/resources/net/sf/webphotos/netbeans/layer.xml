@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+ 
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="net-sf-webphotos-netbeans-WebPhotosFormAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="WebPhotosFormAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/net-sf-webphotos-netbeans-WebPhotosFormAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="WebPhotosFormTopComponent.settings" url="WebPhotosFormTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="WebPhotosFormTopComponent.wstcref" url="WebPhotosFormTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

@@ -7,8 +7,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 
-import webfotos.Album;
-import webfotos.Foto;
+import net.sf.webphotos.Album;
+import net.sf.webphotos.Foto;
 import webfotos.gui.util.TableModelFoto;
 import webfotos.util.Util;
 

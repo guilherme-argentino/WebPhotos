@@ -19,6 +19,12 @@
 
   <bean id="acaoDocumentListener" class="webfotos.acao.AcaoDocumentListener" />
 
+  <bean id="popupMenu" class="webfotos.gui.PopupMenu" />
+
+  <bean id="acaoPopup" class="webfotos.acao.AcaoPopup">
+      <constructor-arg index="0" ref="popupMenu" />
+  </bean>
+
   <bean id="syncObject" class="webfotos.sync.FTP.SyncObject" />
 
 </beans>

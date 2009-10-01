@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: net/sf/webphotos/netbeans/Bundle.properties
+OpenIDE-Module-Layer: net/sf/webphotos/netbeans/layer.xml

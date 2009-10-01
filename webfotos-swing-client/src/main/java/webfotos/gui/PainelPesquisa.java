@@ -6,7 +6,9 @@
 
 package webfotos.gui;
 
+import webfotos.acao.AcaoPopup;
 import webfotos.acao.AcaoPesquisa;
+import webfotos.util.ApplicationContextResource;
 
 /**
  * Desenvolve um painel para pesquisas.
@@ -31,8 +33,7 @@ public class PainelPesquisa extends javax.swing.JPanel {
             javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER,0),
             javax.swing.JComponent.WHEN_FOCUSED);
         
-        PopupMenu popup=new PopupMenu();
-        btFiltro.addMouseListener(new AcaoPopup(popup));
+        btFiltro.addMouseListener((AcaoPopup) ApplicationContextResource.getBean("acaoPopup"));
 
     }
     

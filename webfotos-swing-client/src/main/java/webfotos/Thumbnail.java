@@ -27,6 +27,7 @@ import webfotos.util.Util;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import net.sf.webphotos.BancoImagem;
 
 /**
  * Molda diferentes tamanhos de dimensão para as imagens.
@@ -374,7 +375,7 @@ public final class Thumbnail {
      * Não possui utilizações.
      */
     public static void executaLote() {
-        webfotos.BancoImagem db = webfotos.BancoImagem.getBancoImagem();
+        net.sf.webphotos.BancoImagem db = net.sf.webphotos.BancoImagem.getBancoImagem();
 
         try {
             db.configure("jdbc:mysql://mysql.iphotel.com.br/serra45","com.mysql.jdbc.Driver");

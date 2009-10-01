@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import org.apache.log4j.Logger;
-import webfotos.gui.FtpClient;
+import webfotos.gui.util.FtpClient;
 import webfotos.gui.PainelWebFotos;
 
 /**
