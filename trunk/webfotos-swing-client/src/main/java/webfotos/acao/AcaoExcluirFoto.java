@@ -8,7 +8,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import webfotos.Album;
+import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.TableModelFoto;
 import webfotos.util.Util;

@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import webfotos.Album;
+import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.TableModelAlbum;
 import webfotos.util.Util;
@@ -80,7 +80,7 @@ public class AcaoExcluirAlbum extends AbstractAction {
             Album.getAlbum().excluirAlbuns(albunsID);
 
             if(Util.getConfig().getBoolean("autoTransferir")) {
-                Thread t=new Thread(new webfotos.gui.FtpClient());
+                Thread t=new Thread(new webfotos.gui.util.FtpClient());
                 t.start();
             }
 

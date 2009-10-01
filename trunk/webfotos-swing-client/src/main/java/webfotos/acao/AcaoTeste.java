@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import webfotos.Album;
+import net.sf.webphotos.Album;
 import webfotos.util.Util;
 
 /**

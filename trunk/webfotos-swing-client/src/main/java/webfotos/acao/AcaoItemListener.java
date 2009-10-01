@@ -5,8 +5,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JTable;
 
-import webfotos.Album;
-import webfotos.Foto;
+import net.sf.webphotos.Album;
+import net.sf.webphotos.Foto;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.TableModelFoto;
 

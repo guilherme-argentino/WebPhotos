@@ -15,9 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
-import webfotos.Album;
-import webfotos.BancoImagem;
-import webfotos.Foto;
+import net.sf.webphotos.Album;
+import net.sf.webphotos.BancoImagem;
+import net.sf.webphotos.Foto;
 import webfotos.Thumbnail;
 import webfotos.gui.PainelWebFotos;
 import webfotos.util.CacheFTP;
@@ -272,7 +272,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         }
 
         if (retorno == 0 || autoTransferir) {
-            Thread t = new Thread(new webfotos.gui.FtpClient());
+            Thread t = new Thread(new webfotos.gui.util.FtpClient());
             t.start();
         }
 

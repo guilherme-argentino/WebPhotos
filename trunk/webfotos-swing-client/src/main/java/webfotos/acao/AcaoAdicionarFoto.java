@@ -10,7 +10,7 @@ import javax.swing.JTable;
 
 import org.apache.commons.configuration.Configuration;
 
-import webfotos.Album;
+import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.ImageFilter;
 import webfotos.gui.util.TableModelFoto;

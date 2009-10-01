@@ -3,8 +3,8 @@ package webfotos.gui.util;
 
 import javax.swing.table.*;
 
-import webfotos.Album;
-import webfotos.Foto;
+import net.sf.webphotos.Album;
+import net.sf.webphotos.Foto;
 import webfotos.gui.PainelWebFotos;
 
 /**

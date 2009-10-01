@@ -1,5 +1,6 @@
 package webfotos;
 
+import net.sf.webphotos.BancoImagem;
 import java.io.File;
 
 

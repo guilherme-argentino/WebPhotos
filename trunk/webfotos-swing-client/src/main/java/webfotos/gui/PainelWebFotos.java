@@ -5,6 +5,9 @@
  */
 package webfotos.gui;
 
+import net.sf.webphotos.BancoImagem;
+import net.sf.webphotos.Foto;
+import net.sf.webphotos.Album;
 import java.awt.event.KeyEvent;
 import webfotos.gui.util.TableSorter;
 import webfotos.gui.util.TableModelFoto;

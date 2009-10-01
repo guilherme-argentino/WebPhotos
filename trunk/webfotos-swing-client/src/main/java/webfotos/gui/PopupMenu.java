@@ -1,5 +1,6 @@
 package webfotos.gui;
 
+import webfotos.acao.AcaoPopup;
 import webfotos.util.*;
 
 import javax.swing.*;
