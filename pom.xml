@@ -10,7 +10,28 @@
     <scm>
         <connection>scm:svn:https://webphotos.svn.sourceforge.net/svnroot/webphotos/trunk/</connection>
         <developerConnection>scm:svn:https://webphotos.svn.sourceforge.net/svnroot/webphotos/trunk/</developerConnection>
+        <url>http://webphotos.svn.sourceforge.net/viewvc/webphotos/trunk</url>
     </scm>
+    <mailingLists>
+        <mailingList>
+            <name>WebPhotos Development Mailing list</name>
+            <subscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-development</subscribe>
+            <unsubscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-development</unsubscribe>
+            <!-- <archive>http://sourceforge.net/mailarchive/forum.php?forum_id=40831</archive> -->
+            <post>webphotos-development@lists.sourceforge.net</post>
+        </mailingList>
+        <mailingList>
+            <name>WebPhotos User Mailing list</name>
+            <subscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-users</subscribe>
+            <unsubscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-users</unsubscribe>
+            <!-- <archive>http://sourceforge.net/mailarchive/forum.php?forum_id=40830</archive> -->
+            <post>webphotos-users@lists.sourceforge.net</post>
+        </mailingList>
+    </mailingLists>
+    <issueManagement>
+        <system>sourceforge</system>
+        <url>https://sourceforge.net/apps/trac/webphotos/report</url>
+    </issueManagement>
     <build>
         <plugins>
             <plugin>
