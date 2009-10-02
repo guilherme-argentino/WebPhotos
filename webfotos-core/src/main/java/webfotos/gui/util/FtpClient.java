@@ -239,7 +239,6 @@ public class FtpClient extends JFrame implements Runnable {
      * Checa se existem comandos a executar, caso positivo, tenta a conexão
      * com FTP e executa os comandos (UPLOAD, DELETE ou DOWNLOAD).
      */
-    @Override
     public void run() {
 
         String acao = null;
