@@ -18,7 +18,18 @@
             <version>${netbeans.version}</version>
             <type>pom</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.netbeans.cluster</groupId>
+            <artifactId>ide11</artifactId>
+            <version>${netbeans.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.webphotos</groupId>
+            <artifactId>webphotos-project-type</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>nbm</type>
+        </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
             <artifactId>netbeans-plugin</artifactId>
@@ -56,7 +67,7 @@
                                     <goal>autoupdate</goal>
                                 </goals>
                                 <configuration>
-                                <!--distBase>central::default::http://repo1.maven.org/maven2</distBase-->
+                                    <distBase>central::default::http://repo1.maven.org/maven2</distBase>
                                 </configuration>
                             </execution>
                             <execution>
