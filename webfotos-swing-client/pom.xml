@@ -182,6 +182,10 @@
             <scope>compile</scope>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
