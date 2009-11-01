@@ -7,7 +7,8 @@
 
 package webfotos.gui;
 
-import junit.framework.*;
+import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  *
@@ -19,15 +20,10 @@ public class PopupMenuTest extends TestCase {
         super(testName);
     }
 
-    public static Test suite() {
-        TestSuite suite = new TestSuite(PopupMenuTest.class);
-        
-        return suite;
-    }
-
     /**
      * Test of getPreSQL method, of class webfotos.gui.PopupMenu.
      */
+    @Test
     public void testGetPreSQL() {
         System.out.println("getPreSQL");
         
@@ -41,6 +37,7 @@ public class PopupMenuTest extends TestCase {
     /**
      * Test of setPreSQL method, of class webfotos.gui.PopupMenu.
      */
+    @Test
     public void testSetPreSQL() {
         System.out.println("setPreSQL");
         

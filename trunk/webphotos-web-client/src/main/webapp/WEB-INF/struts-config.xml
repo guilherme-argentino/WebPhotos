@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation //DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+    <display-name>${pom.description}</display-name>
+
+    <action-mappings>
+        <action path="/index" type="net.sf.webphotos.web.action.IndexAction">
+            <forward  name="success" path="/index.jsp"/>
+        </action>
+    </action-mappings>
+</struts-config>

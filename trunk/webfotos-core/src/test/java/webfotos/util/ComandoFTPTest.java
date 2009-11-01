@@ -7,7 +7,7 @@
 
 package webfotos.util;
 
-import junit.framework.*;
+import org.junit.Test;
 
 /**
  *
@@ -22,6 +22,7 @@ public class ComandoFTPTest extends MassaTesteClassesFTP {
     /**
      * Teste do método equals, da classe webfotos.util.ComandoFTP.
      */
+    @Test
     public void testEquals() {
         System.out.println("equals");
         
@@ -36,6 +37,7 @@ public class ComandoFTPTest extends MassaTesteClassesFTP {
     /**
      * Teste do método recebe, da classe webfotos.util.ComandoFTP.
      */
+    @Test
     public void testRecebe() {
         System.out.println("recebe");
         

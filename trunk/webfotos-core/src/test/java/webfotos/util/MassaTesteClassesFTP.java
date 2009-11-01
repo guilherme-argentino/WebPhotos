@@ -10,6 +10,7 @@
 package webfotos.util;
 
 import junit.framework.TestCase;
+import org.junit.Before;
 
 /**
  * Classe criada para alimentar de dados suas subclasses. Para usá-la, é necessário
@@ -50,6 +51,7 @@ public abstract class MassaTesteClassesFTP extends TestCase {
      * Alimenta os arrays com seus dados antes de realizar os testes.
      * @throws java.lang.Exception Lança para o programa de teste tratar todas as excessões nessa etapa.
      */
+    @Before
     protected void setUp() throws Exception {
         
         /** Alimentando os comandos errados */
