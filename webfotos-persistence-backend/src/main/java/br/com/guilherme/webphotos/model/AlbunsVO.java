@@ -1,8 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *  Copyright 2009 gsilva.
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *  under the License.
  */
-
 package br.com.guilherme.webphotos.model;
 
 import java.io.Serializable;
@@ -25,39 +36,35 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ALBUNS")
 @NamedQueries({
-        @NamedQuery(name = "AlbunsVO.findByAlbumID", query = "SELECT a FROM AlbunsVO a WHERE a.albumid = :albumid"),
-        @NamedQuery(name = "AlbunsVO.findByNmAlbum", query = "SELECT a FROM AlbunsVO a WHERE a.nmalbum = :nmalbum"),
-        @NamedQuery(name = "AlbunsVO.findByDtInsercao", query = "SELECT a FROM AlbunsVO a WHERE a.dtInsercao = :dtInsercao"),
-        @NamedQuery(name = "AlbunsVO.findByCategoriaID", query = "SELECT a FROM AlbunsVO a WHERE a.categoriaVO.categoriaid = :categoriaid"),
-        @NamedQuery(name = "AlbunsVO.findByCreditoID", query = "SELECT a FROM AlbunsVO a WHERE a.creditoid = :creditoid")
+    @NamedQuery(name = "AlbunsVO.findByAlbumID", query = "SELECT a FROM AlbunsVO a WHERE a.albumid = :albumid"),
+    @NamedQuery(name = "AlbunsVO.findByNmAlbum", query = "SELECT a FROM AlbunsVO a WHERE a.nmalbum = :nmalbum"),
+    @NamedQuery(name = "AlbunsVO.findByDtInsercao", query = "SELECT a FROM AlbunsVO a WHERE a.dtInsercao = :dtInsercao"),
+    @NamedQuery(name = "AlbunsVO.findByCategoriaID", query = "SELECT a FROM AlbunsVO a WHERE a.categoriasVO.categoriaID = :categoriaID")
 })
 public class AlbunsVO implements Serializable {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "ALBUMID", nullable = false)
     private Integer albumid;
-    
     @Column(name = "NMALBUM", nullable = false)
     private String nmalbum;
-    
     @Column(name = "DT_INSERCAO", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dtInsercao;
-    
     @ManyToOne
-    @JoinColumn(name="CATEGORIAID")
+    @JoinColumn(name = "CATEGORIAID")
     private CategoriasVO categoriasVO;
 
     public CategoriasVO getCategoriasVO() {
-		return categoriasVO;
-	}
+        return categoriasVO;
+    }
 
-	public void setCategoriasVO(CategoriasVO categoriasVO) {
-		this.categoriasVO = categoriasVO;
-	}
+    public void setCategoriasVO(CategoriasVO categoriasVO) {
+        this.categoriasVO = categoriasVO;
+    }
 
-	public AlbunsVO() {
+    public AlbunsVO() {
     }
 
     public AlbunsVO(Integer albumid) {
@@ -119,5 +126,4 @@ public class AlbunsVO implements Serializable {
     public String toString() {
         return "br.nom.guilherme.webfotos.dao.AlbunsVO[albumid=" + albumid + "]";
     }
-
 }

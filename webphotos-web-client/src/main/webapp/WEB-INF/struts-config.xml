@@ -2,11 +2,21 @@
 <!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation //DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
 
 <struts-config>
+
     <display-name>${pom.description}</display-name>
 
     <action-mappings>
-        <action path="/index" type="net.sf.webphotos.web.action.IndexAction">
+        <action path="/index">
             <forward  name="success" path="/index.jsp"/>
         </action>
     </action-mappings>
+
+    <controller>
+        <set-property property="processorClass" value="org.springframework.web.struts.DelegatingRequestProcessor"/>
+    </controller>
+
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+          <set-property property="contextConfigLocation" value="/WEB-INF/applicationContext.xml"/>
+    </plug-in>
+
 </struts-config>

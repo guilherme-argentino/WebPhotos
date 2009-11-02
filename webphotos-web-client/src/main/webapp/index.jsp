@@ -10,6 +10,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <h2>Página: <bean:write name="requestURL" /></h2>
+        <p>Página: <bean:write name="requestURL" /></p>
     </body>
 </html>

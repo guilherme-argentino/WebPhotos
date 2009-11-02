@@ -19,12 +19,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CATEGORIAS")
-@NamedQueries({@NamedQuery(name = "CategoriasVO.findByCategoriaid", query = "SELECT c FROM CategoriasVO c WHERE c.categoriaid = :categoriaid"), @NamedQuery(name = "CategoriasVO.findByNmcategoria", query = "SELECT c FROM CategoriasVO c WHERE c.nmcategoria = :nmcategoria")})
+@NamedQueries({@NamedQuery(name = "CategoriasVO.findByCategoriaID", query = "SELECT c FROM CategoriasVO c WHERE c.categoriaID = :categoriaID"), @NamedQuery(name = "CategoriasVO.findByNmcategoria", query = "SELECT c FROM CategoriasVO c WHERE c.nmcategoria = :nmcategoria")})
 public class CategoriasVO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "CATEGORIAID", nullable = false)
-    private Integer categoriaid;
+    private Integer categoriaID;
     @Column(name = "NMCATEGORIA", nullable = false)
     private int nmcategoria;
 
@@ -32,20 +32,20 @@ public class CategoriasVO implements Serializable {
     }
 
     public CategoriasVO(Integer categoriaid) {
-        this.categoriaid = categoriaid;
+        this.categoriaID = categoriaid;
     }
 
-    public CategoriasVO(Integer categoriaid, int nmcategoria) {
-        this.categoriaid = categoriaid;
+    public CategoriasVO(Integer categoriaID, int nmcategoria) {
+        this.categoriaID = categoriaID;
         this.nmcategoria = nmcategoria;
     }
 
-    public Integer getCategoriaid() {
-        return categoriaid;
+    public Integer getCategoriaID() {
+        return categoriaID;
     }
 
-    public void setCategoriaid(Integer categoriaid) {
-        this.categoriaid = categoriaid;
+    public void setCategoriaID(Integer categoriaid) {
+        this.categoriaID = categoriaid;
     }
 
     public int getNmcategoria() {
@@ -59,7 +59,7 @@ public class CategoriasVO implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (categoriaid != null ? categoriaid.hashCode() : 0);
+        hash += (categoriaID != null ? categoriaID.hashCode() : 0);
         return hash;
     }
 
@@ -70,7 +70,7 @@ public class CategoriasVO implements Serializable {
             return false;
         }
         CategoriasVO other = (CategoriasVO) object;
-        if ((this.categoriaid == null && other.categoriaid != null) || (this.categoriaid != null && !this.categoriaid.equals(other.categoriaid))) {
+        if ((this.categoriaID == null && other.categoriaID != null) || (this.categoriaID != null && !this.categoriaID.equals(other.categoriaID))) {
             return false;
         }
         return true;
@@ -78,7 +78,7 @@ public class CategoriasVO implements Serializable {
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.dao.CategoriasVO[categoriaid=" + categoriaid + "]";
+        return "br.nom.guilherme.webfotos.dao.CategoriasVO[categoriaid=" + categoriaID + "]";
     }
 
 }

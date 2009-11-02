@@ -91,6 +91,11 @@
                 <version>4.5</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>net.sf.webphotos</groupId>
+                <artifactId>webfotos-persistence-backend</artifactId>
+                <version>${version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
