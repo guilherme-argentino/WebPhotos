@@ -14,11 +14,13 @@
  *  limitations under the License.
  *  under the License.
  */
-
 package net.sf.webphotos.web.action;
 
+import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -29,9 +31,12 @@ import org.apache.struts.action.ActionMapping;
  * @author gsilva
  */
 public class IndexAction extends Action {
-    
+
     private static final String SUCCESS = "success";
-    
+    private static final Log log = LogFactory.getLog(IndexAction.class);
+
+    private AlbunsDAO albunsDAO;
+
     /**
      * This is the action called from the Struts framework.
      * @param mapping The ActionMapping used to select this instance.
@@ -46,8 +51,26 @@ public class IndexAction extends Action {
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
+        log.info("Starting Action \"" + this.getClass().getName() + "\"");
+
         request.setAttribute("requestURL", request.getRequestURL());
 
+        request.setAttribute("albunsVO", albunsDAO.findAll());
+
         return mapping.findForward(SUCCESS);
+    }
+
+    /**
+     * @return the albunsDAO
+     */
+    public AlbunsDAO getAlbunsDAO() {
+        return albunsDAO;
+    }
+
+    /**
+     * @param albunsDAO the albunsDAO to set
+     */
+    public void setAlbunsDAO(AlbunsDAO albunsDAO) {
+        this.albunsDAO = albunsDAO;
     }
 }
