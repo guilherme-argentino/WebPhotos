@@ -14,10 +14,14 @@ import javax.swing.table.TableColumnModel;
 
 import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationBuilder;
 import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.DefaultConfigurationBuilder;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.configuration.tree.NodeCombiner;
+import org.apache.commons.configuration.tree.OverrideCombiner;
 import org.apache.log4j.Logger;
 
 /**
@@ -26,14 +30,12 @@ import org.apache.log4j.Logger;
  * Exemplo: PrintStream out que desvia a saída padrão de texto.
  * </PRE>
  */
+@SuppressWarnings("StaticNonFinalUsedInInitialization")
 public class Util {
 
     private static final String WEBFOTOS_USER_CONFIG = "webfotos.xml";
-
-	public static final String WEBFOTOS_DEFAULT_CONFIG = "webfotos.dat";
-
-	private static Util instancia = new Util();
-
+    public static final String WEBFOTOS_DEFAULT_CONFIG = "webfotos.dat";
+    private static Util instancia = new Util();
     // caixa de texto para dar saída ao log
     private static JTextArea saida;
     private static File albunsRoot = null;
@@ -46,40 +48,35 @@ public class Util {
      * Para desviar a saída padrão de texto (em produção).
      */
     public static PrintStream err;
-    private static Logger log;
+    private static final Logger log;
 
     static {
         out = System.out;
         err = System.err;
         log = Logger.getLogger(Util.class);
 
-        config = new CombinedConfiguration();
-        CombinedConfiguration userPrefs = new CombinedConfiguration(); 
-        config.addConfiguration(new SystemConfiguration());
+        DefaultConfigurationBuilder configurationBuilder = new DefaultConfigurationBuilder();
+        String userHome = "";
         try {
-        	PropertiesConfiguration props = new PropertiesConfiguration(WEBFOTOS_DEFAULT_CONFIG); 
-            config.addConfiguration(props);
-            userPrefs.append(props);
-        } catch (ConfigurationException ex) {
-            log.error("Can't load " + WEBFOTOS_DEFAULT_CONFIG, ex);
+            configurationBuilder.setFileName("Configuration.xml");
+            config = configurationBuilder.getConfiguration(true);
+            userHome = config.getString("user.home");
+        } catch (Exception e) {
+            log.error("Can't load preferences");
+            log.debug("Stack Trace : ", e);
             System.exit(-1);
         }
-        
+        configurationBuilder = new DefaultConfigurationBuilder();
         try {
-        	XMLConfiguration xmlProps = new XMLConfiguration(WEBFOTOS_USER_CONFIG);
-            config.addConfiguration(xmlProps);
-            userPrefs.append(xmlProps);
-        } catch (ConfigurationException ex) {
-            log.warn("Can't load " + WEBFOTOS_USER_CONFIG);
-            log.debug("Stack Trace : ", ex);
-        } finally {
-        	try {
-        		XMLConfiguration savedUserPrefs = new XMLConfiguration(userPrefs);
-        		savedUserPrefs.setEncoding("ISO-8859-1");
-        		savedUserPrefs.save(new FileOutputStream(WEBFOTOS_USER_CONFIG));
-			} catch (Exception e) {
-	            log.error("Can't save " + WEBFOTOS_USER_CONFIG, e);
-			}
+            configurationBuilder.setFileName("SavedConfiguration.xml");
+            final CombinedConfiguration configuration = configurationBuilder.getConfiguration(true);
+            XMLConfiguration savedUserPrefs = new XMLConfiguration();
+            savedUserPrefs.append(configuration);
+            savedUserPrefs.setEncoding("ISO-8859-1");
+            savedUserPrefs.save(new FileOutputStream(userHome + File.separatorChar + WEBFOTOS_USER_CONFIG));
+        } catch (Exception e) {
+            log.warn("Can't save preferences");
+            log.debug("Stack Trace : ", e);
         }
     }
 
@@ -285,18 +282,18 @@ public class Util {
         throw new CloneNotSupportedException("Singleton Object");
     }
 
-	public static void loadSocksProxy() {
-	    String socksHost = getConfig().getString("socks.host");
-	    int socksPort = 0;
-	    if (getConfig().containsKey("socks.port")) {
-	        socksPort = getConfig().getInt("socks.port");
-	    }
-	    //Prepara as conexões para usar Socks Proxy (se configurado)
-	    if (socksHost != null && !socksHost.equals("")) {
-	        System.getProperties().put("socksProxyHost", socksHost);
-	        if (socksPort > 0 && socksPort < 65534) {
-	            System.getProperties().put("socksProxyPort", socksPort);
-	        }
-	    }
-	}
+    public static void loadSocksProxy() {
+        String socksHost = getConfig().getString("socks.host");
+        int socksPort = 0;
+        if (getConfig().containsKey("socks.port")) {
+            socksPort = getConfig().getInt("socks.port");
+        }
+        //Prepara as conexões para usar Socks Proxy (se configurado)
+        if (socksHost != null && !socksHost.equals("")) {
+            System.getProperties().put("socksProxyHost", socksHost);
+            if (socksPort > 0 && socksPort < 65534) {
+                System.getProperties().put("socksProxyPort", socksPort);
+            }
+        }
+    }
 }
