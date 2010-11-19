@@ -52,20 +52,20 @@ autoTransferir=true
 marcadagua=logoA2_t.gif
 
 ! imagem para testes com posicionamento de marca d'agua
-#marcadagua.teste=images/foto.jpg
+marcadagua.teste=images/foto.jpg
 
 ! Posição da marca d'agua
 ! 1---2---3
 ! 4---5---6
 ! 7---8---9
-#marcadagua.posicao=7
+marcadagua.posicao=7
 
 ! margem da marca d'agua até a borda.
 ! não tem efeito quando o posicionamento da marca d'agua é central
-#marcadagua.margem=0
+marcadagua.margem=0
 
 ! transparência valores de 0 a 100, sendo 100 opaco e 0 transparente
-#marcadagua.transparencia=30
+marcadagua.transparencia=30
 
 ###############################################
 # Informações textuais aplicada ao thumbnail  #
@@ -83,14 +83,14 @@ texto.estilo=1
 texto.tamanho=15
 
 ! cor rgb
-texto.corFrente=0\,0\,0
-texto.corFundo=255\,255\,255
+texto.corFrente=0,0,0
+texto.corFundo=255,255,255
 
 ###############################################
 # BANCO DE DADOS                              #
 ###############################################
 jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost/webfotos
+jdbc.url=jdbc:mysql://gui-vmw2k3-db/webphotos
 
 ###############################################
 # INSTRUCOES SQL E PARAMETROS DE TABELA       #
