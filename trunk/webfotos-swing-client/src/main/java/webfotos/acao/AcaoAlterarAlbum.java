@@ -215,7 +215,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
             TableModelFoto.getModel().fireTableDataChanged();
             TableModelAlbum.getModel().update();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(Util.err);
         }
         TableModelAlbum.getModel().fireTableDataChanged();
         ((javax.swing.table.AbstractTableModel) tbAlbuns.getModel()).fireTableDataChanged();
@@ -249,7 +249,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
             out.close();
 
         } catch (IOException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(Util.err);
         }
     }
 
@@ -321,6 +321,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
                         rowSet.first();
                         ultimoFotoID = rowSet.getInt(1);
 
+                        // Inútil???
                         sql = "SELECT fotoID FROM fotos ORDER BY albumID DESC LIMIT 1";
                         rowSet.setCommand(sql);
                         rowSet.execute();

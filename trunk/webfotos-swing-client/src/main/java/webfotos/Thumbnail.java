@@ -35,18 +35,16 @@ import net.sf.webphotos.BancoImagem;
  * fotos originais baseado nesses valores máximos.
  */
 public final class Thumbnail {
-	
-    // tam máximo de cada thumb
-    private static int t1, t2, t3, t4;	
 
+    // tam máximo de cada thumb
+    private static int t1, t2, t3, t4;
     // marca d´agua e texto aplicado ao thumbnail 4
     private static String marcadagua, mdTeste;
-
     private static String texto;
     private static int mdPosicao, mdMargem, mdTransparencia;
     private static String txFamilia;
     private static int txTamanho, txPosicao, txMargem, txEstilo;
-    private static Color txCorFrente, txCorFundo;	
+    private static Color txCorFrente, txCorFundo;
 
     /**
      * Busca no arquivo de configuração, classe
@@ -58,7 +56,7 @@ public final class Thumbnail {
     private static void inicializar() {
 
         // le as configurações do usuário
-        Configuration c = Util.getConfig();				
+        Configuration c = Util.getConfig();
 
         // tamanhos de thumbnails
         t1 = c.getInt("thumbnail1");
@@ -67,27 +65,32 @@ public final class Thumbnail {
         t4 = c.getInt("thumbnail4");
 
         // usuario setou marca d'agua para thumbnail 4 ?
-        marcadagua = c.getString("marcadagua");
-        if(marcadagua != null) {
+        // TODO: melhorar teste para captação destes parametros
+        try {
+            marcadagua = c.getString("marcadagua");
             mdPosicao = c.getInt("marcadagua.posicao");
             mdMargem = c.getInt("marcadagua.margem");
             mdTransparencia = c.getInt("marcadagua.transparencia");
             mdTeste = c.getString("marcadagua.teste");
+        } catch (Exception ex) {
+            ex.printStackTrace(Util.err);
         }
 
         // usuário setou texto para o thumbnail 4 ?
-        texto = c.getString("texto");
-        if(texto != null) {
+        try {
+            texto = c.getString("texto");
             txPosicao = c.getInt("texto.posicao");
             txMargem = c.getInt("texto.margem");
             txTamanho = c.getInt("texto.tamanho");
             txEstilo = c.getInt("texto.estilo");
             txFamilia = c.getString("texto.familia");
-            
+
             String[] aux = c.getStringArray("texto.corFrente");
             txCorFrente = new Color(Integer.parseInt(aux[0]), Integer.parseInt(aux[1]), Integer.parseInt(aux[2]));
             aux = c.getStringArray("texto.corFundo");
             txCorFundo = new Color(Integer.parseInt(aux[0]), Integer.parseInt(aux[1]), Integer.parseInt(aux[2]));
+        } catch (Exception ex) {
+            ex.printStackTrace(Util.err);
         }
 
     }
@@ -110,17 +113,19 @@ public final class Thumbnail {
     public static void makeThumbs(String caminhoCompletoImagem) {
 
         String diretorio = "", arquivo = "";
-        if(t1 == 0) inicializar();
+        if (t1 == 0) {
+            inicializar();
+        }
 
-        try{
+        try {
             File f = new File(caminhoCompletoImagem);
-            if(!f.isFile() || !f.canRead()) {
-                Util.out.println ("Erro no caminho do arquivo " + caminhoCompletoImagem);
+            if (!f.isFile() || !f.canRead()) {
+                Util.out.println("Erro no caminho do arquivo " + caminhoCompletoImagem);
                 return;
             }
-            
+
             // Foto em alta corrompida 
-            if(getFormatName(f) == null) {
+            if (getFormatName(f) == null) {
                 Util.err.println("Foto Corrompida");
                 return;
             } else {
@@ -132,7 +137,7 @@ public final class Thumbnail {
 
             ImageIcon ii = new ImageIcon(f.getCanonicalPath());
             Image i = ii.getImage();
-            
+
             Image tumb1 = null, tumb2 = null, tumb3 = null, tumb4 = null;
 
             // obtém o tamanho da imagem original
@@ -141,30 +146,32 @@ public final class Thumbnail {
             int w = 0, h = 0;
 
             if (iWidth > iHeight) {
-                tumb1 = i.getScaledInstance(t1,(t1*iHeight)/iWidth,Image.SCALE_SMOOTH);
-                tumb2 = i.getScaledInstance(t2,(t2*iHeight)/iWidth,Image.SCALE_SMOOTH);
-                tumb3 = i.getScaledInstance(t3,(t3*iHeight)/iWidth,Image.SCALE_SMOOTH);
-                tumb4 = i.getScaledInstance(t4,(t4*iHeight)/iWidth,Image.SCALE_SMOOTH);
-                w = t4; h = (t4*iHeight)/iWidth;
+                tumb1 = i.getScaledInstance(t1, (t1 * iHeight) / iWidth, Image.SCALE_SMOOTH);
+                tumb2 = i.getScaledInstance(t2, (t2 * iHeight) / iWidth, Image.SCALE_SMOOTH);
+                tumb3 = i.getScaledInstance(t3, (t3 * iHeight) / iWidth, Image.SCALE_SMOOTH);
+                tumb4 = i.getScaledInstance(t4, (t4 * iHeight) / iWidth, Image.SCALE_SMOOTH);
+                w = t4;
+                h = (t4 * iHeight) / iWidth;
             } else {
-                tumb1 = i.getScaledInstance((t1*iWidth)/iHeight,t1,Image.SCALE_SMOOTH);
-                tumb2 = i.getScaledInstance((t2*iWidth)/iHeight,t2,Image.SCALE_SMOOTH);
-                tumb3 = i.getScaledInstance((t3*iWidth)/iHeight,t3,Image.SCALE_SMOOTH);
-                tumb4 = i.getScaledInstance((t4*iWidth)/iHeight,t4,Image.SCALE_SMOOTH);
-                w = (t4*iWidth)/iHeight; h = t4;
+                tumb1 = i.getScaledInstance((t1 * iWidth) / iHeight, t1, Image.SCALE_SMOOTH);
+                tumb2 = i.getScaledInstance((t2 * iWidth) / iHeight, t2, Image.SCALE_SMOOTH);
+                tumb3 = i.getScaledInstance((t3 * iWidth) / iHeight, t3, Image.SCALE_SMOOTH);
+                tumb4 = i.getScaledInstance((t4 * iWidth) / iHeight, t4, Image.SCALE_SMOOTH);
+                w = (t4 * iWidth) / iHeight;
+                h = t4;
             }
 
             tumb4 = estampar(tumb4);
-            
+
             Util.log("Salvando Imagens");
 
-            save(tumb1,diretorio + File.separator + "_a" + arquivo);
-            save(tumb2,diretorio + File.separator + "_b" + arquivo);
-            save(tumb3,diretorio + File.separator + "_c" + arquivo);
-            save(tumb4,diretorio + File.separator + "_d" + arquivo);
+            save(tumb1, diretorio + File.separator + "_a" + arquivo);
+            save(tumb2, diretorio + File.separator + "_b" + arquivo);
+            save(tumb3, diretorio + File.separator + "_c" + arquivo);
+            save(tumb4, diretorio + File.separator + "_d" + arquivo);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(Util.err);
             Util.err.println(e.getMessage());
         }
     }
@@ -174,23 +181,23 @@ public final class Thumbnail {
             Image temp = new ImageIcon(im).getImage();
 
             BufferedImage buf = new BufferedImage(temp.getWidth(null),
-                                        temp.getHeight(null),
-                                        BufferedImage.TYPE_INT_RGB);
+                    temp.getHeight(null),
+                    BufferedImage.TYPE_INT_RGB);
 
             Graphics2D g2 = (Graphics2D) buf.getGraphics();
 
-            g2.drawImage(temp,0,0,null);
+            g2.drawImage(temp, 0, 0, null);
             g2.setBackground(Color.BLUE);
 
             Dimension dimensaoFoto = new Dimension(im.getWidth(null), im.getHeight(null));
 
             // aplicar texto
-            if(texto != null) {
-                System.out.println ("aplicando texto " + texto);
+            if (texto != null) {
+                Util.out.println("aplicando texto " + texto);
 
                 Font fonte = new Font(txFamilia, txEstilo, txTamanho);
                 g2.setFont(fonte);
-                FontMetrics fm=g2.getFontMetrics(fonte);
+                FontMetrics fm = g2.getFontMetrics(fonte);
                 Dimension dimensaoTexto = new Dimension(fm.stringWidth(texto), fm.getHeight());
                 Point posTexto = calculaPosicao(dimensaoFoto, dimensaoTexto, txMargem, txPosicao);
 
@@ -201,15 +208,15 @@ public final class Thumbnail {
             }
 
             // aplicar marca d´agua
-            if(marcadagua != null) {
+            if (marcadagua != null) {
                 Image marca = new ImageIcon(marcadagua).getImage();
-                int rule=AlphaComposite.SRC_OVER;
-                float alpha=(float) mdTransparencia / 100;
-                Point pos=calculaPosicao(dimensaoFoto,
+                int rule = AlphaComposite.SRC_OVER;
+                float alpha = (float) mdTransparencia / 100;
+                Point pos = calculaPosicao(dimensaoFoto,
                         new Dimension(marca.getWidth(null), marca.getHeight(null)),
                         mdMargem, mdPosicao);
 
-                g2.setComposite(AlphaComposite.getInstance(rule,alpha));
+                g2.setComposite(AlphaComposite.getInstance(rule, alpha));
                 g2.drawImage(marca, (int) pos.getX(), (int) pos.getY(), null);
             }
 
@@ -228,7 +235,7 @@ public final class Thumbnail {
             Image temp = new ImageIcon(thumbnail).getImage();
 
             // Create the buffered image.
-            BufferedImage bufferedImage = new BufferedImage(temp.getWidth(null), 
+            BufferedImage bufferedImage = new BufferedImage(temp.getWidth(null),
                     temp.getHeight(null), BufferedImage.TYPE_INT_RGB);
 
             // Copy image to buffered image.
@@ -236,14 +243,14 @@ public final class Thumbnail {
 
             // Clear background and paint the image.
             g.setColor(Color.white);
-            g.fillRect(0, 0, temp.getWidth(null),temp.getHeight(null));
+            g.fillRect(0, 0, temp.getWidth(null), temp.getHeight(null));
             g.drawImage(temp, 0, 0, null);
             g.dispose();
 
             // write the jpeg to a file
             File file = new File(nmArquivo);
             // Recria o arquivo se existir
-            if(file.exists()) {
+            if (file.exists()) {
                 Util.out.println("Redefinindo a Imagem: " + nmArquivo);
                 file.delete();
                 file = new File(nmArquivo);
@@ -261,52 +268,60 @@ public final class Thumbnail {
             encoder.setJPEGEncodeParam(param);
             encoder.encode(bufferedImage);
             return true;
-        } catch(IOException ioex) {
-            ioex.printStackTrace();
+        } catch (IOException ioex) {
+            ioex.printStackTrace(Util.err);
             return false;
-        }				
+        }
     }
 
     private static Point calculaPosicao(Dimension dimensaoExt,
-        Dimension dimensaoInt, int margem, int posicao) {
-        int x=0,y=0;
+            Dimension dimensaoInt, int margem, int posicao) {
+        int x = 0, y = 0;
         // Posição da marca d'agua
         // 1---2---3 y1
         // 4---5---6 y2
         // 7---8---9 y3
         // x1  x2  x3
-        int x1=margem;
-        int x2=(int) ((float) (dimensaoExt.width - dimensaoInt.width) / 2);
-        int x3=dimensaoExt.width - dimensaoInt.width - margem;
+        int x1 = margem;
+        int x2 = (int) ((float) (dimensaoExt.width - dimensaoInt.width) / 2);
+        int x3 = dimensaoExt.width - dimensaoInt.width - margem;
 
-        int y1=margem;
-        int y2=(int) ((float) (dimensaoExt.height - dimensaoInt.height) / 2);
-        int y3=dimensaoExt.height - dimensaoInt.height - margem;
+        int y1 = margem;
+        int y2 = (int) ((float) (dimensaoExt.height - dimensaoInt.height) / 2);
+        int y3 = dimensaoExt.height - dimensaoInt.height - margem;
 
-        if(posicao==1) {
-                x=x1; y=y1;
-        } else if(posicao==2) {
-                x=x2; y=y1;
-        } else if(posicao==3) {
-                x=x3; y=y1;
-        } else if(posicao==4) {
-                x=x1; y=y2;
-        } else if(posicao==5) {
-                x=x2; y=y2;
-        } else if(posicao==6) {
-                x=x3; y=y2;
-        } else if(posicao==7) {
-                x=x1; y=y3;
-        } else if(posicao==8) {
-                x=x2; y=y3;
-        } else if(posicao==9) {
-                x=x3; y=y3;
+        if (posicao == 1) {
+            x = x1;
+            y = y1;
+        } else if (posicao == 2) {
+            x = x2;
+            y = y1;
+        } else if (posicao == 3) {
+            x = x3;
+            y = y1;
+        } else if (posicao == 4) {
+            x = x1;
+            y = y2;
+        } else if (posicao == 5) {
+            x = x2;
+            y = y2;
+        } else if (posicao == 6) {
+            x = x3;
+            y = y2;
+        } else if (posicao == 7) {
+            x = x1;
+            y = y3;
+        } else if (posicao == 8) {
+            x = x2;
+            y = y3;
+        } else if (posicao == 9) {
+            x = x3;
+            y = y3;
         }
 
-        return new Point(x,y);
-    }	
+        return new Point(x, y);
+    }
 
-	   	
     /**
      * Returns the format of the image in the file 'f'.
      * Returns null if the format is not known.
@@ -316,13 +331,13 @@ public final class Thumbnail {
     private static String getFormatInFile(File f) {
         return getFormatName(f);
     }
-    
+
     // Returns the format of the image in the input stream 'is'.
     // Returns null if the format is not known.
     private static String getFormatFromStream(java.io.InputStream is) {
         return getFormatName(is);
     }
-    
+
     // Returns the format name of the image in the object 'o'.
     // 'o' can be either a File or InputStream object.
     // Returns null if the format is not known.
@@ -330,20 +345,20 @@ public final class Thumbnail {
         try {
             // Create an image input stream on the image
             ImageInputStream iis = ImageIO.createImageInputStream(o);
-    
+
             // Find all image readers that recognize the image format
             Iterator<ImageReader> iter = ImageIO.getImageReaders(iis);
             if (!iter.hasNext()) {
                 // No readers found
                 return null;
             }
-    
+
             // Use the first reader
             ImageReader reader = iter.next();
-    
+
             // Close stream
             iis.close();
-    
+
             // Return the format name
             return reader.getFormatName();
         } catch (Exception e) {
@@ -351,20 +366,20 @@ public final class Thumbnail {
             return null;
         }
     }
-    
+
     /**
      * Faz um load no arquivo de configuração e chama o método
      * {@link webfotos.Thumbnail#makeThumbs(String) makeThumbs} para fazer
      * thumbs de uma foto específica.
      * @param args args do método main.
      */
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         //makeThumbs("c:/temp/167.jpg");
         //makeThumbs("d:/bancoImagem/81/312.jpg");
         //makeThumbs("d:/bancoImagem/81/313.jpg");
         //makeThumbs("d:/bancoImagem/81/314.jpg");
         //makeThumbs("d:/bancoImagem/81/315.jpg");
-        makeThumbs("D:/webfotos/460/2072.jpg");
+        //makeThumbs("D:/webfotos/460/2072.jpg");
         //executaLote();
 
     }
@@ -378,7 +393,7 @@ public final class Thumbnail {
         net.sf.webphotos.BancoImagem db = net.sf.webphotos.BancoImagem.getBancoImagem();
 
         try {
-            db.configure("jdbc:mysql://mysql.iphotel.com.br/serra45","com.mysql.jdbc.Driver");
+            db.configure("jdbc:mysql://mysql.iphotel.com.br/serra45", "com.mysql.jdbc.Driver");
             BancoImagem.login();
             java.sql.Connection conn = BancoImagem.getConnection();
             java.sql.Statement st = conn.createStatement();
@@ -387,22 +402,20 @@ public final class Thumbnail {
             int albumID, fotoID;
             String caminho;
 
-            while(rs.next()) {
-                    albumID = rs.getInt("albumID");
-                    fotoID = rs.getInt("fotoID");
-                    caminho = "d:/bancoImagem/" + albumID + "/" + fotoID + ".jpg";
-                    makeThumbs(caminho);
-                    System.out.println (caminho);
+            while (rs.next()) {
+                albumID = rs.getInt("albumID");
+                fotoID = rs.getInt("fotoID");
+                caminho = "d:/bancoImagem/" + albumID + "/" + fotoID + ".jpg";
+                makeThumbs(caminho);
+                Util.out.println(caminho);
             }
 
             rs.close();
             st.close();
             conn.close();
 
-        } catch(Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace(Util.err);
         }
     }
 }
- 
- 
