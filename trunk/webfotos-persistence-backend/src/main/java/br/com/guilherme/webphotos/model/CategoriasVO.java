@@ -2,13 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.guilherme.webphotos.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -19,14 +20,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CATEGORIAS")
-@NamedQueries({@NamedQuery(name = "CategoriasVO.findByCategoriaID", query = "SELECT c FROM CategoriasVO c WHERE c.categoriaID = :categoriaID"), @NamedQuery(name = "CategoriasVO.findByNmcategoria", query = "SELECT c FROM CategoriasVO c WHERE c.nmcategoria = :nmcategoria")})
+@NamedQueries({
+    @NamedQuery(name = "CategoriasVO.findByCategoriaID", query = "SELECT c FROM CategoriasVO c WHERE c.categoriaID = :categoriaID"),
+    @NamedQuery(name = "CategoriasVO.findByNmcategoria", query = "SELECT c FROM CategoriasVO c WHERE c.nmcategoria = :nmcategoria")})
 public class CategoriasVO implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "CATEGORIAID", nullable = false)
     private Integer categoriaID;
     @Column(name = "NMCATEGORIA", nullable = false)
-    private int nmcategoria;
+    private String nmcategoria;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "SUBCATEGORIA")
+    private CategoriasVO categoriaPai;
 
     public CategoriasVO() {
     }
@@ -35,7 +42,7 @@ public class CategoriasVO implements Serializable {
         this.categoriaID = categoriaid;
     }
 
-    public CategoriasVO(Integer categoriaID, int nmcategoria) {
+    public CategoriasVO(Integer categoriaID, String nmcategoria) {
         this.categoriaID = categoriaID;
         this.nmcategoria = nmcategoria;
     }
@@ -48,12 +55,26 @@ public class CategoriasVO implements Serializable {
         this.categoriaID = categoriaid;
     }
 
-    public int getNmcategoria() {
+    public String getNmcategoria() {
         return nmcategoria;
     }
 
-    public void setNmcategoria(int nmcategoria) {
+    public void setNmcategoria(String nmcategoria) {
         this.nmcategoria = nmcategoria;
+    }
+
+    /**
+     * @return the categoriaPai
+     */
+    public CategoriasVO getCategoriaPai() {
+        return categoriaPai;
+    }
+
+    /**
+     * @param categoriaPai the categoriaPai to set
+     */
+    public void setCategoriaPai(CategoriasVO categoriaPai) {
+        this.categoriaPai = categoriaPai;
     }
 
     @Override
@@ -80,5 +101,4 @@ public class CategoriasVO implements Serializable {
     public String toString() {
         return "br.nom.guilherme.webfotos.dao.CategoriasVO[categoriaid=" + categoriaID + "]";
     }
-
 }

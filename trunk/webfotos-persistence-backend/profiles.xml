@@ -10,7 +10,7 @@
                 </property>
             </activation>
             <properties>
-                <netbeans.deployment.server.id>jboss-deployer:localhost:8080#default&amp;C:\Arquivos de programas\jboss-4.2.3.GA</netbeans.deployment.server.id>
+                <netbeans.deployment.server.id>[C:\Arquivos de programas\glassfish-3.0.1\glassfish]deployer:gfv3ee6:localhost:4848</netbeans.deployment.server.id>
             </properties>
         </profile>
     </profiles>

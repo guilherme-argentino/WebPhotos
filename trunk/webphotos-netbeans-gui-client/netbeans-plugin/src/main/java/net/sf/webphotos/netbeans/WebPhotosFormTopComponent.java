@@ -11,7 +11,6 @@ import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 import org.openide.util.Utilities;
-import net.sf.webphotos.Album;
 
 /**
  * Top component which displays something.
