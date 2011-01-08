@@ -23,10 +23,20 @@ import javax.persistence.PersistenceContext;
  *
  * @author Guilherme L A Silva
  */
-public class WebFotosDAO<E> {
+public class WebFotosDAO<E, I> {
 
     @PersistenceContext
     protected EntityManager entityManager;
+
+    private Class<E> entityClass;
+
+    public WebFotosDAO(Class<E> entityClass) {
+        this.entityClass = entityClass;
+    }
+
+    public E findBy(I id) {
+        return entityManager.find(this.entityClass, id);
+    }
 
     public void save(E object) throws Exception {
         try {

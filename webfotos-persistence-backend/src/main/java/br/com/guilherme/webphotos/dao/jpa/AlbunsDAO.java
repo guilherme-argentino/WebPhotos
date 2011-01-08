@@ -24,7 +24,11 @@ import br.com.guilherme.webphotos.model.AlbunsVO;
  * @author Guilhe
  *
  */
-public class AlbunsDAO extends WebFotosDAO<AlbunsVO> {
+public class AlbunsDAO extends WebFotosDAO<AlbunsVO, Integer> {
+
+    public AlbunsDAO() {
+        super(AlbunsVO.class);
+    }
 
     public List<AlbunsVO> findAll() {
         return find("SELECT a FROM AlbunsVO a");

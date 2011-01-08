@@ -49,7 +49,9 @@ public class AlbunsVO implements Serializable {
     private Integer albumid;
     @Column(name = "NMALBUM", nullable = false)
     private String nmalbum;
-    @Column(name = "DT_INSERCAO", nullable = false)
+    @Column(name = "DESCRICAO", nullable = true)
+    private String descricao;
+    @Column(name = "DTINSERCAO", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date dtInsercao;
     @ManyToOne
@@ -92,6 +94,20 @@ public class AlbunsVO implements Serializable {
 
     public void setNmalbum(String nmalbum) {
         this.nmalbum = nmalbum;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Date getDtInsercao() {
