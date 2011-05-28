@@ -26,7 +26,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -36,7 +35,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>nbm-maven-plugin</artifactId>
-                    <version>3.0</version>
+                    <version>3.5</version>
                     <extensions>true</extensions>
                     <configuration>
                         <descriptor>src/main/nbm/module.xml</descriptor>
@@ -48,7 +47,6 @@
                 <!-- netbeans modules in 5.5+ are 1.5 compatible -->
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.0.2</version>
                     <configuration>
                         <source>1.5</source>
                         <target>1.5</target>
@@ -58,10 +56,10 @@
         </pluginManagement>
     </build>
     <modules>
+        <module>webphotos-project-type</module>
         <module>netbeans-plugin</module>
         <module>branding</module>
         <module>application</module>
-        <module>webphotos-project-type</module>
     </modules>
     <properties>
         <netbeans.version>RELEASE67</netbeans.version>
