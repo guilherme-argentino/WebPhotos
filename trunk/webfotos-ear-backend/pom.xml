@@ -15,7 +15,7 @@
         <dependency>
             <groupId>net.sf.webphotos</groupId>
             <artifactId>webfotos-persistence-backend</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
             <type>ejb</type>
         </dependency>
