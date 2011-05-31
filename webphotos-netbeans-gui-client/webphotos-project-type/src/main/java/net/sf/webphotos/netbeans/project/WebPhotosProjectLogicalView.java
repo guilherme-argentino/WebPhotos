@@ -86,7 +86,8 @@ class WebPhotosProjectLogicalView implements LogicalViewProvider {
 
         @Override
         public Image getIcon(int type) {
-            return ImageUtilities.loadImage("org/netbeans/demo/project/icon1.png");
+            //return ImageUtilities.loadImage("org/netbeans/demo/project/icon1.png");
+            return ImageUtilities.loadImage(Constants.PROJECT_ICON);
         }
 
         @Override
