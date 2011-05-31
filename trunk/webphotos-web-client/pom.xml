@@ -12,7 +12,6 @@
     <name>[WP] Web Client JEE5 Webapp</name>
     <properties>
         <netbeans.hint.license>apache20</netbeans.hint.license>
-        <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     </properties>
     <dependencies>
         <dependency>
