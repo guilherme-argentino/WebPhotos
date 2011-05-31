@@ -158,7 +158,7 @@ public class WebPhotosProject implements Project {
 
         public Icon getIcon() {
             return new ImageIcon(ImageUtilities.loadImage(
-                    "net/sf/webphotos/netbeans/project/projectIcon.png"));
+                    Constants.PROJECT_ICON));
         }
 
         public Project getProject() {
