@@ -35,7 +35,7 @@
         <dependency>
             <groupId>net.sf.webphotos</groupId>
             <artifactId>webfotos-swing-client</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
             <type>jar</type>
         </dependency>
