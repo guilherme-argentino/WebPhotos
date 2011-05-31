@@ -51,7 +51,7 @@
     <distributionManagement>
         <site>
             <id>website</id>
-            <url>file:///export/htdocs/webfotos.guilherme.com.br/</url>
+            <url>file:///${user.dir}/sites/webphotos</url>
         </site>
     </distributionManagement>
     <modules>
@@ -98,4 +98,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.1.2</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
