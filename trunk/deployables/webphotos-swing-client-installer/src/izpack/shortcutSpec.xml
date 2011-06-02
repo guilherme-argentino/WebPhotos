@@ -3,15 +3,15 @@
 
 	<skipIfNotSupported />
 	
-	<programGroup defaultName="WebFotos" location="applications" />
+	<programGroup defaultName="WebPhotos" location="applications" />
 	
 	<shortcut	name="Iniciar WebFotos"
-			target="$INSTALL_PATH\WebFotos.jar"
+			target="$INSTALL_PATH\webphotos-swing-client.jar"
 			commandLine=""
 			workingDirectory="$INSTALL_PATH"
-			description="Abre o aplicativo WebFotos"
-			iconFile="$INSTALL_PATH\a2.ico"
-			iconIndex="0"
+			description="Abre o aplicativo WebPhotos"
+			iconFile="%SystemRoot%\system32\SHELL32.dll"
+			iconIndex="31" 
 			initialState="maximized"
 			programGroup="yes"
 			desktop="yes"
@@ -34,7 +34,7 @@
 		<createForPack name="Javadoc" />
 	</shortcut>
 	
-	<shortcut	name="Desinstalar o WebFotos"
+	<shortcut	name="Desinstalar o WebPhotos"
 			programGroup="yes"
 			desktop="no"
 			applications="no"
@@ -44,7 +44,7 @@
 			commandLine=""
 			iconFile="%SystemRoot%\system32\SHELL32.dll"
 			iconIndex="31" 
-			description="Este desinstala o WebFotos de seu sistema">
+			description="Este desinstala o WebPhotos de seu sistema">
 		<createForPack name="Núcleo"/>
 	</shortcut>
 		
