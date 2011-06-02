@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes" ?>
 <shortcuts>
 
 	<skipIfNotSupported />
@@ -6,12 +6,12 @@
 	<programGroup defaultName="WebPhotos" location="applications" />
 	
 	<shortcut	name="Iniciar WebFotos"
-			target="$INSTALL_PATH\webphotos-swing-client.jar"
-			commandLine=""
+			target="java"
+			commandLine="-jar &quot;$INSTALL_PATH\webphotos-swing-client.jar&quot;"
 			workingDirectory="$INSTALL_PATH"
 			description="Abre o aplicativo WebPhotos"
 			iconFile="%SystemRoot%\system32\SHELL32.dll"
-			iconIndex="31" 
+			iconIndex="20" 
 			initialState="maximized"
 			programGroup="yes"
 			desktop="yes"
@@ -40,10 +40,10 @@
 			applications="no"
 			startMenu="no"
 			startup="no"
-			target="$INSTALL_PATH\Uninstaller\uninstaller.jar"     
-			commandLine=""
+			target="java"     
+			commandLine="-jar &quot;$INSTALL_PATH\Uninstaller\uninstaller.jar&quot;"
 			iconFile="%SystemRoot%\system32\SHELL32.dll"
-			iconIndex="31" 
+			iconIndex="10" 
 			description="Este desinstala o WebPhotos de seu sistema">
 		<createForPack name="Núcleo"/>
 	</shortcut>
