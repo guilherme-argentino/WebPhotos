@@ -26,12 +26,14 @@
     </variables>
     
     <guiprefs height="600" resizable="no" width="800">
-        <laf name="metouia">
-            <os family="unix" />
-        </laf>
-        <laf name="looks">
+        <laf name="substance">     
             <os family="windows" />
-            <param name="variant" value="extwin" />
+            <os family="unix" />
+            <param name="variant" value="mist-silver" />
+        </laf>
+        <laf name="substance">
+            <os family="mac" />
+            <param name="variant" value="mist-aqua" />
         </laf>
     </guiprefs>
     
@@ -46,7 +48,9 @@
     
     <!-- The listeners section for CustomActions -->
     <listeners>
-        <listener installer="SummaryLoggerInstallerListener"/>
+        <listener installer="SummaryLoggerInstallerListener">
+            <os family="windows"/>
+        </listener>
         <!-- Registra a Instalação no Windows //-->
         <listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener">
             <os family="windows"/>
@@ -69,7 +73,6 @@
                 <include name="*.txt" />
                 <include name="*.jar" />
                 <include name="lib/**/*" />
-                <include name="a2.ico" />
             </fileset>
         </pack>
         <pack name="Javadoc" required="no">
@@ -80,8 +83,16 @@
         </pack>
     </packs>
 
-    <native type="izpack" name="ShellLink.dll" />
+    <native type="izpack" name="ShellLink.dll">
+        <os family="windows"/>
+    </native>
+    <native type="izpack" name="ShellLink_x64.dll">
+        <os family="windows"/>
+    </native>
     <native type="3rdparty" name="COIOSHelper.dll" stage="both">
+        <os family="windows"/>
+    </native>
+    <native type="3rdparty" name="COIOSHelper_x64.dll" stage="both">
         <os family="windows"/>
     </native>
     
