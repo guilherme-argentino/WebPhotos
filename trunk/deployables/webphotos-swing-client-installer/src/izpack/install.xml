@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+    Document   : installer.xml
+    Created on : 30 de Maio de 2006, 09:52
+    Author     : guilherme
+    Description:
+        Installer Generator.
+-->
+
+<installation version="1.0">
+    
+    <info>
+        <appname>WebPhotos</appname>
+        <appversion>@{project.version}</appversion>
+        <authors>
+            <author name="Guilherme Silva" email="guilherme.argentino@gmail.com" />
+        </authors>
+        <url>@{project.url}</url>
+        <javaversion>1.6</javaversion>
+        <summarylogfilepath>$INSTALL_PATH/installinfo/Summary.htm</summarylogfilepath>
+    </info>
+    
+    <variables>
+        <variable name="DesktopShortcutCheckboxEnabled" value="true" />
+    </variables>
+    
+    <guiprefs height="600" resizable="no" width="800">
+        <laf name="metouia">
+            <os family="unix" />
+        </laf>
+        <laf name="looks">
+            <os family="windows" />
+            <param name="variant" value="extwin" />
+        </laf>
+    </guiprefs>
+    
+    <locale>
+        <langpack iso3="por"/>
+        <langpack iso3="eng"/>
+    </locale>
+    
+    <resources>
+        <res src="shortcutSpec.xml" id="shortcutSpec.xml"/>
+    </resources>
+    
+    <!-- The listeners section for CustomActions -->
+    <listeners>
+        <listener installer="SummaryLoggerInstallerListener"/>
+        <!-- Registra a Instalação no Windows //-->
+        <listener installer="RegistryInstallerListener" uninstaller="RegistryUninstallerListener">
+            <os family="windows"/>
+        </listener>
+    </listeners>
+    
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="PacksPanel"/>
+        <panel classname="TargetPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="ShortcutPanel"/>
+        <panel classname="FinishPanel"/>
+    </panels>
+    
+    <packs>
+        <pack name="Núcleo" required="yes">
+            <description>WebPhotos Application.</description>
+            <fileset dir="" targetdir="$INSTALL_PATH">
+                <include name="*.txt" />
+                <include name="*.jar" />
+                <include name="lib/**/*" />
+                <include name="a2.ico" />
+            </fileset>
+        </pack>
+        <pack name="Javadoc" required="no">
+            <description>API Java.</description>
+            <fileset dir="" targetdir="$INSTALL_PATH">
+                <include name="javadoc/**/*" />
+            </fileset>
+        </pack>
+    </packs>
+
+    <native type="izpack" name="ShellLink.dll" />
+    <native type="3rdparty" name="COIOSHelper.dll" stage="both">
+        <os family="windows"/>
+    </native>
+    
+</installation>

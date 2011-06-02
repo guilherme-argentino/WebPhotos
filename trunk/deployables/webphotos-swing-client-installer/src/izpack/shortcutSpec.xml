@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<shortcuts>
+
+	<skipIfNotSupported />
+	
+	<programGroup defaultName="WebFotos" location="applications" />
+	
+	<shortcut	name="Iniciar WebFotos"
+			target="$INSTALL_PATH\WebFotos.jar"
+			commandLine=""
+			workingDirectory="$INSTALL_PATH"
+			description="Abre o aplicativo WebFotos"
+			iconFile="$INSTALL_PATH\a2.ico"
+			iconIndex="0"
+			initialState="maximized"
+			programGroup="yes"
+			desktop="yes"
+			applications="no"
+			startMenu="no"
+			startup="no">
+			
+		<createForPack name="Núcleo"/>
+	</shortcut>
+	
+	<shortcut	name="Documentação Java (API)"
+			programGroup="yes"
+			desktop="no"
+			applications="no"
+			startMenu="no"
+			startup="no"
+			target="$INSTALL_PATH\javadoc\index.html"
+			commandLine=""
+			description="Apresenta a documentação da API do sistema (Javadoc)">
+		<createForPack name="Javadoc" />
+	</shortcut>
+	
+	<shortcut	name="Desinstalar o WebFotos"
+			programGroup="yes"
+			desktop="no"
+			applications="no"
+			startMenu="no"
+			startup="no"
+			target="$INSTALL_PATH\Uninstaller\uninstaller.jar"     
+			commandLine=""
+			iconFile="%SystemRoot%\system32\SHELL32.dll"
+			iconIndex="31" 
+			description="Este desinstala o WebFotos de seu sistema">
+		<createForPack name="Núcleo"/>
+	</shortcut>
+		
+</shortcuts>
