@@ -135,8 +135,8 @@
         <module>webfotos-persistence-backend-ifc</module>
         <module>webphotos-netbeans-gui-client</module>
         <module>webphotos-web-client</module>
-    <module>deployables</module>
-  </modules>
+        <module>deployables</module>
+    </modules>
     <dependencyManagement>
         <dependencies>
             <dependency>

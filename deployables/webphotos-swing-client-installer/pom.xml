@@ -12,44 +12,32 @@
     <version>1.0-SNAPSHOT</version>
     <url>http://webphotos.sf.net</url>
     <name>[WP] Swing Client - Installer</name>
-    
     <dependencies>
-    
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.codehaus.izpack</groupId>
             <artifactId>izpack-standalone-compiler</artifactId>
             <version>${izpack-standalone.version}</version>
             <optional>true</optional>
         </dependency>
-    
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
             <version>1.5.6</version>
         </dependency>
-        
         <dependency>
             <groupId>net.sf.webphotos</groupId>
             <artifactId>webfotos-swing-client</artifactId>
             <version>${project.version}</version>
         </dependency>
-    
     </dependencies>
-  
     <build>
-     
         <defaultGoal>package</defaultGoal>
-    
-        <finalName>webphotos_setup</finalName>
-    
         <plugins>
-
             <!--  copy other checked resource into staging area, expected by install.xml -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -71,7 +59,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <!--  prepare dependencies so that izpack jar tag to pickup at compile time -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -105,7 +92,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <!--  see install.xml to see how MyHelloPanel is used -->
             <plugin>
                 <groupId>org.codehaus.izpack</groupId>
@@ -132,15 +118,40 @@
                     </execution>
                 </executions>
             </plugin>
-            
+            <plugin>
+                <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
+                <artifactId>launch4j-plugin</artifactId>
+                <version>1.5.0.0</version>
+                <executions>
+                    <execution>
+                        <id>launch4j</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <dontWrapJar>false</dontWrapJar>
+                            <headerType>gui</headerType>
+                            <outfile>target/${project.build.finalName}-standard.exe</outfile>
+                            <jar>target/${project.build.finalName}-standard.jar</jar>
+                            <errTitle>WebPhotos</errTitle>
+                            <jre>
+                                <path>jre</path>
+                                <minVersion>1.6.0</minVersion>
+                                <dontUsePrivateJres>false</dontUsePrivateJres>
+                            </jre>
+                            <singleInstance>
+                                <mutexName>WebPhotos</mutexName>
+                                <windowTitle>WebPhotos</windowTitle>
+                            </singleInstance>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-  
     </build>
-  
     <properties>
         <staging.dir>${project.build.directory}/staging</staging.dir>
         <izpack-standalone.version>4.3.1</izpack-standalone.version>
     </properties>
-
-
 </project>
