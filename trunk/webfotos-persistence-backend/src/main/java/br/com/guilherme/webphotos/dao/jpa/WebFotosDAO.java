@@ -16,6 +16,7 @@
  */
 package br.com.guilherme.webphotos.dao.jpa;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -72,5 +73,15 @@ public class WebFotosDAO<E, I> {
      */
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected List<E> find(String query) {
+        return entityManager.createQuery(query).getResultList();
+    }
+
+    @SuppressWarnings(value = "unchecked")
+    protected List<E> findByNamedQuery(String query) {
+        return entityManager.createNamedQuery(query).getResultList();
     }
 }
