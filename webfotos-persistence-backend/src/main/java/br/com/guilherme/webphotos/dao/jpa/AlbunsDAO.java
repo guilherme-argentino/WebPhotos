@@ -33,14 +33,4 @@ public class AlbunsDAO extends WebFotosDAO<AlbunsVO, Integer> {
     public List<AlbunsVO> findAll() {
         return find("SELECT a FROM AlbunsVO a");
     }
-
-    @SuppressWarnings("unchecked")
-    protected List<AlbunsVO> find(String query) {
-        return entityManager.createQuery(query).getResultList();
-    }
-
-    @SuppressWarnings("unchecked")
-    protected List<AlbunsVO> findByNamedQuery(String query) {
-        return entityManager.createNamedQuery(query).getResultList();
-    }
 }
