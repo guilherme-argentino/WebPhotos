@@ -1,6 +1,5 @@
 package net.sf.webphotos;
 
-import webfotos.*;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
 import java.io.File;

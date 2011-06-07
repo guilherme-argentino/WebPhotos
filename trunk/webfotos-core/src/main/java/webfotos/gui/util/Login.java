@@ -23,7 +23,7 @@ import webfotos.util.Util;
 /**
  * Responsável pelas funções relacionadas ao login do usuário.
  */
-public class Login {
+public final class Login {
     private static final Login instanciaLogin=new Login();
     private String usuario;
     private char[] senha;
@@ -43,11 +43,10 @@ public class Login {
      * Construtor da classe.
      * Recebe dois valores e usa um deles para setar o título da janela.
      * Logo após, chama o método startLogin().
-     * @param a Object.
-     * @param b Object para setar o título.
+     * @param title Object para setar o título.
      */
-    public Login(Object a, Object b) {
-        telaLogin.setTitle((String)b);
+    public Login(Object title) {
+        telaLogin.setTitle((String)title);
         this.startLogin();
     }
 

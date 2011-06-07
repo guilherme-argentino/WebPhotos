@@ -206,7 +206,7 @@ public class FtpClient extends JFrame implements Runnable {
             }
             private void showLogonDialog() {
                 // Ou requisitamos do usuário
-                Login l=new Login(null,"FTP " + ftpHost);
+                Login l=new Login("FTP " + ftpHost);
                 removeWindowFocusListener(modal);
                 l.show();
                 addWindowFocusListener(modal);
