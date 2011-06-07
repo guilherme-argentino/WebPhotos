@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>net.sf.webphotos</groupId>
     <artifactId>webphotos</artifactId>
     <packaging>pom</packaging>
@@ -9,6 +8,14 @@
     <name>WebPhotos</name>
     <description>Project WebPhotos</description>
     <url>http://webphotos.sf.net</url>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
     <scm>
         <connection>scm:svn:https://webphotos.svn.sourceforge.net/svnroot/webphotos/trunk/</connection>
         <developerConnection>scm:svn:https://webphotos.svn.sourceforge.net/svnroot/webphotos/trunk/</developerConnection>
