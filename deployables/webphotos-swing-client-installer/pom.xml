@@ -136,9 +136,7 @@
                             <jar>target/${project.build.finalName}-standard.jar</jar>
                             <errTitle>WebPhotos</errTitle>
                             <jre>
-                                <path>jre</path>
                                 <minVersion>1.6.0</minVersion>
-                                <dontUsePrivateJres>false</dontUsePrivateJres>
                             </jre>
                             <singleInstance>
                                 <mutexName>WebPhotos</mutexName>
@@ -150,6 +148,16 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>launch4j</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+        </profile>
+    </profiles>
     <properties>
         <staging.dir>${project.build.directory}/staging</staging.dir>
         <izpack-standalone.version>4.3.1</izpack-standalone.version>
