@@ -134,6 +134,7 @@ public class SyncObject extends FTPClient implements Sync {
      * @exception IOException Se um erro de I/O ocorrer enquanto está enviando
      * comando para o servidor ou recebendo resposta dele.
      */
+    @Override
     public boolean makeDirectory(String pathName) throws IOException {
         if(pathName.startsWith("/")) {
             changeWorkingDirectory("/");

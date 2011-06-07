@@ -15,6 +15,8 @@
  */
 package net.sf.webphotos.gui.util;
 
+import java.awt.Component;
+import java.awt.Rectangle;
 import webfotos.util.Util;
 import org.uispec4j.interception.WindowHandler;
 import org.uispec4j.UISpec4J;
@@ -27,14 +29,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.uispec4j.Trigger;
 import org.uispec4j.Window;
+import org.uispec4j.finder.ComponentMatcher;
 import org.uispec4j.interception.WindowInterceptor;
 import webfotos.gui.util.Login;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Waiting for changes on CloudBees
  * @author Guilherme
  */
+@Ignore
 public class LoginTest {
 
     static {
@@ -61,148 +65,90 @@ public class LoginTest {
     }
 
     /**
-     * Test of startLogin method, of class Login.
+     * Basic Test.
      */
     @Test
     public void testLogin_Basic() {
-        System.out.println("startLogin");
+        System.out.println("Basic Login");
+
         final Login login = new Login();
-
-        WindowInterceptor.init(new Trigger() {
-
-            public void run() throws Exception {
-                login.show();
-            }
-        }).process(new WindowHandler() {
+        final WindowHandler windowHandler = new WindowHandler() {
 
             public Trigger process(Window window) {
-                // ... perform some operations on the shown window ...
-
                 // return a trigger that will close it
                 return window.getButton("OK").triggerClick();
             }
-        }).run();
+        };
+        interceptDialog(login, windowHandler);
 
         assertEquals(Util.getConfig().getString("autoPreencher.Login"), login.getUser());
         assertEquals(Util.getConfig().getString("autoPreencher.Pass"), new String(login.getPassword()));
     }
 
     /**
-     * Test of getLogin method, of class Login.
+     * Writing info Test.
      */
-    @Ignore
-    public void testGetLogin_String() {
-        System.out.println("getLogin");
-        String titulo = "";
-        Login expResult = null;
-        Login result = Login.getLogin(titulo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testLogin_WritingInfo() {
+        System.out.println("Writing info Login");
+
+        final String testeLogin = "TesteLogin";
+        final String testePass = "TestePass";
+
+        final Login login = new Login();
+        final WindowHandler windowHandler = new WindowHandler() {
+
+            public Trigger process(Window window) {
+                window.getTextBox(new ComponentMatcher() {
+
+                    public boolean matches(Component cmpnt) {
+                        return cmpnt.getBounds().equals(new Rectangle(55,8,129,20));
+                    }
+                }).setText(testeLogin);
+                window.getPasswordField(new ComponentMatcher() {
+
+                    public boolean matches(Component cmpnt) {
+                        return cmpnt.getBounds().equals(new Rectangle(55,34,129,20));
+                    }
+                }).setPassword(testePass);
+
+                // return a trigger that will close it
+                return window.getButton("OK").triggerClick();
+            }
+        };
+        interceptDialog(login, windowHandler);
+
+        assertEquals(testeLogin, login.getUser());
+        assertEquals(testePass, new String(login.getPassword()));
     }
 
     /**
-     * Test of getLogin method, of class Login.
+     * Cancel Test.
      */
-    @Ignore
-    public void testGetLogin_0args() {
-        System.out.println("getLogin");
-        Login expResult = null;
-        Login result = Login.getLogin();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testLogin_Cancel() {
+        System.out.println("Cancel Login");
+
+        final Login login = new Login();
+        final WindowHandler windowHandler = new WindowHandler() {
+
+            public Trigger process(Window window) {
+                // return a trigger that will close it
+                return window.getButton("Cancel").triggerClick();
+            }
+        };
+        interceptDialog(login, windowHandler);
+
+        assertNull(login.getUser());
+        assertNull(login.getPassword());
     }
 
-    /**
-     * Test of cancelado method, of class Login.
-     */
-    @Ignore
-    public void testCancelado() {
-        System.out.println("cancelado");
-        Login instance = new Login();
-        boolean expResult = false;
-        boolean result = instance.cancelado();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    private void interceptDialog(final Login login, final WindowHandler windowHandler) {
+        WindowInterceptor.init(new Trigger() {
 
-    /**
-     * Test of getUser method, of class Login.
-     */
-    @Ignore
-    public void testGetUser() {
-        System.out.println("getUser");
-        Login instance = new Login();
-        String expResult = "";
-        String result = instance.getUser();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getPassword method, of class Login.
-     */
-    @Ignore
-    public void testGetPassword() {
-        System.out.println("getPassword");
-        Login instance = new Login();
-        char[] expResult = null;
-        char[] result = instance.getPassword();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of show method, of class Login.
-     */
-    @Ignore
-    public void testShow_0args() {
-        System.out.println("show");
-        Login instance = new Login();
-        instance.show();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of show method, of class Login.
-     */
-    @Ignore
-    public void testShow_String() {
-        System.out.println("show");
-        String msgErro = "";
-        Login instance = new Login();
-        instance.show(msgErro);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of main method, of class Login.
-     */
-    @Ignore
-    public void testMain() {
-        System.out.println("main");
-        String[] a = null;
-        Login.main(a);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTelaLogin method, of class Login.
-     */
-    @Ignore
-    public void testGetTelaLogin() {
-        System.out.println("getTelaLogin");
-        JDialog expResult = null;
-        JDialog result = Login.getTelaLogin();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+            public void run() throws Exception {
+                login.show();
+            }
+        }).process(windowHandler).run();
     }
 }
