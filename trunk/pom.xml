@@ -8,6 +8,7 @@
     <name>WebPhotos</name>
     <description>Project WebPhotos</description>
     <url>http://webphotos.sf.net</url>
+    <inceptionYear>2008</inceptionYear>
     <licenses>
         <license>
             <name>Apache 2</name>
@@ -125,6 +126,38 @@
                         </plugin>
                     </reportPlugins>
                 </configuration>
+            </plugin>
+            <plugin>
+                <inherited>false</inherited>
+                <groupId>com.mycila.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>1.9.0</version>
+                <configuration>
+                    <header>${basedir}/src/etc/header.txt</header>
+                    <failIfMissing>true</failIfMissing>
+                    <aggregate>true</aggregate>
+                    <useDefaultExcludes>true</useDefaultExcludes>
+                    <properties>
+                        <year>${project.inceptionYear}</year>
+                        <owner>${project.name}</owner>
+                    </properties>
+                    <excludes>
+                        <exclude>LICENSE.txt</exclude>
+                        <exclude>NOTICE.txt</exclude>
+                        <exclude>src/test/data/**</exclude>
+                        <exclude>src/test/integration/**</exclude>
+                        <exclude>src/test/resources/**</exclude>
+                        <exclude>**/*.form</exclude>
+                        <exclude>**/CacheFTP.txt</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

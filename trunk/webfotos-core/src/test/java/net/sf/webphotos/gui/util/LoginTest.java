@@ -1,5 +1,5 @@
 /**
- * Copyright 2011 Guilherme.
+ * Copyright 2008 WebPhotos
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ import webfotos.util.Util;
 import org.uispec4j.interception.WindowHandler;
 import org.uispec4j.UISpec4J;
 import org.junit.Ignore;
-import javax.swing.JDialog;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

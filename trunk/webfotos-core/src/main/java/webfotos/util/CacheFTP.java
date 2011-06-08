@@ -1,8 +1,22 @@
+/**
+ * Copyright 2008 WebPhotos
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package webfotos.util;
 
 import java.util.*;
 import java.io.*;
-import webfotos.util.Util;
 
 /**
  * Mantém uma lista (arquivo) com comandos FTP.
@@ -13,24 +27,22 @@ import webfotos.util.Util;
  * </PRE>
  */
 public class CacheFTP extends ArrayList<ComandoFTP> {
-	
-	private static final long serialVersionUID = -3489616830358888490L;
 
-	/**
+    private static final long serialVersionUID = -3489616830358888490L;
+    /**
      * Número de opção da ação UPLOAD.
      */
-    public static final int UPLOAD=1;
+    public static final int UPLOAD = 1;
     /**
      * Número de opção da ação DOWNLOAD.
      */
-    public static final int DOWNLOAD=2;
+    public static final int DOWNLOAD = 2;
     /**
      * Número de opção da ação DELETE.
      */
-    public static final int DELETE=3;
-
-    private static File arquivoControle=new File("CacheFTP.txt");	
-    private static final CacheFTP instancia=new CacheFTP();
+    public static final int DELETE = 3;
+    private static File arquivoControle = new File("CacheFTP.txt");
+    private static final CacheFTP instancia = new CacheFTP();
 
     private CacheFTP() {
         super();
@@ -47,7 +59,7 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
     public static CacheFTP getCache() {
         return instancia;
     }
-    
+
     /**
      * Recebe uma ação, um albúm e uma foto, e adiciona um comando de FTP no arquivo.
      * @param acao Tipo de ação.
@@ -55,10 +67,14 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
      * @param foto Foto.
      */
     public void addCommand(int acao, int album, int foto) {
-        if(album==0) return;
-        if(acao!=UPLOAD && acao!=DOWNLOAD && acao!=DELETE) return;
+        if (album == 0) {
+            return;
+        }
+        if (acao != UPLOAD && acao != DOWNLOAD && acao != DELETE) {
+            return;
+        }
 
-        if((this.add(new ComandoFTP(acao,album,foto))==true)) {
+        if ((this.add(new ComandoFTP(acao, album, foto)) == true)) {
             sort();
             Util.log("Comando FTP adicionado. (" + acao + " " + album + " " + foto + ")");
         } else {
@@ -67,7 +83,7 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
     }
 
     private void sort() {
-        Collections.<ComandoFTP>sort((List<ComandoFTP>)this);
+        Collections.<ComandoFTP>sort((List<ComandoFTP>) this);
     }
 
     /**
@@ -77,45 +93,53 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
      * @param a Objeto a ser adicionado ao arquivo.
      * @return Retorna uma confirmação.
      */
+    @Override
     public boolean add(ComandoFTP a) {
         ComandoFTP b = a;
-        
-        // se já existir objecto igual na colecao sai
-        if(this.contains(a)) return false;
 
-        int acao=b.getOperacao();
-        int albumID=b.getAlbumID();
-        int fotoID=b.getFotoID();
+        // se já existir objecto igual na colecao sai
+        if (this.contains(a)) {
+            return false;
+        }
+
+        int acao = b.getOperacao();
+        int albumID = b.getAlbumID();
+        int fotoID = b.getFotoID();
 
         // se não for nenhuma das operações válida sai
-        if( ! (acao==UPLOAD) && 
-            ! (acao==DOWNLOAD) && 
-            ! (acao==DELETE) ) return false;
+        if (!(acao == UPLOAD)
+                && !(acao == DOWNLOAD)
+                && !(acao == DELETE)) {
+            return false;
+        }
 
         // percorremos a coleçao aplicando as regras
-        Iterator<ComandoFTP> i=this.iterator();
+        Iterator<ComandoFTP> i = this.iterator();
         ComandoFTP l;
 
         // se fotoID==0, então procura e remove entradas menores desse albumID
-        if(fotoID==0) {
-            i=this.iterator();
+        if (fotoID == 0) {
+            i = this.iterator();
 
-            while(i.hasNext()) {
+            while (i.hasNext()) {
                 l = i.next();
 
-                if( (l.getOperacao()==acao && l.getAlbumID()==albumID) ||
-                    (acao==DELETE && l.getOperacao()==UPLOAD && l.getAlbumID()==albumID)
-                    ) i.remove();
+                if ((l.getOperacao() == acao && l.getAlbumID() == albumID)
+                        || (acao == DELETE && l.getOperacao() == UPLOAD && l.getAlbumID() == albumID)) {
+                    i.remove();
+                }
 
-            }				
+            }
         }
 
         // se estamos adicionando, somente é valido quando não exista entradas
         // de álbum inteiro (fotoID="0")
-        i=this.iterator();
-        while(i.hasNext()) {
-            l=(ComandoFTP) i.next();
-            if(! l.recebe(b)) return false;
+        i = this.iterator();
+        while (i.hasNext()) {
+            l = (ComandoFTP) i.next();
+            if (!l.recebe(b)) {
+                return false;
+            }
         }
         super.add(b);
         return true;
@@ -126,29 +150,30 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
         String linha;
 
         // carregamos cada linha do arquivo CacheFTP.txt para dentro da col modelo
-        if(arquivoControle.isFile() && arquivoControle.canRead()) {
+        if (arquivoControle.isFile() && arquivoControle.canRead()) {
             try {
-                Util.out.println ("load file: " + arquivoControle.getCanonicalPath());
+                Util.out.println("load file: " + arquivoControle.getCanonicalPath());
                 StringTokenizer tok;
-                BufferedReader entrada=new BufferedReader(new FileReader(arquivoControle));	
-                while((linha=entrada.readLine()) != null) {
-                    if(!linha.startsWith("#")) {
-                        Util.out.println ("processando linha:" + linha);
-                        tok=new StringTokenizer(linha);										
-                        if(tok.countTokens()==3)
+                BufferedReader entrada = new BufferedReader(new FileReader(arquivoControle));
+                while ((linha = entrada.readLine()) != null) {
+                    if (!linha.startsWith("#")) {
+                        Util.out.println("processando linha:" + linha);
+                        tok = new StringTokenizer(linha);
+                        if (tok.countTokens() == 3) {
                             add(new ComandoFTP(
-                                Integer.parseInt(tok.nextToken()),
-                                Integer.parseInt(tok.nextToken()),
-                                Integer.parseInt(tok.nextToken())
-                                ));
-                        tok=null;
+                                    Integer.parseInt(tok.nextToken()),
+                                    Integer.parseInt(tok.nextToken()),
+                                    Integer.parseInt(tok.nextToken())));
+                        }
+                        tok = null;
                     }
                 } // fim while
-                entrada.close(); entrada=null;
+                entrada.close();
+                entrada = null;
             } catch (IOException e) {
                 Util.log("[CacheFTP.loadFile]/ERRO:" + e.getMessage());
             }
-        }		
+        }
     }
 
     /**
@@ -160,14 +185,14 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
     public void saveFile() {
 
         BufferedWriter saida;
-        Util.out.println ("escrevendo arquivo de Cache FTP: " + arquivoControle.getAbsolutePath());
+        Util.out.println("escrevendo arquivo de Cache FTP: " + arquivoControle.getAbsolutePath());
 
-        if(!arquivoControle.isFile()) {
+        if (!arquivoControle.isFile()) {
             // arquivo não existe..criamos
             try {
-                saida=new BufferedWriter(new FileWriter(arquivoControle));
+                saida = new BufferedWriter(new FileWriter(arquivoControle));
                 saida.write("# arquivo de envio / exclusão ftp - não deve ser alterado manualmente\r\n");
-                saida.write("# 1-Upload (envio) 2-Download (recepção) 3-Delete (apagar)\r\n");				
+                saida.write("# 1-Upload (envio) 2-Download (recepção) 3-Delete (apagar)\r\n");
                 saida.flush();
 
             } catch (IOException e) {
@@ -177,13 +202,13 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
 
         } else {
             // arquivo existe.. checamos
-            if(!arquivoControle.canWrite()) {
+            if (!arquivoControle.canWrite()) {
                 Util.log("[CacheFTP.getArquivoSaida]/ERRO: o arquivo está protegido contra gravação");
                 return;
             }
 
             try {
-                saida=new BufferedWriter(new FileWriter(arquivoControle,false));
+                saida = new BufferedWriter(new FileWriter(arquivoControle, false));
             } catch (Exception e) {
                 Util.log("[CacheFTP.getArquivoSaida]/ERRO: não foi possível abrir o arquivo para adição.");
                 return;
@@ -191,16 +216,16 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
         }
 
         // Arquivo aberto...
-        Iterator<ComandoFTP> i=this.iterator();
+        Iterator<ComandoFTP> i = this.iterator();
         ComandoFTP l;
 
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             l = i.next();
             try {
-                saida.write(l.getOperacao() + " " + l.getAlbumID() + " " + l.getFotoID() + "\r\n");	
+                saida.write(l.getOperacao() + " " + l.getAlbumID() + " " + l.getFotoID() + "\r\n");
             } catch (Exception e) {
                 Util.log("[CacheFTP.saveFile.1]/ERRO: " + e.getMessage());
-            }			
+            }
         }
         try {
             saida.flush();
@@ -208,23 +233,26 @@ public class CacheFTP extends ArrayList<ComandoFTP> {
         } catch (Exception e) {
             Util.log("[CacheFTP.saveFile.2]/ERRO: " + e.getMessage());
         }
-        saida=null; l=null; i=null;
+        saida = null;
+        l = null;
+        i = null;
     }
 
     /**
      * Retorna uma String que armazena todos os comandos FTP do arquivo no formato de uma lista.
      * @return Retorna os comandos FTP.
      */
+    @Override
     public String toString() {
-        Iterator<ComandoFTP> i=this.iterator();
+        Iterator<ComandoFTP> i = this.iterator();
         ComandoFTP l;
-        String t=this.size() + " comando(s)\n-------------------------------------\n";		
+        String t = this.size() + " comando(s)\n-------------------------------------\n";
 
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             l = i.next();
-            t+=l.getOperacao() + " " + l.getAlbumID() + " " + l.getFotoID() + "\n";			
+            t += l.getOperacao() + " " + l.getAlbumID() + " " + l.getFotoID() + "\n";
         }
         return t + "-------------------------------------\n";
     }
-
 } // fim da classe ControleFTP
+

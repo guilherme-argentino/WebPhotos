@@ -1,17 +1,31 @@
-package webfotos.util;
-
-/*
- UPLOAD=1 DOWNLOAD=2 DELETE=3;
+/**
+ * Copyright 2008 WebPhotos
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+package webfotos.util;
 
 /**
  * Cria um comando de FTP.
  * Comando esse armazenado posteriormente no {@link webfotos.util.CacheFTP CacheFTP}.
+ *
+ * UPLOAD=1 DOWNLOAD=2 DELETE=3;
  */
 public class ComandoFTP implements Comparable<ComandoFTP> {
-    private int operacao=-1;
-    private int albumID=-1;
-    private int fotoID=-1;
+
+    private int operacao = -1;
+    private int albumID = -1;
+    private int fotoID = -1;
 
     /**
      * Construtor da classe.
@@ -22,9 +36,11 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
      * @param foto Foto.
      */
     public ComandoFTP(int acao, int album, int foto) {
-        operacao=acao; albumID=album; fotoID=foto;
+        operacao = acao;
+        albumID = album;
+        fotoID = foto;
     }
-    
+
     /**
      * Recebe um Object e compara com os valores armazenados na classe.
      * Caso positivo retorna <I>true</I>, caso contrário <I>false</I>.
@@ -38,12 +54,14 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
         } catch (ClassCastException ccE) {
             return false;
         }
-        if( obj.getOperacao()==operacao &&
-            obj.getAlbumID()==albumID &&
-            obj.getFotoID()==fotoID ) return true;
+        if (obj.getOperacao() == operacao
+                && obj.getAlbumID() == albumID
+                && obj.getFotoID() == fotoID) {
+            return true;
+        }
         return false;
     }
-    
+
     /**
      * Faz um teste lógico para retornar uma variável lógica.
      * É utilizado na classe {@link webfotos.util.CacheFTP CacheFTP} no método
@@ -57,9 +75,11 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
         // não pode de fotoID=0...
         // um objeto "apagar 100 0" é maior que um "apagar 100 20"
         // já que o primeiro engloba o segundo
-        if( outra.getOperacao()==operacao &&
-            outra.getAlbumID()==albumID &&
-            fotoID==0 ) return false;
+        if (outra.getOperacao() == operacao
+                && outra.getAlbumID() == albumID
+                && fotoID == 0) {
+            return false;
+        }
         return true;
     }
 
@@ -72,16 +92,14 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
      */
     public int compareTo(ComandoFTP c) {
         // operações diferentes
-        if(this.getOperacao()!=c.getOperacao()) {
+        if (this.getOperacao() != c.getOperacao()) {
             return this.getOperacao() - c.getOperacao();
-        }
-        // operação igual. Verifica se album é diferente
-        else if(this.getAlbumID()!=c.getAlbumID()) {
+        } // operação igual. Verifica se album é diferente
+        else if (this.getAlbumID() != c.getAlbumID()) {
             return this.getAlbumID() - c.getAlbumID();
-        }
-        // operação igual, álbum igual. Ordena pela foto
+        } // operação igual, álbum igual. Ordena pela foto
         else {
-            return this.getFotoID() - c.getFotoID();		
+            return this.getFotoID() - c.getFotoID();
         }
     }
 
@@ -89,22 +107,32 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
      * Retorna o valor numérico da operação.
      * @return Retorna a operação.
      */
-    public int getOperacao() { return operacao; }
+    public int getOperacao() {
+        return operacao;
+    }
+
     /**
      * Retorna o valor numérico do albúm (ID).
      * @return Retorna o albúm.
      */
-    public int getAlbumID() { return albumID; }
+    public int getAlbumID() {
+        return albumID;
+    }
+
     /**
      * Retorna o valor numérico da foto (ID).
      * @return Retorna a foto.
      */
-    public int getFotoID() { return fotoID; }
+    public int getFotoID() {
+        return fotoID;
+    }
+
     /**
      * Retorna uma String contendo os dados da classe agrupados.
      * Reuni os números da operação, do albúm e da foto.
      * @return Retorna dados do comandoFTP agrupados.
      */
-    public String toString() { return operacao + " " + albumID + " " + fotoID; }
-
+    public String toString() {
+        return operacao + " " + albumID + " " + fotoID;
+    }
 }
