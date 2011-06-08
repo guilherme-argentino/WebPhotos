@@ -15,7 +15,6 @@
  */
 package webfotos.gui.util;
 
-import webfotos.gui.*;
 import net.sf.webphotos.BancoImagem;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.io.CopyStreamException;
@@ -32,6 +31,7 @@ import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import org.apache.log4j.Logger;
 import webfotos.util.ApplicationContextResource;
 
 
@@ -42,6 +42,8 @@ import webfotos.util.ApplicationContextResource;
  */
 public class FtpClient extends JFrame implements Runnable {
     private static final int ONE_SECOND = 1000;
+    
+    private static final Logger log = Logger.getLogger(FtpClient.class);
     
     private String ftpRoot=Util.getProperty("FTPRoot");
     private static File albunsRoot=Util.getAlbunsRoot();
@@ -102,7 +104,7 @@ public class FtpClient extends JFrame implements Runnable {
             ftp.loadSyncCache();
         } catch (Exception ex) {
             Util.log("[FtpClient.run]/ERRO: Inexperado.");
-            ex.printStackTrace();
+            log.error(ex);
             System.exit(1);
         }
         
@@ -371,8 +373,7 @@ public class FtpClient extends JFrame implements Runnable {
 
                     } catch (Exception e) {
                         tabela.setValueAt("erro",i,0);
-                        Util.err.println("Erro: ");
-                        e.printStackTrace();
+                        log.error(e);
                     }
                 // apaga somente uma foto
                 } else {
@@ -433,10 +434,10 @@ public class FtpClient extends JFrame implements Runnable {
                     Util.err.println("Erro de transmissão: " + ioE.getMessage() + " " +
                             ((CopyStreamException)ioE).getIOException().getMessage());
                     tabela.setValueAt("erro",i,0);
-                    ioE.printStackTrace();
+                    log.error(ioE);
                 } catch (Exception e) {
                     Util.err.println("Erro: ");
-                    e.printStackTrace();
+                    log.error(e);
                     tabela.setValueAt("erro",i,0);
                 } finally {
                     try { ftp.printWorkingDirectory(); } catch (IOException e) {}
@@ -488,8 +489,7 @@ public class FtpClient extends JFrame implements Runnable {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
                     } catch(Exception e) {
-                        Util.err.println("Erro: ");
-                        e.printStackTrace();
+                        log.error(e);
                     }
                 } else {
                     // Baixando um arquivo
@@ -507,8 +507,7 @@ public class FtpClient extends JFrame implements Runnable {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
                     } catch(Exception e) {
-                        Util.err.println("Erro: ");
-                        e.printStackTrace();
+                        log.error(e);
                     }
                 }
             }
@@ -528,8 +527,7 @@ public class FtpClient extends JFrame implements Runnable {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
                     } catch(Exception e) {
-                        Util.err.println("Erro: ");
-                        e.printStackTrace();
+                        log.error(e);
                     }
                 } else {
                     // Apagando um arquivo
@@ -547,8 +545,7 @@ public class FtpClient extends JFrame implements Runnable {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
                     } catch (Exception e) {
-                        Util.err.println("Erro: ");
-                        e.printStackTrace();
+                        log.error(e);
                     }
                 }
             }
@@ -601,7 +598,7 @@ public class FtpClient extends JFrame implements Runnable {
             Thread cl=new Thread(new FtpClient());
             cl.start();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error(ex);
         }
     }
 

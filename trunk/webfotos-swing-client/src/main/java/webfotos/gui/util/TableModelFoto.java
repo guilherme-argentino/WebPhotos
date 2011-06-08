@@ -66,6 +66,7 @@ public class TableModelFoto extends AbstractTableModel {
      * Retorna o total de colunas, contando o número de posições no vetor fotoColunas.
      * @return Retorna o total de colunas.
      */
+    @Override
     public int getColumnCount() {
         if (fotoColunas == null) {
             return 0;
@@ -77,6 +78,7 @@ public class TableModelFoto extends AbstractTableModel {
      * Retorna o total de linhas, contando o número de posições no vetor fotoTabela.
      * @return Retorna o total de linhas.
      */
+    @Override
     public int getRowCount() {
         if (fotoTabela == null) {
             return 0;
@@ -91,6 +93,7 @@ public class TableModelFoto extends AbstractTableModel {
      * @param column Número da coluna.
      * @return Retorna o valor encontrado em um Object.
      */
+    @Override
     public Object getValueAt(int line, int column) {
         return fotoTabela[line][column];
     }

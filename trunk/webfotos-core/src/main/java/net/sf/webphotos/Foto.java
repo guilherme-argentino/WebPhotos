@@ -261,6 +261,7 @@ public class Foto {
      * Retorna todos os valores das vari�veis de Foto em uma �nica String.
      * @return Retorna os valores da foto.
      */
+    @Override
     public String toString() {
         return "fotoID: " + fotoID + "\ncreditoID: " + creditoID + "\ncreditoNome: " + creditoNome + "\nlargura: " + largura + "\naltura: " + altura + "\narquivo: " + caminhoArquivo + "\nlegenda: " + legenda;
     }
