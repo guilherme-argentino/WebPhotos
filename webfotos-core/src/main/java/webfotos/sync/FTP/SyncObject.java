@@ -13,15 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * FTP.java
- *
- * Created on 16 de Maio de 2006, 17:11
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
-
 package webfotos.sync.FTP;
 
 import java.io.File;
@@ -32,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 import java.util.Vector;
+import org.apache.log4j.Logger;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPClientConfig;
@@ -82,6 +74,8 @@ public class SyncObject extends FTPClient implements Sync {
     private int ftpPort;
 
     private int retry;
+    
+    private static final Logger log = Logger.getLogger(SyncObject.class);
 
     /** Cria uma nova instância de FTP */
     public SyncObject() {
@@ -204,7 +198,7 @@ public class SyncObject extends FTPClient implements Sync {
             //TODO: Testar o acesso via Proxy
             //      usando System.getProperties().put()
             //      http://java.sun.com/j2se/1.5.0/docs/guide/net/properties.html
-            if(ftpProxyHost.equals(null) && ftpProxyPort != 0) {
+            if(ftpProxyHost == null && ftpProxyPort != 0) {
 	            System.getProperties().put("ftp.proxyHost", ftpProxyHost);
 	            System.getProperties().put("ftp.proxyPort", ftpProxyPort);
             }
@@ -275,7 +269,7 @@ public class SyncObject extends FTPClient implements Sync {
             getSyncListener().connected(new SyncEvent(this));
         } catch(Exception e) {
             conectado = false;
-            e.printStackTrace();
+            log.error(e);
             disconnect("[FtpClient.connect]/ERRO: não foi possivel manter esta conexão");
         }
         

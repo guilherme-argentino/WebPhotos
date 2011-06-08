@@ -29,14 +29,8 @@ import javax.swing.table.TableColumnModel;
 
 import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationBuilder;
-import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.DefaultConfigurationBuilder;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.configuration.SystemConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
-import org.apache.commons.configuration.tree.NodeCombiner;
-import org.apache.commons.configuration.tree.OverrideCombiner;
 import org.apache.log4j.Logger;
 
 /**
@@ -121,7 +115,7 @@ public class Util {
         if (albunsRoot == null) {
             albunsRoot = new File(getProperty("albunsRoot"));
             if (!albunsRoot.isDirectory()) {
-                StringBuffer errMsg = new StringBuffer();
+                StringBuilder errMsg = new StringBuilder();
                 errMsg.append("O diretório fornecido no parâmetro albunsRoot (arquivo de configuração)\n");
                 errMsg.append("não pode ser utilizado, ou não existe.\n");
                 errMsg.append("O programa será encerrado.");
@@ -143,7 +137,7 @@ public class Util {
     public static File getFolder(String param) {
         File folder = new File(getProperty(param));
         if (!folder.isDirectory()) {
-            StringBuffer errMsg = new StringBuffer();
+            StringBuilder errMsg = new StringBuilder();
             errMsg.append("O diretório fornecido no parâmetro albunsRoot (arquivo de configuração)\n");
             errMsg.append("não pode ser utilizado, ou não existe.\n");
             errMsg.append("O programa será encerrado.");
@@ -157,7 +151,7 @@ public class Util {
     /**
      * Trabalha o texto recebido para impressão do log.
      * Se existir algum erro contido no texto, separa o erro e imprime separado do resto da saída.
-     * TODO: enviar o log para arquivo e um componente swing.
+     * TODO: enviar o log para arquivo e um componente swing. Eliminar esse método com o Log4J ou semelhante.
      * @param texto Texto para impressão.
      */
     public static void log(String texto) {
