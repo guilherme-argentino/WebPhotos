@@ -29,7 +29,7 @@ import webfotos.gui.util.TableModelFoto;
 import webfotos.util.Util;
 import webfotos.gui.util.TableSorter;
 import java.io.*;
-
+import org.apache.log4j.Logger;
 
 /**
  * Exclui fotos.
@@ -37,13 +37,14 @@ import java.io.*;
  * Seu construtor seta esses dados para serem utilizados posteriormente pelo método que implementa a ação.
  */
 public class AcaoExcluirFoto extends AbstractAction {
-	
+
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6690995860578985531L;
-	
-	private JTable tbFotos;
+     * 
+     */
+    private static final long serialVersionUID = -6690995860578985531L;
+    private static final Logger log = Logger.getLogger(AcaoExcluirFoto.class);
+
+    private JTable tbFotos;
     private String larguraColunasFotos;
 
     /**
@@ -52,8 +53,8 @@ public class AcaoExcluirFoto extends AbstractAction {
      * @param tabela Tabela de fotos.
      */
     public AcaoExcluirFoto(JTable tabela) {
-        tbFotos=tabela;
-        larguraColunasFotos=Util.getConfig().getString("colunas2");
+        tbFotos = tabela;
+        larguraColunasFotos = Util.getConfig().getString("colunas2");
     }
 
     /**
@@ -68,91 +69,92 @@ public class AcaoExcluirFoto extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        HashSet<String> fotosID=new HashSet<String>();
-        HashSet<String> nomesArquivos=new HashSet<String>();
-        int[] linhasSelecionadas=tbFotos.getSelectedRows();
-        int numeroLinhasSelecionadas=tbFotos.getSelectedRowCount();
-        String msg="";
+        HashSet<String> fotosID = new HashSet<String>();
+        HashSet<String> nomesArquivos = new HashSet<String>();
+        int[] linhasSelecionadas = tbFotos.getSelectedRows();
+        int numeroLinhasSelecionadas = tbFotos.getSelectedRowCount();
+        String msg = "";
 
-        if(tbFotos.getRowCount()==1) {
-            int retorno=JOptionPane.showConfirmDialog(null,
-                "Esta é a última foto deste álbum.\nExcluir essa foto irá excluir seu álbum.",
-                "Excluir álbum ?", JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE);       
-            if(retorno==0) {
+        if (tbFotos.getRowCount() == 1) {
+            int retorno = JOptionPane.showConfirmDialog(null,
+                    "Esta é a última foto deste álbum.\nExcluir essa foto irá excluir seu álbum.",
+                    "Excluir álbum ?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+            if (retorno == 0) {
                 // exclui o álbum e retorna
-                Util.out.println ("remove album: " + Album.getAlbum().getAlbumID());
+                Util.out.println("remove album: " + Album.getAlbum().getAlbumID());
                 return;
             }
             // usuário preferiu não excluir a última foto (e o álbum também)
-            return;                 
+            return;
         }
         // permite somente a exclusão de 20 fotos de cada vez
-        if(numeroLinhasSelecionadas > 20 || numeroLinhasSelecionadas==0) {
+        if (numeroLinhasSelecionadas > 20 || numeroLinhasSelecionadas == 0) {
             JOptionPane.showMessageDialog(null,
-                "Você deve selecionar entre 1 e 20 fotos\npara serem excluídas","Informação",
-                JOptionPane.INFORMATION_MESSAGE);
+                    "Você deve selecionar entre 1 e 20 fotos\npara serem excluídas", "Informação",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
         // pede confirmacao
-        for(int i=0; i < numeroLinhasSelecionadas; i++)
-            msg=msg + "\n" + tbFotos.getModel().getValueAt(linhasSelecionadas[i],0) + " - " + tbFotos.getModel().getValueAt(linhasSelecionadas[i],1);
-
-        if(numeroLinhasSelecionadas==1) {
-            msg="Confirma a exclusão da foto ?\n" + msg;
-        } else {
-            msg="Confirma a exclusão de " + numeroLinhasSelecionadas + " fotos ?\n" + msg;
+        for (int i = 0; i < numeroLinhasSelecionadas; i++) {
+            msg = msg + "\n" + tbFotos.getModel().getValueAt(linhasSelecionadas[i], 0) + " - " + tbFotos.getModel().getValueAt(linhasSelecionadas[i], 1);
         }
-        int confirmacao=JOptionPane.showConfirmDialog(null,msg, "Confirmação de exclusão", JOptionPane.WARNING_MESSAGE);
+
+        if (numeroLinhasSelecionadas == 1) {
+            msg = "Confirma a exclusão da foto ?\n" + msg;
+        } else {
+            msg = "Confirma a exclusão de " + numeroLinhasSelecionadas + " fotos ?\n" + msg;
+        }
+        int confirmacao = JOptionPane.showConfirmDialog(null, msg, "Confirmação de exclusão", JOptionPane.WARNING_MESSAGE);
 
         // apaga a foto
-        if(confirmacao==0) {
+        if (confirmacao == 0) {
             // primeiro checa se o usuário não está excluindo fotos que
             // acabou de adicionar (nesse caso não tem entrada em db)
-            String indice="";
+            String indice = "";
 
-            for(int i=0; i < numeroLinhasSelecionadas; i++) {
-                indice=tbFotos.getModel().getValueAt(linhasSelecionadas[i],0).toString();
+            for (int i = 0; i < numeroLinhasSelecionadas; i++) {
+                indice = tbFotos.getModel().getValueAt(linhasSelecionadas[i], 0).toString();
 
                 // se acaba com jpg então não é numero
-                if(indice.toLowerCase().endsWith(".jpg")) {
+                if (indice.toLowerCase().endsWith(".jpg")) {
                     nomesArquivos.add(indice);
                 } else {
                     fotosID.add(indice);
                 }
             }
 
-            Album album=Album.getAlbum();
+            Album album = Album.getAlbum();
 
             // monta os arrays para passar ao album
-            if(nomesArquivos.size() > 0) {
+            if (nomesArquivos.size() > 0) {
                 // passa na forma de um array de strings
                 Util.out.println("nomesArquivos: " + nomesArquivos.toString());
                 album.excluirFotos((String[]) nomesArquivos.toArray(new String[0]));
             }
 
-            if(fotosID.size() > 0) {
+            if (fotosID.size() > 0) {
                 // passa na forma de um array de int
-                Iterator<String> iter=fotosID.iterator();
-                int[] fotoID=new int[fotosID.size()];
+                Iterator<String> iter = fotosID.iterator();
+                int[] fotoID = new int[fotosID.size()];
                 int ct = 0;
-                while(iter.hasNext()) {
-                    fotoID[ct]=Integer.parseInt(iter.next().toString());
+                while (iter.hasNext()) {
+                    fotoID[ct] = Integer.parseInt(iter.next().toString());
                     ct++;
                 }
 
                 album.excluirFotos(fotoID);
 
                 // escreve o arquivo javaScript
-                String caminhoAlbum=Util.getFolder("albunsRoot").getPath() + File.separator + album.getAlbumID();
+                String caminhoAlbum = Util.getFolder("albunsRoot").getPath() + File.separator + album.getAlbumID();
                 try {
-                    FileWriter out=new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".js");
+                    FileWriter out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".js");
                     out.write(album.toJavaScript());
                     out.flush();
-                    Util.out.println ("escrevendo: " + album.toJavaScript());
+                    Util.out.println("escrevendo: " + album.toJavaScript());
 
-                } catch(IOException ex) {
-                    ex.printStackTrace();
+                } catch (IOException ex) {
+                    log.error(ex);
                 }
             }
 
@@ -162,10 +164,10 @@ public class AcaoExcluirFoto extends AbstractAction {
             TableModelFoto.getModel().fireTableDataChanged();
             //TableModelFoto.getModel().addMouseListener(tbFotos);
             //tbFotos.setModel(TableModelFoto.getModel());
-            tbFotos.setModel(new TableSorter(TableModelFoto.getModel(),tbFotos.getTableHeader()));
+            tbFotos.setModel(new TableSorter(TableModelFoto.getModel(), tbFotos.getTableHeader()));
 
             // ajusta colunas
-            Util.ajustaLargura(tbFotos,larguraColunasFotos);
+            Util.ajustaLargura(tbFotos, larguraColunasFotos);
             tbFotos.repaint();
 
             // limpa controle de foto

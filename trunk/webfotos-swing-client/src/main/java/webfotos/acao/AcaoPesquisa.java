@@ -64,6 +64,7 @@ public class AcaoPesquisa extends AbstractAction {
      * Apresenta o número de registros encontrados e tira o cursor do modo de espera.
      * @param e Evento da ação de pesquisa.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         String sql;
         // ação pesquisar (clique em botao pesquisar ou tecla ENTER
