@@ -36,6 +36,7 @@ public class AcaoDocumentListener implements DocumentListener {
      * Não possui utilizações.
      * @param e Notifica mudanças no documento.
      */
+    @Override
     public void insertUpdate(DocumentEvent e) { altera(e); }
     /**
      * Implementa o método removeUptade da interface {@link javax.swing.event.DocumentListener DocumentListener}.
@@ -43,6 +44,7 @@ public class AcaoDocumentListener implements DocumentListener {
      * Não possui utilizações.
      * @param e Notifica mudanças no documento.
      */
+    @Override
     public void removeUpdate(DocumentEvent e) { altera(e); }
     /**
      * Implementa o método changeUptade da interface {@link javax.swing.event.DocumentListener DocumentListener}.
@@ -50,6 +52,7 @@ public class AcaoDocumentListener implements DocumentListener {
      * Não possui utilizações.
      * @param e Notifica mudanças no documento.
      */
+    @Override
     public void changedUpdate(DocumentEvent e) { altera(e); }
 	
     /**

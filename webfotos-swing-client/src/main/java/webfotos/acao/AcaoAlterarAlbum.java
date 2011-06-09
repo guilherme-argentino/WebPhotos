@@ -89,18 +89,19 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * @param ev
      *            Evento de ação.
      */
+    @Override
     public void actionPerformed(ActionEvent ev) {
         // usuario clicou em novo - criar novo álbum
-        if (ev.getSource() == btNovo && btNovo.getActionCommand() == PainelWebFotos.ACAO_NOVO) {
+        if (ev.getSource() == btNovo && btNovo.getActionCommand().equals(PainelWebFotos.ACAO_NOVO)) {
             PainelWebFotos.botaoNovo();
         } // caso o texto do botão seja "cancelar", então o usuário está
         // cancelando
         // a criação de um novo álbum...
-        else if (btAlterar.getActionCommand() == PainelWebFotos.ACAO_CANCELAR && ev.getSource() == btAlterar) {
+        else if (btAlterar.getActionCommand().equals(PainelWebFotos.ACAO_CANCELAR) && ev.getSource() == btAlterar) {
             PainelWebFotos.botaoCancelar();
         } // atualiza o álbum, coletando os valores dos controles GUI, validando
         // dados e atualizando o objeto Album
-        else if ((btAlterar.getActionCommand() == PainelWebFotos.ACAO_ALTERAR && ev.getSource() == btAlterar) || (btNovo.getActionCommand() == PainelWebFotos.ACAO_FINALIZAR && ev.getSource() == btNovo)) {
+        else if ((btAlterar.getActionCommand().equals(PainelWebFotos.ACAO_ALTERAR) && ev.getSource() == btAlterar) || (btNovo.getActionCommand().equals(PainelWebFotos.ACAO_FINALIZAR) && ev.getSource() == btNovo)) {
             if (!PainelWebFotos.atualizaAlbum()) {
                 return;
             }
@@ -311,7 +312,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         int altura;
         int largura;
         String sql;
-        boolean sucesso = false;
+        sucesso = false;
 
         // PASSO 2 - Registrar fotos no banco de dados
         // todas as fotos são registradas novamente. Fotos novas recebem um ID
