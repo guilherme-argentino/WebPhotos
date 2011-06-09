@@ -9,6 +9,9 @@
     <description>Project WebPhotos</description>
     <url>http://webphotos.sf.net</url>
     <inceptionYear>2008</inceptionYear>
+    <properties> 
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+    </properties>     
     <licenses>
         <license>
             <name>Apache 2</name>
