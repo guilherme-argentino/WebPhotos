@@ -33,8 +33,8 @@
         <org-netbeans-modules-apisupport-installer.os-windows>true</org-netbeans-modules-apisupport-installer.os-windows>
         <org-netbeans-modules-apisupport-installer.os-solaris>false</org-netbeans-modules-apisupport-installer.os-solaris>
         <org-netbeans-modules-apisupport-installer.license-type>apache.v2</org-netbeans-modules-apisupport-installer.license-type>
-        <org-netbeans-modules-apisupport-installer.os-linux>false</org-netbeans-modules-apisupport-installer.os-linux>
+        <org-netbeans-modules-apisupport-installer.os-linux>true</org-netbeans-modules-apisupport-installer.os-linux>
         <org-netbeans-modules-apisupport-installer.os-macosx>false</org-netbeans-modules-apisupport-installer.os-macosx>
-        <org-netbeans-modules-apisupport-installer.pack200-enabled>false</org-netbeans-modules-apisupport-installer.pack200-enabled>
+        <org-netbeans-modules-apisupport-installer.pack200-enabled>true</org-netbeans-modules-apisupport-installer.pack200-enabled>
     </properties>
 </project-shared-configuration>
