@@ -76,6 +76,7 @@ public class AcaoAdicionarFoto extends AbstractAction {
      * Atualiza a tabela, ajusta as colunas, aciona o flag de {@link webfotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}() e armazena o último diretório lido.
      * @param e Evento da ação de adição de foto.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         fc=new JFileChooser();
         fc.setAcceptAllFileFilterUsed(false);

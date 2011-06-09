@@ -66,6 +66,7 @@ public class AcaoExcluirFoto extends AbstractAction {
      * Ao ser iniciado o método que implementa a ação, checa se a foto não é recente, se já possui registro no banco. Então cria um array com os IDs das fotos. Cria um arquivo javascript. E por último atualiza a lista e área das fotos no programa.
      * @param e Evento de ação de exclusão de fotos.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         HashSet<String> fotosID=new HashSet<String>();
         HashSet<String> nomesArquivos=new HashSet<String>();

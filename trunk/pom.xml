@@ -139,6 +139,7 @@
                     <header>${basedir}/src/etc/header.txt</header>
                     <failIfMissing>true</failIfMissing>
                     <aggregate>true</aggregate>
+                    <strictCheck>true</strictCheck>
                     <useDefaultExcludes>true</useDefaultExcludes>
                     <properties>
                         <year>${project.inceptionYear}</year>
