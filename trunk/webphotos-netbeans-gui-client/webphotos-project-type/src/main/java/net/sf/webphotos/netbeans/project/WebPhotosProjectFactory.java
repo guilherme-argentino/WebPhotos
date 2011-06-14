@@ -13,10 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.sf.webphotos.netbeans.project;
 
 import java.io.IOException;
@@ -27,7 +23,7 @@ import org.openide.filesystems.FileObject;
 
 /**
  *
- * @author Guilhe
+ * @author Guilherme
  */
 public class WebPhotosProjectFactory implements ProjectFactory {
 
@@ -46,6 +42,7 @@ public class WebPhotosProjectFactory implements ProjectFactory {
      * @param projectDirectory chosen directory
      * @return
      */
+    @Override
     public boolean isProject(FileObject projectDirectory) {
         boolean isProject = true;
         for (String file : PROJECT_ARCHIVES) {
@@ -54,10 +51,12 @@ public class WebPhotosProjectFactory implements ProjectFactory {
         return isProject;
     }
 
+    @Override
     public Project loadProject(FileObject dir, ProjectState state) throws IOException {
         return isProject(dir) ? new WebPhotosProject(dir, state) : null;
     }
 
+    @Override
     public void saveProject(Project project) throws IOException, ClassCastException {
         if (!isProject(project.getProjectDirectory())) {
             throw new IOException("Project dir " + project.getProjectDirectory().getPath() +

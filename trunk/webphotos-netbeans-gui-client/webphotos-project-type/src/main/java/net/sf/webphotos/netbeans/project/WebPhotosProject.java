@@ -13,10 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.sf.webphotos.netbeans.project;
 
 import java.beans.PropertyChangeListener;
@@ -42,7 +38,7 @@ import org.openide.util.lookup.Lookups;
 
 /**
  *
- * @author Guilhe
+ * @author Guilherme
  */
 public class WebPhotosProject implements Project {
 
@@ -68,10 +64,12 @@ public class WebPhotosProject implements Project {
         return result;
     }
 
+    @Override
     public FileObject getProjectDirectory() {
         return projectDirectory;
     }
 
+    @Override
     public Lookup getLookup() {
         //throw new UnsupportedOperationException("Not supported yet.");
         if (lkp == null) {
@@ -94,10 +92,12 @@ public class WebPhotosProject implements Project {
             ActionProvider.COMMAND_COPY
         };
 
+        @Override
         public String[] getSupportedActions() {
             return supported;
         }
 
+        @Override
         public void invokeAction(String action, Lookup lookup) throws IllegalArgumentException {
             if (action.equalsIgnoreCase(ActionProvider.COMMAND_DELETE)) {
                 DefaultProjectOperations.performDefaultDeleteOperation(WebPhotosProject.this);
@@ -106,6 +106,7 @@ public class WebPhotosProject implements Project {
             }
         }
 
+        @Override
         public boolean isActionEnabled(String command, Lookup lookup) throws IllegalArgumentException {
             if ((command.equals(ActionProvider.COMMAND_DELETE))) {
                 return true;
@@ -119,17 +120,21 @@ public class WebPhotosProject implements Project {
 
     private final class WebPhotosDeleteOperation implements DeleteOperationImplementation {
 
+        @Override
         public void notifyDeleting() throws IOException {
         }
 
+        @Override
         public void notifyDeleted() throws IOException {
         }
 
+        @Override
         public List<FileObject> getMetadataFiles() {
             List<FileObject> dataFiles = new ArrayList<FileObject>();
             return dataFiles;
         }
 
+        @Override
         public List<FileObject> getDataFiles() {
             List<FileObject> dataFiles = new ArrayList<FileObject>();
             return dataFiles;
@@ -146,16 +151,20 @@ public class WebPhotosProject implements Project {
             this.projectDir = project.getProjectDirectory();
         }
 
+        @Override
         public void notifyCopying() throws IOException {
         }
 
+        @Override
         public void notifyCopied(Project arg0, File arg1, String arg2) throws IOException {
         }
 
+        @Override
         public List<FileObject> getMetadataFiles() {
             return Collections.EMPTY_LIST;
         }
 
+        @Override
         public List<FileObject> getDataFiles() {
             return Collections.EMPTY_LIST;
         }
@@ -163,28 +172,34 @@ public class WebPhotosProject implements Project {
 
     private final class WebPhotosProjectInformation implements ProjectInformation {
 
+        @Override
         public String getName() {
             return getProjectDirectory().getName();
         }
 
+        @Override
         public String getDisplayName() {
             return getName();
         }
 
+        @Override
         public Icon getIcon() {
             return new ImageIcon(ImageUtilities.loadImage(
                     Constants.PROJECT_ICON));
         }
 
+        @Override
         public Project getProject() {
             return WebPhotosProject.this;
         }
 
+        @Override
         public void addPropertyChangeListener(PropertyChangeListener arg0) {
             /** Do nothing */
             assert arg0 != null : arg0;
         }
 
+        @Override
         public void removePropertyChangeListener(PropertyChangeListener arg0) {
             /** Do nothing */
             assert arg0 != null : arg0;
