@@ -13,10 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package net.sf.webphotos.netbeans.project;
 
@@ -39,7 +35,7 @@ import org.openide.util.lookup.ProxyLookup;
 
 /**
  *
- * @author Guilhe
+ * @author Guilherme
  */
 class WebPhotosProjectLogicalView implements LogicalViewProvider {
 
@@ -49,6 +45,7 @@ class WebPhotosProjectLogicalView implements LogicalViewProvider {
         this.webPhotosProject = webPhotosProject;
     }
 
+    @Override
     public Node createLogicalView() {
         try {
             //Get the Text directory, creating if deleted
@@ -101,7 +98,6 @@ class WebPhotosProjectLogicalView implements LogicalViewProvider {
 
         @Override
         public Image getIcon(int type) {
-            //return ImageUtilities.loadImage("org/netbeans/demo/project/icon1.png");
             return ImageUtilities.loadImage(Constants.PROJECT_ICON);
         }
 
