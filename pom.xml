@@ -45,6 +45,10 @@
         <system>sourceforge</system>
         <url>https://sourceforge.net/apps/trac/webphotos/report</url>
     </issueManagement>
+    <ciManagement>
+        <system>hudson</system>
+        <url>https://rrantz.ci.cloudbees.com/job/Basic%20Build/</url>
+    </ciManagement>
     <build>
         <pluginManagement>
             <plugins>
