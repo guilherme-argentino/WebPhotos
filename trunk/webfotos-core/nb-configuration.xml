@@ -31,5 +31,6 @@
             Any value defined here will override the pom.xml file value but is only applicable to the current project.
         -->
         <netbeans.checkstyle.format>true</netbeans.checkstyle.format>
+        <org-netbeans-modules-html-editor-lib.default-html-public-id>-//W3C//DTD HTML 4.01 Transitional//EN</org-netbeans-modules-html-editor-lib.default-html-public-id>
     </properties>
 </project-shared-configuration>

@@ -373,7 +373,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
                 rowSet.updateString("legenda", legenda);
 
                 rowSet.updateRow();
-                // BancoImagem.getBancoImagem().ponteWWW(sql);
 
             } catch (Exception e) {
                 Util.log("[AcaoAlterarAlbum.recordFotoData]/ERRO: " + e);
@@ -467,7 +466,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
             rowSet.updateString("DtInsercao", dtAnsi);
 
             rowSet.updateRow();
-            // BancoImagem.getBancoImagem().ponteWWW(sql);
         } catch (Exception e) {
             Util.log("[AcaoAlterarAlbum.recordAlbumData]/ERRO: " + e);
             e.printStackTrace(Util.err);

@@ -17,6 +17,9 @@ package webfotos;
 
 import net.sf.webphotos.BancoImagem;
 import java.io.File;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import org.apache.derby.drda.NetworkServerControl;
 
 
 import org.apache.log4j.Logger;
@@ -52,6 +55,14 @@ public class WebPhotos {
             }
 
             Util.loadSocksProxy();
+
+            /**
+             * FIXEME: change this code to derby.drda.startNetworkServer=true
+             */
+            NetworkServerControl server = new NetworkServerControl(InetAddress.getByName(Util.getConfig().getString("derby.drda.host")), Util.getConfig().getInt("derby.drda.portNumber"));
+            server.start(new PrintWriter(Util.out));
+            server.setMaxThreads(100);
+
             BancoImagem.loadUIManager();
             BancoImagem.loadDBDriver();
 
@@ -60,6 +71,7 @@ public class WebPhotos {
 
             // Eficiente para produção - Ruim para depuração
             java.awt.EventQueue.invokeLater(new Runnable() {
+
                 @Override
                 public void run() {
                     FrameWebFotos.getInstance().setVisible(true);

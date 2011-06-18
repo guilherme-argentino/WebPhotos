@@ -73,6 +73,17 @@ public class WebFotosDAO<E, I> {
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+    
+    /**
+     * Workarround for a rapid migration from RowSet
+     * @param query
+     * @return
+     * @deprecated
+     */
+    @Deprecated
+    public List<Object[]> findByNativeQuery(String query) {
+        return entityManager.createNativeQuery(query).getResultList();
+    }
 
     @SuppressWarnings(value = "unchecked")
     protected List<E> find(String query) {

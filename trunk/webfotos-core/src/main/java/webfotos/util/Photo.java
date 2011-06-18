@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 package webfotos.util;
+
 import javax.swing.ImageIcon;
 import com.sun.image.codec.jpeg.*;
 import java.awt.image.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-//import javax.media.jai.*;
 import java.awt.*;
 
 /**
  * Responsável pelas funções relacionadas a alterações de fotos.
  * Armazena um método para reajustar o tamanho da foto.
+ * 
+ * @author Guilherme
  */
 public class Photo {
     /**
