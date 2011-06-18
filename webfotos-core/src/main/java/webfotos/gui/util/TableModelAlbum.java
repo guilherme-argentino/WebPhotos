@@ -16,10 +16,12 @@
 package webfotos.gui.util;
 
 // Modelo de tabela para bases de dados com suporte a cursores rolantes (MYSQL)
+import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
 import com.sun.rowset.JdbcRowSetImpl;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 import net.sf.webphotos.BancoImagem;
@@ -31,18 +33,22 @@ import javax.sql.RowSet;
 import javax.sql.RowSetEvent;
 import javax.sql.RowSetListener;
 import org.apache.log4j.Logger;
+import webfotos.util.ApplicationContextResource;
 
 /**
  * Gera o modelo da tabela de albuns.
  */
 public class TableModelAlbum extends AbstractTableModel implements RowSetListener {
 
-	private static final long serialVersionUID = 8393087620197315052L;
-
-	private static final TableModelAlbum instancia = new TableModelAlbum();
+    private static final long serialVersionUID = 8393087620197315052L;
+    private static final TableModelAlbum instancia = new TableModelAlbum();
     private String ultimoSQL;
+    
+    @Deprecated
     private RowSet rowSet = null;
+    private List<Object[]> tableData = null;
     private static Logger log = Logger.getLogger(TableModelAlbum.class);
+    private static AlbunsDAO albunsDAO = (AlbunsDAO) ApplicationContextResource.getBean("albunsDAO");
 
     // construtor
     private TableModelAlbum() {
@@ -50,7 +56,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     }
 
     /**
-     * Retorna a instï¿½ncia da prï¿½pia classe.
+     * Retorna a instância da própria classe.
      * @return Retorna um TableModelAlbum.
      */
     public static TableModelAlbum getModel() {
@@ -67,21 +73,22 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     /**
      * Executa um update no banco. Caso ocorra algum problema, o sistema tenta
      * reconectar ao Banco de Dados.
-     * Recebe uma variï¿½vel para realizar um comando no banco.
-     * Executa a função atravï¿½s da biblioteca {@link java.sql.RowSet RowSet}.
-     * Ao tï¿½rmino armazena a descrição de {@link java.sql.ResultSet#getMetaData() MetaData} em uma variï¿½vel.
+     * Recebe uma variável para realizar um comando no banco.
+     * Executa a função através da biblioteca {@link java.sql.RowSet RowSet}.
+     * Ao término armazena a descrição de {@link java.sql.ResultSet#getMetaData() MetaData} em uma variável.
      * @param sql Comando de sql.
      */
     public void update(String sql) {
         try {
             ultimoSQL = sql;
-            rowSet.setCommand(ultimoSQL);
             log.debug("Executando - " + ultimoSQL);
+            tableData = albunsDAO.findByNativeQuery(ultimoSQL);
+            rowSet.setCommand(ultimoSQL);
             rowSet.execute();
-        } catch (java.sql.SQLException sqlE) {
-            log.error("Ocorreu um erro durante a leitura do ï¿½lbum no banco de dados", sqlE);
+        } catch (java.sql.SQLException ex) {
+            log.error("Ocorreu um erro durante a leitura do álbum no banco de dados", ex);
             int selecao = JOptionPane.showConfirmDialog(null,
-                    "ERRO durante leitura do ï¿½lbum no banco de dados.\n\nTentar Novamente?",
+                    "ERRO durante leitura do álbum no banco de dados.\n\nTentar Novamente?",
                     "Aviso!",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
@@ -101,17 +108,17 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
                 throw new RuntimeException();
             }
         } catch (Exception e) {
-            log.error("Ocorreu um erro inexperado durante a leitura do ï¿½lbum", e);
-            JOptionPane.showMessageDialog(null, "ERRO inexperado durante leitura do ï¿½lbum - " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
-            throw new RuntimeException("Ocorreu um erro inexperado durante a leitura do ï¿½lbum", e);
+            log.error("Ocorreu um erro inexperado durante a leitura do álbum", e);
+            JOptionPane.showMessageDialog(null, "ERRO inexperado durante leitura do álbum - " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException("Ocorreu um erro inexperado durante a leitura do álbum", e);
         }
     }
 
     /**
      * Retorna o nome de uma coluna.
-     * Faz a busca atravï¿½s de um nï¿½mero passado como parï¿½metro.
-     * Busca a informação atravï¿½s do método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
-     * @param col Nï¿½mero da coluna.
+     * Faz a busca através de um número passado como parâmetro.
+     * Busca a informação através do método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
+     * @param col Número da coluna.
      * @return Retorna o nome da coluna.
      */
     @Override
@@ -142,7 +149,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
                 return 0;
             }
             return meta.getColumnCount();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             log.error("Error trying to get column count", e);
             return 0;
         }
@@ -156,11 +164,12 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     public int getRowCount() {
         try {
             if (rowSet.last()) {
-                return (rowSet.getRow());
+                return ( rowSet.getRow() );
             } else {
                 return 0;
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             log.error("Error trying to get row count", e);
             return 0;
         }
@@ -179,7 +188,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
                 return null;
             }
             return rowSet.getObject(col + 1);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             log.error("Error trying to get value at (" + row + "," + col + ")", e);
             return null;
         }
@@ -217,11 +227,12 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
                 return null;
             }
             type = meta.getColumnType(column + 1);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             log.warn("Error getting column class, returning SuperType information", e);
             return super.getColumnClass(column);
         }
-        
+
         switch (type) {
             case Types.BIT: {
                 cname = "java.lang.Boolean";
@@ -311,7 +322,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
         }
         try {
             return Class.forName(cname);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.warn("Error getting column class, returning SuperType information", e);
             return super.getColumnClass(column);
         }
@@ -357,7 +369,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
             } else if (rowSet.rowUpdated()) {
                 fireTableRowsUpdated(row, row);
             }
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             log.warn("Error detecting changes on Row! Event : [" + event.toString() + "]", ex);
         }
     }
@@ -390,7 +403,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
             rowSet.setPassword(rSet.getPassword());
             rowSet.addRowSetListener(this);
             update();
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             log.error("Error setting RowSet", ex);
         }
     }

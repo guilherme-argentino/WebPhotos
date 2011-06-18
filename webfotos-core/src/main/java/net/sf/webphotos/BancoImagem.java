@@ -13,13 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * Classe Database
- * koiti issayama 12/07/03
- * singleton class - mantem uma conexao permanente com banco de dados
- *
- */
-
 package net.sf.webphotos;
 
 import java.io.File;
@@ -38,7 +31,6 @@ import org.apache.log4j.Logger;
 
 import webfotos.gui.util.Login;
 import webfotos.util.Util;
-import webfotos.util.WebSQL;
 
 import com.sun.rowset.JdbcRowSetImpl;
 
@@ -99,19 +91,6 @@ public class BancoImagem {
     public static BancoImagem getBancoImagem() { return instancia; }
 
     /**
-     * Checa se a variável utilizarPonteWWW esta habilitada para permitir o uso da função. 
-     * Caso afirmativo, inicia uma {@link java.lang.Thread Thread} a partir da classe {@link webfotos.util.WebSQL WebSQL}.
-     * Não possui utilizações.
-     * @param sql Query do sql.
-     */
-    public static void ponteWWW(String sql) {
-        if(!utilizarPonteWWW) return;
-
-        Thread t=new Thread(new WebSQL(sql));
-        t.start();
-    }
-
-    /**
      * Recebe o ID de um albúm e retorna o caminho do path local
      * @param albumID ID do albúm.
      * @return Retorna o caminho do path local.
@@ -120,9 +99,9 @@ public class BancoImagem {
         if(albunsRoot==null)
             albunsRoot=new File(Util.getConfig().getString("albunsRoot"));
 
-        File f=new File(albunsRoot,Integer.toString(albumID));
-        if(!f.isDirectory()) f.mkdirs();
-        return f.getAbsolutePath();
+        File localFile = new File(albunsRoot,Integer.toString(albumID));
+        if(!localFile.isDirectory()) localFile.mkdirs();
+        return localFile.getAbsolutePath();
     }
 
     /**

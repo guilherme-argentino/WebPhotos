@@ -13,15 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * Modal.java
- *
- * Created on 31 de Maio de 2006, 11:55
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
-
 package webfotos.util;
 
 import java.awt.event.WindowEvent;
@@ -45,11 +36,13 @@ public class Modal implements WindowFocusListener {
      * Implementa o método windowGainedFocus(WindowEvent e) da interface {@link java.awt.event.WindowFocusListener WindowFocusListener}.
      * @param e Evento de janela.
      */
+    @Override
     public void windowGainedFocus(WindowEvent e) {}
     /**
      * Implementa o método windowLostFocus(WindowEvent e) da interface {@link java.awt.event.WindowFocusListener WindowFocusListener}.
      * @param e Evento de janela.
      */
+    @Override
     public void windowLostFocus(WindowEvent e) {
         frame.toFront();
     }
