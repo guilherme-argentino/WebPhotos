@@ -18,7 +18,6 @@
 -->
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
-
     <folder name="Projects">
         <folder name="net.sf.webphotos.netbeans.project.Bundle#net-sf-webphotos-netbeans-project-empty">
             <folder name="Nodes">
@@ -28,19 +27,15 @@
             </folder>
         </folder>
     </folder>
-
     <folder name="Templates">
         <folder name="Project">
             <folder name="WebPhotos">
-                <folder name="Standard">
-                    <file name="net.sf.webphotos.netbeans.project.Bundle#net-sf-webphotos-netbeans-project-empty">
-                        <attr name="displayName" bundlevalue="net.sf.webphotos.netbeans.project.Bundle#net-sf-webphotos-netbeans-project-empty"/>
-                        <attr name="iconBase" stringvalue="net/sf/webphotos/netbeans/project/projectIcon.png"/>
-                        <attr name="template" boolvalue="true"/>
-                    </file>
-                </folder>
+                <file name="net.sf.webphotos.netbeans.project.Bundle#net-sf-webphotos-netbeans-project-empty">
+                    <attr name="displayName" bundlevalue="net.sf.webphotos.netbeans.project.Bundle#net-sf-webphotos-netbeans-project-empty"/>
+                    <attr name="iconBase" stringvalue="net/sf/webphotos/netbeans/project/projectIcon.png"/>
+                    <attr name="template" boolvalue="true"/>
+                </file>
             </folder>
         </folder>
     </folder>
-
 </filesystem>

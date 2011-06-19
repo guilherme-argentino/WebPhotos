@@ -20,20 +20,22 @@ import org.netbeans.api.project.Project;
 import org.netbeans.spi.project.ProjectFactory;
 import org.netbeans.spi.project.ProjectState;
 import org.openide.filesystems.FileObject;
+import org.openide.util.lookup.ServiceProvider;
 
 /**
  *
  * @author Guilherme
  */
+@ServiceProvider(service = ProjectFactory.class)
 public class WebPhotosProjectFactory implements ProjectFactory {
 
     public static final String[] PROJECT_ARCHIVES;
 
     static {
         PROJECT_ARCHIVES = new String[]{
-                    "config/webphotos.properties",
-                    "albuns/webphotos.xml"
-                };
+            "config/webphotos.properties",
+            "albuns/webphotos.xml"
+        };
     }
 
     /**
@@ -59,9 +61,9 @@ public class WebPhotosProjectFactory implements ProjectFactory {
     @Override
     public void saveProject(Project project) throws IOException, ClassCastException {
         if (!isProject(project.getProjectDirectory())) {
-            throw new IOException("Project dir " + project.getProjectDirectory().getPath() +
-                    " deleted," +
-                    " cannot save project");
+            throw new IOException("Project dir " + project.getProjectDirectory().getPath()
+                    + " deleted,"
+                    + " cannot save project");
         }
         throw new UnsupportedOperationException("Not supported yet.");
     }
