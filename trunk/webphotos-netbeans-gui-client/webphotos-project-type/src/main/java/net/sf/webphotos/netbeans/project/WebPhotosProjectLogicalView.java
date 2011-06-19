@@ -49,17 +49,17 @@ class WebPhotosProjectLogicalView implements LogicalViewProvider {
     public Node createLogicalView() {
         try {
             //Get the Text directory, creating if deleted
-            FileObject text = webPhotosProject.getFolder(0, true);
+            FileObject configuration = webPhotosProject.getFolder(0, true);
 
             //Get the DataObject that represents it
-            DataFolder textDataObject = DataFolder.findFolder(text);
+            DataFolder configurationDataObject = DataFolder.findFolder(configuration);
 
             //Get its default node-we'll wrap our node around it to change the
             //display name, icon, etc
-            Node realTextFolderNode = textDataObject.getNodeDelegate();
+            Node realConfigurationFolderNode = configurationDataObject.getNodeDelegate();
 
             //This FilterNode will be our project node
-            return new TextNode(realTextFolderNode, webPhotosProject);
+            return new ConfigurationNode(realConfigurationFolderNode, webPhotosProject);
 
         } catch (DataObjectNotFoundException donfe) {
             Exceptions.printStackTrace(donfe);
@@ -68,13 +68,15 @@ class WebPhotosProjectLogicalView implements LogicalViewProvider {
             return new AbstractNode(Children.LEAF);
         }
     }
-
-    /** This is the node you actually see in the project tab for the project */
-    private static final class TextNode extends FilterNode {
+    
+    /** 
+     * This is the node you actually see in the project tab for the project 
+     */
+    private static final class ConfigurationNode extends FilterNode {
 
         final WebPhotosProject project;
 
-        public TextNode(Node node, WebPhotosProject project) throws DataObjectNotFoundException {
+        public ConfigurationNode(Node node, WebPhotosProject project) throws DataObjectNotFoundException {
             super(node, new FilterNode.Children(node),
                     //The projects system wants the project in the Node's lookup.
                     //NewAction and friends want the original Node's lookup.
