@@ -37,7 +37,6 @@ import static org.junit.Assert.*;
  * Waiting for changes on CloudBees
  * @author Guilherme
  */
-@Ignore
 public class LoginTest {
 
     static {
