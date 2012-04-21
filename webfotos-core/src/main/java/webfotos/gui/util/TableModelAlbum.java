@@ -22,16 +22,12 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
-import javax.swing.JOptionPane;
-
-import net.sf.webphotos.BancoImagem;
-
-import javax.swing.table.AbstractTableModel;
-
-//Implementando RowSet
 import javax.sql.RowSet;
 import javax.sql.RowSetEvent;
 import javax.sql.RowSetListener;
+import javax.swing.JOptionPane;
+import javax.swing.table.AbstractTableModel;
+import net.sf.webphotos.BancoImagem;
 import org.apache.log4j.Logger;
 import webfotos.util.ApplicationContextResource;
 
@@ -141,6 +137,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * Busca a informação atravï¿½s do método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
      * @return Retorna o nï¿½mero de colunas.
      */
+    @Override
     public int getColumnCount() {
         try {
             ResultSetMetaData meta = rowSet.getMetaData();
@@ -161,6 +158,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * Busca a informação atravï¿½s do método {@link java.sql.ResultSet#getRow() getRow()}.
      * @return Retorna o nï¿½mero de linhas.
      */
+    @Override
     public int getRowCount() {
         try {
             if (rowSet.last()) {
@@ -182,6 +180,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * @param col Nï¿½mero da coluna.
      * @return Retorna o valor na tabela.
      */
+    @Override
     public Object getValueAt(int row, int col) {
         try {
             if (!rowSet.absolute(row + 1)) {
@@ -350,6 +349,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * Apenas chama o método {@link javax.swing.table.AbstractTableModel#fireTableStructureChanged() fireTableStructureChanged()}.
      * @param event Evento de ação na tabela.
      */
+    @Override
     public void rowSetChanged(RowSetEvent event) {
         fireTableStructureChanged();
     }
@@ -358,6 +358,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * Notifica que a estrutura da talela foi modificada, porï¿½m informa qual a função foi feita (insert, delete ou update).
      * @param event Evento de ação na tabela.
      */
+    @Override
     public void rowChanged(RowSetEvent event) {
         try {
             int row = rowSet.getRow();
@@ -380,6 +381,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * TODO: avaliar a exclusão dessa função.
      * @param event Evento.
      */
+    @Override
     public void cursorMoved(RowSetEvent event) {
     }
 
