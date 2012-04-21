@@ -105,6 +105,47 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>launch4j</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <build>
+                <defaultGoal>package</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
+                        <artifactId>launch4j-plugin</artifactId>
+                        <version>1.5.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>launch4j</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>launch4j</goal>
+                                </goals>
+                                <configuration>
+                                    <dontWrapJar>false</dontWrapJar>
+                                    <headerType>gui</headerType>
+                                    <outfile>target/${project.build.finalName}.exe</outfile>
+                                    <jar>target/${project.build.finalName}.jar</jar>
+                                    <errTitle>WebPhotos</errTitle>
+                                    <jre>
+                                        <minVersion>1.6.0</minVersion>
+                                    </jre>
+                                    <singleInstance>
+                                        <mutexName>WebPhotos</mutexName>
+                                        <windowTitle>WebPhotos</windowTitle>
+                                    </singleInstance>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
     <build>
         <plugins>
@@ -236,8 +277,8 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.2.0.ga</version>
+            <artifactId>hibernate-core</artifactId>
+            <version>3.5.6-Final</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -253,13 +294,13 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-annotations</artifactId>
-            <version>3.2.0.ga</version>
+            <version>3.5.6-Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.4.0.GA</version>
+            <version>3.5.6-Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -321,6 +362,12 @@
             <groupId>javax.transaction</groupId>
             <artifactId>jta</artifactId>
             <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.4</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
     <repositories>

@@ -94,11 +94,11 @@ texto.corFundo=255,255,255
 jdbc.driver=org.apache.derby.jdbc.ClientDriver
 # jdbc.url=jdbc:mysql://gui-vmw2k3-db/webphotos
 # jdbc.url=jdbc:derby:${sys:user.home}/webfotos/database;create=true
-jdbc.url=jdbc:derby://localhost:1527/${sys:user.home}/webfotos/database/webfotos;create=true
+jdbc.url=jdbc:derby://localhost:15270/${sys:user.home}/webfotos/database/webfotos;create=true
 
 derby.drda.startNetworkServer=true
 derby.drda.host=localhost
-derby.drda.portNumber=1527
+derby.drda.portNumber=15270
 
 ###############################################
 # INSTRUCOES SQL E PARAMETROS DE TABELA       #
