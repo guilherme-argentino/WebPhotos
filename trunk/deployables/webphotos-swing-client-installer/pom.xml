@@ -147,13 +147,13 @@
                                     <headerType>gui</headerType>
                                     <outfile>target/${project.build.finalName}-standard.exe</outfile>
                                     <jar>target/${project.build.finalName}-standard.jar</jar>
-                                    <errTitle>WebPhotos</errTitle>
+                                    <errTitle>WebPhotos Installer</errTitle>
                                     <jre>
                                         <minVersion>1.6.0</minVersion>
                                     </jre>
                                     <singleInstance>
-                                        <mutexName>WebPhotos</mutexName>
-                                        <windowTitle>WebPhotos</windowTitle>
+                                        <mutexName>WebPhotos Installer</mutexName>
+                                        <windowTitle>WebPhotos Installer</windowTitle>
                                     </singleInstance>
                                 </configuration>
                             </execution>
