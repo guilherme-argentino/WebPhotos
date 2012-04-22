@@ -199,7 +199,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>${org.springframework.version}</version>
         </dependency>
 
 <!--
@@ -240,7 +239,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>${org.springframework.version}</version>
         </dependency>
 
 <!--
@@ -251,7 +249,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>${org.springframework.version}</version>
         </dependency>
 
 <!--
@@ -300,7 +297,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.5.6-Final</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -318,7 +314,6 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
             <scope>compile</scope>
         </dependency>
 <!--        <dependency>
@@ -351,6 +346,7 @@
         <dependency>
             <groupId>net.sf.webphotos</groupId>
             <artifactId>webfotos-persistence-backend</artifactId>
+            <version>${project.version}</version>
             <scope>compile</scope>
             <type>jar</type>
         </dependency>

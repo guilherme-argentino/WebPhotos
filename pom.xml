@@ -47,7 +47,7 @@
     </issueManagement>
     <ciManagement>
         <system>hudson</system>
-        <url>https://rrantz.ci.cloudbees.com/job/Basic%20Build/</url>
+        <url>https://rrantz.ci.cloudbees.com/</url>
     </ciManagement>
     <build>
         <pluginManagement>
@@ -77,7 +77,7 @@
                 <!-- required since nbm-plugin 3.0-->
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.3.1</version>
+                    <version>2.4</version>
                     <configuration>
                         <useDefaultManifestFile>true</useDefaultManifestFile>
                     </configuration>
@@ -113,7 +113,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-pmd-plugin</artifactId>
-                    <version>2.5</version>
+                    <version>2.7.1</version>
                     <configuration>
                         <linkXref>true</linkXref>
                         <minimumTokens>100</minimumTokens>
@@ -267,10 +267,30 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>net.sf.webphotos</groupId>
-                <artifactId>webfotos-persistence-backend</artifactId>
-                <version>${project.version}</version>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.1</version>
             </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>3.5.6-Final</version>
+            </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>3.0.5.RELEASE</version>
+        </dependency>
         </dependencies>
     </dependencyManagement>
     <profiles>
