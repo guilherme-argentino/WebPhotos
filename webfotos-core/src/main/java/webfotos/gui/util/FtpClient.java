@@ -32,7 +32,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import org.apache.log4j.Logger;
-import webfotos.util.ApplicationContextResource;
+import net.sf.webphotos.util.ApplicationContextResource;
 
 
 /**

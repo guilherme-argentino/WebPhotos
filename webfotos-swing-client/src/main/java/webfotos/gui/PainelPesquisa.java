@@ -23,7 +23,7 @@ package webfotos.gui;
 
 import webfotos.acao.AcaoPopup;
 import webfotos.acao.AcaoPesquisa;
-import webfotos.util.ApplicationContextResource;
+import net.sf.webphotos.util.ApplicationContextResource;
 
 /**
  * Desenvolve um painel para pesquisas.

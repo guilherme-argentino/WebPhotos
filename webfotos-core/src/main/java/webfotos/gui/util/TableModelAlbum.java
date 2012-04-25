@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import net.sf.webphotos.BancoImagem;
 import org.apache.log4j.Logger;
-import webfotos.util.ApplicationContextResource;
+import net.sf.webphotos.util.ApplicationContextResource;
 
 /**
  * Gera o modelo da tabela de albuns.

@@ -18,7 +18,7 @@
  * and open the template in the editor.
  */
 
-package webfotos.util;
+package net.sf.webphotos.util;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
