@@ -115,7 +115,7 @@ public class FtpClient extends JFrame implements Runnable {
             this.setTitle("Transmissão FTP - Enviando Originais");
         }
         txtLog.setFont(new Font("courier",Font.PLAIN,11));
-        Util.setLogOut(txtLog);
+        Util.setLoggingTextArea(txtLog);
         cp.setLayout(null);
 
         cp.add(lblArquivos);
@@ -218,7 +218,7 @@ public class FtpClient extends JFrame implements Runnable {
             @Override
             public void disconnected(SyncEvent e) {
                 //TODO: repensar esse comando
-                //Util.setLogOut(PainelWebFotos.getTxtLog());
+                //Util.setLoggingTextArea(PainelWebFotos.getTxtLog());
                 btFechar.setEnabled(true);
             }
             private void showLogonDialog() {
@@ -245,7 +245,7 @@ public class FtpClient extends JFrame implements Runnable {
     
     private void exit() {
         //TODO: repensar esse comando
-        //Util.setLogOut(PainelWebFotos.getTxtLog());
+        //Util.setLoggingTextArea(PainelWebFotos.getTxtLog());
         dispose();
     }
 

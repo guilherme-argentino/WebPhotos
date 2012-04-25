@@ -170,7 +170,7 @@ public class FrameWebFotos extends javax.swing.JFrame {
 
     private static void exit() {
         CacheFTP.getCache().saveFile();
-        Util.setLogOut(null);
+        Util.setLoggingTextArea(null);
         try { BancoImagem.closeConnection(); } catch (SQLException ex) { }
         getInstance().dispose();
     }

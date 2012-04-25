@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package webfotos.util;
 
@@ -19,14 +19,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.StringTokenizer;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-
 import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.DefaultConfigurationBuilder;
@@ -34,7 +32,8 @@ import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.log4j.Logger;
 
 /**
- * Esta classe armazena alguns métodos de utilidade para o funcionamento de todo o programa.
+ * Esta classe armazena alguns métodos de utilidade para o funcionamento de todo
+ * o programa.
  * <PRE>
  * Exemplo: PrintStream out que desvia a saída padrão de texto.
  * </PRE>
@@ -45,14 +44,20 @@ public class Util {
     private static final String WEBFOTOS_USER_CONFIG = "webfotos.xml";
     public static final String WEBFOTOS_DEFAULT_CONFIG = "webfotos.dat";
     private static Util instancia = new Util();
-    // caixa de texto para dar saída ao log
+
+    /**
+     * caixa de texto para dar saída ao log
+     */
     private static JTextArea saida;
+    
     private static File albunsRoot = null;
     private static CombinedConfiguration config;
+    
     /**
      * Para desviar a saída padrão de texto (em produção).
      */
     public static PrintStream out;
+    
     /**
      * Para desviar a saída padrão de texto (em produção).
      */
@@ -98,6 +103,7 @@ public class Util {
 
     /**
      * Retorna a instância da própria classe.
+     *
      * @return Retorna a instância de Util.
      */
     public static Util getInstance() {
@@ -105,10 +111,12 @@ public class Util {
     }
 
     /**
-     * Retorna o diretório raiz de albuns.
-     * Checa se a variável albunsRoot já possui o valor, caso não, busca o arquivo nas propriedades
-     * através do método {@link webfotos.util.Util#getProperty(String) getProperty}(String chave) e faz um teste para checar se ï¿½ um diretório mesmo.
-     * Caso tudo esteja correto, retorna o diretório.
+     * Retorna o diretório raiz de albuns. Checa se a variável albunsRoot já
+     * possui o valor, caso não, busca o arquivo nas propriedades através do
+     * método {@link webfotos.util.Util#getProperty(String) getProperty}(String
+     * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
+     * esteja correto, retorna o diretório.
+     *
      * @return Retorna um diretório.
      */
     public static File getAlbunsRoot() {
@@ -128,10 +136,12 @@ public class Util {
     }
 
     /**
-     * Retorna o diretório raiz de albuns.
-     * Checa se a variável albunsRoot já possui o valor, caso não, busca o arquivo nas propriedades
-     * através do método {@link webfotos.util.Util#getProperty(String) getProperty}(String chave) e faz um teste para checar se ï¿½ um diretório mesmo.
-     * Caso tudo esteja correto, retorna o diretório.
+     * Retorna o diretório raiz de albuns. Checa se a variável albunsRoot já
+     * possui o valor, caso não, busca o arquivo nas propriedades através do
+     * método {@link webfotos.util.Util#getProperty(String) getProperty}(String
+     * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
+     * esteja correto, retorna o diretório.
+     *
      * @return Retorna um diretório.
      */
     public static File getFolder(String param) {
@@ -149,9 +159,11 @@ public class Util {
     }
 
     /**
-     * Trabalha o texto recebido para impressão do log.
-     * Se existir algum erro contido no texto, separa o erro e imprime separado do resto da saída.
-     * TODO: enviar o log para arquivo e um componente swing. Eliminar esse método com o Log4J ou semelhante.
+     * Trabalha o texto recebido para impressão do log. Se existir algum erro
+     * contido no texto, separa o erro e imprime separado do resto da saída.
+     * TODO: enviar o log para arquivo e um componente swing. Eliminar esse
+     * método com o Log4J ou semelhante.
+     *
      * @param texto Texto para impressão.
      */
     public static void log(String texto) {
@@ -172,7 +184,9 @@ public class Util {
     }
 
     /**
-     * Retorna uma String que substitui alguns caracteres especiais em Java pelos do formato HTM.
+     * Retorna uma String que substitui alguns caracteres especiais em Java
+     * pelos do formato HTM.
+     *
      * @param valor Texto a ser formatado.
      * @return Retorna texto formatado em HTM.
      */
@@ -185,15 +199,18 @@ public class Util {
 
     /**
      * Recebe um textarea e seta esse valor na variável saida.
+     *
      * @param saidaGUI textarea para indicar a saída.
      */
-    public static void setLogOut(JTextArea saidaGUI) {
+    public static void setLoggingTextArea(JTextArea saidaGUI) {
         saida = saidaGUI;
     }
 
     /**
-     * Retorna uma String contendo a propriedade.
-     * Testa se é necessário carregar o arquivo de propriedades, então busca a propriedade no arquivo através da variável passada como parâmetro.
+     * Retorna uma String contendo a propriedade. Testa se é necessário carregar
+     * o arquivo de propriedades, então busca a propriedade no arquivo através
+     * da variável passada como parâmetro.
+     *
      * @param chave Propriedade.
      * @return Retorna o valor da propriedade.
      */
@@ -208,6 +225,7 @@ public class Util {
 
     /**
      * Ajusta a largura das colunas do modelo.
+     *
      * @param tabela Tabela que deseja ajustar as colunas.
      * @param parametros Tamanhos das colunas separadas por vírgula.
      */
@@ -249,10 +267,11 @@ public class Util {
     }
 
     /**
-     * PackColumn sets the preferred width of the visible column specified by vColIndex.
-     * The column will be just wide enough to show the column head and the widest cell
-     * in the column. margin pixels are added to the left and right
-     * (resulting in an additional width of 2*margin pixels).
+     * PackColumn sets the preferred width of the visible column specified by
+     * vColIndex. The column will be just wide enough to show the column head
+     * and the widest cell in the column. margin pixels are added to the left
+     * and right (resulting in an additional width of 2*margin pixels).
+     *
      * @param table The table you want to resize a column.
      * @param vColIndex The column number.
      * @param margin Extra spaces for each side of column.
@@ -260,7 +279,7 @@ public class Util {
     public static void packColumn(JTable table, int vColIndex, int margin) {
         DefaultTableColumnModel colModel = (DefaultTableColumnModel) table.getColumnModel();
         TableColumn col = colModel.getColumn(vColIndex);
-        int width = 0;
+        int width;
 
         // Get width of column header
         javax.swing.table.TableCellRenderer renderer = col.getHeaderRenderer();

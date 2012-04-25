@@ -786,7 +786,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         lstCategoriasAlbum.insertItemAt("", 0);
 
         /* Extras - Util */
-        Util.setLogOut(txtLog);
+        Util.setLoggingTextArea(txtLog);
         Util.ajustaLargura(tbAlbuns, Util.getConfig().getString("colunas1"));
 
         /* Extras - Tabelas */
