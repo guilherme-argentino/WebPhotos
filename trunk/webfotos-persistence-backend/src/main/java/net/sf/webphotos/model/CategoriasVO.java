@@ -17,7 +17,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.guilherme.webphotos.model;
+package net.sf.webphotos.model;
 
 import java.io.Serializable;
 import javax.persistence.Column;

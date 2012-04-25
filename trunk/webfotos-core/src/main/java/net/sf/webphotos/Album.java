@@ -16,8 +16,8 @@
 package net.sf.webphotos;
 
 import net.sf.webphotos.dao.jpa.AlbunsDAO;
-import br.com.guilherme.webphotos.model.AlbunsVO;
-import br.com.guilherme.webphotos.model.FotosVO;
+import net.sf.webphotos.model.AlbunsVO;
+import net.sf.webphotos.model.FotosVO;
 import com.sun.rowset.JdbcRowSetImpl;
 import java.io.File;
 import java.sql.SQLException;
@@ -437,24 +437,9 @@ public class Album {
         // passo 2 - remover do banco de dados
         try {
             for (int i = 0; i < albunsID.length; i++) {
-                // todas as fotos desse album
-                sql = "select fotoID from fotos where albumID=" + albunsID[i];
-//                rowSet.setCommand(sql);
-//                rowSet.execute();
-//                while (rowSet.next()) {
-//                    int temp = rowSet.getInt("fotoID");
-//                    rowSet.deleteRow();
-//                }
-
-                // apaga o album
-                sql = "select albumID from albuns where albumID=" + albunsID[i];
-//                rowSet.setCommand(sql);
-//                rowSet.execute();
-//                rowSet.first();
-//                albunsID[i] = rowSet.getInt("albumID");
-//                rowSet.deleteRow();
+                albunsDAO.remove(albunsDAO.findBy(i));
             }
-            log.info("Exclusão do(s) álbun(s) e fotos no banco de dados efetuada com sucesso !");
+            log.info("Exclusão dos álbuns e fotos no banco de dados efetuada com sucesso !");
         } catch (Exception e) {
             log.error("Houve um erro na exclusao de albuns no banco de dados", e);
             sucesso = false;

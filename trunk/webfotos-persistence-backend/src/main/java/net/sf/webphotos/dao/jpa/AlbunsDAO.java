@@ -15,14 +15,14 @@
  */
 package net.sf.webphotos.dao.jpa;
 
-import br.com.guilherme.webphotos.model.AlbunsVO;
+import net.sf.webphotos.model.AlbunsVO;
 import java.util.List;
 
 /**
  * @author Guilherme
  *
  */
-public class AlbunsDAO extends WebFotosDAO<AlbunsVO, Integer> {
+public class AlbunsDAO extends WebPhotosDAO<AlbunsVO, Integer> {
 
     public AlbunsDAO() {
         super(AlbunsVO.class);

@@ -16,7 +16,7 @@
 package net.sf.webphotos;
 
 import net.sf.webphotos.dao.jpa.PhotoDAO;
-import br.com.guilherme.webphotos.model.FotosVO;
+import net.sf.webphotos.model.FotosVO;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
 import java.io.File;

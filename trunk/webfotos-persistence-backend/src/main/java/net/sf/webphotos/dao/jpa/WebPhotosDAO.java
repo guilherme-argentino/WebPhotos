@@ -24,14 +24,14 @@ import javax.persistence.Query;
  *
  * @author Guilherme L A Silva
  */
-public class WebFotosDAO<E, I> {
+public class WebPhotosDAO<E, I> {
 
     @PersistenceContext
     protected EntityManager entityManager;
 
     private Class<E> entityClass;
 
-    public WebFotosDAO(Class<E> entityClass) {
+    public WebPhotosDAO(Class<E> entityClass) {
         this.entityClass = entityClass;
     }
 
