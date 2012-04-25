@@ -21,16 +21,7 @@
 package br.com.guilherme.webphotos.model;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -40,7 +31,9 @@ import javax.persistence.Table;
 @Table(name = "FOTOS")
 @NamedQueries({@NamedQuery(name = "FotosVO.findByFotoid", query = "SELECT f FROM FotosVO f WHERE f.fotoid = :fotoid"), @NamedQuery(name = "FotosVO.findByAlbumid", query = "SELECT f FROM FotosVO f WHERE f.album.albumid = :albumid"), @NamedQuery(name = "FotosVO.findByNmfoto", query = "SELECT f FROM FotosVO f WHERE f.nmfoto = :nmfoto"), @NamedQuery(name = "FotosVO.findByLegenda", query = "SELECT f FROM FotosVO f WHERE f.legenda = :legenda"), @NamedQuery(name = "FotosVO.findByCreditoid", query = "SELECT f FROM FotosVO f WHERE f.creditos.creditoid = :creditoid")})
 public class FotosVO implements Serializable {
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "FOTOID", nullable = false)
     private Integer fotoid;
@@ -51,15 +44,25 @@ public class FotosVO implements Serializable {
     @Column(name = "LEGENDA", nullable = false)
     private String legenda;
     
-    @OneToOne
-    @JoinColumn(name="CREDITOID")
+    @ManyToOne
+    @JoinColumn(name="CREDITOID", nullable=false)
     private CreditosVO creditos;
     
     @ManyToOne
-    @JoinColumn(name="ALBUMID")
+    @JoinColumn(name="ALBUMID", nullable=false)
     private AlbunsVO album;
+    
+    @Transient
+    private String caminhoArquivo;
 
+    /**
+     * TODO: remove
+     */
     public FotosVO() {
+    }
+
+    public FotosVO(String caminhoArquivo) {
+        this.caminhoArquivo = caminhoArquivo;
     }
 
     public FotosVO(Integer fotoid) {
@@ -134,6 +137,21 @@ public class FotosVO implements Serializable {
 
     public void setAlbum(AlbunsVO album) {
         this.album = album;
+    }
+
+    /**
+     * @return the caminhoArquivo
+     */
+    public String getCaminhoArquivo() {
+        return caminhoArquivo;
+    }
+
+    public String getAltura() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    public String getLargura() {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }

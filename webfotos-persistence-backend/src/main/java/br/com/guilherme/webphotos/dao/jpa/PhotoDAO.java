@@ -1,5 +1,5 @@
-/**
- * Copyright 2008 WebPhotos
+/*
+ * Copyright 2012 Guilherme.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,14 @@
  */
 package br.com.guilherme.webphotos.dao.jpa;
 
-import br.com.guilherme.webphotos.model.AlbunsVO;
-import java.util.List;
-
 /**
- * @author Guilherme
  *
+ * @author Guilherme
  */
-public class AlbunsDAO extends WebFotosDAO<AlbunsVO, Integer> {
+public class PhotoDAO extends WebFotosDAO<PhotoDAO, Integer> {
 
-    public AlbunsDAO() {
-        super(AlbunsVO.class);
+    public PhotoDAO() {
+        super(PhotoDAO.class);
     }
-
-    public List<AlbunsVO> findAll() {
-        return find("SELECT a FROM AlbunsVO a");
-    }
+    
 }

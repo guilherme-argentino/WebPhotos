@@ -1,69 +1,74 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos;
 
 import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
 import br.com.guilherme.webphotos.model.AlbunsVO;
+import br.com.guilherme.webphotos.model.FotosVO;
 import com.sun.rowset.JdbcRowSetImpl;
 import java.io.File;
-
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
-
+import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
-
-import org.apache.log4j.Logger;
 import net.sf.webphotos.util.ApplicationContextResource;
-
+import org.apache.log4j.Logger;
 import webfotos.util.CacheFTP;
 import webfotos.util.Util;
 
 /**
- * A classe Album mantém uma coleçao de fotos em um ArrayList de Foto, que pode ser manipulada através das funções da própria classe.
- * Classe do tipo Singleton, é permitido apenas uma instância da classe.
- * O objeto é acessível unicamente através da classe.
- * Também manipula dados dos IDs, nome do albúm, descrição, data de inserção e categoria.
+ * A classe Album mantém uma coleçao de fotos em um ArrayList de Foto, que pode
+ * ser manipulada através das funções da própria classe. Classe do tipo
+ * Singleton, é permitido apenas uma instância da classe. O objeto é acessível
+ * unicamente através da classe. Também manipula dados dos IDs, nome do albúm,
+ * descrição, data de inserção e categoria.
  */
 public class Album {
 
     private static final Album instanciaAlbum = new Album();
-    /** variáveis do álbum */
+    /**
+     * variáveis do álbum
+     */
     private int albumID = 0;
     private int categoriaID = 0;
     private int usuarioID = 0;
     private String nmAlbum = null;
     private String descricao = null;
     private String dtInsercao = null;
-    /** variáveis utilizadas nessa classe */
-    private Collection<Foto> fotos = new ArrayList<Foto>();
+    /**
+     * variáveis utilizadas nessa classe
+     */
+    private Set<FotosVO> fotos = new HashSet<FotosVO>();
     private String[][] categorias = null;
-    private javax.sql.RowSet rowSet = BancoImagem.getRSet();
     private Logger log = Logger.getLogger(this.getClass().getName());
+    private static AlbunsDAO albunsDAO = (AlbunsDAO) ApplicationContextResource.getBean("albunsDAO");
 
     private Album() {
-        /** nunca usado publicamente (construtor private) */
+        /**
+         * nunca usado publicamente (construtor private)
+         */
     }
 
     /**
      * Retorna o objeto Album instanciado na própria classe.
+     *
      * @return Retorna um objeto Album.
      */
     public static Album getAlbum() {
@@ -72,6 +77,7 @@ public class Album {
 
     /**
      * Seta um valor para o ID do albúm.
+     *
      * @param aID ID do álbum.
      */
     public void setAlbumID(int aID) {
@@ -80,6 +86,7 @@ public class Album {
 
     /**
      * Seta um valor para o ID do usuário.
+     *
      * @param uID ID do usuário.
      */
     public void setUsuarioID(int uID) {
@@ -88,6 +95,7 @@ public class Album {
 
     /**
      * Seta um valor para o ID de categoria.
+     *
      * @param cID ID da categoria.
      */
     public void setCategoriaID(int cID) {
@@ -96,6 +104,7 @@ public class Album {
 
     /**
      * Seta um valor para o nome do albúm.
+     *
      * @param nm Nome do albúm.
      */
     public void setNmAlbum(String nm) {
@@ -104,6 +113,7 @@ public class Album {
 
     /**
      * Seta um valor para a descrição do albúm.
+     *
      * @param d Descrição do albúm.
      */
     public void setDescricao(String d) {
@@ -112,6 +122,7 @@ public class Album {
 
     /**
      * Seta um valor para a data de inserção do albúm.
+     *
      * @param dt Data de inserção do albúm.
      */
     public void setDtInsercao(String dt) {
@@ -120,6 +131,7 @@ public class Album {
 
     /**
      * Retorna o ID do albúm.
+     *
      * @return Retorna um ID.
      */
     public int getAlbumID() {
@@ -128,6 +140,7 @@ public class Album {
 
     /**
      * Retorna o ID do usuário.
+     *
      * @return Retorna um ID.
      */
     public int getUsuarioID() {
@@ -136,6 +149,7 @@ public class Album {
 
     /**
      * Retorna o ID da categoria.
+     *
      * @return Retorna um ID.
      */
     public int getCategoriaID() {
@@ -144,6 +158,7 @@ public class Album {
 
     /**
      * Retorna o nome do albúm.
+     *
      * @return Retorna um nome.
      */
     public String getNmAlbum() {
@@ -152,6 +167,7 @@ public class Album {
 
     /**
      * Retorna a descrição do albúm.
+     *
      * @return Retorna uma descrição.
      */
     public String getDescricao() {
@@ -160,6 +176,7 @@ public class Album {
 
     /**
      * Retorna a data de inserção do albúm.
+     *
      * @return Retorna uma data.
      */
     public String getDtInsercao() {
@@ -167,36 +184,38 @@ public class Album {
     }
 
     /**
-     * Retorna uma foto deste album ou null se não existir.
-     * Faz a busca da foto através de um ID enviado como parâmetro.
+     * Retorna uma foto deste album ou null se não existir. Faz a busca da foto
+     * através de um ID enviado como parâmetro.
+     *
      * @param fotoID ID da foto.
      * @return Retorna uma foto.
      */
     public Foto getFoto(int fotoID) {
-        Iterator<Foto> iter = fotos.iterator();
+        Iterator<FotosVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
-            Foto f = iter.next();
-            if (f.getFotoID() == fotoID) {
-                return f;
+            FotosVO f = iter.next();
+            if (f.getFotoid() == fotoID) {
+                return new Foto(f);
             }
         }
         return null;
     }
 
     /**
-     * Retorna uma foto deste album ou null se não existir.
-     * Faz a busca da foto através do caminho do arquivo que foi enviado como parâmetro.
+     * Retorna uma foto deste album ou null se não existir. Faz a busca da foto
+     * através do caminho do arquivo que foi enviado como parâmetro.
+     *
      * @param caminho Caminho do arquivo foto.
      * @return Retorna uma foto.
      */
     public Foto getFoto(String caminho) {
-        Iterator<Foto> iter = fotos.iterator();
+        Iterator<FotosVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
-            Foto f = iter.next();
+            FotosVO f = iter.next();
             if (caminho.equals(f.getCaminhoArquivo())) {
-                return f;
+                return new Foto(f);
             }
         }
         return null;
@@ -204,6 +223,7 @@ public class Album {
 
     /**
      * Retorna toda a coleção encontrada no ArrayList fotos.
+     *
      * @return Retorna a coleção de fotos.
      */
     public Foto[] getFotos() {
@@ -211,8 +231,9 @@ public class Album {
     }
 
     /**
-     * Retorna uma matriz com as fotos e seus dados específicos.
-     * Armazena para cada foto o seu ID ou caminho, legenda e crédito.
+     * Retorna uma matriz com as fotos e seus dados específicos. Armazena para
+     * cada foto o seu ID ou caminho, legenda e crédito.
+     *
      * @return Retorna todas as fotos e seus valores específicos.
      */
     public Object[][] getFotosArray() {
@@ -220,20 +241,20 @@ public class Album {
             return null;
         }
         Object[][] resultado = new Object[fotos.size()][3];
-        Iterator<Foto> iter = fotos.iterator();
+        Iterator<FotosVO> iter = fotos.iterator();
         int ct = 0;
 
         while (iter.hasNext()) {
-            Foto f = iter.next();
+            FotosVO f = iter.next();
             if (f.getCaminhoArquivo().length() > 0) {
                 // imagem acabou de ser adicionada... sem ID
-                resultado[ct][0] = (Object) f.getCaminhoArquivo();
+                //resultado[ct][0] = (Object) f.getCaminhoArquivo();
                 resultado[ct][1] = (Object) f.getLegenda();
-                resultado[ct][2] = (Object) f.getCreditoNome();
+                resultado[ct][2] = (Object) f.getCreditos().getNome();
             } else {
-                resultado[ct][0] = (Object) Integer.toString(f.getFotoID());
+                resultado[ct][0] = (Object) Integer.toString(f.getFotoid());
                 resultado[ct][1] = (Object) f.getLegenda();
-                resultado[ct][2] = (Object) f.getCreditoNome();
+                resultado[ct][2] = (Object) f.getCreditos().getNome();
             }
             ct++;
         }
@@ -241,7 +262,9 @@ public class Album {
     }
 
     /**
-     * Retorna um vetor que armazenará os dados de ID, legenda e crédito da foto.
+     * Retorna um vetor que armazenará os dados de ID, legenda e crédito da
+     * foto.
+     *
      * @return Retorna dados de ID, legenda e crédito da foto.
      */
     public String[] getFotosColunas() {
@@ -249,9 +272,10 @@ public class Album {
     }
 
     /**
-     * Retorna um vetor que armazena as categorias.
-     * Checa se categoria é diferente de null.
-     * Caso afirmativo, armazena seus valores no vetor criado para retorno.
+     * Retorna um vetor que armazena as categorias. Checa se categoria é
+     * diferente de null. Caso afirmativo, armazena seus valores no vetor criado
+     * para retorno.
+     *
      * @return Retorna as categorias do albúm.
      */
     public String[] getCategoriasArray() {
@@ -278,9 +302,10 @@ public class Album {
     }
 
     /**
-     * Retorna um índice da matriz categorias.
-     * Faz a busca através de um nome enviado como parâmetro.
-     * Caso não seja encontrado pelo nome, retorna o valor 0.
+     * Retorna um índice da matriz categorias. Faz a busca através de um nome
+     * enviado como parâmetro. Caso não seja encontrado pelo nome, retorna o
+     * valor 0.
+     *
      * @param nomeCategoria Nome da categoria pesquisada.
      * @return Retorna um índice de posição.
      */
@@ -294,9 +319,10 @@ public class Album {
     }
 
     /**
-     * Retorna um índice da matriz categorias.
-     * Faz a busca através de um ID enviado como parâmetro.
-     * Caso não seja encontrado pelo ID, retorna o valor 0.
+     * Retorna um índice da matriz categorias. Faz a busca através de um ID
+     * enviado como parâmetro. Caso não seja encontrado pelo ID, retorna o valor
+     * 0.
+     *
      * @param categoriaID ID da categoria pesquisada.
      * @return Retorna um índice de posição.
      */
@@ -311,6 +337,7 @@ public class Album {
 
     /**
      * Retorna o ID dado um nome de categoria.
+     *
      * @param nomeCategoria Nome de categoria pesquisada.
      * @return Retorna um ID.
      */
@@ -324,8 +351,8 @@ public class Album {
     }
 
     /**
-     * Limpa o ArrayList fotos.
-     * Seta o valor 0 para as variáveis numéricas e vazio para variáveis de tipo String.
+     * Limpa o ArrayList fotos. Seta o valor 0 para as variáveis numéricas e
+     * vazio para variáveis de tipo String.
      */
     public void clear() {
         albumID = 0;
@@ -340,18 +367,18 @@ public class Album {
     }
 
     /**
-     * Carrega um albúm no ArrayList fotos que anteriormente foi salvo no banco de dados.
-     * Após limpar os valores em fotos, faz uma busca ao banco de dados para carregar informações do albúm especificado.
-     * A comparação no banco de dados é feita através do ID do albúm, passado como parâmetro.
+     * Carrega um albúm no ArrayList fotos que anteriormente foi salvo no banco
+     * de dados. Após limpar os valores em fotos, faz uma busca ao banco de
+     * dados para carregar informações do albúm especificado. A comparação no
+     * banco de dados é feita através do ID do albúm, passado como parâmetro.
+     *
      * @param aID ID do albúm.
      */
     public void loadAlbum(int aID) {
         String sql;
         fotos.clear();
 
-        sql = "select usuarioID from albuns where albumID=" + aID;
-
-        AlbunsVO album = ((AlbunsDAO)ApplicationContextResource.getBean("albunsDAO")).findBy(aID);
+        AlbunsVO album = ((AlbunsDAO) ApplicationContextResource.getBean("albunsDAO")).findBy(aID);
 
         if (album != null) {
             albumID = aID;
@@ -363,67 +390,38 @@ public class Album {
         }
 
         try {
-            /** Carrega as informações do álbum */
-            rowSet.setCommand(sql);
-            rowSet.execute();
-
-            if (rowSet.next()) {
-                usuarioID = rowSet.getInt("usuarioID");
-            }
 
             /**
-             * carrega as fotos desse album
-             * TODO: parametrizar esta busca
+             * Popula a collection fotos
              */
-            sql = "select fotos.fotoID, fotos.legenda, fotos.creditoID, creditos.nome, fotos.largura, fotos.altura, fotos.tamanho from fotos left join creditos on fotos.creditoID=creditos.creditoID where albumID=" + aID;
-            rowSet.setCommand(sql);
-            rowSet.execute();
-            rowSet.first();
+            fotos = album.getPhotos();
 
-            /** Popula a collection fotos */
-            do {
-                int fotoID = rowSet.getInt(1);
-                String legenda = rowSet.getString(2);
-                int creditoID = rowSet.getInt(3);
-                String creditoNome = rowSet.getString(4);
-                int largura = rowSet.getInt(5);
-                int altura = rowSet.getInt(6);
-                long tamanhoBytes = rowSet.getLong(7);
-                fotos.add(new Foto(fotoID, albumID, legenda, creditoID, creditoNome, largura, altura, tamanhoBytes));
-            } while (rowSet.next());
-
-        } catch (java.sql.SQLException sqlE) {
-            log.error("Ocorreu um erro durante a leitura do álbum no banco de dados", sqlE);
+        } catch (Exception e) {
+            log.error("Ocorreu um erro durante a leitura do álbum no banco de dados", e);
             int selecao = JOptionPane.showConfirmDialog(null,
                     "ERRO durante leitura do álbum no banco de dados.\n\nTentar Novamente?",
                     "Aviso!",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE);
             if (selecao == JOptionPane.YES_OPTION) {
-                /** TODO: extrair para um método */
-                try {
-                    BancoImagem.setRSet(new JdbcRowSetImpl(BancoImagem.getConnection()));
-                    this.rowSet = BancoImagem.getRSet();
-                } catch (java.sql.SQLException sqlEi) {
-                    log.error(sqlEi.toString(), sqlEi);
-                } catch (Exception e) {
-                    log.error("Inexperado", e);
-                } finally {
-                    loadAlbum(aID);
-                }
+                /**
+                 * TODO: extrair para um método
+                 */
+                loadAlbum(aID);
+
             } else {
-                System.exit(1);
+                log.error("Ocorreu um erro inexperado durante a leitura do álbum", e);
+                JOptionPane.showMessageDialog(null, "ERRO inexperado durante leitura do álbum - " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+                throw new RuntimeException(e);
             }
-        } catch (Exception e) {
-            log.error("Ocorreu um erro inexperado durante a leitura do álbum", e);
-            JOptionPane.showMessageDialog(null, "ERRO inexperado durante leitura do álbum - " + e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
-            throw new RuntimeException(e);
         }
     }
 
     /**
-     * Recebe um vetor com IDs de albúns a serem excluídos.
-     * Adiciona os albúns no arquivo FTP, exclui os albúns do banco de dados e por último exclui os arquivos da pasta local ou rede.
+     * Recebe um vetor com IDs de albúns a serem excluídos. Adiciona os albúns
+     * no arquivo FTP, exclui os albúns do banco de dados e por último exclui os
+     * arquivos da pasta local ou rede.
+     *
      * @param albunsID IDs dos albúns.
      */
     public void excluirAlbuns(int[] albunsID) {
@@ -441,20 +439,20 @@ public class Album {
             for (int i = 0; i < albunsID.length; i++) {
                 // todas as fotos desse album
                 sql = "select fotoID from fotos where albumID=" + albunsID[i];
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                while (rowSet.next()) {
-                    int temp = rowSet.getInt("fotoID");
-                    rowSet.deleteRow();
-                }
+//                rowSet.setCommand(sql);
+//                rowSet.execute();
+//                while (rowSet.next()) {
+//                    int temp = rowSet.getInt("fotoID");
+//                    rowSet.deleteRow();
+//                }
 
                 // apaga o album
                 sql = "select albumID from albuns where albumID=" + albunsID[i];
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                rowSet.first();
-                albunsID[i] = rowSet.getInt("albumID");
-                rowSet.deleteRow();
+//                rowSet.setCommand(sql);
+//                rowSet.execute();
+//                rowSet.first();
+//                albunsID[i] = rowSet.getInt("albumID");
+//                rowSet.deleteRow();
             }
             log.info("Exclusão do(s) álbun(s) e fotos no banco de dados efetuada com sucesso !");
         } catch (Exception e) {
@@ -506,16 +504,19 @@ public class Album {
     }
 
     /**
-     * Recebe uma lista com nomes de fotos e faz uma busca no ArrayList fotos, caso encontre, exclui a foto específica.
-     * Essa função exclui fotos da coleção que ainda não estejam cadastradas no DB nem feito thumbnails (usuário adicionou e quer excluir essas fotos).
+     * Recebe uma lista com nomes de fotos e faz uma busca no ArrayList fotos,
+     * caso encontre, exclui a foto específica. Essa função exclui fotos da
+     * coleção que ainda não estejam cadastradas no DB nem feito thumbnails
+     * (usuário adicionou e quer excluir essas fotos).
+     *
      * @param nomes Lista de nomes de fotos.
      */
     public void excluirFotos(String[] nomes) {
         String nome = null;
-        Foto foto;
+        FotosVO foto;
 
         for (int i = 0; i < nomes.length; i++) {
-            Iterator<Foto> iter = fotos.iterator();
+            Iterator<FotosVO> iter = fotos.iterator();
             nome = nomes[i];
 
             while (iter.hasNext()) {
@@ -529,7 +530,9 @@ public class Album {
     } // fim metodo
 
     /**
-     * Recebe uma lista com IDs das fotos e faz uma busca para excluir as fotos específicas do DB, FTP e FS.
+     * Recebe uma lista com IDs das fotos e faz uma busca para excluir as fotos
+     * específicas do DB, FTP e FS.
+     *
      * @param fotosID Lista de IDs de fotos.
      */
     public void excluirFotos(int[] fotosID) {
@@ -547,11 +550,11 @@ public class Album {
         try {
             for (int i = 0; i < fotosID.length; i++) {
                 sql = "select fotoID from fotos where fotoID=" + fotosID[i];
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                rowSet.first();
-                fotosID[i] = rowSet.getInt("fotoID");
-                rowSet.deleteRow();
+//                rowSet.setCommand(sql);
+//                rowSet.execute();
+//                rowSet.first();
+//                fotosID[i] = rowSet.getInt("fotoID");
+//                rowSet.deleteRow();
             }
         } catch (Exception e) {
             log.error("Erro na exclusão no banco de dados ", e);
@@ -574,10 +577,10 @@ public class Album {
         for (int i = 0; i < fotosID.length; i++) {
             // pesquisa a foto na coleção deste álbum e remove da colecao
             encontrou = false;
-            Iterator<Foto> iter = fotos.iterator();
+            Iterator<FotosVO> iter = fotos.iterator();
             while (iter.hasNext() && !encontrou) {
-                Foto f = iter.next();
-                if (f.getFotoID() == fotosID[i]) {
+                FotosVO f = iter.next();
+                if (f.getFotoid() == fotosID[i]) {
                     encontrou = true;
                     iter.remove();
                 }
@@ -617,8 +620,9 @@ public class Album {
     }
 
     /**
-     * Inclui fotos na coleção.
-     * Recebe uma lista de arquivos de fotos, que serão implantados no ArrayList fotos.
+     * Inclui fotos na coleção. Recebe uma lista de arquivos de fotos, que serão
+     * implantados no ArrayList fotos.
+     *
      * @param f Lista de arquivos.
      */
     public void adicionarFotos(File[] f) {
@@ -628,7 +632,7 @@ public class Album {
 
         for (int i = 0; i < f.length; i++) {
             File novaFoto = f[i];
-            fotos.add(new Foto(novaFoto.getAbsolutePath()));
+            fotos.add(new FotosVO(novaFoto.getAbsolutePath()));
         }
     }
 
@@ -637,24 +641,22 @@ public class Album {
     private void populaCategorias() throws SQLException {
         String sql = Util.getConfig().getString("sql2");
 
-        rowSet.setCommand(sql);
-        rowSet.execute();
-        rowSet.last();
-        categorias = new String[rowSet.getRow()][2];
-        rowSet.first();
+        List<Object[]> tableData = albunsDAO.findByNativeQuery(sql);
+
+        categorias = new String[tableData.size()][2];
 
         int ct = 0;
-        do {
-            categorias[ct][0] = rowSet.getObject(1).toString();
-            categorias[ct][1] = rowSet.getString(2);
+        for (Object[] objects : tableData) {
+            categorias[ct][0] = objects[1].toString();
+            categorias[ct][1] = objects[2].toString();
             ct++;
-        } while (rowSet.next());
-
+        }
     }
 
     /**
-     * Retorna a categoria específica.
-     * Faz a busca na matriz categorias, comparando com o ID recebido como parãmetro.
+     * Retorna a categoria específica. Faz a busca na matriz categorias,
+     * comparando com o ID recebido como parãmetro.
+     *
      * @param categoriaID ID da categoria.
      * @return Retorna uma categoria.
      */
@@ -681,11 +683,12 @@ public class Album {
 
     /**
      * Retorna uma String contendo todos os dados do albúm.
+     *
      * @return Retorna dados do albúm.
      */
     @Override
     public String toString() {
-        Iterator<Foto> iter = fotos.iterator();
+        Iterator<FotosVO> iter = fotos.iterator();
 
         String msg = "--------------------------------------"
                 + "\nalbumID    : " + albumID
@@ -698,7 +701,7 @@ public class Album {
                 + "\n--------------------------------------";
 
         while (iter.hasNext()) {
-            Foto f = iter.next();
+            FotosVO f = iter.next();
             msg = msg + "\n" + f.toString() + "\n--------------------------------------";
         }
 
@@ -707,6 +710,7 @@ public class Album {
 
     /**
      * Retorna uma String contendo todos os dados do albúm no formato XML.
+     *
      * @return Retorna dados do albúm.
      */
     public String toXML() {
@@ -720,12 +724,12 @@ public class Album {
                 + "\n"
                 + "\n\t<fotos>";
 
-        Iterator<Foto> iter = fotos.iterator();
+        Iterator<FotosVO> iter = fotos.iterator();
         while (iter.hasNext()) {
-            Foto f = iter.next();
-            r += "\n\t\t<foto id=\"" + f.getFotoID() + "\">"
+            FotosVO f = iter.next();
+            r += "\n\t\t<foto id=\"" + f.getFotoid() + "\">"
                     + "\n\t\t\t<legenda>" + f.getLegenda() + "</legenda>"
-                    + "\n\t\t\t<credito>" + f.getCreditoNome() + "</credito>"
+                    + "\n\t\t\t<credito>" + f.getCreditos().getNome() + "</credito>"
                     + "\n\t\t\t<altura>" + f.getAltura() + "</altura>"
                     + "\n\t\t\t<largura>" + f.getLargura() + "</largura>"
                     + "\n\t\t</foto>";
@@ -740,6 +744,7 @@ public class Album {
 
     /**
      * Retorna uma String contendo todos os dados do albúm no formato js.
+     *
      * @return Retorna dados do albúm.
      */
     public String toJavaScript() {
@@ -751,12 +756,12 @@ public class Album {
                 + "descricao=" + Util.stringToHtm(descricao) + ";\n\n"
                 + "fotos = new Array (";
 
-        Iterator<Foto> iter = fotos.iterator();
+        Iterator<FotosVO> iter = fotos.iterator();
         String cc = "";
 
         while (iter.hasNext()) {
-            Foto f = iter.next();
-            r += cc + "\n\tnew Foto(" + f.getFotoID() + "," + Util.stringToHtm(f.getLegenda()) + ",'" + f.getCreditoNome() + "')";
+            FotosVO f = iter.next();
+            r += cc + "\n\tnew Foto(" + f.getFotoid() + "," + Util.stringToHtm(f.getLegenda()) + ",'" + f.getCreditos().getNome() + "')";
             cc = ",";
         }
 

@@ -18,6 +18,7 @@ package br.com.guilherme.webphotos.dao.jpa;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -32,6 +33,17 @@ public class WebFotosDAO<E, I> {
 
     public WebFotosDAO(Class<E> entityClass) {
         this.entityClass = entityClass;
+    }
+
+    /**
+     * Workarround for a rapid migration from RowSet
+     * @param query
+     * @return
+     * @deprecated
+     */
+    @Deprecated
+    public Query createNativeQuery(String query) {
+        return entityManager.createNativeQuery(query);
     }
 
     public E findBy(I id) {
@@ -82,7 +94,7 @@ public class WebFotosDAO<E, I> {
      */
     @Deprecated
     public List<Object[]> findByNativeQuery(String query) {
-        return entityManager.createNativeQuery(query).getResultList();
+        return createNativeQuery(query).getResultList();
     }
 
     @SuppressWarnings(value = "unchecked")
