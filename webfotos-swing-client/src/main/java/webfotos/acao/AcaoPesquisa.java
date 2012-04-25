@@ -26,7 +26,7 @@ import org.apache.commons.configuration.Configuration;
 
 import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
-import webfotos.gui.util.TableModelAlbum;
+import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.util.Util;
 
 /**

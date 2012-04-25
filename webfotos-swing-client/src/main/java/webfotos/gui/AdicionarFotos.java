@@ -21,7 +21,7 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
-import webfotos.gui.util.ImageFilter;
+import net.sf.webphotos.gui.util.ImageFilter;
 
 /**
  * Implementa um menu para seleção de arquivos de imagem.

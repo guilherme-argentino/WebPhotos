@@ -21,7 +21,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JTable;
 
 import net.sf.webphotos.Album;
-import net.sf.webphotos.Foto;
+import net.sf.webphotos.Photo;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.TableModelFoto;
 
@@ -56,7 +56,7 @@ public class AcaoItemListener implements ItemListener {
      */
     @Override
     public void itemStateChanged(ItemEvent e) {
-        Foto f;
+        Photo f;
         // quando for evento de lstCategoriasAlbum, somente muda a flag
         if(tbFotos==null) {
             PainelWebFotos.alteracaoDetectada();
@@ -65,9 +65,9 @@ public class AcaoItemListener implements ItemListener {
             if(e.getItem().toString().length() > 0) {
                 Object fotoID=tbFotos.getModel().getValueAt(tbFotos.getSelectedRow(),0);
                 try {
-                    f=(Foto) Album.getAlbum().getFoto(Integer.parseInt(fotoID.toString()));
+                    f=(Photo) Album.getAlbum().getFoto(Integer.parseInt(fotoID.toString()));
                 } catch (Exception ex) {
-                    f=(Foto) Album.getAlbum().getFoto((String) fotoID);
+                    f=(Photo) Album.getAlbum().getFoto((String) fotoID);
                 }
                 f.setCreditoNome((String) e.getItem().toString());
                 TableModelFoto.getModel().update();

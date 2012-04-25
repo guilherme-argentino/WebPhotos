@@ -19,7 +19,7 @@
  * monta uma tela modal para armazenamento de usuário e senha
  */
 
-package webfotos.gui.util;
+package net.sf.webphotos.gui.util;
 
 import java.awt.Container;
 import java.awt.Frame;

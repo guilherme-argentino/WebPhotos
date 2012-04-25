@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package webfotos.gui.util;
+package net.sf.webphotos.gui.util;
 
 import net.sf.webphotos.BancoImagem;
 import org.apache.commons.net.ftp.FTPFile;
@@ -59,7 +59,7 @@ public class FtpClient extends JFrame implements Runnable {
     private JLabel lblKbytes=new JLabel("0 Kb");
     private JLabel lblKbytesArquivoAtual=new JLabel("0 Kb");
     private JButton btFechar=new JButton("fechar");
-    private ModeloTabelaFTP modeloTabela;
+    private FTPTabelModel modeloTabela;
 
     private Modal modal;
 
@@ -129,7 +129,7 @@ public class FtpClient extends JFrame implements Runnable {
         cp.add(scrLog);
         scrLog.setBounds(8,127, 400,70);
 
-        modeloTabela=new ModeloTabelaFTP(ftp.getListaArquivos());
+        modeloTabela=new FTPTabelModel(ftp.getListaArquivos());
         tabela=new JTable(modeloTabela);
 
         cp.add(tabela);

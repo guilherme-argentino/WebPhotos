@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.guilherme.webphotos.dao.jpa;
+package net.sf.webphotos.dao.jpa;
 
 import br.com.guilherme.webphotos.model.AlbunsVO;
 import java.util.List;

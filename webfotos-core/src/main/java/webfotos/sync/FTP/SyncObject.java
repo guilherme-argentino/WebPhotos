@@ -32,7 +32,7 @@ import org.apache.commons.net.io.CopyStreamListener;
 
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
-import net.sf.webphotos.Foto;
+import net.sf.webphotos.Photo;
 import webfotos.sync.Sync;
 import webfotos.sync.SyncEvent;
 import webfotos.sync.SyncException;
@@ -400,7 +400,7 @@ public class SyncObject extends FTPClient implements Sync {
                 if(fotoID==0) {
                     // O álbum inteiro
                     Album.getAlbum().loadAlbum(albumID);
-                    for(Foto atual: Album.getAlbum().getFotos()) {
+                    for(Photo atual: Album.getAlbum().getFotos()) {
                         fotoID = atual.getFotoID();
                         listaArquivos.add(new Arquivo(linha,acao,albumID,fotoID,"_a" + fotoID + ".jpg"));
                         listaArquivos.add(new Arquivo(linha,acao,albumID,fotoID,"_b" + fotoID + ".jpg"));

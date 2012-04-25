@@ -29,7 +29,7 @@ import javax.swing.UIManager;
 import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;
 
-import webfotos.gui.util.Login;
+import net.sf.webphotos.gui.util.Login;
 import net.sf.webphotos.util.Util;
 
 import com.sun.rowset.JdbcRowSetImpl;

@@ -26,7 +26,7 @@ package webfotos.gui;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
-import webfotos.gui.util.TableModelAlbum;
+import net.sf.webphotos.gui.util.TableModelAlbum;
 
 /**
  * Gera o menu de visualização dos dados do albúm.

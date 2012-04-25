@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /*
- * ModeloTabelaFTP.java
+ * FTPTabelModel.java
  *
  * Created on 31 de Maio de 2006, 11:57
  *
@@ -22,7 +22,7 @@
  * and open the template in the editor.
  */
 
-package webfotos.gui.util;
+package net.sf.webphotos.gui.util;
 
 import webfotos.util.*;
 
@@ -35,7 +35,7 @@ import javax.swing.table.DefaultTableModel;
  * TODO: Modelo Antigo (Eliminar).
  * @author guilherme
  */
-public class ModeloTabelaFTP extends DefaultTableModel {
+public class FTPTabelModel extends DefaultTableModel {
 	
 	private static final long serialVersionUID = -4674468107065732418L;
 
@@ -46,7 +46,7 @@ public class ModeloTabelaFTP extends DefaultTableModel {
      * Cria uma instancia do Modelo usando um array de dados.
      * @param listaArquivos Dados a serem preenchidos
      */
-    public ModeloTabelaFTP(ArrayList<Arquivo> listaArquivos) {
+    public FTPTabelModel(ArrayList<Arquivo> listaArquivos) {
         super();
         // transforma a colecao em um modelo para a tabela
         refresh(listaArquivos);

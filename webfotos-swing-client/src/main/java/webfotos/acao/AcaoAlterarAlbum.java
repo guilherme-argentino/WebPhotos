@@ -32,12 +32,12 @@ import javax.swing.JTable;
 
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
-import net.sf.webphotos.Foto;
+import net.sf.webphotos.Photo;
 import webfotos.Thumbnail;
 import webfotos.gui.PainelWebFotos;
 import webfotos.util.CacheFTP;
 import webfotos.gui.util.TableModelFoto;
-import webfotos.gui.util.TableModelAlbum;
+import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.util.Util;
 import javax.sql.RowSet;
 
@@ -127,8 +127,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
     public void executaAlteracoes() {
 
         Album album = Album.getAlbum();
-        Foto[] fotos = album.getFotos();
-        Foto f;
+        Photo[] fotos = album.getFotos();
+        Photo f;
         int ultimoFotoID = -1;
         int albumID = album.getAlbumID();
         sucesso = true;
@@ -189,9 +189,9 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * @param albumID
      * @param caminhoAlbum
      */
-    private void prepareThumbsAndFTP(Foto[] fotos, int albumID,
+    private void prepareThumbsAndFTP(Photo[] fotos, int albumID,
             String caminhoAlbum) {
-        Foto f;
+        Photo f;
         // PASSO 4 - Fazer Thumbs e Adicionar em FTP
         // //////////////////////////////////////////////////////////////////////
         for (int i = 0; i < fotos.length; i++) {
@@ -215,8 +215,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
      *
      * @param fotos
      */
-    private void fireChangesToGUI(Foto[] fotos) {
-        Foto f;
+    private void fireChangesToGUI(Photo[] fotos) {
+        Photo f;
 
         // PASSO 6 - Limpar a flag CaminhoArquivo e apresentar as alterações
         // //////////////////////////////////////////////////////////////////////
@@ -288,7 +288,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         }
 
         if (retorno == 0 || autoTransferir) {
-            Thread t = new Thread(new webfotos.gui.util.FtpClient());
+            Thread t = new Thread(new net.sf.webphotos.gui.util.FtpClient());
             t.start();
         }
 
@@ -303,8 +303,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * @param albumID
      * @return
      */
-    public boolean recordFotoData(Foto[] fotos, int ultimoFotoID, int albumID) {
-        Foto f;
+    public boolean recordFotoData(Photo[] fotos, int ultimoFotoID, int albumID) {
+        Photo f;
         String nomeArquivo;
         String legenda;
         int fotoID;
