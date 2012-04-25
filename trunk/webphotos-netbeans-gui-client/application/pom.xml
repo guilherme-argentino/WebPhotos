@@ -7,20 +7,20 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>application</artifactId>
+    <artifactId>WebPhotos-Enterprise</artifactId>
     <packaging>nbm-application</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>[WP] NPA - Application</name>
     <dependencies>
         <dependency>
             <groupId>org.netbeans.cluster</groupId>
-            <artifactId>platform10</artifactId>
+            <artifactId>platform</artifactId>
             <version>${netbeans.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
             <groupId>org.netbeans.cluster</groupId>
-            <artifactId>ide11</artifactId>
+            <artifactId>ide</artifactId>
             <version>${netbeans.version}</version>
             <type>pom</type>
         </dependency>
@@ -81,7 +81,7 @@
                                     <goal>autoupdate</goal>
                                 </goals>
                                 <configuration>
-                                    <distBase>central::default::http://repo1.maven.org/maven2</distBase>
+                                    <distBase>central::default::http://repo.maven.apache.org/maven2</distBase>
                                 </configuration>
                             </execution>
                             <execution>
