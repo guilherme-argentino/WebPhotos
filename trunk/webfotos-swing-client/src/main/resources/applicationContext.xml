@@ -42,6 +42,7 @@
     <bean id="syncObject" class="webfotos.sync.FTP.SyncObject" />
 
     <bean id="albunsDAO" class="br.com.guilherme.webphotos.dao.jpa.AlbunsDAO" />
+    <bean id="photosDAO" class="br.com.guilherme.webphotos.dao.jpa.PhotoDAO" />
 
     <tx:annotation-driven transaction-manager="myTxManager"/>
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">

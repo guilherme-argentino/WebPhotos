@@ -15,20 +15,25 @@
  */
 package net.sf.webphotos;
 
+import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
+import br.com.guilherme.webphotos.dao.jpa.PhotoDAO;
+import br.com.guilherme.webphotos.model.FotosVO;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
 import java.io.File;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.swing.ImageIcon;
+import net.sf.webphotos.util.ApplicationContextResource;
 
 import webfotos.util.Util;
 
 
 /**
- * A classe Foto armazena dados especï¿½ficos de uma foto.
- * Dentre os dados estï¿½o ID da foto,ID do albï¿½m e ID do crï¿½dito, legenda, crï¿½dito e resolução de tela.
+ * A classe Foto armazena dados específicos de uma foto.
+ * Dentre os dados estão ID da foto,ID do album e ID do crédito, legenda, crédito e resolução de tela.
  */
 public class Foto {
     private int fotoID=0;
@@ -37,12 +42,19 @@ public class Foto {
     private String legenda=null;
     private int largura=0;
     private int altura=0;
+    
+    @Deprecated
     private long tamanhoBytes=0;
+    
     private String creditoNome="";
     private String caminhoArquivo="";
-    private static javax.sql.RowSet rowSet = BancoImagem.getRSet();
+    private static PhotoDAO photosDAO = (PhotoDAO) ApplicationContextResource.getBean("photosDAO");
 
     private static String[][] creditos=null;
+    
+    public Foto(FotosVO fotosVO) {
+        this(fotosVO.getFotoid(), fotosVO.getAlbum().getAlbumid(), fotosVO.getLegenda(), fotosVO.getCreditos().getCreditoid(),fotosVO.getCreditos().getNome(), 0, 0, 0);
+    }
 
     /**
      * Construtor da classe Foto.
@@ -223,10 +235,10 @@ public class Foto {
     }
    
     /**
-     * Retorna o ID do crï¿½dito.
-     * Faz a busca do ID na matriz credito atravï¿½s do nome especificado.
-     * @param nomeCredito Crï¿½dito.
-     * @return Retorna um ID numï¿½rico.
+     * Retorna o ID do crédito.
+     * Faz a busca do ID na matriz credito através do nome especificado.
+     * @param nomeCredito Crédito.
+     * @return Retorna um ID numérico.
      */
     public static int getLstCreditosID(String nomeCredito) {
         for(int i=0; i < creditos.length; i++) {
@@ -237,23 +249,21 @@ public class Foto {
 
     /**
      * Busca no banco de dados, os valores para setar a matriz creditos
-     * @throws java.sql.SQLException Lanï¿½a exceção caso ocorra algum erro no acesso ao banco de dados.
+     * @throws java.sql.SQLException Lança exceção caso ocorra algum erro no acesso ao banco de dados.
      */
     public static void populaCreditos() throws SQLException {
         String sql=Util.getConfig().getString("sql7");
+        
+        List<Object[]> tableData = photosDAO.findByNativeQuery(sql);
 
-        rowSet.setCommand(sql);
-        rowSet.execute();
-        rowSet.last();
-        creditos=new String[rowSet.getRow()][2];
-        rowSet.first();
-
+        creditos=new String[tableData.size()][2];
+        
         int ct=0;
-        do {
-            creditos[ct][0]=rowSet.getObject(1).toString();
-            creditos[ct][1]=rowSet.getString(2);
+        for (Object[] objects : tableData) {
+            creditos[ct][0]=objects[1].toString();
+            creditos[ct][1]=objects[2].toString();
             ct++;
-        } while(rowSet.next());
+        }
 
     }
 
@@ -274,8 +284,8 @@ public class Foto {
     
     /**
      * Faz a atualização dos dados da foto.
-     * Checa se a foto jï¿½ possui cadastro, caso Não possui faz inclusão e faz a atualização. Caso jï¿½ possua cadastro, sï¿½ atualiza os dados.
-     * @throws java.lang.Exception Lanï¿½a qualquer tipo de exceção que possa interromper o fluxo da função.
+     * Checa se a foto já possui cadastro, caso Não possui faz inclusão e faz a atualização. Caso jï¿½ possua cadastro, sï¿½ atualiza os dados.
+     * @throws java.lang.Exception Lança qualquer tipo de exceção que possa interromper o fluxo da função.
      */
     public void atualizaFoto() throws Exception {
         int ultimoFotoID=-1;
@@ -286,50 +296,49 @@ public class Foto {
         if(caminhoArquivo.length() > 0) {
            try {
                 sql="select max(fotoID) from fotos";
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                rowSet.first();
-                ultimoFotoID=rowSet.getInt(1);
+                Integer tableData = (Integer) photosDAO.createNativeQuery(sql).getSingleResult();
+
+                ultimoFotoID=tableData.intValue();
             } catch (Exception ex) {
                 Util.log("[Foto.atualizaFoto]/ERRO: " + ex);
             }
             setFotoID(ultimoFotoID);
 
             try {
-                rowSet.moveToInsertRow();
-                rowSet.updateInt("fotoID", ++ultimoFotoID);
-                rowSet.updateInt("albumID", this.albumID);
-                rowSet.updateInt("creditoID", this.creditoID);
-                rowSet.updateString("legenda", this.legenda);
-                rowSet.updateInt("altura", this.altura);
-                rowSet.updateInt("largura", this.largura);
-                rowSet.updateLong("tamanho", this.tamanhoBytes);
-                
-                rowSet.insertRow();
+//                rowSet.moveToInsertRow();
+//                rowSet.updateInt("fotoID", ++ultimoFotoID);
+//                rowSet.updateInt("albumID", this.albumID);
+//                rowSet.updateInt("creditoID", this.creditoID);
+//                rowSet.updateString("legenda", this.legenda);
+//                rowSet.updateInt("altura", this.altura);
+//                rowSet.updateInt("largura", this.largura);
+//                rowSet.updateLong("tamanho", this.tamanhoBytes);
+//                
+//                rowSet.insertRow();
             } catch (Exception e) {
                 Util.log("[Foto.atualizaFoto]/ERRO: " + e);
                 throw e;
             }
 
-        // UPDATE para fotos jï¿½ cadastradas
+        // UPDATE para fotos já cadastradas
         } else {
             sql="SELECT creditoID, legenda, altura, largura, tamanho FROM fotos WHERE fotoID=" + fotoID;
             try {
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                rowSet.first();
-                
-                fotoID = rowSet.getInt("fotoID");
-                
-                rowSet.updateInt("fotoID", this.fotoID);
-                rowSet.updateInt("albumID", this.albumID);
-                rowSet.updateInt("creditoID", this.creditoID);
-                rowSet.updateString("legenda", this.legenda);
-                rowSet.updateInt("altura", this.altura);
-                rowSet.updateInt("largura", this.largura);
-                rowSet.updateLong("tamanho", this.tamanhoBytes);
-                
-                rowSet.updateRow();
+//                rowSet.setCommand(sql);
+//                rowSet.execute();
+//                rowSet.first();
+//                
+//                fotoID = rowSet.getInt("fotoID");
+//                
+//                rowSet.updateInt("fotoID", this.fotoID);
+//                rowSet.updateInt("albumID", this.albumID);
+//                rowSet.updateInt("creditoID", this.creditoID);
+//                rowSet.updateString("legenda", this.legenda);
+//                rowSet.updateInt("altura", this.altura);
+//                rowSet.updateInt("largura", this.largura);
+//                rowSet.updateLong("tamanho", this.tamanhoBytes);
+//                
+//                rowSet.updateRow();
                 
             } catch (Exception e) {
                 Util.log("[Foto.atualizaFoto]/ERRO: " + e);
