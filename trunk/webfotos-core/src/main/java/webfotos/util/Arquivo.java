@@ -15,6 +15,7 @@
  */
 package webfotos.util;
 
+import net.sf.webphotos.util.Util;
 import java.io.File;
 import java.util.List;
 

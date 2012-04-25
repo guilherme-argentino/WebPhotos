@@ -33,7 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * Responsável pelas funções relacionadas ao login do usuário.

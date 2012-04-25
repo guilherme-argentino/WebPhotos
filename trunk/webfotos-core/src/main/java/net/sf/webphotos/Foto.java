@@ -28,7 +28,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import net.sf.webphotos.util.ApplicationContextResource;
 
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 
 /**

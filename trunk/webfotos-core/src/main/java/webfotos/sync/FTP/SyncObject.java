@@ -40,7 +40,7 @@ import webfotos.sync.SyncListener;
 import webfotos.util.Arquivo;
 import webfotos.util.CacheFTP;
 import webfotos.util.ComandoFTP;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * Interface entre o sistema e o envio de arquivos.

@@ -27,7 +27,7 @@ import org.apache.commons.configuration.Configuration;
 import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.TableModelAlbum;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * Pesquisa elementos no programa.

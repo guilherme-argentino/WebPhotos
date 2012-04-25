@@ -25,7 +25,7 @@ import org.apache.derby.drda.NetworkServerControl;
 import org.apache.log4j.Logger;
 
 import webfotos.gui.FrameWebFotos;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * Classe responsável pelo inicio do sistema WebPhotos.

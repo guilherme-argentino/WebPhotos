@@ -20,6 +20,7 @@
  */
 package webfotos.gui;
 
+import net.sf.webphotos.util.Util;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Foto;

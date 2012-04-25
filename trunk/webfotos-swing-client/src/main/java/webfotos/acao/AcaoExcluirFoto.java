@@ -26,7 +26,7 @@ import javax.swing.JTable;
 import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
 import webfotos.gui.util.TableModelFoto;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 import webfotos.gui.util.TableSorter;
 import java.io.*;
 import org.apache.log4j.Logger;

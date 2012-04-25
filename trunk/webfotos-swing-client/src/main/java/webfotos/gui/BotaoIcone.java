@@ -18,7 +18,7 @@ package webfotos.gui;
 import javax.swing.*;
 import java.awt.Container;
 import webfotos.acao.AcaoToolbar;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * <PRE>

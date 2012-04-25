@@ -38,7 +38,7 @@ import javax.swing.ImageIcon;
 
 import org.apache.commons.configuration.Configuration;
 
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;

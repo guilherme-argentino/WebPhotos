@@ -23,7 +23,7 @@ import org.apache.commons.net.io.CopyStreamAdapter;
 import webfotos.sync.*;
 import webfotos.sync.FTP.SyncAdapter;
 import webfotos.util.Modal;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 import webfotos.util.Arquivo;
 
 import java.io.*;

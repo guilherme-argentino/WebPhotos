@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import net.sf.webphotos.Album;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * Esta classe não parece estar concluída.
