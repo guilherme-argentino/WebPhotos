@@ -31,7 +31,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
-import webfotos.util.ApplicationContextResource;
+import net.sf.webphotos.util.ApplicationContextResource;
 
 import webfotos.util.CacheFTP;
 import webfotos.util.Util;
