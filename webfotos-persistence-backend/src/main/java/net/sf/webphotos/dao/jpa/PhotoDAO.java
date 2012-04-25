@@ -19,7 +19,7 @@ package net.sf.webphotos.dao.jpa;
  *
  * @author Guilherme
  */
-public class PhotoDAO extends WebFotosDAO<PhotoDAO, Integer> {
+public class PhotoDAO extends WebPhotosDAO<PhotoDAO, Integer> {
 
     public PhotoDAO() {
         super(PhotoDAO.class);
