@@ -13,10 +13,10 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package webfotos.gui.util;
+package net.sf.webphotos.gui.util;
 
 // Modelo de tabela para bases de dados com suporte a cursores rolantes (MYSQL)
-import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
+import net.sf.webphotos.dao.jpa.AlbunsDAO;
 import com.sun.rowset.JdbcRowSetImpl;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;

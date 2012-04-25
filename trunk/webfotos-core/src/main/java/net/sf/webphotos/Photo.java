@@ -15,8 +15,7 @@
  */
 package net.sf.webphotos;
 
-import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
-import br.com.guilherme.webphotos.dao.jpa.PhotoDAO;
+import net.sf.webphotos.dao.jpa.PhotoDAO;
 import br.com.guilherme.webphotos.model.FotosVO;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
@@ -24,18 +23,16 @@ import java.io.File;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import net.sf.webphotos.util.ApplicationContextResource;
-
 import net.sf.webphotos.util.Util;
 
 
 /**
- * A classe Foto armazena dados específicos de uma foto.
+ * A classe Photo armazena dados específicos de uma foto.
  * Dentre os dados estão ID da foto,ID do album e ID do crédito, legenda, crédito e resolução de tela.
  */
-public class Foto {
+public class Photo {
     private int fotoID=0;
     private int albumID=-1;
     private int creditoID=0;
@@ -52,12 +49,12 @@ public class Foto {
 
     private static String[][] creditos=null;
     
-    public Foto(FotosVO fotosVO) {
+    public Photo(FotosVO fotosVO) {
         this(fotosVO.getFotoid(), fotosVO.getAlbum().getAlbumid(), fotosVO.getLegenda(), fotosVO.getCreditos().getCreditoid(),fotosVO.getCreditos().getNome(), 0, 0, 0);
     }
 
     /**
-     * Construtor da classe Foto.
+     * Construtor da classe Photo.
      * Recebe e seta todos os dados da foto.
      * @param ID ID da foto.
      * @param albumID ID do albï¿½m.
@@ -67,7 +64,7 @@ public class Foto {
      * @param fotoLargura Largura da foto.
      * @param fotoAltura Altura da foto.
      */
-    public Foto(int ID, int albumID, String fotoLegenda, int fotoCreditoID, String fotoCreditoNome, int fotoLargura, int fotoAltura, long tamanhoBytes) {
+    public Photo(int ID, int albumID, String fotoLegenda, int fotoCreditoID, String fotoCreditoNome, int fotoLargura, int fotoAltura, long tamanhoBytes) {
         this.fotoID         = ID;
         this.albumID        = albumID;
         this.legenda        = fotoLegenda;
@@ -79,13 +76,13 @@ public class Foto {
     }
     
     /**
-     * Contrutor da classe Foto.
+     * Contrutor da classe Photo.
      * Recebe apenas nome do arquivo como parï¿½metro.
      * Seta a legenda com o valor vazio, e seta caminhoArquivo com o nome recebido como parï¿½metro.
      * Carrega a foto a partir do nome do arquivo, obtï¿½m medidas da foto e seta as variï¿½veis de largura e altura.
      * @param arquivo Nome ou caminho do arquivo.
      */
-    public Foto(String arquivo) {
+    public Photo(String arquivo) {
         legenda="";
         caminhoArquivo=arquivo;
         // obtem medidas da foto
@@ -195,7 +192,7 @@ public class Foto {
 
     /**
      * Retorna um vetor com os valores de crï¿½dito.
-     * Checa se o vetor jï¿½ possui valores, caso contrï¿½rio utiliza a função {@link webfotos.Foto#populaCreditos() populaCreditos()} completar os valores.
+     * Checa se o vetor jï¿½ possui valores, caso contrï¿½rio utiliza a função {@link webfotos.Photo#populaCreditos() populaCreditos()} completar os valores.
      * @return Retorna uma lista com os crï¿½ditos.
      */
     public static String[] getCreditosArray() {
@@ -268,7 +265,7 @@ public class Foto {
     }
 
     /**
-     * Retorna todos os valores das variï¿½veis de Foto em uma ï¿½nica String.
+     * Retorna todos os valores das variï¿½veis de Photo em uma ï¿½nica String.
      * @return Retorna os valores da foto.
      */
     @Override

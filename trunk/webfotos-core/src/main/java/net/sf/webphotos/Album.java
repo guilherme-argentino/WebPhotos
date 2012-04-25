@@ -15,7 +15,7 @@
  */
 package net.sf.webphotos;
 
-import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
+import net.sf.webphotos.dao.jpa.AlbunsDAO;
 import br.com.guilherme.webphotos.model.AlbunsVO;
 import br.com.guilherme.webphotos.model.FotosVO;
 import com.sun.rowset.JdbcRowSetImpl;
@@ -34,7 +34,7 @@ import webfotos.util.CacheFTP;
 import net.sf.webphotos.util.Util;
 
 /**
- * A classe Album mantém uma coleçao de fotos em um ArrayList de Foto, que pode
+ * A classe Album mantém uma coleçao de fotos em um ArrayList de Photo, que pode
  * ser manipulada através das funções da própria classe. Classe do tipo
  * Singleton, é permitido apenas uma instância da classe. O objeto é acessível
  * unicamente através da classe. Também manipula dados dos IDs, nome do albúm,
@@ -190,13 +190,13 @@ public class Album {
      * @param fotoID ID da foto.
      * @return Retorna uma foto.
      */
-    public Foto getFoto(int fotoID) {
+    public Photo getFoto(int fotoID) {
         Iterator<FotosVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
             FotosVO f = iter.next();
             if (f.getFotoid() == fotoID) {
-                return new Foto(f);
+                return new Photo(f);
             }
         }
         return null;
@@ -209,13 +209,13 @@ public class Album {
      * @param caminho Caminho do arquivo foto.
      * @return Retorna uma foto.
      */
-    public Foto getFoto(String caminho) {
+    public Photo getFoto(String caminho) {
         Iterator<FotosVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
             FotosVO f = iter.next();
             if (caminho.equals(f.getCaminhoArquivo())) {
-                return new Foto(f);
+                return new Photo(f);
             }
         }
         return null;
@@ -226,8 +226,8 @@ public class Album {
      *
      * @return Retorna a coleção de fotos.
      */
-    public Foto[] getFotos() {
-        return fotos.toArray(new Foto[0]);
+    public Photo[] getFotos() {
+        return fotos.toArray(new Photo[0]);
     }
 
     /**
@@ -607,7 +607,7 @@ public class Album {
 
         //passo 4 - removendo do site remoto
         if (Util.getConfig().getBoolean("autoTransferir")) {
-            Thread t = new Thread(new webfotos.gui.util.FtpClient());
+            Thread t = new Thread(new net.sf.webphotos.gui.util.FtpClient());
             t.start();
         }
 

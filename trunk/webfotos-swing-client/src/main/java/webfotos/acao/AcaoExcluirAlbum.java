@@ -23,9 +23,9 @@ import javax.swing.JTable;
 
 import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
-import webfotos.gui.util.TableModelAlbum;
+import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.util.Util;
-import webfotos.gui.util.TableSorter;
+import net.sf.webphotos.gui.util.TableSorter;
 
 /**
  * Exclui albúns.
@@ -95,7 +95,7 @@ public class AcaoExcluirAlbum extends AbstractAction {
             Album.getAlbum().excluirAlbuns(albunsID);
 
             if(Util.getConfig().getBoolean("autoTransferir")) {
-                Thread t=new Thread(new webfotos.gui.util.FtpClient());
+                Thread t=new Thread(new net.sf.webphotos.gui.util.FtpClient());
                 t.start();
             }
 

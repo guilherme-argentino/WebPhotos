@@ -27,9 +27,9 @@ import org.apache.commons.configuration.Configuration;
 
 import net.sf.webphotos.Album;
 import webfotos.gui.PainelWebFotos;
-import webfotos.gui.util.ImageFilter;
+import net.sf.webphotos.gui.util.ImageFilter;
 import webfotos.gui.util.TableModelFoto;
-import webfotos.gui.util.TableSorter;
+import net.sf.webphotos.gui.util.TableSorter;
 import net.sf.webphotos.util.Util;
 
 

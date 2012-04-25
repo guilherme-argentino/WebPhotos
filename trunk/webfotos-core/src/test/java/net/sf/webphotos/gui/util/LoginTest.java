@@ -30,7 +30,6 @@ import org.uispec4j.Trigger;
 import org.uispec4j.Window;
 import org.uispec4j.finder.ComponentMatcher;
 import org.uispec4j.interception.WindowInterceptor;
-import webfotos.gui.util.Login;
 import static org.junit.Assert.*;
 
 /**

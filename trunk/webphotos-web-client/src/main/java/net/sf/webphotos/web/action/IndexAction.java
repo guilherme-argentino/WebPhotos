@@ -15,7 +15,7 @@
  */
 package net.sf.webphotos.web.action;
 
-import br.com.guilherme.webphotos.dao.jpa.AlbunsDAO;
+import net.sf.webphotos.dao.jpa.AlbunsDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;

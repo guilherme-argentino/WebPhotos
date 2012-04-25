@@ -22,7 +22,7 @@
  * and open the template in the editor.
  */
 
-package webfotos.gui.util;
+package net.sf.webphotos.gui.util;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
