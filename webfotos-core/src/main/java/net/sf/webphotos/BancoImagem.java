@@ -30,7 +30,7 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;
 
 import webfotos.gui.util.Login;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 import com.sun.rowset.JdbcRowSetImpl;
 

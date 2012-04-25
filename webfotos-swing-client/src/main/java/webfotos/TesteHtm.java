@@ -22,7 +22,7 @@ import java.net.URL;
 import javax.swing.filechooser.FileFilter;
 
 import javax.swing.event.*;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 public class TesteHtm {
     public static void main(String[] arg) {

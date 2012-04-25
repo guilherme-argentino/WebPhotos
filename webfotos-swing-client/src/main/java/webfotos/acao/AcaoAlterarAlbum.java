@@ -38,7 +38,7 @@ import webfotos.gui.PainelWebFotos;
 import webfotos.util.CacheFTP;
 import webfotos.gui.util.TableModelFoto;
 import webfotos.gui.util.TableModelAlbum;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 import javax.sql.RowSet;
 
 /**

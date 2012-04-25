@@ -17,7 +17,7 @@ package net.sf.webphotos.gui.util;
 
 import java.awt.Component;
 import java.awt.Rectangle;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 import org.uispec4j.interception.WindowHandler;
 import org.uispec4j.UISpec4J;
 import org.junit.Ignore;

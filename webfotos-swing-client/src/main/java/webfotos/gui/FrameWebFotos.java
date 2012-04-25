@@ -21,6 +21,7 @@
 
 package webfotos.gui;
 
+import net.sf.webphotos.util.Util;
 import net.sf.webphotos.BancoImagem;
 import java.sql.SQLException;
 import webfotos.*;

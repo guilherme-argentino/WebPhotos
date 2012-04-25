@@ -25,7 +25,7 @@ import javax.swing.JComboBox;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.Foto;
 import webfotos.gui.util.TableModelFoto;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * Atualiza legenda.

@@ -31,7 +31,7 @@ import javax.swing.JOptionPane;
 import net.sf.webphotos.util.ApplicationContextResource;
 import org.apache.log4j.Logger;
 import webfotos.util.CacheFTP;
-import webfotos.util.Util;
+import net.sf.webphotos.util.Util;
 
 /**
  * A classe Album mantém uma coleçao de fotos em um ArrayList de Foto, que pode
