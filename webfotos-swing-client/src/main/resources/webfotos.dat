@@ -1,5 +1,5 @@
 ###############################################
-# Arquivo de configura��o do Webfotos         #
+# Arquivo de configuração do WebPhotos        #
 ###############################################
 
 # raw data folder
@@ -8,27 +8,27 @@ diretorioAdicionarFotos=${sys:user.home}/webfotos/bruto
 # album data folder
 albunsRoot=${sys:user.home}/webfotos/albuns
 
-chaveCripto=Soltar pipa � muito legal
+chaveCripto=Soltar pipa é muito legal
 
 # Preencher automaticamente a tela de login
 autoPreencher.Login=root
 autoPreencher.Pass=root
 
 ###############################################
-# Instru��es SQL personalizadas               #
+# Instruções SQL personalizadas               #
 ###############################################
 # pre-sql: select albumID as ID, categorias.nmcategoria as Categoria, nmalbum as Pauta, DATE_FORMAT(DtInsercao, '%d/%m/%y') as Data from albuns left join categorias using(categoriaID)
 
-relatorio1=�ltimos 500 �lbuns / order by albumID desc limit 500
+relatorio1=Últimos 500 Álbuns / order by albumID desc limit 500
 relatorio2=Por data decrescente / order by DtInsercao desc limit 500
 relatorio3=Por data crescente / order by DtInsercao limit 500
 
 ###############################################
 # Servidor FTP                                #
 ###############################################
-servidorFTP=192.168.0.2
-FTPRoot=/centrosp/web/bancoimagens
-FTPport=21
+servidorFTP=
+FTPRoot=
+FTPport=
 FTPproxyHost=
 FTPproxyPort=
 enviarAltaResolucao=false
@@ -41,44 +41,44 @@ thumbnail2=200
 thumbnail3=250
 thumbnail4=300
 
-! Ativa a transmiss�o ao alterar/inserir/excluir um �lbum/foto
+! Ativa a transmissão ao alterar/inserir/excluir um álbum/foto
 autoTransferir=true
 
 ###############################################
 # Marca d'agua aplicada ao thumbnail 4        #
 ###############################################
-! imagem formato gif ou jpg que servir� como marca d'agua
-! pode ser utilizado um gif transparente
-marcadagua=logoA2_t.gif
+# imagem formato gif ou jpg que servirá como marca d'agua
+# pode ser utilizado um gif transparente
+marcadagua=
 
-! imagem para testes com posicionamento de marca d'agua
-marcadagua.teste=images/foto.jpg
+# imagem para testes com posicionamento de marca d'agua
+marcadagua.teste=
 
-! Posi��o da marca d'agua
-! 1---2---3
-! 4---5---6
-! 7---8---9
+# Posição da marca d'agua
+# 1---2---3
+# 4---5---6
+# 7---8---9
 marcadagua.posicao=7
 
-! margem da marca d'agua at� a borda.
-! n�o tem efeito quando o posicionamento da marca d'agua � central
+# margem da marca d'agua até a borda.
+# não tem efeito quando o posicionamento da marca d'agua � central
 marcadagua.margem=0
 
-! transpar�ncia valores de 0 a 100, sendo 100 opaco e 0 transparente
+! transparência valores de 0 a 100, sendo 100 opaco e 0 transparente
 marcadagua.transparencia=30
 
 ###############################################
-# Informa��es textuais aplicada ao thumbnail  #
+# Informações textuais aplicada ao thumbnail  #
 ###############################################
-! para desabilitar essa fun��o, deixe o texto em branco
+! para desabilitar essa função, deixe o texto em branco
 texto=
 texto.posicao=8
 texto.margem=5
 
-! fam�lia da fonte
+! família da fonte
 texto.familia=SansSerif
 
-! estilo da fonte 0 normal, 1 bold, 2 it�lico
+! estilo da fonte 0 normal, 1 bold, 2 itálico
 texto.estilo=1
 texto.tamanho=15
 
@@ -96,6 +96,7 @@ jdbc.driver=org.apache.derby.jdbc.ClientDriver
 # jdbc.url=jdbc:derby:${sys:user.home}/webfotos/database;create=true
 jdbc.url=jdbc:derby://localhost:15270/${sys:user.home}/webfotos/database/webfotos;create=true
 
+# Additional information to create an server instance inside the application
 derby.drda.startNetworkServer=true
 derby.drda.host=localhost
 derby.drda.portNumber=15270
