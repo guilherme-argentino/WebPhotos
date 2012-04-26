@@ -22,12 +22,12 @@
  * and open the template in the editor.
  */
 
-package webfotos.sync.FTP;
+package net.sf.webphotos.sync.FTP;
 
 import org.apache.commons.net.util.ListenerList;
 
-import webfotos.sync.SyncEvent;
-import webfotos.sync.SyncListener;
+import net.sf.webphotos.sync.SyncEvent;
+import net.sf.webphotos.sync.SyncListener;
 
 /**
  * Adapta o listener para sincronização.

@@ -22,7 +22,7 @@
  * and open the template in the editor.
  */
 
-package webfotos.sync;
+package net.sf.webphotos.sync;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +30,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.io.CopyStreamListener;
-import webfotos.util.Arquivo;
+import net.sf.webphotos.util.legacy.Arquivo;
 
 /**
  * Interface que especifica como webfotos irá

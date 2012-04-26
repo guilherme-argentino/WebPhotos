@@ -30,7 +30,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import net.sf.webphotos.util.ApplicationContextResource;
 import org.apache.log4j.Logger;
-import webfotos.util.CacheFTP;
+import net.sf.webphotos.util.legacy.CacheFTP;
 import net.sf.webphotos.util.Util;
 
 /**

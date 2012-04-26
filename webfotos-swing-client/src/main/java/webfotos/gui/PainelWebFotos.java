@@ -20,6 +20,7 @@
  */
 package webfotos.gui;
 
+import net.sf.webphotos.util.legacy.CacheFTP;
 import net.sf.webphotos.util.Util;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.BancoImagem;
@@ -33,7 +34,6 @@ import java.text.ParseException;
 import javax.swing.SwingWorker;
 import javax.swing.event.TableModelEvent;
 import webfotos.*;
-import webfotos.util.*;
 import webfotos.acao.*;
 
 import java.io.*;

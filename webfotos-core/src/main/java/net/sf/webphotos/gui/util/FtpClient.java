@@ -15,16 +15,18 @@
  */
 package net.sf.webphotos.gui.util;
 
+import net.sf.webphotos.sync.Sync;
+import net.sf.webphotos.sync.SyncException;
+import net.sf.webphotos.sync.SyncEvent;
 import net.sf.webphotos.BancoImagem;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.io.CopyStreamException;
 import org.apache.commons.net.io.CopyStreamAdapter;
 
-import webfotos.sync.*;
-import webfotos.sync.FTP.SyncAdapter;
-import webfotos.util.Modal;
+import net.sf.webphotos.sync.FTP.SyncAdapter;
+import net.sf.webphotos.util.legacy.Modal;
 import net.sf.webphotos.util.Util;
-import webfotos.util.Arquivo;
+import net.sf.webphotos.util.legacy.Arquivo;
 
 import java.io.*;
 
