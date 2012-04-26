@@ -1,23 +1,22 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.sf.webphotos.model;
 
 import java.io.Serializable;
@@ -34,8 +33,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CREDITOS")
-@NamedQueries({@NamedQuery(name = "CreditosVO.findByCreditoID", query = "SELECT c FROM CreditosVO c WHERE c.creditoid = :creditoid"), @NamedQuery(name = "CreditosVO.findByNome", query = "SELECT c FROM CreditosVO c WHERE c.nome = :nome")})
-public class CreditosVO implements Serializable {
+@NamedQueries({
+    @NamedQuery(name = "CreditsVO.findByCreditoID", query = "SELECT c FROM CreditsVO c WHERE c.creditoid = :creditoid"),
+    @NamedQuery(name = "CreditsVO.findByNome", query = "SELECT c FROM CreditsVO c WHERE c.nome = :nome")})
+public class CreditsVO implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "CREDITOID", nullable = false)
@@ -43,14 +45,14 @@ public class CreditosVO implements Serializable {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
-    public CreditosVO() {
+    public CreditsVO() {
     }
 
-    public CreditosVO(Integer creditoid) {
+    public CreditsVO(Integer creditoid) {
         this.creditoid = creditoid;
     }
 
-    public CreditosVO(Integer creditoid, String nome) {
+    public CreditsVO(Integer creditoid, String nome) {
         this.creditoid = creditoid;
         this.nome = nome;
     }
@@ -81,10 +83,10 @@ public class CreditosVO implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CreditosVO)) {
+        if (!(object instanceof CreditsVO)) {
             return false;
         }
-        CreditosVO other = (CreditosVO) object;
+        CreditsVO other = (CreditsVO) object;
         if ((this.creditoid == null && other.creditoid != null) || (this.creditoid != null && !this.creditoid.equals(other.creditoid))) {
             return false;
         }
@@ -93,7 +95,6 @@ public class CreditosVO implements Serializable {
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.CreditosVO[creditoid=" + creditoid + "]";
+        return "br.nom.guilherme.webfotos.CreditsVO[creditoid=" + creditoid + "]";
     }
-
 }

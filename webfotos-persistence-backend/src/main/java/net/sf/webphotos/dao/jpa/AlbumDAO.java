@@ -15,20 +15,20 @@
  */
 package net.sf.webphotos.dao.jpa;
 
-import net.sf.webphotos.model.AlbunsVO;
+import net.sf.webphotos.model.AlbumVO;
 import java.util.List;
 
 /**
  * @author Guilherme
  *
  */
-public class AlbunsDAO extends WebPhotosDAO<AlbunsVO, Integer> {
+public class AlbumDAO extends WebPhotosDAO<AlbumVO, Integer> {
 
-    public AlbunsDAO() {
-        super(AlbunsVO.class);
+    public AlbumDAO() {
+        super(AlbumVO.class);
     }
 
-    public List<AlbunsVO> findAll() {
+    public List<AlbumVO> findAll() {
         return find("SELECT a FROM AlbunsVO a");
     }
 }

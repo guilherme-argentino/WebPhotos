@@ -19,10 +19,10 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
     <persistence-unit name="jse_webphotos_pu" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>net.sf.webphotos.model.FotosVO</class>
-        <class>net.sf.webphotos.model.CategoriasVO</class>
-        <class>net.sf.webphotos.model.AlbunsVO</class>
-        <class>net.sf.webphotos.model.CreditosVO</class>
+        <class>net.sf.webphotos.model.AlbumVO</class>
+        <class>net.sf.webphotos.model.CategoryVO</class>
+        <class>net.sf.webphotos.model.CreditsVO</class>
+        <class>net.sf.webphotos.model.PhotoVO</class>
         <properties>
 <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
             <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>

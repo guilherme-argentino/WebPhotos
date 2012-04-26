@@ -15,7 +15,7 @@
  */
 package net.sf.webphotos.web.action;
 
-import net.sf.webphotos.dao.jpa.AlbunsDAO;
+import net.sf.webphotos.dao.jpa.AlbumDAO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
@@ -34,7 +34,7 @@ public class IndexAction extends Action {
     private static final String SUCCESS = "success";
     private static final Log log = LogFactory.getLog(IndexAction.class);
 
-    private AlbunsDAO albunsDAO;
+    private AlbumDAO albunsDAO;
 
     /**
      * This is the action called from the Struts framework.
@@ -62,14 +62,14 @@ public class IndexAction extends Action {
     /**
      * @return the albunsDAO
      */
-    public AlbunsDAO getAlbunsDAO() {
+    public AlbumDAO getAlbunsDAO() {
         return albunsDAO;
     }
 
     /**
      * @param albunsDAO the albunsDAO to set
      */
-    public void setAlbunsDAO(AlbunsDAO albunsDAO) {
+    public void setAlbunsDAO(AlbumDAO albunsDAO) {
         this.albunsDAO = albunsDAO;
     }
 }
