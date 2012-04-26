@@ -18,22 +18,19 @@ package net.sf.webphotos.gui.util;
 import java.awt.Component;
 import java.awt.Rectangle;
 import net.sf.webphotos.util.Util;
-import org.uispec4j.interception.WindowHandler;
-import org.uispec4j.UISpec4J;
-import org.junit.Ignore;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import org.junit.*;
 import org.uispec4j.Trigger;
+import org.uispec4j.UISpec4J;
 import org.uispec4j.Window;
 import org.uispec4j.finder.ComponentMatcher;
+import org.uispec4j.interception.WindowHandler;
 import org.uispec4j.interception.WindowInterceptor;
-import static org.junit.Assert.*;
 
 /**
- * Waiting for changes on CloudBees
+ * Login Interface Test
+ * Requires a headless UI
  * @author Guilherme
  */
 public class LoginTest {
@@ -71,6 +68,7 @@ public class LoginTest {
         final Login login = new Login();
         final WindowHandler windowHandler = new WindowHandler() {
 
+            @Override
             public Trigger process(Window window) {
                 // return a trigger that will close it
                 return window.getButton("OK").triggerClick();
@@ -95,15 +93,18 @@ public class LoginTest {
         final Login login = new Login();
         final WindowHandler windowHandler = new WindowHandler() {
 
+            @Override
             public Trigger process(Window window) {
                 window.getTextBox(new ComponentMatcher() {
 
+                    @Override
                     public boolean matches(Component cmpnt) {
                         return cmpnt.getBounds().equals(new Rectangle(55,8,129,20));
                     }
                 }).setText(testeLogin);
                 window.getPasswordField(new ComponentMatcher() {
 
+                    @Override
                     public boolean matches(Component cmpnt) {
                         return cmpnt.getBounds().equals(new Rectangle(55,34,129,20));
                     }
@@ -129,6 +130,7 @@ public class LoginTest {
         final Login login = new Login();
         final WindowHandler windowHandler = new WindowHandler() {
 
+            @Override
             public Trigger process(Window window) {
                 // return a trigger that will close it
                 return window.getButton("Cancel").triggerClick();
@@ -143,6 +145,7 @@ public class LoginTest {
     private void interceptDialog(final Login login, final WindowHandler windowHandler) {
         WindowInterceptor.init(new Trigger() {
 
+            @Override
             public void run() throws Exception {
                 login.show();
             }
