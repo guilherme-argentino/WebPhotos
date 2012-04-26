@@ -27,15 +27,15 @@
             http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
 
-    <bean id="acaoExcluirAlbum" class="webfotos.acao.AcaoExcluirAlbum">
+    <bean id="acaoExcluirAlbum" class="net.sf.webphotos.action.AcaoExcluirAlbum">
     <!-- collaborators and configuration for this bean go here -->
     </bean>
 
-    <bean id="acaoDocumentListener" class="webfotos.acao.AcaoDocumentListener" />
+    <bean id="acaoDocumentListener" class="net.sf.webphotos.action.AcaoDocumentListener" />
 
-    <bean id="popupMenu" class="webfotos.gui.PopupMenu" />
+    <bean id="popupMenu" class="net.sf.webphotos.gui.PopupMenu" />
 
-    <bean id="acaoPopup" class="webfotos.acao.AcaoPopup">
+    <bean id="acaoPopup" class="net.sf.webphotos.action.AcaoPopup">
         <constructor-arg index="0" ref="popupMenu" />
     </bean>
 

@@ -87,6 +87,14 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.5</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.12</version>
+                </plugin>
+
+                <!-- Site Configuration -->
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.0</version>
@@ -276,21 +284,21 @@
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>3.5.6-Final</version>
             </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>3.0.5.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>3.0.5.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>3.0.5.RELEASE</version>
-        </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>3.0.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>3.0.5.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>3.0.5.RELEASE</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <profiles>
