@@ -16,7 +16,7 @@
 package net.sf.webphotos;
 
 import net.sf.webphotos.dao.jpa.PhotoDAO;
-import net.sf.webphotos.model.FotosVO;
+import net.sf.webphotos.model.PhotoVO;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
 import java.io.File;
@@ -49,8 +49,8 @@ public class Photo {
 
     private static String[][] creditos=null;
     
-    public Photo(FotosVO fotosVO) {
-        this(fotosVO.getFotoid(), fotosVO.getAlbum().getAlbumid(), fotosVO.getLegenda(), fotosVO.getCreditos().getCreditoid(),fotosVO.getCreditos().getNome(), 0, 0, 0);
+    public Photo(PhotoVO photoVO) {
+        this(photoVO.getFotoid(), photoVO.getAlbum().getAlbumid(), photoVO.getLegenda(), photoVO.getCreditos().getCreditoid(),photoVO.getCreditos().getNome(), 0, 0, 0);
     }
 
     /**

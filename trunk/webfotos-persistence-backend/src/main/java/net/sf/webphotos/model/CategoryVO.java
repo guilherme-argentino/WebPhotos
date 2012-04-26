@@ -36,9 +36,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CATEGORIAS")
 @NamedQueries({
-    @NamedQuery(name = "CategoriasVO.findByCategoriaID", query = "SELECT c FROM CategoriasVO c WHERE c.categoriaID = :categoriaID"),
-    @NamedQuery(name = "CategoriasVO.findByNmcategoria", query = "SELECT c FROM CategoriasVO c WHERE c.nmcategoria = :nmcategoria")})
-public class CategoriasVO implements Serializable {
+    @NamedQuery(name = "CategoryVO.findByCategoriaID", query = "SELECT c FROM CategoryVO c WHERE c.categoriaID = :categoriaID"),
+    @NamedQuery(name = "CategoryVO.findByNmcategoria", query = "SELECT c FROM CategoryVO c WHERE c.nmcategoria = :nmcategoria")})
+public class CategoryVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,16 +48,16 @@ public class CategoriasVO implements Serializable {
     private String nmcategoria;
     @ManyToOne(optional = true)
     @JoinColumn(name = "SUBCATEGORIA")
-    private CategoriasVO categoriaPai;
+    private CategoryVO categoriaPai;
 
-    public CategoriasVO() {
+    public CategoryVO() {
     }
 
-    public CategoriasVO(Integer categoriaid) {
+    public CategoryVO(Integer categoriaid) {
         this.categoriaID = categoriaid;
     }
 
-    public CategoriasVO(Integer categoriaID, String nmcategoria) {
+    public CategoryVO(Integer categoriaID, String nmcategoria) {
         this.categoriaID = categoriaID;
         this.nmcategoria = nmcategoria;
     }
@@ -81,14 +81,14 @@ public class CategoriasVO implements Serializable {
     /**
      * @return the categoriaPai
      */
-    public CategoriasVO getCategoriaPai() {
+    public CategoryVO getCategoriaPai() {
         return categoriaPai;
     }
 
     /**
      * @param categoriaPai the categoriaPai to set
      */
-    public void setCategoriaPai(CategoriasVO categoriaPai) {
+    public void setCategoriaPai(CategoryVO categoriaPai) {
         this.categoriaPai = categoriaPai;
     }
 
@@ -102,10 +102,10 @@ public class CategoriasVO implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CategoriasVO)) {
+        if (!(object instanceof CategoryVO)) {
             return false;
         }
-        CategoriasVO other = (CategoriasVO) object;
+        CategoryVO other = (CategoryVO) object;
         if ((this.categoriaID == null && other.categoriaID != null) || (this.categoriaID != null && !this.categoriaID.equals(other.categoriaID))) {
             return false;
         }
@@ -114,6 +114,6 @@ public class CategoriasVO implements Serializable {
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.dao.CategoriasVO[categoriaid=" + categoriaID + "]";
+        return "br.nom.guilherme.webfotos.dao.CategoryVO[categoriaid=" + categoriaID + "]";
     }
 }

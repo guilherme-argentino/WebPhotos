@@ -40,12 +40,12 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ALBUNS")
 @NamedQueries({
-    @NamedQuery(name = "AlbunsVO.findByAlbumID", query = "SELECT a FROM AlbunsVO a WHERE a.albumid = :albumid"),
-    @NamedQuery(name = "AlbunsVO.findByNmAlbum", query = "SELECT a FROM AlbunsVO a WHERE a.nmalbum = :nmalbum"),
-    @NamedQuery(name = "AlbunsVO.findByDtInsercao", query = "SELECT a FROM AlbunsVO a WHERE a.dtInsercao = :dtInsercao"),
-    @NamedQuery(name = "AlbunsVO.findByCategoriaID", query = "SELECT a FROM AlbunsVO a WHERE a.categoriasVO.categoriaID = :categoriaID")
+    @NamedQuery(name = "AlbumVO.findByAlbumID", query = "SELECT a FROM AlbumVO a WHERE a.albumid = :albumid"),
+    @NamedQuery(name = "AlbumVO.findByNmAlbum", query = "SELECT a FROM AlbumVO a WHERE a.nmalbum = :nmalbum"),
+    @NamedQuery(name = "AlbumVO.findByDtInsercao", query = "SELECT a FROM AlbumVO a WHERE a.dtInsercao = :dtInsercao"),
+    @NamedQuery(name = "AlbumVO.findByCategoriaID", query = "SELECT a FROM AlbumVO a WHERE a.categoriasVO.categoriaID = :categoriaID")
 })
-public class AlbunsVO implements Serializable {
+public class AlbumVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -65,27 +65,27 @@ public class AlbunsVO implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "CATEGORIAID", nullable=false)
-    private CategoriasVO categoriasVO;
+    private CategoryVO categoriasVO;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "album")
-    private Set<FotosVO> photos;
+    private Set<PhotoVO> photos;
 
-    public CategoriasVO getCategoriasVO() {
+    public CategoryVO getCategoriasVO() {
         return categoriasVO;
     }
 
-    public void setCategoriasVO(CategoriasVO categoriasVO) {
+    public void setCategoriasVO(CategoryVO categoriasVO) {
         this.categoriasVO = categoriasVO;
     }
 
-    public AlbunsVO() {
+    public AlbumVO() {
     }
 
-    public AlbunsVO(Integer albumid) {
+    public AlbumVO(Integer albumid) {
         this.albumid = albumid;
     }
 
-    public AlbunsVO(Integer albumid, String nmalbum, Date dtInsercao, int categoriaid) {
+    public AlbumVO(Integer albumid, String nmalbum, Date dtInsercao, int categoriaid) {
         this.albumid = albumid;
         this.nmalbum = nmalbum;
         this.dtInsercao = dtInsercao;
@@ -140,10 +140,10 @@ public class AlbunsVO implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AlbunsVO)) {
+        if (!(object instanceof AlbumVO)) {
             return false;
         }
-        AlbunsVO other = (AlbunsVO) object;
+        AlbumVO other = (AlbumVO) object;
         if ((this.albumid == null && other.albumid != null) || (this.albumid != null && !this.albumid.equals(other.albumid))) {
             return false;
         }
@@ -152,20 +152,20 @@ public class AlbunsVO implements Serializable {
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.dao.AlbunsVO[albumid=" + albumid + "]";
+        return "br.nom.guilherme.webfotos.dao.AlbumVO[albumid=" + albumid + "]";
     }
 
     /**
      * @return the photos
      */
-    public Set<FotosVO> getPhotos() {
+    public Set<PhotoVO> getPhotos() {
         return photos;
     }
 
     /**
      * @param photos the photos to set
      */
-    public void setPhotos(HashSet<FotosVO> photos) {
+    public void setPhotos(HashSet<PhotoVO> photos) {
         this.photos = photos;
     }
 }

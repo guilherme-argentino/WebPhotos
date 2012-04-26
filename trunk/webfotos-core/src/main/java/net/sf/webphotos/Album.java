@@ -15,9 +15,9 @@
  */
 package net.sf.webphotos;
 
-import net.sf.webphotos.dao.jpa.AlbunsDAO;
-import net.sf.webphotos.model.AlbunsVO;
-import net.sf.webphotos.model.FotosVO;
+import net.sf.webphotos.dao.jpa.AlbumDAO;
+import net.sf.webphotos.model.AlbumVO;
+import net.sf.webphotos.model.PhotoVO;
 import com.sun.rowset.JdbcRowSetImpl;
 import java.io.File;
 import java.sql.SQLException;
@@ -55,10 +55,10 @@ public class Album {
     /**
      * variáveis utilizadas nessa classe
      */
-    private Set<FotosVO> fotos = new HashSet<FotosVO>();
+    private Set<PhotoVO> fotos = new HashSet<PhotoVO>();
     private String[][] categorias = null;
     private Logger log = Logger.getLogger(this.getClass().getName());
-    private static AlbunsDAO albunsDAO = (AlbunsDAO) ApplicationContextResource.getBean("albunsDAO");
+    private static AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
 
     private Album() {
         /**
@@ -191,10 +191,10 @@ public class Album {
      * @return Retorna uma foto.
      */
     public Photo getFoto(int fotoID) {
-        Iterator<FotosVO> iter = fotos.iterator();
+        Iterator<PhotoVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
-            FotosVO f = iter.next();
+            PhotoVO f = iter.next();
             if (f.getFotoid() == fotoID) {
                 return new Photo(f);
             }
@@ -210,10 +210,10 @@ public class Album {
      * @return Retorna uma foto.
      */
     public Photo getFoto(String caminho) {
-        Iterator<FotosVO> iter = fotos.iterator();
+        Iterator<PhotoVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
-            FotosVO f = iter.next();
+            PhotoVO f = iter.next();
             if (caminho.equals(f.getCaminhoArquivo())) {
                 return new Photo(f);
             }
@@ -241,11 +241,11 @@ public class Album {
             return null;
         }
         Object[][] resultado = new Object[fotos.size()][3];
-        Iterator<FotosVO> iter = fotos.iterator();
+        Iterator<PhotoVO> iter = fotos.iterator();
         int ct = 0;
 
         while (iter.hasNext()) {
-            FotosVO f = iter.next();
+            PhotoVO f = iter.next();
             if (f.getCaminhoArquivo().length() > 0) {
                 // imagem acabou de ser adicionada... sem ID
                 //resultado[ct][0] = (Object) f.getCaminhoArquivo();
@@ -378,7 +378,7 @@ public class Album {
         String sql;
         fotos.clear();
 
-        AlbunsVO album = ((AlbunsDAO) ApplicationContextResource.getBean("albunsDAO")).findBy(aID);
+        AlbumVO album = ((AlbumDAO) ApplicationContextResource.getBean("albunsDAO")).findBy(aID);
 
         if (album != null) {
             albumID = aID;
@@ -498,10 +498,10 @@ public class Album {
      */
     public void excluirFotos(String[] nomes) {
         String nome = null;
-        FotosVO foto;
+        PhotoVO foto;
 
         for (int i = 0; i < nomes.length; i++) {
-            Iterator<FotosVO> iter = fotos.iterator();
+            Iterator<PhotoVO> iter = fotos.iterator();
             nome = nomes[i];
 
             while (iter.hasNext()) {
@@ -562,9 +562,9 @@ public class Album {
         for (int i = 0; i < fotosID.length; i++) {
             // pesquisa a foto na coleção deste álbum e remove da colecao
             encontrou = false;
-            Iterator<FotosVO> iter = fotos.iterator();
+            Iterator<PhotoVO> iter = fotos.iterator();
             while (iter.hasNext() && !encontrou) {
-                FotosVO f = iter.next();
+                PhotoVO f = iter.next();
                 if (f.getFotoid() == fotosID[i]) {
                     encontrou = true;
                     iter.remove();
@@ -617,7 +617,7 @@ public class Album {
 
         for (int i = 0; i < f.length; i++) {
             File novaFoto = f[i];
-            fotos.add(new FotosVO(novaFoto.getAbsolutePath()));
+            fotos.add(new PhotoVO(novaFoto.getAbsolutePath()));
         }
     }
 
@@ -673,7 +673,7 @@ public class Album {
      */
     @Override
     public String toString() {
-        Iterator<FotosVO> iter = fotos.iterator();
+        Iterator<PhotoVO> iter = fotos.iterator();
 
         String msg = "--------------------------------------"
                 + "\nalbumID    : " + albumID
@@ -686,7 +686,7 @@ public class Album {
                 + "\n--------------------------------------";
 
         while (iter.hasNext()) {
-            FotosVO f = iter.next();
+            PhotoVO f = iter.next();
             msg = msg + "\n" + f.toString() + "\n--------------------------------------";
         }
 
@@ -709,9 +709,9 @@ public class Album {
                 + "\n"
                 + "\n\t<fotos>";
 
-        Iterator<FotosVO> iter = fotos.iterator();
+        Iterator<PhotoVO> iter = fotos.iterator();
         while (iter.hasNext()) {
-            FotosVO f = iter.next();
+            PhotoVO f = iter.next();
             r += "\n\t\t<foto id=\"" + f.getFotoid() + "\">"
                     + "\n\t\t\t<legenda>" + f.getLegenda() + "</legenda>"
                     + "\n\t\t\t<credito>" + f.getCreditos().getNome() + "</credito>"
@@ -741,11 +741,11 @@ public class Album {
                 + "descricao=" + Util.stringToHtm(descricao) + ";\n\n"
                 + "fotos = new Array (";
 
-        Iterator<FotosVO> iter = fotos.iterator();
+        Iterator<PhotoVO> iter = fotos.iterator();
         String cc = "";
 
         while (iter.hasNext()) {
-            FotosVO f = iter.next();
+            PhotoVO f = iter.next();
             r += cc + "\n\tnew Foto(" + f.getFotoid() + "," + Util.stringToHtm(f.getLegenda()) + ",'" + f.getCreditos().getNome() + "')";
             cc = ",";
         }

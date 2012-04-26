@@ -16,7 +16,7 @@
 package net.sf.webphotos.gui.util;
 
 // Modelo de tabela para bases de dados com suporte a cursores rolantes (MYSQL)
-import net.sf.webphotos.dao.jpa.AlbunsDAO;
+import net.sf.webphotos.dao.jpa.AlbumDAO;
 import com.sun.rowset.JdbcRowSetImpl;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -43,7 +43,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     private RowSet rowSet = null;
     private List<Object[]> tableData = null;
     private static Logger log = Logger.getLogger(TableModelAlbum.class);
-    private static AlbunsDAO albunsDAO = (AlbunsDAO) ApplicationContextResource.getBean("albunsDAO");
+    private static AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
 
     // construtor
     private TableModelAlbum() {
