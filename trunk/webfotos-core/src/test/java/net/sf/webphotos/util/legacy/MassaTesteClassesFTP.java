@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package webfotos.util;
+package net.sf.webphotos.util.legacy;
 
 import junit.framework.TestCase;
 import org.junit.Before;

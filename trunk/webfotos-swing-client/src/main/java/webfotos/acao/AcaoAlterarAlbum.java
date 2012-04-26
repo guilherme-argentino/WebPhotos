@@ -35,7 +35,7 @@ import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Photo;
 import webfotos.Thumbnail;
 import webfotos.gui.PainelWebFotos;
-import webfotos.util.CacheFTP;
+import net.sf.webphotos.util.legacy.CacheFTP;
 import webfotos.gui.util.TableModelFoto;
 import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.util.Util;

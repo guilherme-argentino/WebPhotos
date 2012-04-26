@@ -22,7 +22,7 @@
  * and open the template in the editor.
  */
 
-package webfotos.sync;
+package net.sf.webphotos.sync;
 
 /**
  * Exceção de sincronização.

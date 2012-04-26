@@ -39,7 +39,7 @@
         <constructor-arg index="0" ref="popupMenu" />
     </bean>
 
-    <bean id="syncObject" class="webfotos.sync.FTP.SyncObject" />
+    <bean id="syncObject" class="net.sf.webphotos.sync.FTP.SyncObject" />
 
     <bean id="albunsDAO" class="net.sf.webphotos.dao.jpa.AlbumDAO" />
     <bean id="photosDAO" class="net.sf.webphotos.dao.jpa.PhotoDAO" />

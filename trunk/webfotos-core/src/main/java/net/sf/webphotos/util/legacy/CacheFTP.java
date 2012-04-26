@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package webfotos.util;
+package net.sf.webphotos.util.legacy;
 
 import net.sf.webphotos.util.Util;
 import java.util.*;

@@ -24,7 +24,7 @@
 
 package net.sf.webphotos.gui.util;
 
-import webfotos.util.*;
+import net.sf.webphotos.util.legacy.Arquivo;
 
 import java.util.ArrayList;
 import java.util.Iterator;

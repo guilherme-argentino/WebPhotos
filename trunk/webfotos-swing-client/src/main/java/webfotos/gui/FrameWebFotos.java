@@ -21,11 +21,11 @@
 
 package webfotos.gui;
 
+import net.sf.webphotos.util.legacy.CacheFTP;
 import net.sf.webphotos.util.Util;
 import net.sf.webphotos.BancoImagem;
 import java.sql.SQLException;
 import webfotos.*;
-import webfotos.util.*;
 
 import java.util.logging.Logger;
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package webfotos.sync.FTP;
+package net.sf.webphotos.sync.FTP;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,13 +33,13 @@ import org.apache.commons.net.io.CopyStreamListener;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Photo;
-import webfotos.sync.Sync;
-import webfotos.sync.SyncEvent;
-import webfotos.sync.SyncException;
-import webfotos.sync.SyncListener;
-import webfotos.util.Arquivo;
-import webfotos.util.CacheFTP;
-import webfotos.util.ComandoFTP;
+import net.sf.webphotos.sync.Sync;
+import net.sf.webphotos.sync.SyncEvent;
+import net.sf.webphotos.sync.SyncException;
+import net.sf.webphotos.sync.SyncListener;
+import net.sf.webphotos.util.legacy.Arquivo;
+import net.sf.webphotos.util.legacy.CacheFTP;
+import net.sf.webphotos.util.legacy.ComandoFTP;
 import net.sf.webphotos.util.Util;
 
 /**
