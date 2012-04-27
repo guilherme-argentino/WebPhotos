@@ -51,7 +51,7 @@ public class AcaoExcluirAlbum extends AbstractAction {
      * Inicia uma tabela de albúns para buscar as linhas selecionadas e checa quais e quantos foram selecionados.
      * Faz um controle de exclusão de no máximo 20 albúns por vez.
      * Lista os albúns selecionados ao usuário e pede uma confirmação de exclusão.
-     * Caso o usuário confirme, exclui os albúns selecionados através da função {@link webfotos.Album#excluirAlbuns(int[]) excluirAlbuns(albunsID)} em webfotos.Album e atualiza a lista e a aréa dos albúns no programa.
+     * Caso o usuário confirme, exclui os albúns selecionados através da função {@link net.sf.webphotos.Album#excluirAlbuns(int[]) excluirAlbuns(albunsID)} em webfotos.Album e atualiza a lista e a aréa dos albúns no programa.
      * @param e Evento de ação de exclusão de albúns.
      */
     @Override

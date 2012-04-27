@@ -26,7 +26,7 @@ import net.sf.webphotos.util.Util;
 /**
  * Painel de apresentação da Foto selecionada.
  * Ao clicar nele, uma janela de popup é aberta.
- * Para saber mais sobre essa janela de visualização procure sobre a classe {@link webfotos.gui.Visualizador Visualizador}.
+ * Para saber mais sobre essa janela de visualização procure sobre a classe {@link net.sf.webphotos.gui.Visualizador Visualizador}.
  * @author guilherme
  */
 public class PainelFoto extends javax.swing.JPanel {

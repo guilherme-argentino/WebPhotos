@@ -61,7 +61,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * Contrutor da classe. Recebe como parâmetro dois botões, um para alteração
      * e o outro para implementação nova. Seta os valores dos botões da classe a
      * partir dos recebidos e seta as tabelas de albúns e fotos a partir de
-     * métodos get da classe {@link webfotos.gui.PainelWebFotos PainelWebFotos}.
+     * métodos get da classe {@link net.sf.webphotos.gui.PainelWebFotos PainelWebFotos}.
      *
      * @param botaoNovo
      *            Botão para identificar a ação de implementação novo.

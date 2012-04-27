@@ -161,7 +161,7 @@ public class BancoImagem {
 
     /**
      * Retorna <I>true</I> caso o login seja efetuado ou <I>false</I> caso não.
-     * Faz uso da função {@link webfotos.BancoImagem#login(String) login(String title)} para obter o resultado.
+     * Faz uso da função {@link net.sf.webphotos.BancoImagem#login(String) login(String title)} para obter o resultado.
      * @return Retorno lógico para a operação de login.
      */
     public static boolean login() {
@@ -170,7 +170,7 @@ public class BancoImagem {
 
     /**
      * Inicia o login partir de um nome passado como parâmetro.
-     * Esse nome realizará alteração na instancia da classe {@link webfotos.gui.util.Login Login}.
+     * Esse nome realizará alteração na instancia da classe {@link net.sf.webphotos.gui.util.Login Login}.
      * Faz a comparação com o banco de dados através do {@link javax.sql.RowSet RowSet} e retorna uma variável lógica para informar se o login ocorreu com sucesso.
      * @param title Título do login.
      * @return Retorno lógico para a operação de login.

@@ -715,7 +715,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     /**
      * Recebe um comando e o adiciona com as fotos no FTP.
      * Faz uma espécie de <B>foreach</B> para buscar as fotos selecionadas e controla pelo valor do índice da foto selecionada.
-     * Adiciona, para cada foto, o comando especificado no FTP através do método {@link webfotos.util.CacheFTP#addCommand(int,int,int) addCommand}.
+     * Adiciona, para cada foto, o comando especificado no FTP através do método {@link net.sf.webphotos.util.CacheFTP#addCommand(int,int,int) addCommand}.
      * @param comando Comando.
      */
     public static void marcaFotosFTP(int comando) {
@@ -732,7 +732,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     /**
      * Recebe um comando e o adiciona com as fotos no FTP.
      * Faz uma espécie de <B>foreach</B> para buscar as fotos selecionadas e controla pelo valor do índice do albúm selecionado.
-     * Adiciona, para cada foto, o comando especificado no FTP através do método {@link webfotos.util.CacheFTP#addCommand(int,int,int) addCommand}.
+     * Adiciona, para cada foto, o comando especificado no FTP através do método {@link net.sf.webphotos.util.CacheFTP#addCommand(int,int,int) addCommand}.
      * @param comando Comando.
      */
     public static void marcaAlbunsFTP(int comando) {
@@ -899,7 +899,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     /**
      * Detecta alterações.
-     * Checa pela flag controlarAlteracoes, caso seja <I>true</I>, faz comparações dos valores do albúm e se tudo corresponder, chama o método {@link webfotos.gui.PainelWebFotos#alteracaoFinalizada() alteracaoFinalizada()}.
+     * Checa pela flag controlarAlteracoes, caso seja <I>true</I>, faz comparações dos valores do albúm e se tudo corresponder, chama o método {@link net.sf.webphotos.gui.PainelWebFotos#alteracaoFinalizada() alteracaoFinalizada()}.
      * Por último seta documentoAlterado como <I>true</I> e habilita o botão alterar.
      */
     public static void alteracaoDetectada() {
@@ -919,7 +919,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     /**
      * Seta a flag detectarAlteracoes com o valor recebido como parâmetro.
-     * Para ser utilizado posteriormente no método {@link webfotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada()}.
+     * Para ser utilizado posteriormente no método {@link net.sf.webphotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada()}.
      * @param valor Variável lógica.
      */
     public static void detectarAlteracoes(boolean valor) {
@@ -981,7 +981,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
      * Atualiza o álbum corrente com as informações presentes nas caixa de texto.
      * Checar se os campos foram preenchidos, e se tudo estiver ok, atualiza o albúm.
      * Retorna uma variável lógica para confirmação.
-     * Função utilizada em {@link webfotos.acao.AcaoAlterarAlbum AcaoAlterarAlbum}.
+     * Função utilizada em {@link net.sf.webphotos.acao.AcaoAlterarAlbum AcaoAlterarAlbum}.
      * @return Retorna uma variável lógica.
      */
     public static boolean atualizaAlbum() {
@@ -1174,7 +1174,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     /**
      * Prepara a interface para criação de um novo álbum.
      * Seta o botão btNovo com a função <B>finalizar</B> e o botão btAlterar com a função <B>cancelar</B>.
-     * Ao implementar o albúm, já chama o método {@link webfotos.acao.AcaoAdicionarFoto#actionPerformed(ActionEvent) actionPerformed(ActionEvent e)} para adicionar foto.
+     * Ao implementar o albúm, já chama o método {@link net.sf.webphotos.acao.AcaoAdicionarFoto#actionPerformed(ActionEvent) actionPerformed(ActionEvent e)} para adicionar foto.
      */
     public static void botaoNovo() {
         detectarAlteracoes(false);
@@ -1239,7 +1239,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     }
 
     /**
-     * Limpa painel de foto com o método {@link webfotos.gui.PainelFoto#clear() clear()},
+     * Limpa painel de foto com o método {@link net.sf.webphotos.gui.PainelFoto#clear() clear()},
      * apaga os valores de txtLegenda, lstCredito e bloqueia os controles.
      */
     public static void resetFoto() {

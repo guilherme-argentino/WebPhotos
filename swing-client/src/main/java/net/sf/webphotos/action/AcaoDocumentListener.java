@@ -17,12 +17,11 @@ package net.sf.webphotos.action;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
 import net.sf.webphotos.gui.PainelWebFotos;
 
 /**
  * Notifica alterações no documento.
- * Checa se ocorreram modificações e através do método da classe chamado altera, alcança outro método da classe PainelWebFotos chamado {@link webfotos.gui.PainelWebFotos#alteracaoDetectada(DocumentEvent) alteracaoDetectada}(DocumentEvent e) que tem funcionalidade de uma flag.
+ * Checa se ocorreram modificações e através do método da classe chamado altera, alcança outro método da classe PainelWebFotos chamado {@link net.sf.webphotos.gui.PainelWebFotos#alteracaoDetectada(DocumentEvent) alteracaoDetectada}(DocumentEvent e) que tem funcionalidade de uma flag.
  */
 public class AcaoDocumentListener implements DocumentListener {
     /**
@@ -32,7 +31,7 @@ public class AcaoDocumentListener implements DocumentListener {
     public AcaoDocumentListener() {}
     /**
      * Implementa o método insertUptade da interface {@link javax.swing.event.DocumentListener DocumentListener}.
-     * Faz uso da função {@link webfotos.acao.AcaoDocumentListener#altera(DocumentEvent) altera}(DocumentEvent e) da própria classe.
+     * Faz uso da função {@link net.sf.webphotos.acao.AcaoDocumentListener#altera(DocumentEvent) altera}(DocumentEvent e) da própria classe.
      * Não possui utilizações.
      * @param e Notifica mudanças no documento.
      */
@@ -40,7 +39,7 @@ public class AcaoDocumentListener implements DocumentListener {
     public void insertUpdate(DocumentEvent e) { altera(e); }
     /**
      * Implementa o método removeUptade da interface {@link javax.swing.event.DocumentListener DocumentListener}.
-     * Faz uso da função {@link webfotos.acao.AcaoDocumentListener#altera(DocumentEvent) altera}(DocumentEvent e) da própria classe.
+     * Faz uso da função {@link net.sf.webphotos.acao.AcaoDocumentListener#altera(DocumentEvent) altera}(DocumentEvent e) da própria classe.
      * Não possui utilizações.
      * @param e Notifica mudanças no documento.
      */
@@ -48,7 +47,7 @@ public class AcaoDocumentListener implements DocumentListener {
     public void removeUpdate(DocumentEvent e) { altera(e); }
     /**
      * Implementa o método changeUptade da interface {@link javax.swing.event.DocumentListener DocumentListener}.
-     * Faz uso da função {@link webfotos.acao.AcaoDocumentListener#altera(DocumentEvent) altera}(DocumentEvent e) da própria classe.
+     * Faz uso da função {@link net.sf.webphotos.acao.AcaoDocumentListener#altera(DocumentEvent) altera}(DocumentEvent e) da própria classe.
      * Não possui utilizações.
      * @param e Notifica mudanças no documento.
      */
@@ -56,7 +55,7 @@ public class AcaoDocumentListener implements DocumentListener {
     public void changedUpdate(DocumentEvent e) { altera(e); }
 	
     /**
-     * Faz uso da função {@link webfotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}() da classe PainelWebFotos, para checar se ocorreu alguma alteração.
+     * Faz uso da função {@link net.sf.webphotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}() da classe PainelWebFotos, para checar se ocorreu alguma alteração.
      * Uma espécie de flag.
      * @param e Notifica mudanças no documento.
      */

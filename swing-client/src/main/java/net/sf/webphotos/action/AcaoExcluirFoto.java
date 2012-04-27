@@ -63,7 +63,7 @@ public class AcaoExcluirFoto extends AbstractAction {
      * Checa se existe apenas uma foto no albúm e mostra ao usuário que se a foto for excluída, o albúm também será. Pede confirmação e efetua a ação.
      * Faz um controle de exclusão de no máximo 20 fotos por vez.
      * Lista os albúns selecionados ao usuário e pede uma confirmação de exclusão.
-     * Caso o usuário confirme, exclui as fotos selecionadas com o método {@link webfotos.Album#excluirFotos(int[]) excluirFotos(albunsID)} da classe Album.
+     * Caso o usuário confirme, exclui as fotos selecionadas com o método {@link net.sf.webphotos.Album#excluirFotos(int[]) excluirFotos(albunsID)} da classe Album.
      * Ao ser iniciado o método que implementa a ação, checa se a foto não é recente, se já possui registro no banco. Então cria um array com os IDs das fotos. Cria um arquivo javascript. E por último atualiza a lista e área das fotos no programa.
      * @param e Evento de ação de exclusão de fotos.
      */

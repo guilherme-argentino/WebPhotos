@@ -17,7 +17,7 @@ package net.sf.webphotos.util.legacy;
 
 /**
  * Cria um comando de FTP.
- * Comando esse armazenado posteriormente no {@link webfotos.util.CacheFTP CacheFTP}.
+ * Comando esse armazenado posteriormente no {@link net.sf.webphotos.util.CacheFTP CacheFTP}.
  *
  * UPLOAD=1 DOWNLOAD=2 DELETE=3;
  */
@@ -64,8 +64,8 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
 
     /**
      * Faz um teste lógico para retornar uma variável lógica.
-     * É utilizado na classe {@link webfotos.util.CacheFTP CacheFTP} no método
-     * {@link webfotos.util.CacheFTP#add(Object) add(Object a)}
+     * É utilizado na classe {@link net.sf.webphotos.util.CacheFTP CacheFTP} no método
+     * {@link net.sf.webphotos.util.CacheFTP#add(Object) add(Object a)}
      * TODO: Avaliar se esse método é realmente necessário para o código.
      * @param outra Object com dados do comando para comparação
      * @return Retorna um valor lógico.

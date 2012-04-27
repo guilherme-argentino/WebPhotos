@@ -22,7 +22,7 @@ import javax.swing.*;
 
 /**
  * Cria um menu popup com os dados do albúm.
- * Monta a parte gráfica e puxa as ações da classe {@link webfotos.gui.AcaoPopMenu AcaoPopMenu}.
+ * Monta a parte gráfica e puxa as ações da classe {@link net.sf.webphotos.gui.AcaoPopMenu AcaoPopMenu}.
  * Possui utilizações nas classes PopupMenuTest em pacotes de teste e PainelPesquisa em pacotes de código-fonte.
  */
 public class PopupMenu extends JPopupMenu {

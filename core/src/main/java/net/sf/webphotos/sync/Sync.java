@@ -199,7 +199,7 @@ public interface Sync {
 
     /**
      * Procure sua utilização em 
-     * {@link webfotos.sync.FTP.SyncObject#loadSyncCache() loadSyncCache}().
+     * {@link net.sf.webphotos.sync.FTP.SyncObject#loadSyncCache() loadSyncCache}().
      */
     void loadSyncCache();
     /**

@@ -29,7 +29,7 @@ import java.util.EventObject;
 /**
  * Trabalha os eventos de sincronização através da classe
  * {@link java.util.EventObject EventObject}, utilizada nas funções connect e
- * disconnect de {@link webfotos.sync.FTP.SyncObject SyncObject}.
+ * disconnect de {@link net.sf.webphotos.sync.FTP.SyncObject SyncObject}.
  * @author guilherme
  */
 public class SyncEvent extends EventObject {

@@ -63,7 +63,7 @@ public final class Thumbnail {
 
     /**
      * Busca no arquivo de configuração, classe
-     * {@link webfotos.util.Config Config}, os tamnahos dos 4 thumbs
+     * {@link net.sf.webphotos.util.Config Config}, os tamnahos dos 4 thumbs
      * e seta esses valores nas variáveis desta classe.
      * Testa se o usuário setou valores de marca d'água e texto para o thumb4,
      * caso afirmativo, busca os valores necessários no arquivo de configuração.
@@ -114,7 +114,7 @@ public final class Thumbnail {
      * Cria thumbs para as imagens.
      * Testa se já existem valores setados para o thumb,
      * se não existir chama o método
-     * {@link webfotos.Thumbnail#inicializar() inicializar}
+     * {@link net.sf.webphotos.Thumbnail#inicializar() inicializar}
      * para setar seus valores.
      * Abre o arquivo de imagem passado como parâmetro
      * e checa se é uma foto válida.
@@ -384,7 +384,7 @@ public final class Thumbnail {
 
     /**
      * Faz um load no arquivo de configuração e chama o método
-     * {@link webfotos.Thumbnail#makeThumbs(String) makeThumbs} para fazer
+     * {@link net.sf.webphotos.Thumbnail#makeThumbs(String) makeThumbs} para fazer
      * thumbs de uma foto específica.
      * @param args args do método main.
      */
