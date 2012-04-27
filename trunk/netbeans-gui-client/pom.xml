@@ -82,7 +82,7 @@
         </plugins>
     </build>
     <modules>
-        <module>webphotos-project-type</module>
+        <module>project-type</module>
         <module>netbeans-plugin</module>
         <module>branding</module>
         <module>application</module>
