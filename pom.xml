@@ -308,24 +308,24 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
-                <module>webfotos-core</module>
-                <module>webfotos-persistence-backend-ifc</module>
-                <module>webfotos-persistence-backend</module>
-                <module>webfotos-ear-backend</module>
-                <module>webfotos-swing-client</module>
-                <module>webphotos-web-client</module>
+                <module>core</module>
+                <module>persistence-backend-ifc</module>
+                <module>persistence-backend</module>
+                <module>ear-backend</module>
+                <module>swing-client</module>
+                <module>web-client</module>
             </modules>
         </profile>
         <profile>
             <id>full-build</id>
             <modules>
-                <module>webfotos-core</module>
-                <module>webfotos-persistence-backend-ifc</module>
-                <module>webfotos-persistence-backend</module>
-                <module>webfotos-ear-backend</module>
-                <module>webfotos-swing-client</module>
-                <module>webphotos-web-client</module>
-                <module>webphotos-netbeans-gui-client</module>
+                <module>core</module>
+                <module>persistence-backend-ifc</module>
+                <module>persistence-backend</module>
+                <module>ear-backend</module>
+                <module>swing-client</module>
+                <module>web-client</module>
+                <module>netbeans-gui-client</module>
                 <module>deployables</module>
             </modules>
         </profile>
