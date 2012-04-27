@@ -192,7 +192,7 @@ public class Photo {
 
     /**
      * Retorna um vetor com os valores de crï¿½dito.
-     * Checa se o vetor jï¿½ possui valores, caso contrï¿½rio utiliza a função {@link webfotos.Photo#populaCreditos() populaCreditos()} completar os valores.
+     * Checa se o vetor jï¿½ possui valores, caso contrï¿½rio utiliza a função {@link net.sf.webphotos.Photo#populaCreditos() populaCreditos()} completar os valores.
      * @return Retorna uma lista com os crï¿½ditos.
      */
     public static String[] getCreditosArray() {

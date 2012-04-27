@@ -68,27 +68,27 @@ public class SyncAdapter implements SyncListener {
     
     /**
      * Implementa o método disconnected da interface
-     * {@link webfotos.sync.SyncListener SyncListener}.
+     * {@link net.sf.webphotos.sync.SyncListener SyncListener}.
      * Esse método será manipulado e trabalhado na classe
-     * {@link webfotos.gui.FtpClient FtpClient}.
+     * {@link net.sf.webphotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
     public void disconnected(SyncEvent event) { }
     
     /**
      * Implementa o método connected da interface
-     * {@link webfotos.sync.SyncListener SyncListener}.
+     * {@link net.sf.webphotos.sync.SyncListener SyncListener}.
      * Esse método será manipulado e trabalhado na classe
-     * {@link webfotos.gui.FtpClient FtpClient}.
+     * {@link net.sf.webphotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
     public void connected(SyncEvent event) { }
 
     /**
      * Implementa o método logonStarted da interface
-     * {@link webfotos.sync.SyncListener SyncListener}.
+     * {@link net.sf.webphotos.sync.SyncListener SyncListener}.
      * Esse método será manipulado e trabalhado na classe
-     * {@link webfotos.gui.FtpClient FtpClient}.
+     * {@link net.sf.webphotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
     public void logonStarted(SyncEvent event) { }

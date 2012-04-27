@@ -45,7 +45,7 @@ public class AcaoItemListener implements ItemListener {
     /**
      * Construtor da classe.
      * Inicialmente vazio.
-     * Utilizado pelo combo lstCategoriasAlbum em {@link webfotos.gui.PainelWebFotos PainelWebFotos}, muda somente o flag {@link webfotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}.
+     * Utilizado pelo combo lstCategoriasAlbum em {@link net.sf.webphotos.gui.PainelWebFotos PainelWebFotos}, muda somente o flag {@link net.sf.webphotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}.
      */
     public AcaoItemListener() { }
 

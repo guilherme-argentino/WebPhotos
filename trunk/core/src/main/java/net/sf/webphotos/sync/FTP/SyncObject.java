@@ -313,7 +313,7 @@ public class SyncObject extends FTPClient implements Sync {
      * e carrega as linhas de comandos na seguinte ordem:
      * DELETE, UPLOAD e DOWNLOAD.
      * Carrega esses comandos através do método
-     * {@link webfotos.sync.FTP.SyncObject#loadSyncCacheLine() loadSyncCacheLine}().
+     * {@link net.sf.webphotos.sync.FTP.SyncObject#loadSyncCacheLine() loadSyncCacheLine}().
      * Por último, após completo o load, limpa a lista do CacheFTP.
      */
     public void loadSyncCache() {
@@ -348,7 +348,7 @@ public class SyncObject extends FTPClient implements Sync {
      * Recebe uma linha com comando de FTP (DELETE, DOWNLOAD ou UPLOAD),
      * processa o tipo "acao albumID foto"
      * e a carrega em cima do ArrayList listaArquivos, que contém dados de
-     * {@link webfotos.util.Arquivo Arquivo}.
+     * {@link net.sf.webphotos.util.Arquivo Arquivo}.
      * @param linha Linha de comando FTP.
      */
     public void loadSyncCacheLine(String linha) {

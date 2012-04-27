@@ -30,7 +30,7 @@ import java.util.EventListener;
  * Interface ouvinte da sincronização.
  * Herda a classe EventListener.
  * Cria três métodos públicos que recebem eventos de sincronização, da classe
- * {@link webfotos.sync.SyncEvent SyncEvent}.
+ * {@link net.sf.webphotos.sync.SyncEvent SyncEvent}.
  * @author guilherme
  */
 public interface SyncListener extends EventListener {

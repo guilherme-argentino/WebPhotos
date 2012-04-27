@@ -253,7 +253,7 @@ public class FtpClient extends JFrame implements Runnable {
 
     /**
      * Executa o comando FTP.
-     * Utiliza o método {@link webfotos.sync.Sync#loadSyncCache() loadSyncCache}()
+     * Utiliza o método {@link net.sf.webphotos.sync.Sync#loadSyncCache() loadSyncCache}()
      * para fazer o load do arquivos com os comandos de FTP.
      * Checa se existem comandos a executar, caso positivo, tenta a conexão
      * com FTP e executa os comandos (UPLOAD, DELETE ou DOWNLOAD).

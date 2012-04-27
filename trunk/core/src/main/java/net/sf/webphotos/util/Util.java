@@ -41,8 +41,8 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("StaticNonFinalUsedInInitialization")
 public class Util {
 
-    private static final String WEBFOTOS_USER_CONFIG = "webfotos.xml";
-    public static final String WEBFOTOS_DEFAULT_CONFIG = "webphotos.dat";
+    private static final String WEBPHOTOS_USER_CONFIG = "webfotos.xml";
+    public static final String WEBPHOTOS_DEFAULT_CONFIG = "webphotos.dat";
     private static Util instancia = new Util();
 
     /**
@@ -87,7 +87,7 @@ public class Util {
             XMLConfiguration savedUserPrefs = new XMLConfiguration();
             savedUserPrefs.append(configuration);
             savedUserPrefs.setEncoding("ISO-8859-1");
-            savedUserPrefs.save(new FileOutputStream(userHome + File.separatorChar + WEBFOTOS_USER_CONFIG));
+            savedUserPrefs.save(new FileOutputStream(userHome + File.separatorChar + WEBPHOTOS_USER_CONFIG));
         } catch (Exception e) {
             log.warn("Can't save preferences");
             log.debug("Stack Trace : ", e);
@@ -113,7 +113,7 @@ public class Util {
     /**
      * Retorna o diretório raiz de albuns. Checa se a variável albunsRoot já
      * possui o valor, caso não, busca o arquivo nas propriedades através do
-     * método {@link webfotos.util.Util#getProperty(String) getProperty}(String
+     * método {@link net.sf.webphotos.util.Util#getProperty(String) getProperty}(String
      * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
      * esteja correto, retorna o diretório.
      *
@@ -138,7 +138,7 @@ public class Util {
     /**
      * Retorna o diretório raiz de albuns. Checa se a variável albunsRoot já
      * possui o valor, caso não, busca o arquivo nas propriedades através do
-     * método {@link webfotos.util.Util#getProperty(String) getProperty}(String
+     * método {@link net.sf.webphotos.util.Util#getProperty(String) getProperty}(String
      * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
      * esteja correto, retorna o diretório.
      *

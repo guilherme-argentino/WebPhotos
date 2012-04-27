@@ -91,9 +91,9 @@ public class BotaoIcone extends JButton {
     }
 
     /**
-     * Retorna o Objeto do tipo {@link webfotos.acao.AcaoToolbar} responsável pelas ações que todos os botões
+     * Retorna o Objeto do tipo {@link net.sf.webphotos.acao.AcaoToolbar} responsável pelas ações que todos os botões
      * irão acessar.
-     * @return Objeto {@link webfotos.acao.AcaoToolbar} atualmente em uso.
+     * @return Objeto {@link net.sf.webphotos.acao.AcaoToolbar} atualmente em uso.
      */
     public static Action getAcaoToolbar() {
         return acaoToolbar;

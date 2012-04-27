@@ -54,7 +54,7 @@ public class AcaoAdicionarFoto extends AbstractAction {
     /**
      * Construtor da classe.
      * Recebe 3 parâmetros. A tabela de fotos, um combobox e um título para a caixa de diálogo.
-     * Inicia um objeto de {@link webfotos.util.Config Config} para receber os dados do Folder.
+     * Inicia um objeto de {@link net.sf.webphotos.util.Config Config} para receber os dados do Folder.
      * Seta os valores do diretório inicial, tabela de fotos, creditos, largura da coluna e título.
      * @param tabela Tabela das fotos.
      * @param combo Lista.
@@ -73,7 +73,7 @@ public class AcaoAdicionarFoto extends AbstractAction {
      * Método responsável pela ação de inserção das fotos.
      * Inicia um objeto JFileChooser para a escolha do arquivo e faz a configuração.
      * Testa se o diretório inicial é válido e depois faz a implantação da foto.
-     * Atualiza a tabela, ajusta as colunas, aciona o flag de {@link webfotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}() e armazena o último diretório lido.
+     * Atualiza a tabela, ajusta as colunas, aciona o flag de {@link net.sf.webphotos.gui.PainelWebFotos#alteracaoDetectada() alteracaoDetectada}() e armazena o último diretório lido.
      * @param e Evento da ação de adição de foto.
      */
     @Override

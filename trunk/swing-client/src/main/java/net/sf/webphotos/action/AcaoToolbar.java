@@ -24,7 +24,7 @@ import net.sf.webphotos.gui.PainelWebFotos;
 
 /**
  * Identifica uma ação obtida ao clique de um dos botões da barra de ferramentas localizada no canto inferior direito do painel principal.
- * Na classe {@link webfotos.gui.BotaoIcone BotaoIcone}, onde será realizada uma instância de AcaoToolbar, será transmitido o evento para posteriormente implementar a ação do botão nesta classe.
+ * Na classe {@link net.sf.webphotos.gui.BotaoIcone BotaoIcone}, onde será realizada uma instância de AcaoToolbar, será transmitido o evento para posteriormente implementar a ação do botão nesta classe.
  */
 public class AcaoToolbar extends AbstractAction {
 
@@ -42,7 +42,7 @@ public class AcaoToolbar extends AbstractAction {
      * Recupera o nome setado em ActionCommand numa String.
      * Executa testes para checar qual o comando desejado.
      * Caso clique no primeiro botão, inicia uma thread de FtpClient.
-     * Se for um dos botões do meio, executa o método {@link webfotos.gui.PainelWebFotos#marcaAlbunsFTP(int) marcaAlbunsFTP(int comando)} e marca para download ou upload.
+     * Se for um dos botões do meio, executa o método {@link net.sf.webphotos.gui.PainelWebFotos#marcaAlbunsFTP(int) marcaAlbunsFTP(int comando)} e marca para download ou upload.
      * E caso seja o último botão, adiciona fotos.
      * @param e Evento da ação
      */
