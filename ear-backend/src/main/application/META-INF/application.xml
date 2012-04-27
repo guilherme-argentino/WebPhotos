@@ -18,7 +18,7 @@
 -->
 <!DOCTYPE application PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN" "http://java.sun.com/dtd/application_1_3.dtd">
 <application id="Application_ID">
-	<display-name>webfotos-ear-backend</display-name>
+	<display-name>webphotos-ear-backend</display-name>
 	<module id="EjbModule_1229642324781">
 		<ejb>webphotos-persistence-backend-1.0-SNAPSHOT.jar</ejb>
 	</module>
