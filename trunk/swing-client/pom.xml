@@ -31,8 +31,8 @@
                                 </goals>
                                 <configuration>
                                     <tasks>
-                                        <delete file="${project.build.outputDirectory}/webfotos.dat" />
-                                        <copy file="src/main/resources/webfotos.test.dat" tofile="${project.build.outputDirectory}/webfotos.dat" />
+                                        <delete file="${project.build.outputDirectory}/webphotos.dat" />
+                                        <copy file="src/main/resources/webfotos.test.dat" tofile="${project.build.outputDirectory}/webphotos.dat" />
                                     </tasks>
                                 </configuration>
                             </execution>
@@ -75,8 +75,8 @@
                                 </goals>
                                 <configuration>
                                     <tasks>
-                                        <delete file="${project.build.outputDirectory}/webfotos.dat" />
-                                        <copy file="src/main/resources/webfotos.prod.dat" tofile="${project.build.outputDirectory}/webfotos.dat" />
+                                        <delete file="${project.build.outputDirectory}/webphotos.dat" />
+                                        <copy file="src/main/resources/webfotos.prod.dat" tofile="${project.build.outputDirectory}/webphotos.dat" />
                                     </tasks>
                                 </configuration>
                             </execution>

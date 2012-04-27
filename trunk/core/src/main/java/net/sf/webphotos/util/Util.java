@@ -42,7 +42,7 @@ import org.apache.log4j.Logger;
 public class Util {
 
     private static final String WEBFOTOS_USER_CONFIG = "webfotos.xml";
-    public static final String WEBFOTOS_DEFAULT_CONFIG = "webfotos.dat";
+    public static final String WEBFOTOS_DEFAULT_CONFIG = "webphotos.dat";
     private static Util instancia = new Util();
 
     /**

@@ -19,7 +19,7 @@
 <configuration>
     <system/>
     <jndi prefix="java:comp/env"/>
-    <properties fileName="webfotos.dat" throwExceptionOnMissing="true"/>
+    <properties fileName="webphotos.dat" throwExceptionOnMissing="true"/>
     <xml fileName="${sys:user.home}/webfotos.xml" optional="true">
         <reloadingStrategy refreshDelay="5000"
             config-class="org.apache.commons.configuration.reloading.FileChangedReloadingStrategy"/>
