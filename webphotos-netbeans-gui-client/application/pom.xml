@@ -26,13 +26,13 @@
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webphotos-project-type</artifactId>
+            <artifactId>webphotos-netbeans-project-type</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>nbm</type>
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>netbeans-plugin</artifactId>
+            <artifactId>webphotos-netbeans-plugin</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>nbm</type>
         </dependency>

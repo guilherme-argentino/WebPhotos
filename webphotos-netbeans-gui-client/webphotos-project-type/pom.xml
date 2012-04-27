@@ -7,7 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>net.sf.webphotos</groupId>
-    <artifactId>webphotos-project-type</artifactId>
+    <artifactId>webphotos-netbeans-project-type</artifactId>
     <packaging>nbm</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>[WP] NPA - WebPhotos Project Type</name>

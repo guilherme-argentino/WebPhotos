@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.webphotos</groupId>
-    <artifactId>webfotos-core</artifactId>
+    <artifactId>webphotos-core</artifactId>
     <name>[WP] Core API</name>
     <dependencies>
         <dependency>
@@ -55,7 +55,7 @@
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webfotos-persistence-backend</artifactId>
+            <artifactId>webphotos-persistence-backend</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>ejb</type>
         </dependency>

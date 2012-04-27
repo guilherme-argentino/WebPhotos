@@ -31,7 +31,7 @@
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webfotos-swing-client</artifactId>
+            <artifactId>webphotos-swing-client</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
@@ -74,7 +74,7 @@
                         <configuration>
                             <stripVersion>true</stripVersion>
                             <excludeGroupIds>org.codehaus.izpack</excludeGroupIds> <!-- dont want standalone compiler -->
-                            <excludeArtifactIds>webfotos-swing-client</excludeArtifactIds>
+                            <excludeArtifactIds>webphotos-swing-client</excludeArtifactIds>
                             <outputDirectory>${staging.dir}/lib</outputDirectory>
                         </configuration>
                     </execution>
@@ -86,7 +86,7 @@
                         </goals>
                         <configuration>
                             <stripVersion>true</stripVersion>
-                            <includeArtifactIds>webfotos-swing-client</includeArtifactIds>
+                            <includeArtifactIds>webphotos-swing-client</includeArtifactIds>
                             <outputDirectory>${staging.dir}</outputDirectory>
                         </configuration>
                     </execution>

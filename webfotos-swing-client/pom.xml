@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.webphotos</groupId>
-    <artifactId>webfotos-swing-client</artifactId>
+    <artifactId>webphotos-swing-client</artifactId>
     <packaging>jar</packaging>
     <name>[WP] Swing Client</name>
-    <description>WebFotos - Swing Client</description>
+    <description>WebPhotos - Swing Client</description>
     <url>http://maven.apache.org</url>
     <!-- Shared version number properties -->
     <properties>
@@ -352,14 +352,14 @@
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webfotos-core</artifactId>
+            <artifactId>webphotos-core</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
             <type>jar</type>
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webfotos-persistence-backend</artifactId>
+            <artifactId>webphotos-persistence-backend</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
             <type>jar</type>
