@@ -15,7 +15,6 @@
  */
 package net.sf.webphotos;
 
-import net.sf.webphotos.WebPhotos;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -35,6 +34,7 @@ public class WebPhotosTest {
     
     static {
         UISpec4J.init();
+        UISpec4J.setWindowInterceptionTimeLimit(30000);
     }
 
     public WebPhotosTest() {
