@@ -7,14 +7,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.webphotos</groupId>
-    <artifactId>webfotos-ear-backend</artifactId>
+    <artifactId>webphotos-ear-backend</artifactId>
     <name>[WP] Backend EAR</name>
     <packaging>ear</packaging>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webfotos-persistence-backend</artifactId>
+            <artifactId>webphotos-persistence-backend</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
             <type>ejb</type>
@@ -39,7 +39,7 @@
                     <modules>
                         <ejbModule>
                             <groupId>net.sf.webphotos</groupId>
-                            <artifactId>webfotos-persistence-backend</artifactId>
+                            <artifactId>webphotos-persistence-backend</artifactId>
                         </ejbModule>
                     </modules>
                 </configuration>
@@ -92,4 +92,5 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <description>Project WebPhotos: EAR Pack</description>
 </project>

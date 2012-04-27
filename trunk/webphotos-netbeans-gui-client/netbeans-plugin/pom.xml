@@ -6,7 +6,7 @@
         <artifactId>webphotos-netbeans-gui-client</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>netbeans-plugin</artifactId>
+    <artifactId>webphotos-netbeans-plugin</artifactId>
     <modelVersion>4.0.0</modelVersion>
     <packaging>nbm</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
-            <artifactId>webfotos-swing-client</artifactId>
+            <artifactId>webphotos-swing-client</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
             <type>jar</type>
