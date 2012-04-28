@@ -46,13 +46,16 @@ public class CreditsVO implements Serializable {
     private String nome;
 
     public CreditsVO() {
+        nome = "";
     }
 
     public CreditsVO(Integer creditoid) {
+        this();
         this.creditoid = creditoid;
     }
 
     public CreditsVO(Integer creditoid, String nome) {
+        this();
         this.creditoid = creditoid;
         this.nome = nome;
     }

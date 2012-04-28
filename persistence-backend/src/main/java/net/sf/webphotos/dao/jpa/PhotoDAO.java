@@ -15,14 +15,16 @@
  */
 package net.sf.webphotos.dao.jpa;
 
+import net.sf.webphotos.model.PhotoVO;
+
 /**
  *
  * @author Guilherme
  */
-public class PhotoDAO extends WebPhotosDAO<PhotoDAO, Integer> {
+public class PhotoDAO extends WebPhotosDAO<PhotoVO, Integer> {
 
     public PhotoDAO() {
-        super(PhotoDAO.class);
+        super(PhotoVO.class);
     }
     
 }
