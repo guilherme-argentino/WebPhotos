@@ -52,24 +52,35 @@ public class PhotoVO implements Serializable {
     private AlbumVO album;
     @Transient
     private String caminhoArquivo;
+    
+    @Transient
+    private Integer largura, altura;
 
     /**
      * TODO: remove
      */
     public PhotoVO() {
+        this.creditos = new CreditsVO();
+        this.album = new AlbumVO();
+        this.legenda = "";
     }
 
     public PhotoVO(String caminhoArquivo) {
+        this();
         this.caminhoArquivo = caminhoArquivo;
     }
 
     public PhotoVO(Integer fotoid) {
+        this();
         this.fotoid = fotoid;
     }
 
-    public PhotoVO(Integer fotoid, int albumid, String legenda, int creditoid) {
+    public PhotoVO(Integer fotoid, int albumid, String legenda, int creditoid, Integer largura, Integer altura) {
+        this();
         this.fotoid = fotoid;
         this.legenda = legenda;
+        this.largura = largura;
+        this.altura = altura;
     }
 
     public Integer getFotoid() {
@@ -144,11 +155,11 @@ public class PhotoVO implements Serializable {
         return caminhoArquivo;
     }
 
-    public String getAltura() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Integer getAltura() {
+        return altura;
     }
 
-    public String getLargura() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Integer getLargura() {
+        return largura;
     }
 }

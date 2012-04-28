@@ -16,6 +16,7 @@
 package net.sf.webphotos.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -163,9 +164,35 @@ public class AlbumVO implements Serializable {
     }
 
     /**
-     * @param photos the photos to set
+     * @param photos the photos to add
      */
-    public void setPhotos(HashSet<PhotoVO> photos) {
-        this.photos = photos;
+    public void addPhotos(HashSet<PhotoVO> photos) {
+        this.photos.addAll(photos);
     }
+
+    /**
+     * @param photos the photo to add
+     */
+    public void addPhoto(PhotoVO photos) {
+        this.photos.add(photos);
+    }
+    
+    /**
+     * 
+     * @param id
+     * @return Photo
+     */
+    public PhotoVO getPhotoBy(Integer id) {
+        return new ArrayList<PhotoVO>(this.photos).get(id);
+    }
+    
+    /**
+     * remove one photo
+     * @param id
+     * @return Photo
+     */
+    public boolean removePhotoBy(Integer id) {
+        return this.photos.remove(getPhotoBy(id));
+    }
+    
 }

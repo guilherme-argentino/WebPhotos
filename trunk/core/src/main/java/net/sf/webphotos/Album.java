@@ -15,10 +15,6 @@
  */
 package net.sf.webphotos;
 
-import net.sf.webphotos.dao.jpa.AlbumDAO;
-import net.sf.webphotos.model.AlbumVO;
-import net.sf.webphotos.model.PhotoVO;
-import com.sun.rowset.JdbcRowSetImpl;
 import java.io.File;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,10 +24,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
+import net.sf.webphotos.dao.jpa.AlbumDAO;
+import net.sf.webphotos.model.AlbumVO;
+import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.util.ApplicationContextResource;
-import org.apache.log4j.Logger;
-import net.sf.webphotos.util.legacy.CacheFTP;
 import net.sf.webphotos.util.Util;
+import net.sf.webphotos.util.legacy.CacheFTP;
+import org.apache.log4j.Logger;
 
 /**
  * A classe Album mantém uma coleçao de fotos em um ArrayList de Photo, que pode
@@ -248,7 +247,7 @@ public class Album {
             PhotoVO f = iter.next();
             if (f.getCaminhoArquivo().length() > 0) {
                 // imagem acabou de ser adicionada... sem ID
-                //resultado[ct][0] = (Object) f.getCaminhoArquivo();
+                resultado[ct][0] = (Object) f.getCaminhoArquivo();
                 resultado[ct][1] = (Object) f.getLegenda();
                 resultado[ct][2] = (Object) f.getCreditos().getNome();
             } else {
@@ -375,7 +374,7 @@ public class Album {
      * @param aID ID do albúm.
      */
     public void loadAlbum(int aID) {
-        String sql;
+        
         fotos.clear();
 
         AlbumVO album = ((AlbumDAO) ApplicationContextResource.getBean("albunsDAO")).findBy(aID);
@@ -427,7 +426,6 @@ public class Album {
     public void excluirAlbuns(int[] albunsID) {
         Statement st = null;
         boolean sucesso = true;
-        String sql;
 
         // passo 1 - adiciona o álbum no arquivoFTP
         for (int i = 0; i < albunsID.length; i++) {
@@ -497,7 +495,7 @@ public class Album {
      * @param nomes Lista de nomes de fotos.
      */
     public void excluirFotos(String[] nomes) {
-        String nome = null;
+        String nome;
         PhotoVO foto;
 
         for (int i = 0; i < nomes.length; i++) {
@@ -524,6 +522,7 @@ public class Album {
         Statement st = null;
         boolean sucesso = true;
         int aID = getAlbum().albumID;
+        AlbumVO albumVO = albunsDAO.findBy(aID);
         String sql;
 
         // passo 1 - adicionar o arquivo em ArquivoFTP
@@ -534,13 +533,9 @@ public class Album {
         // passo 2 - remover do banco de dados
         try {
             for (int i = 0; i < fotosID.length; i++) {
-                sql = "select fotoID from fotos where fotoID=" + fotosID[i];
-//                rowSet.setCommand(sql);
-//                rowSet.execute();
-//                rowSet.first();
-//                fotosID[i] = rowSet.getInt("fotoID");
-//                rowSet.deleteRow();
+                albumVO.getPhotos().remove(albumVO.getPhotoBy(fotosID[i]));
             }
+            albunsDAO.getEntityManager().merge(albumVO);
         } catch (Exception e) {
             log.error("Erro na exclusão no banco de dados ", e);
             sucesso = false;
@@ -570,7 +565,7 @@ public class Album {
                     iter.remove();
                 }
             }
-            iter = null;
+            
             for (int j = 0; j < prefixos.length; j++) {
                 nomeArquivo = BancoImagem.getLocalPath(aID) + File.separator + prefixos[j] + fotosID[i] + ".jpg";
                 File arqFoto = new File(nomeArquivo);
@@ -586,7 +581,6 @@ public class Album {
                     log.warn(nomeArquivo + " não é arquivo ou não existe");
                     sucesso = false;
                 }
-                arqFoto = null;
             }
         }
 
