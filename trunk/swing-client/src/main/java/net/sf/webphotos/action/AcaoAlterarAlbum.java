@@ -16,30 +16,27 @@
 package net.sf.webphotos.action;
 
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import javax.sql.RowSet;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Photo;
-import net.sf.webphotos.tools.Thumbnail;
+import net.sf.webphotos.dao.jpa.AlbumDAO;
 import net.sf.webphotos.gui.PainelWebFotos;
-import net.sf.webphotos.util.legacy.CacheFTP;
-import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.gui.util.TableModelAlbum;
+import net.sf.webphotos.gui.util.TableModelFoto;
+import net.sf.webphotos.model.AlbumVO;
+import net.sf.webphotos.tools.Thumbnail;
+import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
-import javax.sql.RowSet;
+import net.sf.webphotos.util.legacy.CacheFTP;
 
 /**
  * Altera ou cria albúns. Possui um construtor que recebe botões e tabelas de
@@ -55,6 +52,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
     JButton btAlterar, btNovo;
     JTable tbAlbuns, tbFotos;
     private RowSet rowSet = BancoImagem.getRSet();
+    private AlbumDAO albumDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
     private boolean sucesso;
 
     /**
@@ -163,8 +161,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
                     FileChannel canalDestino = new FileOutputStream(
                             caminhoAlbum + File.separator + f.getFotoID() + ".jpg").getChannel();
                     canalDestino.transferFrom(canalOrigem, 0, canalOrigem.size());
-                    canalOrigem = null;
-                    canalDestino = null;
                 } catch (Exception e) {
                     Util.log("[AcaoAlterarAlbum.executaAlteracoes.8]/ERRO: " + e);
                     sucesso = false;
@@ -364,7 +360,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
                 rowSet.setCommand(sql);
                 rowSet.execute();
                 rowSet.first();
-                fotoID = rowSet.getInt(1);
 
                 rowSet.updateInt("albumID", albumID);
                 rowSet.updateInt("creditoID", creditoID);
@@ -408,7 +403,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         // PASSO 1 - Registrar o álbum no banco de dados
         // //////////////////////////////////////////////////////////////////////
         // converte a data do álbum para ANSI
-        String dtAnsi = "0000-00-00";
+        String dtAnsi;
         try {
             SimpleDateFormat dataBR = new SimpleDateFormat("dd/MM/yy");
             SimpleDateFormat dataAnsi = new SimpleDateFormat("yyyy-MM-dd");
@@ -425,7 +420,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         if (albumID == 0) {
             // álbum ainda não registrado obtém um ID
             try {
-
+                
                 sql = "SELECT MAX(albumID) FROM albuns";
                 rowSet.setCommand(sql);
                 rowSet.execute();
@@ -453,6 +448,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
         // atualiza o banco de dados
         try {
             sql = "SELECT usuarioID,categoriaID,NmAlbum,Descricao,DtInsercao,albumID FROM albuns WHERE albumID=" + albumID;
+
+            AlbumVO albumVO = new AlbumVO(albumID, album.getNmAlbum(), new java.sql.Date((new Date()).getTime()), album.getCategoriaID());
 
             rowSet.setCommand(sql);
             rowSet.execute();

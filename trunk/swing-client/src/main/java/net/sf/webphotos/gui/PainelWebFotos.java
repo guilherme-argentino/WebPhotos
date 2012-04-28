@@ -20,27 +20,31 @@
  */
 package net.sf.webphotos.gui;
 
-import net.sf.webphotos.util.legacy.CacheFTP;
-import net.sf.webphotos.util.Util;
-import net.sf.webphotos.util.ApplicationContextResource;
-import net.sf.webphotos.BancoImagem;
-import net.sf.webphotos.Photo;
-import net.sf.webphotos.Album;
 import java.awt.event.KeyEvent;
-import net.sf.webphotos.gui.util.TableSorter;
-import net.sf.webphotos.gui.util.TableModelFoto;
-import net.sf.webphotos.gui.util.TableModelAlbum;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
-import javax.swing.SwingWorker;
-import javax.swing.event.TableModelEvent;
-import net.sf.webphotos.tools.*;
-import net.sf.webphotos.action.*;
-
-import java.io.*;
 import javax.swing.Action;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
+import javax.swing.SwingWorker;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.TableModelEvent;
+import net.sf.webphotos.Album;
+import net.sf.webphotos.BancoImagem;
+import net.sf.webphotos.Photo;
+import net.sf.webphotos.action.AcaoAdicionarFoto;
+import net.sf.webphotos.action.AcaoAlterarAlbum;
+import net.sf.webphotos.action.AcaoExcluirFoto;
+import net.sf.webphotos.action.AcaoItemListener;
+import net.sf.webphotos.gui.util.TableModelAlbum;
+import net.sf.webphotos.gui.util.TableModelFoto;
+import net.sf.webphotos.gui.util.TableSorter;
+import net.sf.webphotos.tools.Thumbnail;
+import net.sf.webphotos.util.ApplicationContextResource;
+import net.sf.webphotos.util.Util;
+import net.sf.webphotos.util.legacy.CacheFTP;
 import org.apache.log4j.Logger;
 
 /**
@@ -60,8 +64,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     public PainelWebFotos() {
         /* Extras - Albuns */
         TableModelAlbum.getModel().setUltimoSQL(Util.getConfig().getString("sql1"));
-        TableModelAlbum.getModel().setRowSet(BancoImagem.getRSet());
-
+        
         /* Extras - Máscara da Data */
         try {
             mascaraData = new javax.swing.text.MaskFormatter("##/##/####");
@@ -1068,8 +1071,8 @@ public class PainelWebFotos extends javax.swing.JPanel {
     private void carregaFoto() {
         int indiceCredito;
         Object indice = tbFotos.getModel().getValueAt(tbFotos.getSelectedRow(), 0);
-        String caminho = null;
-        Photo f = null;
+        String caminho;
+        Photo f;
         int fotoID;
         // pode ser uma foto que acabou de ser adicionada
         try {
@@ -1145,7 +1148,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
      */
     public static void apresentaNumReg() {
         int numReg = TableModelAlbum.getModel().getRowCount();
-        String msg = "";
+        String msg;
         if (numReg == 0) {
             msg = "Nenhum ábum encontrado.  Para ver outros álbuns, deixe a caixa de texto \"palavra(s)\" vazia e clique em Pesquisar.";
         } else if (numReg == 1) {

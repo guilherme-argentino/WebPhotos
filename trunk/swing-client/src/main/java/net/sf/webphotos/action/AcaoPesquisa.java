@@ -16,18 +16,15 @@
 package net.sf.webphotos.action;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
-import org.apache.commons.configuration.Configuration;
-
 import net.sf.webphotos.Album;
 import net.sf.webphotos.gui.PainelWebFotos;
 import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.util.Util;
+import org.apache.commons.configuration.Configuration;
 
 /**
  * Pesquisa elementos no programa.
