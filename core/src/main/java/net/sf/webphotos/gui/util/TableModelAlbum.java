@@ -16,18 +16,12 @@
 package net.sf.webphotos.gui.util;
 
 // Modelo de tabela para bases de dados com suporte a cursores rolantes (MYSQL)
-import net.sf.webphotos.dao.jpa.AlbumDAO;
-import com.sun.rowset.JdbcRowSetImpl;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.List;
-import javax.sql.RowSet;
 import javax.sql.RowSetEvent;
 import javax.sql.RowSetListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-import net.sf.webphotos.BancoImagem;
+import net.sf.webphotos.dao.jpa.AlbumDAO;
 import net.sf.webphotos.util.ApplicationContextResource;
 import org.apache.log4j.Logger;
 
@@ -39,8 +33,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     private static final long serialVersionUID = 8393087620197315052L;
     private static final TableModelAlbum instancia = new TableModelAlbum();
     private String ultimoSQL;
-    @Deprecated
-    private RowSet rowSet = null;
+    
     private List<Object[]> tableData = null;
     private static Logger log = Logger.getLogger(TableModelAlbum.class);
     private static AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
@@ -237,23 +230,5 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      */
     @Override
     public void cursorMoved(RowSetEvent event) {
-    }
-
-    /**
-     * Retorna o objeto rowSet instanciado na classe.
-     *
-     * @return Retorna um objeto de RowSet.
-     */
-    public RowSet getRowSet() {
-        return rowSet;
-    }
-
-    /**
-     * Seta novos valores para o objeto rowSet instanciado na classe.
-     *
-     * @param rSet Objeto de RowSet.
-     */
-    public void setRowSet(RowSet rSet) {
-        //TODO: Remove
     }
 }
