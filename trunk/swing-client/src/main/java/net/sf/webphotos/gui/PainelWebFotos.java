@@ -106,7 +106,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         menuSeparadorAlbum2 = new javax.swing.JSeparator();
         menuItemAlbumRedoThumbs = new javax.swing.JMenuItem();
         menuItemAlbumDelete = new javax.swing.JMenuItem();
-        painelPesquisa = new net.sf.webphotos.gui.PainelPesquisa();
+        painelPesquisa = new net.sf.webphotos.gui.component.PainelPesquisa();
         painelAlbuns = new javax.swing.JPanel();
         scrAlbuns = new javax.swing.JScrollPane();
         tbAlbuns = new javax.swing.JTable();
@@ -134,10 +134,10 @@ public class PainelWebFotos extends javax.swing.JPanel {
         scrLog = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
         painelToolBar = new javax.swing.JPanel();
-        btFTP = new net.sf.webphotos.gui.BotaoIcone();
-        btUpload = new net.sf.webphotos.gui.BotaoIcone();
-        btDownload = new net.sf.webphotos.gui.BotaoIcone();
-        btAdicionarFotos = new net.sf.webphotos.gui.BotaoIcone();
+        btFTP = new net.sf.webphotos.gui.component.BotaoIcone();
+        btUpload = new net.sf.webphotos.gui.component.BotaoIcone();
+        btDownload = new net.sf.webphotos.gui.component.BotaoIcone();
+        btAdicionarFotos = new net.sf.webphotos.gui.component.BotaoIcone();
         btAlterar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
 
@@ -1280,12 +1280,12 @@ public class PainelWebFotos extends javax.swing.JPanel {
         onoffFoto(false);
     }
     // Declaração de variáveis - não modifique//GEN-BEGIN:variables
-    private static net.sf.webphotos.gui.BotaoIcone btAdicionarFotos;
+    private static net.sf.webphotos.gui.component.BotaoIcone btAdicionarFotos;
     private static javax.swing.JButton btAlterar;
-    private static net.sf.webphotos.gui.BotaoIcone btDownload;
-    private static net.sf.webphotos.gui.BotaoIcone btFTP;
+    private static net.sf.webphotos.gui.component.BotaoIcone btDownload;
+    private static net.sf.webphotos.gui.component.BotaoIcone btFTP;
     private static javax.swing.JButton btNovo;
-    private static net.sf.webphotos.gui.BotaoIcone btUpload;
+    private static net.sf.webphotos.gui.component.BotaoIcone btUpload;
     private static javax.swing.JLabel lblAlbum;
     private static javax.swing.JLabel lblCategoria;
     private static javax.swing.JLabel lblData;
@@ -1316,7 +1316,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     private static javax.swing.JPanel painelFormFoto;
     private static net.sf.webphotos.gui.PainelFoto painelFoto;
     private static javax.swing.JPanel painelInfoAlbum;
-    private static net.sf.webphotos.gui.PainelPesquisa painelPesquisa;
+    private static net.sf.webphotos.gui.component.PainelPesquisa painelPesquisa;
     private static javax.swing.JPanel painelToolBar;
     private static javax.swing.JScrollPane scrAlbuns;
     private static javax.swing.JScrollPane scrDescricao;
