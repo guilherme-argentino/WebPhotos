@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.webphotos.gui;
+package net.sf.webphotos.gui.component;
 
 import javax.swing.*;
 import java.awt.Container;
@@ -52,7 +52,7 @@ public class BotaoIcone extends JButton {
      */
     public BotaoIcone() {
 
-        this.setActionCommand(getPrefixoIcon());
+        this.setActionCommand(prefixoIcon);
         this.setRolloverEnabled(true);
         this.addActionListener(getAcaoToolbar());
 
@@ -61,30 +61,6 @@ public class BotaoIcone extends JButton {
             this.setBorderPainted(false);
             this.setFocusPainted(false);
         }
-
-        this.setBounds(getX(), getY(), TAMANHOX, TAMANHOY);
-
-    }
-
-    /**
-     * Construtor do Botão-Ícone que recebe todos os parâmetros de trabalho.
-     * @param _cp ContentPanel da janela que o ícone está inserido.
-     * @param _tooltip Texto que é apresentado quando o mouse passa sobre o botão.
-     * @param _prefixoIcon Prefixo do nome dos 3 Ícones que serão usados nas bordas personalizadas.
-     * @see BotaoIcone#setPrefixoIcon(java.lang.String)
-     */
-    public BotaoIcone(Container _cp, String _tooltip, String _prefixoIcon) {
-
-        this.setPrefixoIcon(_prefixoIcon);
-        this.setRolloverEnabled(true);
-        if(botaoPersonalizado) {
-            this.setContentAreaFilled(false);
-            this.setBorderPainted(false);
-            this.setFocusPainted(false);
-        }
-        this.setToolTipText(_tooltip);
-        this.addActionListener(getAcaoToolbar());
-        _cp.add(this);
 
         this.setBounds(getX(), getY(), TAMANHOX, TAMANHOY);
 
@@ -118,10 +94,10 @@ public class BotaoIcone extends JButton {
      * * icone1over.gif - Apresentado quando o mouse passa sobre o botão.
      * * icone1press.gif - Apresentado quando o mouse é pressionado.
      * </PRE>
-     * @param _prefixoIcon A string que será usada.
+     * @param prefixoIcon A string que será usada.
      */
-    public void setPrefixoIcon(String _prefixoIcon) {
-        this.prefixoIcon = _prefixoIcon;
+    public void setPrefixoIcon(String prefixoIcon) {
+        this.prefixoIcon = prefixoIcon;
         this.setIcon(new ImageIcon(getClass().getResource("/icons/" + getPrefixoIcon() + ".gif")));
         this.setActionCommand(getPrefixoIcon());
         if(botaoPersonalizado) {

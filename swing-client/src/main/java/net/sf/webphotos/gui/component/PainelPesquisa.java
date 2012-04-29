@@ -1,31 +1,29 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-package net.sf.webphotos.gui;
+package net.sf.webphotos.gui.component;
 
 /**
  * PainelPesquisa.java
  *
  * Created on 13 de Janeiro de 2006, 12:33
  */
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import javax.swing.Action;
 import javax.swing.JPanel;
-import net.sf.webphotos.action.AcaoPesquisa;
-import net.sf.webphotos.action.AcaoPopup;
-import net.sf.webphotos.util.ApplicationContextResource;
 
 /**
  * Desenvolve um painel para pesquisas. Através do construtor, trabalha os
@@ -34,7 +32,8 @@ import net.sf.webphotos.util.ApplicationContextResource;
  * @author guilherme
  */
 public class PainelPesquisa extends JPanel implements Serializable {
-    public final AcaoPopup popupAction;
+    
+    private Action acaoPesquisa;
 
     /**
      * Construtor da classe. Chama o método initComponents(), responsável por
@@ -44,18 +43,15 @@ public class PainelPesquisa extends JPanel implements Serializable {
         initComponents();
 
         // ACAO PESQUISA
-        // TODO: Reformular essa Ação
-        Action acaoPesquisa = new AcaoPesquisa(lstCategoriasPesquisa, txtPesquisa, PainelWebFotos.getTbAlbuns());
-        btPesquisar.addActionListener(acaoPesquisa);
-        txtPesquisa.registerKeyboardAction(acaoPesquisa,
-                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
-                javax.swing.JComponent.WHEN_FOCUSED);
-        
+        // TODO: Reformular esse trecho (ver versão anterior)
+        //acaoPesquisa = new AcaoPesquisa(lstCategoriasPesquisa, txtPesquisa, tbAlbuns);
+        //btPesquisar.addActionListener(acaoPesquisa);
+//        txtPesquisa.registerKeyboardAction(acaoPesquisa,
+//                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
+//                javax.swing.JComponent.WHEN_FOCUSED);
+
         // XXX: Incompatível como componente
-        popupAction = (AcaoPopup) ApplicationContextResource.getBean("acaoPopup");
-
-        btFiltro.addMouseListener(popupAction);
-
+        //popupAction = (AcaoPopup) ApplicationContextResource.getBean("acaoPopup");;;
     }
 
     /**
@@ -142,5 +138,33 @@ public class PainelPesquisa extends JPanel implements Serializable {
     public void setCategoriasPesquisaComboBoxModel(javax.swing.ComboBoxModel lstCategoriasPesquisaModel) {
         this.categoriasPesquisaComboBoxModel = lstCategoriasPesquisaModel;
         lstCategoriasPesquisa.setModel(this.categoriasPesquisaComboBoxModel);
+    }
+
+    /**
+     * @param popupAction the popupAction to add
+     */
+    public void addPopupMouseListener(MouseListener popupAction) {
+        btFiltro.addMouseListener(popupAction);
+    }
+    
+    /**
+     * @param popupAction the popupAction to remove
+     */
+    public void removePopupMouseListener(MouseListener popupAction) {
+        btFiltro.removeMouseListener(popupAction);
+    }
+
+    /**
+     * @return the acaoPesquisa
+     */
+    public Action getAcaoPesquisa() {
+        return acaoPesquisa;
+    }
+
+    /**
+     * @param acaoPesquisa the acaoPesquisa to set
+     */
+    public void setAcaoPesquisa(Action acaoPesquisa) {
+        this.acaoPesquisa = acaoPesquisa;
     }
 }
