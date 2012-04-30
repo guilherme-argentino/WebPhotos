@@ -22,8 +22,8 @@ package net.sf.webphotos.gui.component;
  */
 import java.awt.event.MouseListener;
 import java.io.Serializable;
-import javax.swing.Action;
 import javax.swing.JPanel;
+import net.sf.webphotos.action.AcaoPopup;
 
 /**
  * Desenvolve um painel para pesquisas. Através do construtor, trabalha os
@@ -33,7 +33,7 @@ import javax.swing.JPanel;
  */
 public class PainelPesquisa extends JPanel implements Serializable {
     
-    private Action acaoPesquisa;
+    private AcaoPopup acaoPesquisa;
 
     /**
      * Construtor da classe. Chama o método initComponents(), responsável por
@@ -157,14 +157,14 @@ public class PainelPesquisa extends JPanel implements Serializable {
     /**
      * @return the acaoPesquisa
      */
-    public Action getAcaoPesquisa() {
+    public AcaoPopup getAcaoPesquisa() {
         return acaoPesquisa;
     }
 
     /**
      * @param acaoPesquisa the acaoPesquisa to set
      */
-    public void setAcaoPesquisa(Action acaoPesquisa) {
+    public void setAcaoPesquisa(AcaoPopup acaoPesquisa) {
         this.acaoPesquisa = acaoPesquisa;
     }
 }
