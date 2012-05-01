@@ -32,7 +32,7 @@ import net.sf.webphotos.action.AcaoToolbar;
 public class BotaoIcone extends JButton {
 
     private static final Action acaoToolbar = new AcaoToolbar();
-    private String iconPrefix = "BotaoIcone";
+    private String iconPrefix = "webfotos";
     /**
      * Constante que define a largura do Botão-Ícone
      */
@@ -56,6 +56,8 @@ public class BotaoIcone extends JButton {
         this.setActionCommand(iconPrefix);
         this.setRolloverEnabled(true);
         this.addActionListener(acaoToolbar);
+        
+        this.setText("");
 
         if (botaoPersonalizado) {
             this.setContentAreaFilled(false);
@@ -64,6 +66,8 @@ public class BotaoIcone extends JButton {
         }
 
         this.setBounds(getX(), getY(), TAMANHOX, TAMANHOY);
+        
+        //this.setUpIcons(iconPrefix);
 
     }
 
