@@ -10,7 +10,6 @@
     <artifactId>webphotos-ear-backend</artifactId>
     <name>[WP] Backend EAR</name>
     <packaging>ear</packaging>
-    <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
