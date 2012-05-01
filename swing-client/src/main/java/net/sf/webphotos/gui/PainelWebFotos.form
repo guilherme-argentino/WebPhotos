@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JComboBox" name="lstCreditosTabelaFotos">
       <Properties>
@@ -122,11 +122,9 @@
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
   <SubComponents>
     <Component class="net.sf.webphotos.gui.component.PainelPesquisa" name="painelPesquisa">
-      <Properties>
-        <Property name="acaoPesquisa" type="net.sf.webphotos.action.AcaoPopup" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="(AcaoPopup) ApplicationContextResource.getBean(&quot;acaoPopup&quot;)" type="code"/>
-        </Property>
-      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="painelPesquisa.addPopupMouseListener((AcaoPopup) ApplicationContextResource.getBean(&quot;acaoPopup&quot;));"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="11" weightX="1.0" weightY="0.0"/>
