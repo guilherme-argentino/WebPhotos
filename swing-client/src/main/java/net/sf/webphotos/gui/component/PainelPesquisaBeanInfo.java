@@ -143,7 +143,6 @@ public class PainelPesquisaBeanInfo extends SimpleBeanInfo {
     
         try {
             properties[PROPERTY_acaoPesquisa] = new PropertyDescriptor ( "acaoPesquisa", net.sf.webphotos.gui.component.PainelPesquisa.class, "getAcaoPesquisa", "setAcaoPesquisa" ); // NOI18N
-            properties[PROPERTY_acaoPesquisa].setPreferred ( true );
             properties[PROPERTY_actionMap] = new PropertyDescriptor ( "actionMap", net.sf.webphotos.gui.component.PainelPesquisa.class, "getActionMap", "setActionMap" ); // NOI18N
             properties[PROPERTY_alignmentX] = new PropertyDescriptor ( "alignmentX", net.sf.webphotos.gui.component.PainelPesquisa.class, "getAlignmentX", "setAlignmentX" ); // NOI18N
             properties[PROPERTY_alignmentY] = new PropertyDescriptor ( "alignmentY", net.sf.webphotos.gui.component.PainelPesquisa.class, "getAlignmentY", "setAlignmentY" ); // NOI18N
@@ -297,32 +296,32 @@ public class PainelPesquisaBeanInfo extends SimpleBeanInfo {
         return eventSets;     }//GEN-LAST:Events
     // Method identifiers//GEN-FIRST:Methods
     private static final int METHOD_action0 = 0;
-    private static final int METHOD_add1 = 1;
-    private static final int METHOD_addNotify2 = 2;
-    private static final int METHOD_addPropertyChangeListener3 = 3;
-    private static final int METHOD_applyComponentOrientation4 = 4;
-    private static final int METHOD_areFocusTraversalKeysSet5 = 5;
-    private static final int METHOD_bounds6 = 6;
+    private static final int METHOD_addNotify1 = 1;
+    private static final int METHOD_addPropertyChangeListener2 = 2;
+    private static final int METHOD_applyComponentOrientation3 = 3;
+    private static final int METHOD_areFocusTraversalKeysSet4 = 4;
+    private static final int METHOD_bounds5 = 5;
+    private static final int METHOD_checkImage6 = 6;
     private static final int METHOD_checkImage7 = 7;
-    private static final int METHOD_checkImage8 = 8;
-    private static final int METHOD_computeVisibleRect9 = 9;
+    private static final int METHOD_computeVisibleRect8 = 8;
+    private static final int METHOD_contains9 = 9;
     private static final int METHOD_contains10 = 10;
-    private static final int METHOD_contains11 = 11;
-    private static final int METHOD_countComponents12 = 12;
+    private static final int METHOD_countComponents11 = 11;
+    private static final int METHOD_createImage12 = 12;
     private static final int METHOD_createImage13 = 13;
-    private static final int METHOD_createImage14 = 14;
-    private static final int METHOD_createToolTip15 = 15;
+    private static final int METHOD_createToolTip14 = 14;
+    private static final int METHOD_createVolatileImage15 = 15;
     private static final int METHOD_createVolatileImage16 = 16;
-    private static final int METHOD_createVolatileImage17 = 17;
-    private static final int METHOD_deliverEvent18 = 18;
-    private static final int METHOD_disable19 = 19;
-    private static final int METHOD_dispatchEvent20 = 20;
-    private static final int METHOD_doLayout21 = 21;
+    private static final int METHOD_deliverEvent17 = 17;
+    private static final int METHOD_disable18 = 18;
+    private static final int METHOD_dispatchEvent19 = 19;
+    private static final int METHOD_doLayout20 = 20;
+    private static final int METHOD_enable21 = 21;
     private static final int METHOD_enable22 = 22;
-    private static final int METHOD_enable23 = 23;
-    private static final int METHOD_enableInputMethods24 = 24;
+    private static final int METHOD_enableInputMethods23 = 23;
+    private static final int METHOD_findComponentAt24 = 24;
     private static final int METHOD_findComponentAt25 = 25;
-    private static final int METHOD_findComponentAt26 = 26;
+    private static final int METHOD_firePropertyChange26 = 26;
     private static final int METHOD_firePropertyChange27 = 27;
     private static final int METHOD_firePropertyChange28 = 28;
     private static final int METHOD_firePropertyChange29 = 29;
@@ -330,393 +329,390 @@ public class PainelPesquisaBeanInfo extends SimpleBeanInfo {
     private static final int METHOD_firePropertyChange31 = 31;
     private static final int METHOD_firePropertyChange32 = 32;
     private static final int METHOD_firePropertyChange33 = 33;
-    private static final int METHOD_firePropertyChange34 = 34;
-    private static final int METHOD_getActionForKeyStroke35 = 35;
-    private static final int METHOD_getBaseline36 = 36;
-    private static final int METHOD_getBounds37 = 37;
-    private static final int METHOD_getClientProperty38 = 38;
+    private static final int METHOD_getActionForKeyStroke34 = 34;
+    private static final int METHOD_getBaseline35 = 35;
+    private static final int METHOD_getBounds36 = 36;
+    private static final int METHOD_getClientProperty37 = 37;
+    private static final int METHOD_getComponentAt38 = 38;
     private static final int METHOD_getComponentAt39 = 39;
-    private static final int METHOD_getComponentAt40 = 40;
-    private static final int METHOD_getComponentZOrder41 = 41;
-    private static final int METHOD_getConditionForKeyStroke42 = 42;
-    private static final int METHOD_getDefaultLocale43 = 43;
-    private static final int METHOD_getFocusTraversalKeys44 = 44;
-    private static final int METHOD_getFontMetrics45 = 45;
-    private static final int METHOD_getInsets46 = 46;
-    private static final int METHOD_getListeners47 = 47;
-    private static final int METHOD_getLocation48 = 48;
-    private static final int METHOD_getMousePosition49 = 49;
-    private static final int METHOD_getPopupLocation50 = 50;
-    private static final int METHOD_getPropertyChangeListeners51 = 51;
-    private static final int METHOD_getSize52 = 52;
-    private static final int METHOD_getToolTipLocation53 = 53;
-    private static final int METHOD_getToolTipText54 = 54;
-    private static final int METHOD_gotFocus55 = 55;
-    private static final int METHOD_grabFocus56 = 56;
-    private static final int METHOD_handleEvent57 = 57;
-    private static final int METHOD_hasFocus58 = 58;
-    private static final int METHOD_hide59 = 59;
-    private static final int METHOD_imageUpdate60 = 60;
-    private static final int METHOD_insets61 = 61;
-    private static final int METHOD_inside62 = 62;
-    private static final int METHOD_invalidate63 = 63;
-    private static final int METHOD_isAncestorOf64 = 64;
-    private static final int METHOD_isFocusCycleRoot65 = 65;
-    private static final int METHOD_isLightweightComponent66 = 66;
-    private static final int METHOD_keyDown67 = 67;
-    private static final int METHOD_keyUp68 = 68;
-    private static final int METHOD_layout69 = 69;
+    private static final int METHOD_getComponentZOrder40 = 40;
+    private static final int METHOD_getConditionForKeyStroke41 = 41;
+    private static final int METHOD_getDefaultLocale42 = 42;
+    private static final int METHOD_getFocusTraversalKeys43 = 43;
+    private static final int METHOD_getFontMetrics44 = 44;
+    private static final int METHOD_getInsets45 = 45;
+    private static final int METHOD_getListeners46 = 46;
+    private static final int METHOD_getLocation47 = 47;
+    private static final int METHOD_getMousePosition48 = 48;
+    private static final int METHOD_getPopupLocation49 = 49;
+    private static final int METHOD_getPropertyChangeListeners50 = 50;
+    private static final int METHOD_getSize51 = 51;
+    private static final int METHOD_getToolTipLocation52 = 52;
+    private static final int METHOD_getToolTipText53 = 53;
+    private static final int METHOD_gotFocus54 = 54;
+    private static final int METHOD_grabFocus55 = 55;
+    private static final int METHOD_handleEvent56 = 56;
+    private static final int METHOD_hasFocus57 = 57;
+    private static final int METHOD_hide58 = 58;
+    private static final int METHOD_imageUpdate59 = 59;
+    private static final int METHOD_insets60 = 60;
+    private static final int METHOD_inside61 = 61;
+    private static final int METHOD_invalidate62 = 62;
+    private static final int METHOD_isAncestorOf63 = 63;
+    private static final int METHOD_isFocusCycleRoot64 = 64;
+    private static final int METHOD_isLightweightComponent65 = 65;
+    private static final int METHOD_keyDown66 = 66;
+    private static final int METHOD_keyUp67 = 67;
+    private static final int METHOD_layout68 = 68;
+    private static final int METHOD_list69 = 69;
     private static final int METHOD_list70 = 70;
     private static final int METHOD_list71 = 71;
     private static final int METHOD_list72 = 72;
     private static final int METHOD_list73 = 73;
-    private static final int METHOD_list74 = 74;
-    private static final int METHOD_locate75 = 75;
-    private static final int METHOD_location76 = 76;
-    private static final int METHOD_lostFocus77 = 77;
-    private static final int METHOD_minimumSize78 = 78;
-    private static final int METHOD_mouseDown79 = 79;
-    private static final int METHOD_mouseDrag80 = 80;
-    private static final int METHOD_mouseEnter81 = 81;
-    private static final int METHOD_mouseExit82 = 82;
-    private static final int METHOD_mouseMove83 = 83;
-    private static final int METHOD_mouseUp84 = 84;
-    private static final int METHOD_move85 = 85;
-    private static final int METHOD_nextFocus86 = 86;
-    private static final int METHOD_paint87 = 87;
-    private static final int METHOD_paintAll88 = 88;
-    private static final int METHOD_paintComponents89 = 89;
+    private static final int METHOD_locate74 = 74;
+    private static final int METHOD_location75 = 75;
+    private static final int METHOD_lostFocus76 = 76;
+    private static final int METHOD_minimumSize77 = 77;
+    private static final int METHOD_mouseDown78 = 78;
+    private static final int METHOD_mouseDrag79 = 79;
+    private static final int METHOD_mouseEnter80 = 80;
+    private static final int METHOD_mouseExit81 = 81;
+    private static final int METHOD_mouseMove82 = 82;
+    private static final int METHOD_mouseUp83 = 83;
+    private static final int METHOD_move84 = 84;
+    private static final int METHOD_nextFocus85 = 85;
+    private static final int METHOD_paint86 = 86;
+    private static final int METHOD_paintAll87 = 87;
+    private static final int METHOD_paintComponents88 = 88;
+    private static final int METHOD_paintImmediately89 = 89;
     private static final int METHOD_paintImmediately90 = 90;
-    private static final int METHOD_paintImmediately91 = 91;
-    private static final int METHOD_postEvent92 = 92;
-    private static final int METHOD_preferredSize93 = 93;
+    private static final int METHOD_postEvent91 = 91;
+    private static final int METHOD_preferredSize92 = 92;
+    private static final int METHOD_prepareImage93 = 93;
     private static final int METHOD_prepareImage94 = 94;
-    private static final int METHOD_prepareImage95 = 95;
-    private static final int METHOD_print96 = 96;
-    private static final int METHOD_printAll97 = 97;
-    private static final int METHOD_printComponents98 = 98;
-    private static final int METHOD_putClientProperty99 = 99;
+    private static final int METHOD_print95 = 95;
+    private static final int METHOD_printAll96 = 96;
+    private static final int METHOD_printComponents97 = 97;
+    private static final int METHOD_putClientProperty98 = 98;
+    private static final int METHOD_registerKeyboardAction99 = 99;
     private static final int METHOD_registerKeyboardAction100 = 100;
-    private static final int METHOD_registerKeyboardAction101 = 101;
+    private static final int METHOD_remove101 = 101;
     private static final int METHOD_remove102 = 102;
     private static final int METHOD_remove103 = 103;
-    private static final int METHOD_remove104 = 104;
-    private static final int METHOD_removeAll105 = 105;
-    private static final int METHOD_removeNotify106 = 106;
-    private static final int METHOD_removePropertyChangeListener107 = 107;
+    private static final int METHOD_removeAll104 = 104;
+    private static final int METHOD_removeNotify105 = 105;
+    private static final int METHOD_removePropertyChangeListener106 = 106;
+    private static final int METHOD_repaint107 = 107;
     private static final int METHOD_repaint108 = 108;
     private static final int METHOD_repaint109 = 109;
     private static final int METHOD_repaint110 = 110;
     private static final int METHOD_repaint111 = 111;
-    private static final int METHOD_repaint112 = 112;
-    private static final int METHOD_requestDefaultFocus113 = 113;
+    private static final int METHOD_requestDefaultFocus112 = 112;
+    private static final int METHOD_requestFocus113 = 113;
     private static final int METHOD_requestFocus114 = 114;
-    private static final int METHOD_requestFocus115 = 115;
-    private static final int METHOD_requestFocusInWindow116 = 116;
-    private static final int METHOD_resetKeyboardActions117 = 117;
-    private static final int METHOD_reshape118 = 118;
+    private static final int METHOD_requestFocusInWindow115 = 115;
+    private static final int METHOD_resetKeyboardActions116 = 116;
+    private static final int METHOD_reshape117 = 117;
+    private static final int METHOD_resize118 = 118;
     private static final int METHOD_resize119 = 119;
-    private static final int METHOD_resize120 = 120;
-    private static final int METHOD_revalidate121 = 121;
-    private static final int METHOD_scrollRectToVisible122 = 122;
-    private static final int METHOD_setBounds123 = 123;
-    private static final int METHOD_setComponentZOrder124 = 124;
-    private static final int METHOD_setDefaultLocale125 = 125;
+    private static final int METHOD_revalidate120 = 120;
+    private static final int METHOD_scrollRectToVisible121 = 121;
+    private static final int METHOD_setBounds122 = 122;
+    private static final int METHOD_setComponentZOrder123 = 123;
+    private static final int METHOD_setDefaultLocale124 = 124;
+    private static final int METHOD_show125 = 125;
     private static final int METHOD_show126 = 126;
-    private static final int METHOD_show127 = 127;
-    private static final int METHOD_size128 = 128;
-    private static final int METHOD_toString129 = 129;
-    private static final int METHOD_transferFocus130 = 130;
-    private static final int METHOD_transferFocusBackward131 = 131;
-    private static final int METHOD_transferFocusDownCycle132 = 132;
-    private static final int METHOD_transferFocusUpCycle133 = 133;
-    private static final int METHOD_unregisterKeyboardAction134 = 134;
-    private static final int METHOD_update135 = 135;
-    private static final int METHOD_updateUI136 = 136;
-    private static final int METHOD_validate137 = 137;
+    private static final int METHOD_size127 = 127;
+    private static final int METHOD_toString128 = 128;
+    private static final int METHOD_transferFocus129 = 129;
+    private static final int METHOD_transferFocusBackward130 = 130;
+    private static final int METHOD_transferFocusDownCycle131 = 131;
+    private static final int METHOD_transferFocusUpCycle132 = 132;
+    private static final int METHOD_unregisterKeyboardAction133 = 133;
+    private static final int METHOD_update134 = 134;
+    private static final int METHOD_updateUI135 = 135;
+    private static final int METHOD_validate136 = 136;
 
     // Method array 
     /*lazy MethodDescriptor*/
     private static MethodDescriptor[] getMdescriptor(){
-        MethodDescriptor[] methods = new MethodDescriptor[138];
+        MethodDescriptor[] methods = new MethodDescriptor[137];
     
         try {
             methods[METHOD_action0] = new MethodDescriptor(java.awt.Component.class.getMethod("action", new Class[] {java.awt.Event.class, java.lang.Object.class})); // NOI18N
             methods[METHOD_action0].setDisplayName ( "" );
-            methods[METHOD_add1] = new MethodDescriptor(java.awt.Component.class.getMethod("add", new Class[] {java.awt.PopupMenu.class})); // NOI18N
-            methods[METHOD_add1].setDisplayName ( "" );
-            methods[METHOD_addNotify2] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("addNotify", new Class[] {})); // NOI18N
-            methods[METHOD_addNotify2].setDisplayName ( "" );
-            methods[METHOD_addPropertyChangeListener3] = new MethodDescriptor(java.awt.Container.class.getMethod("addPropertyChangeListener", new Class[] {java.lang.String.class, java.beans.PropertyChangeListener.class})); // NOI18N
-            methods[METHOD_addPropertyChangeListener3].setDisplayName ( "" );
-            methods[METHOD_applyComponentOrientation4] = new MethodDescriptor(java.awt.Container.class.getMethod("applyComponentOrientation", new Class[] {java.awt.ComponentOrientation.class})); // NOI18N
-            methods[METHOD_applyComponentOrientation4].setDisplayName ( "" );
-            methods[METHOD_areFocusTraversalKeysSet5] = new MethodDescriptor(java.awt.Container.class.getMethod("areFocusTraversalKeysSet", new Class[] {int.class})); // NOI18N
-            methods[METHOD_areFocusTraversalKeysSet5].setDisplayName ( "" );
-            methods[METHOD_bounds6] = new MethodDescriptor(java.awt.Component.class.getMethod("bounds", new Class[] {})); // NOI18N
-            methods[METHOD_bounds6].setDisplayName ( "" );
-            methods[METHOD_checkImage7] = new MethodDescriptor(java.awt.Component.class.getMethod("checkImage", new Class[] {java.awt.Image.class, java.awt.image.ImageObserver.class})); // NOI18N
+            methods[METHOD_addNotify1] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("addNotify", new Class[] {})); // NOI18N
+            methods[METHOD_addNotify1].setDisplayName ( "" );
+            methods[METHOD_addPropertyChangeListener2] = new MethodDescriptor(java.awt.Container.class.getMethod("addPropertyChangeListener", new Class[] {java.lang.String.class, java.beans.PropertyChangeListener.class})); // NOI18N
+            methods[METHOD_addPropertyChangeListener2].setDisplayName ( "" );
+            methods[METHOD_applyComponentOrientation3] = new MethodDescriptor(java.awt.Container.class.getMethod("applyComponentOrientation", new Class[] {java.awt.ComponentOrientation.class})); // NOI18N
+            methods[METHOD_applyComponentOrientation3].setDisplayName ( "" );
+            methods[METHOD_areFocusTraversalKeysSet4] = new MethodDescriptor(java.awt.Container.class.getMethod("areFocusTraversalKeysSet", new Class[] {int.class})); // NOI18N
+            methods[METHOD_areFocusTraversalKeysSet4].setDisplayName ( "" );
+            methods[METHOD_bounds5] = new MethodDescriptor(java.awt.Component.class.getMethod("bounds", new Class[] {})); // NOI18N
+            methods[METHOD_bounds5].setDisplayName ( "" );
+            methods[METHOD_checkImage6] = new MethodDescriptor(java.awt.Component.class.getMethod("checkImage", new Class[] {java.awt.Image.class, java.awt.image.ImageObserver.class})); // NOI18N
+            methods[METHOD_checkImage6].setDisplayName ( "" );
+            methods[METHOD_checkImage7] = new MethodDescriptor(java.awt.Component.class.getMethod("checkImage", new Class[] {java.awt.Image.class, int.class, int.class, java.awt.image.ImageObserver.class})); // NOI18N
             methods[METHOD_checkImage7].setDisplayName ( "" );
-            methods[METHOD_checkImage8] = new MethodDescriptor(java.awt.Component.class.getMethod("checkImage", new Class[] {java.awt.Image.class, int.class, int.class, java.awt.image.ImageObserver.class})); // NOI18N
-            methods[METHOD_checkImage8].setDisplayName ( "" );
-            methods[METHOD_computeVisibleRect9] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("computeVisibleRect", new Class[] {java.awt.Rectangle.class})); // NOI18N
-            methods[METHOD_computeVisibleRect9].setDisplayName ( "" );
-            methods[METHOD_contains10] = new MethodDescriptor(java.awt.Component.class.getMethod("contains", new Class[] {java.awt.Point.class})); // NOI18N
+            methods[METHOD_computeVisibleRect8] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("computeVisibleRect", new Class[] {java.awt.Rectangle.class})); // NOI18N
+            methods[METHOD_computeVisibleRect8].setDisplayName ( "" );
+            methods[METHOD_contains9] = new MethodDescriptor(java.awt.Component.class.getMethod("contains", new Class[] {java.awt.Point.class})); // NOI18N
+            methods[METHOD_contains9].setDisplayName ( "" );
+            methods[METHOD_contains10] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("contains", new Class[] {int.class, int.class})); // NOI18N
             methods[METHOD_contains10].setDisplayName ( "" );
-            methods[METHOD_contains11] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("contains", new Class[] {int.class, int.class})); // NOI18N
-            methods[METHOD_contains11].setDisplayName ( "" );
-            methods[METHOD_countComponents12] = new MethodDescriptor(java.awt.Container.class.getMethod("countComponents", new Class[] {})); // NOI18N
-            methods[METHOD_countComponents12].setDisplayName ( "" );
-            methods[METHOD_createImage13] = new MethodDescriptor(java.awt.Component.class.getMethod("createImage", new Class[] {java.awt.image.ImageProducer.class})); // NOI18N
+            methods[METHOD_countComponents11] = new MethodDescriptor(java.awt.Container.class.getMethod("countComponents", new Class[] {})); // NOI18N
+            methods[METHOD_countComponents11].setDisplayName ( "" );
+            methods[METHOD_createImage12] = new MethodDescriptor(java.awt.Component.class.getMethod("createImage", new Class[] {java.awt.image.ImageProducer.class})); // NOI18N
+            methods[METHOD_createImage12].setDisplayName ( "" );
+            methods[METHOD_createImage13] = new MethodDescriptor(java.awt.Component.class.getMethod("createImage", new Class[] {int.class, int.class})); // NOI18N
             methods[METHOD_createImage13].setDisplayName ( "" );
-            methods[METHOD_createImage14] = new MethodDescriptor(java.awt.Component.class.getMethod("createImage", new Class[] {int.class, int.class})); // NOI18N
-            methods[METHOD_createImage14].setDisplayName ( "" );
-            methods[METHOD_createToolTip15] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("createToolTip", new Class[] {})); // NOI18N
-            methods[METHOD_createToolTip15].setDisplayName ( "" );
-            methods[METHOD_createVolatileImage16] = new MethodDescriptor(java.awt.Component.class.getMethod("createVolatileImage", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_createToolTip14] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("createToolTip", new Class[] {})); // NOI18N
+            methods[METHOD_createToolTip14].setDisplayName ( "" );
+            methods[METHOD_createVolatileImage15] = new MethodDescriptor(java.awt.Component.class.getMethod("createVolatileImage", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_createVolatileImage15].setDisplayName ( "" );
+            methods[METHOD_createVolatileImage16] = new MethodDescriptor(java.awt.Component.class.getMethod("createVolatileImage", new Class[] {int.class, int.class, java.awt.ImageCapabilities.class})); // NOI18N
             methods[METHOD_createVolatileImage16].setDisplayName ( "" );
-            methods[METHOD_createVolatileImage17] = new MethodDescriptor(java.awt.Component.class.getMethod("createVolatileImage", new Class[] {int.class, int.class, java.awt.ImageCapabilities.class})); // NOI18N
-            methods[METHOD_createVolatileImage17].setDisplayName ( "" );
-            methods[METHOD_deliverEvent18] = new MethodDescriptor(java.awt.Container.class.getMethod("deliverEvent", new Class[] {java.awt.Event.class})); // NOI18N
-            methods[METHOD_deliverEvent18].setDisplayName ( "" );
-            methods[METHOD_disable19] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("disable", new Class[] {})); // NOI18N
-            methods[METHOD_disable19].setDisplayName ( "" );
-            methods[METHOD_dispatchEvent20] = new MethodDescriptor(java.awt.Component.class.getMethod("dispatchEvent", new Class[] {java.awt.AWTEvent.class})); // NOI18N
-            methods[METHOD_dispatchEvent20].setDisplayName ( "" );
-            methods[METHOD_doLayout21] = new MethodDescriptor(java.awt.Container.class.getMethod("doLayout", new Class[] {})); // NOI18N
-            methods[METHOD_doLayout21].setDisplayName ( "" );
-            methods[METHOD_enable22] = new MethodDescriptor(java.awt.Component.class.getMethod("enable", new Class[] {boolean.class})); // NOI18N
+            methods[METHOD_deliverEvent17] = new MethodDescriptor(java.awt.Container.class.getMethod("deliverEvent", new Class[] {java.awt.Event.class})); // NOI18N
+            methods[METHOD_deliverEvent17].setDisplayName ( "" );
+            methods[METHOD_disable18] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("disable", new Class[] {})); // NOI18N
+            methods[METHOD_disable18].setDisplayName ( "" );
+            methods[METHOD_dispatchEvent19] = new MethodDescriptor(java.awt.Component.class.getMethod("dispatchEvent", new Class[] {java.awt.AWTEvent.class})); // NOI18N
+            methods[METHOD_dispatchEvent19].setDisplayName ( "" );
+            methods[METHOD_doLayout20] = new MethodDescriptor(java.awt.Container.class.getMethod("doLayout", new Class[] {})); // NOI18N
+            methods[METHOD_doLayout20].setDisplayName ( "" );
+            methods[METHOD_enable21] = new MethodDescriptor(java.awt.Component.class.getMethod("enable", new Class[] {boolean.class})); // NOI18N
+            methods[METHOD_enable21].setDisplayName ( "" );
+            methods[METHOD_enable22] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("enable", new Class[] {})); // NOI18N
             methods[METHOD_enable22].setDisplayName ( "" );
-            methods[METHOD_enable23] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("enable", new Class[] {})); // NOI18N
-            methods[METHOD_enable23].setDisplayName ( "" );
-            methods[METHOD_enableInputMethods24] = new MethodDescriptor(java.awt.Component.class.getMethod("enableInputMethods", new Class[] {boolean.class})); // NOI18N
-            methods[METHOD_enableInputMethods24].setDisplayName ( "" );
-            methods[METHOD_findComponentAt25] = new MethodDescriptor(java.awt.Container.class.getMethod("findComponentAt", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_enableInputMethods23] = new MethodDescriptor(java.awt.Component.class.getMethod("enableInputMethods", new Class[] {boolean.class})); // NOI18N
+            methods[METHOD_enableInputMethods23].setDisplayName ( "" );
+            methods[METHOD_findComponentAt24] = new MethodDescriptor(java.awt.Container.class.getMethod("findComponentAt", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_findComponentAt24].setDisplayName ( "" );
+            methods[METHOD_findComponentAt25] = new MethodDescriptor(java.awt.Container.class.getMethod("findComponentAt", new Class[] {java.awt.Point.class})); // NOI18N
             methods[METHOD_findComponentAt25].setDisplayName ( "" );
-            methods[METHOD_findComponentAt26] = new MethodDescriptor(java.awt.Container.class.getMethod("findComponentAt", new Class[] {java.awt.Point.class})); // NOI18N
-            methods[METHOD_findComponentAt26].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange27] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, byte.class, byte.class})); // NOI18N
+            methods[METHOD_firePropertyChange26] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, byte.class, byte.class})); // NOI18N
+            methods[METHOD_firePropertyChange26].setDisplayName ( "" );
+            methods[METHOD_firePropertyChange27] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, short.class, short.class})); // NOI18N
             methods[METHOD_firePropertyChange27].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange28] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, short.class, short.class})); // NOI18N
+            methods[METHOD_firePropertyChange28] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, long.class, long.class})); // NOI18N
             methods[METHOD_firePropertyChange28].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange29] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, long.class, long.class})); // NOI18N
+            methods[METHOD_firePropertyChange29] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, float.class, float.class})); // NOI18N
             methods[METHOD_firePropertyChange29].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange30] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, float.class, float.class})); // NOI18N
+            methods[METHOD_firePropertyChange30] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, double.class, double.class})); // NOI18N
             methods[METHOD_firePropertyChange30].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange31] = new MethodDescriptor(java.awt.Component.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, double.class, double.class})); // NOI18N
+            methods[METHOD_firePropertyChange31] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, boolean.class, boolean.class})); // NOI18N
             methods[METHOD_firePropertyChange31].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange32] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, boolean.class, boolean.class})); // NOI18N
+            methods[METHOD_firePropertyChange32] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, int.class, int.class})); // NOI18N
             methods[METHOD_firePropertyChange32].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange33] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, int.class, int.class})); // NOI18N
+            methods[METHOD_firePropertyChange33] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, char.class, char.class})); // NOI18N
             methods[METHOD_firePropertyChange33].setDisplayName ( "" );
-            methods[METHOD_firePropertyChange34] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("firePropertyChange", new Class[] {java.lang.String.class, char.class, char.class})); // NOI18N
-            methods[METHOD_firePropertyChange34].setDisplayName ( "" );
-            methods[METHOD_getActionForKeyStroke35] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getActionForKeyStroke", new Class[] {javax.swing.KeyStroke.class})); // NOI18N
-            methods[METHOD_getActionForKeyStroke35].setDisplayName ( "" );
-            methods[METHOD_getBaseline36] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getBaseline", new Class[] {int.class, int.class})); // NOI18N
-            methods[METHOD_getBaseline36].setDisplayName ( "" );
-            methods[METHOD_getBounds37] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getBounds", new Class[] {java.awt.Rectangle.class})); // NOI18N
-            methods[METHOD_getBounds37].setDisplayName ( "" );
-            methods[METHOD_getClientProperty38] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getClientProperty", new Class[] {java.lang.Object.class})); // NOI18N
-            methods[METHOD_getClientProperty38].setDisplayName ( "" );
-            methods[METHOD_getComponentAt39] = new MethodDescriptor(java.awt.Container.class.getMethod("getComponentAt", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_getActionForKeyStroke34] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getActionForKeyStroke", new Class[] {javax.swing.KeyStroke.class})); // NOI18N
+            methods[METHOD_getActionForKeyStroke34].setDisplayName ( "" );
+            methods[METHOD_getBaseline35] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getBaseline", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_getBaseline35].setDisplayName ( "" );
+            methods[METHOD_getBounds36] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getBounds", new Class[] {java.awt.Rectangle.class})); // NOI18N
+            methods[METHOD_getBounds36].setDisplayName ( "" );
+            methods[METHOD_getClientProperty37] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getClientProperty", new Class[] {java.lang.Object.class})); // NOI18N
+            methods[METHOD_getClientProperty37].setDisplayName ( "" );
+            methods[METHOD_getComponentAt38] = new MethodDescriptor(java.awt.Container.class.getMethod("getComponentAt", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_getComponentAt38].setDisplayName ( "" );
+            methods[METHOD_getComponentAt39] = new MethodDescriptor(java.awt.Container.class.getMethod("getComponentAt", new Class[] {java.awt.Point.class})); // NOI18N
             methods[METHOD_getComponentAt39].setDisplayName ( "" );
-            methods[METHOD_getComponentAt40] = new MethodDescriptor(java.awt.Container.class.getMethod("getComponentAt", new Class[] {java.awt.Point.class})); // NOI18N
-            methods[METHOD_getComponentAt40].setDisplayName ( "" );
-            methods[METHOD_getComponentZOrder41] = new MethodDescriptor(java.awt.Container.class.getMethod("getComponentZOrder", new Class[] {java.awt.Component.class})); // NOI18N
-            methods[METHOD_getComponentZOrder41].setDisplayName ( "" );
-            methods[METHOD_getConditionForKeyStroke42] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getConditionForKeyStroke", new Class[] {javax.swing.KeyStroke.class})); // NOI18N
-            methods[METHOD_getConditionForKeyStroke42].setDisplayName ( "" );
-            methods[METHOD_getDefaultLocale43] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getDefaultLocale", new Class[] {})); // NOI18N
-            methods[METHOD_getDefaultLocale43].setDisplayName ( "" );
-            methods[METHOD_getFocusTraversalKeys44] = new MethodDescriptor(java.awt.Container.class.getMethod("getFocusTraversalKeys", new Class[] {int.class})); // NOI18N
-            methods[METHOD_getFocusTraversalKeys44].setDisplayName ( "" );
-            methods[METHOD_getFontMetrics45] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getFontMetrics", new Class[] {java.awt.Font.class})); // NOI18N
-            methods[METHOD_getFontMetrics45].setDisplayName ( "" );
-            methods[METHOD_getInsets46] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getInsets", new Class[] {java.awt.Insets.class})); // NOI18N
-            methods[METHOD_getInsets46].setDisplayName ( "" );
-            methods[METHOD_getListeners47] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getListeners", new Class[] {java.lang.Class.class})); // NOI18N
-            methods[METHOD_getListeners47].setDisplayName ( "" );
-            methods[METHOD_getLocation48] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getLocation", new Class[] {java.awt.Point.class})); // NOI18N
-            methods[METHOD_getLocation48].setDisplayName ( "" );
-            methods[METHOD_getMousePosition49] = new MethodDescriptor(java.awt.Container.class.getMethod("getMousePosition", new Class[] {boolean.class})); // NOI18N
-            methods[METHOD_getMousePosition49].setDisplayName ( "" );
-            methods[METHOD_getPopupLocation50] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getPopupLocation", new Class[] {java.awt.event.MouseEvent.class})); // NOI18N
-            methods[METHOD_getPopupLocation50].setDisplayName ( "" );
-            methods[METHOD_getPropertyChangeListeners51] = new MethodDescriptor(java.awt.Component.class.getMethod("getPropertyChangeListeners", new Class[] {java.lang.String.class})); // NOI18N
-            methods[METHOD_getPropertyChangeListeners51].setDisplayName ( "" );
-            methods[METHOD_getSize52] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getSize", new Class[] {java.awt.Dimension.class})); // NOI18N
-            methods[METHOD_getSize52].setDisplayName ( "" );
-            methods[METHOD_getToolTipLocation53] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getToolTipLocation", new Class[] {java.awt.event.MouseEvent.class})); // NOI18N
-            methods[METHOD_getToolTipLocation53].setDisplayName ( "" );
-            methods[METHOD_getToolTipText54] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getToolTipText", new Class[] {java.awt.event.MouseEvent.class})); // NOI18N
-            methods[METHOD_getToolTipText54].setDisplayName ( "" );
-            methods[METHOD_gotFocus55] = new MethodDescriptor(java.awt.Component.class.getMethod("gotFocus", new Class[] {java.awt.Event.class, java.lang.Object.class})); // NOI18N
-            methods[METHOD_gotFocus55].setDisplayName ( "" );
-            methods[METHOD_grabFocus56] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("grabFocus", new Class[] {})); // NOI18N
-            methods[METHOD_grabFocus56].setDisplayName ( "" );
-            methods[METHOD_handleEvent57] = new MethodDescriptor(java.awt.Component.class.getMethod("handleEvent", new Class[] {java.awt.Event.class})); // NOI18N
-            methods[METHOD_handleEvent57].setDisplayName ( "" );
-            methods[METHOD_hasFocus58] = new MethodDescriptor(java.awt.Component.class.getMethod("hasFocus", new Class[] {})); // NOI18N
-            methods[METHOD_hasFocus58].setDisplayName ( "" );
-            methods[METHOD_hide59] = new MethodDescriptor(java.awt.Component.class.getMethod("hide", new Class[] {})); // NOI18N
-            methods[METHOD_hide59].setDisplayName ( "" );
-            methods[METHOD_imageUpdate60] = new MethodDescriptor(java.awt.Component.class.getMethod("imageUpdate", new Class[] {java.awt.Image.class, int.class, int.class, int.class, int.class, int.class})); // NOI18N
-            methods[METHOD_imageUpdate60].setDisplayName ( "" );
-            methods[METHOD_insets61] = new MethodDescriptor(java.awt.Container.class.getMethod("insets", new Class[] {})); // NOI18N
-            methods[METHOD_insets61].setDisplayName ( "" );
-            methods[METHOD_inside62] = new MethodDescriptor(java.awt.Component.class.getMethod("inside", new Class[] {int.class, int.class})); // NOI18N
-            methods[METHOD_inside62].setDisplayName ( "" );
-            methods[METHOD_invalidate63] = new MethodDescriptor(java.awt.Container.class.getMethod("invalidate", new Class[] {})); // NOI18N
-            methods[METHOD_invalidate63].setDisplayName ( "" );
-            methods[METHOD_isAncestorOf64] = new MethodDescriptor(java.awt.Container.class.getMethod("isAncestorOf", new Class[] {java.awt.Component.class})); // NOI18N
-            methods[METHOD_isAncestorOf64].setDisplayName ( "" );
-            methods[METHOD_isFocusCycleRoot65] = new MethodDescriptor(java.awt.Container.class.getMethod("isFocusCycleRoot", new Class[] {java.awt.Container.class})); // NOI18N
-            methods[METHOD_isFocusCycleRoot65].setDisplayName ( "" );
-            methods[METHOD_isLightweightComponent66] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("isLightweightComponent", new Class[] {java.awt.Component.class})); // NOI18N
-            methods[METHOD_isLightweightComponent66].setDisplayName ( "" );
-            methods[METHOD_keyDown67] = new MethodDescriptor(java.awt.Component.class.getMethod("keyDown", new Class[] {java.awt.Event.class, int.class})); // NOI18N
-            methods[METHOD_keyDown67].setDisplayName ( "" );
-            methods[METHOD_keyUp68] = new MethodDescriptor(java.awt.Component.class.getMethod("keyUp", new Class[] {java.awt.Event.class, int.class})); // NOI18N
-            methods[METHOD_keyUp68].setDisplayName ( "" );
-            methods[METHOD_layout69] = new MethodDescriptor(java.awt.Container.class.getMethod("layout", new Class[] {})); // NOI18N
-            methods[METHOD_layout69].setDisplayName ( "" );
-            methods[METHOD_list70] = new MethodDescriptor(java.awt.Component.class.getMethod("list", new Class[] {})); // NOI18N
+            methods[METHOD_getComponentZOrder40] = new MethodDescriptor(java.awt.Container.class.getMethod("getComponentZOrder", new Class[] {java.awt.Component.class})); // NOI18N
+            methods[METHOD_getComponentZOrder40].setDisplayName ( "" );
+            methods[METHOD_getConditionForKeyStroke41] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getConditionForKeyStroke", new Class[] {javax.swing.KeyStroke.class})); // NOI18N
+            methods[METHOD_getConditionForKeyStroke41].setDisplayName ( "" );
+            methods[METHOD_getDefaultLocale42] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getDefaultLocale", new Class[] {})); // NOI18N
+            methods[METHOD_getDefaultLocale42].setDisplayName ( "" );
+            methods[METHOD_getFocusTraversalKeys43] = new MethodDescriptor(java.awt.Container.class.getMethod("getFocusTraversalKeys", new Class[] {int.class})); // NOI18N
+            methods[METHOD_getFocusTraversalKeys43].setDisplayName ( "" );
+            methods[METHOD_getFontMetrics44] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getFontMetrics", new Class[] {java.awt.Font.class})); // NOI18N
+            methods[METHOD_getFontMetrics44].setDisplayName ( "" );
+            methods[METHOD_getInsets45] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getInsets", new Class[] {java.awt.Insets.class})); // NOI18N
+            methods[METHOD_getInsets45].setDisplayName ( "" );
+            methods[METHOD_getListeners46] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getListeners", new Class[] {java.lang.Class.class})); // NOI18N
+            methods[METHOD_getListeners46].setDisplayName ( "" );
+            methods[METHOD_getLocation47] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getLocation", new Class[] {java.awt.Point.class})); // NOI18N
+            methods[METHOD_getLocation47].setDisplayName ( "" );
+            methods[METHOD_getMousePosition48] = new MethodDescriptor(java.awt.Container.class.getMethod("getMousePosition", new Class[] {boolean.class})); // NOI18N
+            methods[METHOD_getMousePosition48].setDisplayName ( "" );
+            methods[METHOD_getPopupLocation49] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getPopupLocation", new Class[] {java.awt.event.MouseEvent.class})); // NOI18N
+            methods[METHOD_getPopupLocation49].setDisplayName ( "" );
+            methods[METHOD_getPropertyChangeListeners50] = new MethodDescriptor(java.awt.Component.class.getMethod("getPropertyChangeListeners", new Class[] {java.lang.String.class})); // NOI18N
+            methods[METHOD_getPropertyChangeListeners50].setDisplayName ( "" );
+            methods[METHOD_getSize51] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getSize", new Class[] {java.awt.Dimension.class})); // NOI18N
+            methods[METHOD_getSize51].setDisplayName ( "" );
+            methods[METHOD_getToolTipLocation52] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getToolTipLocation", new Class[] {java.awt.event.MouseEvent.class})); // NOI18N
+            methods[METHOD_getToolTipLocation52].setDisplayName ( "" );
+            methods[METHOD_getToolTipText53] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("getToolTipText", new Class[] {java.awt.event.MouseEvent.class})); // NOI18N
+            methods[METHOD_getToolTipText53].setDisplayName ( "" );
+            methods[METHOD_gotFocus54] = new MethodDescriptor(java.awt.Component.class.getMethod("gotFocus", new Class[] {java.awt.Event.class, java.lang.Object.class})); // NOI18N
+            methods[METHOD_gotFocus54].setDisplayName ( "" );
+            methods[METHOD_grabFocus55] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("grabFocus", new Class[] {})); // NOI18N
+            methods[METHOD_grabFocus55].setDisplayName ( "" );
+            methods[METHOD_handleEvent56] = new MethodDescriptor(java.awt.Component.class.getMethod("handleEvent", new Class[] {java.awt.Event.class})); // NOI18N
+            methods[METHOD_handleEvent56].setDisplayName ( "" );
+            methods[METHOD_hasFocus57] = new MethodDescriptor(java.awt.Component.class.getMethod("hasFocus", new Class[] {})); // NOI18N
+            methods[METHOD_hasFocus57].setDisplayName ( "" );
+            methods[METHOD_hide58] = new MethodDescriptor(java.awt.Component.class.getMethod("hide", new Class[] {})); // NOI18N
+            methods[METHOD_hide58].setDisplayName ( "" );
+            methods[METHOD_imageUpdate59] = new MethodDescriptor(java.awt.Component.class.getMethod("imageUpdate", new Class[] {java.awt.Image.class, int.class, int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_imageUpdate59].setDisplayName ( "" );
+            methods[METHOD_insets60] = new MethodDescriptor(java.awt.Container.class.getMethod("insets", new Class[] {})); // NOI18N
+            methods[METHOD_insets60].setDisplayName ( "" );
+            methods[METHOD_inside61] = new MethodDescriptor(java.awt.Component.class.getMethod("inside", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_inside61].setDisplayName ( "" );
+            methods[METHOD_invalidate62] = new MethodDescriptor(java.awt.Container.class.getMethod("invalidate", new Class[] {})); // NOI18N
+            methods[METHOD_invalidate62].setDisplayName ( "" );
+            methods[METHOD_isAncestorOf63] = new MethodDescriptor(java.awt.Container.class.getMethod("isAncestorOf", new Class[] {java.awt.Component.class})); // NOI18N
+            methods[METHOD_isAncestorOf63].setDisplayName ( "" );
+            methods[METHOD_isFocusCycleRoot64] = new MethodDescriptor(java.awt.Container.class.getMethod("isFocusCycleRoot", new Class[] {java.awt.Container.class})); // NOI18N
+            methods[METHOD_isFocusCycleRoot64].setDisplayName ( "" );
+            methods[METHOD_isLightweightComponent65] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("isLightweightComponent", new Class[] {java.awt.Component.class})); // NOI18N
+            methods[METHOD_isLightweightComponent65].setDisplayName ( "" );
+            methods[METHOD_keyDown66] = new MethodDescriptor(java.awt.Component.class.getMethod("keyDown", new Class[] {java.awt.Event.class, int.class})); // NOI18N
+            methods[METHOD_keyDown66].setDisplayName ( "" );
+            methods[METHOD_keyUp67] = new MethodDescriptor(java.awt.Component.class.getMethod("keyUp", new Class[] {java.awt.Event.class, int.class})); // NOI18N
+            methods[METHOD_keyUp67].setDisplayName ( "" );
+            methods[METHOD_layout68] = new MethodDescriptor(java.awt.Container.class.getMethod("layout", new Class[] {})); // NOI18N
+            methods[METHOD_layout68].setDisplayName ( "" );
+            methods[METHOD_list69] = new MethodDescriptor(java.awt.Component.class.getMethod("list", new Class[] {})); // NOI18N
+            methods[METHOD_list69].setDisplayName ( "" );
+            methods[METHOD_list70] = new MethodDescriptor(java.awt.Component.class.getMethod("list", new Class[] {java.io.PrintStream.class})); // NOI18N
             methods[METHOD_list70].setDisplayName ( "" );
-            methods[METHOD_list71] = new MethodDescriptor(java.awt.Component.class.getMethod("list", new Class[] {java.io.PrintStream.class})); // NOI18N
+            methods[METHOD_list71] = new MethodDescriptor(java.awt.Component.class.getMethod("list", new Class[] {java.io.PrintWriter.class})); // NOI18N
             methods[METHOD_list71].setDisplayName ( "" );
-            methods[METHOD_list72] = new MethodDescriptor(java.awt.Component.class.getMethod("list", new Class[] {java.io.PrintWriter.class})); // NOI18N
+            methods[METHOD_list72] = new MethodDescriptor(java.awt.Container.class.getMethod("list", new Class[] {java.io.PrintStream.class, int.class})); // NOI18N
             methods[METHOD_list72].setDisplayName ( "" );
-            methods[METHOD_list73] = new MethodDescriptor(java.awt.Container.class.getMethod("list", new Class[] {java.io.PrintStream.class, int.class})); // NOI18N
+            methods[METHOD_list73] = new MethodDescriptor(java.awt.Container.class.getMethod("list", new Class[] {java.io.PrintWriter.class, int.class})); // NOI18N
             methods[METHOD_list73].setDisplayName ( "" );
-            methods[METHOD_list74] = new MethodDescriptor(java.awt.Container.class.getMethod("list", new Class[] {java.io.PrintWriter.class, int.class})); // NOI18N
-            methods[METHOD_list74].setDisplayName ( "" );
-            methods[METHOD_locate75] = new MethodDescriptor(java.awt.Container.class.getMethod("locate", new Class[] {int.class, int.class})); // NOI18N
-            methods[METHOD_locate75].setDisplayName ( "" );
-            methods[METHOD_location76] = new MethodDescriptor(java.awt.Component.class.getMethod("location", new Class[] {})); // NOI18N
-            methods[METHOD_location76].setDisplayName ( "" );
-            methods[METHOD_lostFocus77] = new MethodDescriptor(java.awt.Component.class.getMethod("lostFocus", new Class[] {java.awt.Event.class, java.lang.Object.class})); // NOI18N
-            methods[METHOD_lostFocus77].setDisplayName ( "" );
-            methods[METHOD_minimumSize78] = new MethodDescriptor(java.awt.Container.class.getMethod("minimumSize", new Class[] {})); // NOI18N
-            methods[METHOD_minimumSize78].setDisplayName ( "" );
-            methods[METHOD_mouseDown79] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseDown", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
-            methods[METHOD_mouseDown79].setDisplayName ( "" );
-            methods[METHOD_mouseDrag80] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseDrag", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
-            methods[METHOD_mouseDrag80].setDisplayName ( "" );
-            methods[METHOD_mouseEnter81] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseEnter", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
-            methods[METHOD_mouseEnter81].setDisplayName ( "" );
-            methods[METHOD_mouseExit82] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseExit", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
-            methods[METHOD_mouseExit82].setDisplayName ( "" );
-            methods[METHOD_mouseMove83] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseMove", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
-            methods[METHOD_mouseMove83].setDisplayName ( "" );
-            methods[METHOD_mouseUp84] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseUp", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
-            methods[METHOD_mouseUp84].setDisplayName ( "" );
-            methods[METHOD_move85] = new MethodDescriptor(java.awt.Component.class.getMethod("move", new Class[] {int.class, int.class})); // NOI18N
-            methods[METHOD_move85].setDisplayName ( "" );
-            methods[METHOD_nextFocus86] = new MethodDescriptor(java.awt.Component.class.getMethod("nextFocus", new Class[] {})); // NOI18N
-            methods[METHOD_nextFocus86].setDisplayName ( "" );
-            methods[METHOD_paint87] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("paint", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_paint87].setDisplayName ( "" );
-            methods[METHOD_paintAll88] = new MethodDescriptor(java.awt.Component.class.getMethod("paintAll", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_paintAll88].setDisplayName ( "" );
-            methods[METHOD_paintComponents89] = new MethodDescriptor(java.awt.Container.class.getMethod("paintComponents", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_paintComponents89].setDisplayName ( "" );
-            methods[METHOD_paintImmediately90] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("paintImmediately", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_locate74] = new MethodDescriptor(java.awt.Container.class.getMethod("locate", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_locate74].setDisplayName ( "" );
+            methods[METHOD_location75] = new MethodDescriptor(java.awt.Component.class.getMethod("location", new Class[] {})); // NOI18N
+            methods[METHOD_location75].setDisplayName ( "" );
+            methods[METHOD_lostFocus76] = new MethodDescriptor(java.awt.Component.class.getMethod("lostFocus", new Class[] {java.awt.Event.class, java.lang.Object.class})); // NOI18N
+            methods[METHOD_lostFocus76].setDisplayName ( "" );
+            methods[METHOD_minimumSize77] = new MethodDescriptor(java.awt.Container.class.getMethod("minimumSize", new Class[] {})); // NOI18N
+            methods[METHOD_minimumSize77].setDisplayName ( "" );
+            methods[METHOD_mouseDown78] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseDown", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
+            methods[METHOD_mouseDown78].setDisplayName ( "" );
+            methods[METHOD_mouseDrag79] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseDrag", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
+            methods[METHOD_mouseDrag79].setDisplayName ( "" );
+            methods[METHOD_mouseEnter80] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseEnter", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
+            methods[METHOD_mouseEnter80].setDisplayName ( "" );
+            methods[METHOD_mouseExit81] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseExit", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
+            methods[METHOD_mouseExit81].setDisplayName ( "" );
+            methods[METHOD_mouseMove82] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseMove", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
+            methods[METHOD_mouseMove82].setDisplayName ( "" );
+            methods[METHOD_mouseUp83] = new MethodDescriptor(java.awt.Component.class.getMethod("mouseUp", new Class[] {java.awt.Event.class, int.class, int.class})); // NOI18N
+            methods[METHOD_mouseUp83].setDisplayName ( "" );
+            methods[METHOD_move84] = new MethodDescriptor(java.awt.Component.class.getMethod("move", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_move84].setDisplayName ( "" );
+            methods[METHOD_nextFocus85] = new MethodDescriptor(java.awt.Component.class.getMethod("nextFocus", new Class[] {})); // NOI18N
+            methods[METHOD_nextFocus85].setDisplayName ( "" );
+            methods[METHOD_paint86] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("paint", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_paint86].setDisplayName ( "" );
+            methods[METHOD_paintAll87] = new MethodDescriptor(java.awt.Component.class.getMethod("paintAll", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_paintAll87].setDisplayName ( "" );
+            methods[METHOD_paintComponents88] = new MethodDescriptor(java.awt.Container.class.getMethod("paintComponents", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_paintComponents88].setDisplayName ( "" );
+            methods[METHOD_paintImmediately89] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("paintImmediately", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_paintImmediately89].setDisplayName ( "" );
+            methods[METHOD_paintImmediately90] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("paintImmediately", new Class[] {java.awt.Rectangle.class})); // NOI18N
             methods[METHOD_paintImmediately90].setDisplayName ( "" );
-            methods[METHOD_paintImmediately91] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("paintImmediately", new Class[] {java.awt.Rectangle.class})); // NOI18N
-            methods[METHOD_paintImmediately91].setDisplayName ( "" );
-            methods[METHOD_postEvent92] = new MethodDescriptor(java.awt.Component.class.getMethod("postEvent", new Class[] {java.awt.Event.class})); // NOI18N
-            methods[METHOD_postEvent92].setDisplayName ( "" );
-            methods[METHOD_preferredSize93] = new MethodDescriptor(java.awt.Container.class.getMethod("preferredSize", new Class[] {})); // NOI18N
-            methods[METHOD_preferredSize93].setDisplayName ( "" );
-            methods[METHOD_prepareImage94] = new MethodDescriptor(java.awt.Component.class.getMethod("prepareImage", new Class[] {java.awt.Image.class, java.awt.image.ImageObserver.class})); // NOI18N
+            methods[METHOD_postEvent91] = new MethodDescriptor(java.awt.Component.class.getMethod("postEvent", new Class[] {java.awt.Event.class})); // NOI18N
+            methods[METHOD_postEvent91].setDisplayName ( "" );
+            methods[METHOD_preferredSize92] = new MethodDescriptor(java.awt.Container.class.getMethod("preferredSize", new Class[] {})); // NOI18N
+            methods[METHOD_preferredSize92].setDisplayName ( "" );
+            methods[METHOD_prepareImage93] = new MethodDescriptor(java.awt.Component.class.getMethod("prepareImage", new Class[] {java.awt.Image.class, java.awt.image.ImageObserver.class})); // NOI18N
+            methods[METHOD_prepareImage93].setDisplayName ( "" );
+            methods[METHOD_prepareImage94] = new MethodDescriptor(java.awt.Component.class.getMethod("prepareImage", new Class[] {java.awt.Image.class, int.class, int.class, java.awt.image.ImageObserver.class})); // NOI18N
             methods[METHOD_prepareImage94].setDisplayName ( "" );
-            methods[METHOD_prepareImage95] = new MethodDescriptor(java.awt.Component.class.getMethod("prepareImage", new Class[] {java.awt.Image.class, int.class, int.class, java.awt.image.ImageObserver.class})); // NOI18N
-            methods[METHOD_prepareImage95].setDisplayName ( "" );
-            methods[METHOD_print96] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("print", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_print96].setDisplayName ( "" );
-            methods[METHOD_printAll97] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("printAll", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_printAll97].setDisplayName ( "" );
-            methods[METHOD_printComponents98] = new MethodDescriptor(java.awt.Container.class.getMethod("printComponents", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_printComponents98].setDisplayName ( "" );
-            methods[METHOD_putClientProperty99] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("putClientProperty", new Class[] {java.lang.Object.class, java.lang.Object.class})); // NOI18N
-            methods[METHOD_putClientProperty99].setDisplayName ( "" );
-            methods[METHOD_registerKeyboardAction100] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("registerKeyboardAction", new Class[] {java.awt.event.ActionListener.class, java.lang.String.class, javax.swing.KeyStroke.class, int.class})); // NOI18N
+            methods[METHOD_print95] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("print", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_print95].setDisplayName ( "" );
+            methods[METHOD_printAll96] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("printAll", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_printAll96].setDisplayName ( "" );
+            methods[METHOD_printComponents97] = new MethodDescriptor(java.awt.Container.class.getMethod("printComponents", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_printComponents97].setDisplayName ( "" );
+            methods[METHOD_putClientProperty98] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("putClientProperty", new Class[] {java.lang.Object.class, java.lang.Object.class})); // NOI18N
+            methods[METHOD_putClientProperty98].setDisplayName ( "" );
+            methods[METHOD_registerKeyboardAction99] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("registerKeyboardAction", new Class[] {java.awt.event.ActionListener.class, java.lang.String.class, javax.swing.KeyStroke.class, int.class})); // NOI18N
+            methods[METHOD_registerKeyboardAction99].setDisplayName ( "" );
+            methods[METHOD_registerKeyboardAction100] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("registerKeyboardAction", new Class[] {java.awt.event.ActionListener.class, javax.swing.KeyStroke.class, int.class})); // NOI18N
             methods[METHOD_registerKeyboardAction100].setDisplayName ( "" );
-            methods[METHOD_registerKeyboardAction101] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("registerKeyboardAction", new Class[] {java.awt.event.ActionListener.class, javax.swing.KeyStroke.class, int.class})); // NOI18N
-            methods[METHOD_registerKeyboardAction101].setDisplayName ( "" );
-            methods[METHOD_remove102] = new MethodDescriptor(java.awt.Component.class.getMethod("remove", new Class[] {java.awt.MenuComponent.class})); // NOI18N
+            methods[METHOD_remove101] = new MethodDescriptor(java.awt.Component.class.getMethod("remove", new Class[] {java.awt.MenuComponent.class})); // NOI18N
+            methods[METHOD_remove101].setDisplayName ( "" );
+            methods[METHOD_remove102] = new MethodDescriptor(java.awt.Container.class.getMethod("remove", new Class[] {int.class})); // NOI18N
             methods[METHOD_remove102].setDisplayName ( "" );
-            methods[METHOD_remove103] = new MethodDescriptor(java.awt.Container.class.getMethod("remove", new Class[] {int.class})); // NOI18N
+            methods[METHOD_remove103] = new MethodDescriptor(java.awt.Container.class.getMethod("remove", new Class[] {java.awt.Component.class})); // NOI18N
             methods[METHOD_remove103].setDisplayName ( "" );
-            methods[METHOD_remove104] = new MethodDescriptor(java.awt.Container.class.getMethod("remove", new Class[] {java.awt.Component.class})); // NOI18N
-            methods[METHOD_remove104].setDisplayName ( "" );
-            methods[METHOD_removeAll105] = new MethodDescriptor(java.awt.Container.class.getMethod("removeAll", new Class[] {})); // NOI18N
-            methods[METHOD_removeAll105].setDisplayName ( "" );
-            methods[METHOD_removeNotify106] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("removeNotify", new Class[] {})); // NOI18N
-            methods[METHOD_removeNotify106].setDisplayName ( "" );
-            methods[METHOD_removePropertyChangeListener107] = new MethodDescriptor(java.awt.Component.class.getMethod("removePropertyChangeListener", new Class[] {java.lang.String.class, java.beans.PropertyChangeListener.class})); // NOI18N
-            methods[METHOD_removePropertyChangeListener107].setDisplayName ( "" );
-            methods[METHOD_repaint108] = new MethodDescriptor(java.awt.Component.class.getMethod("repaint", new Class[] {})); // NOI18N
+            methods[METHOD_removeAll104] = new MethodDescriptor(java.awt.Container.class.getMethod("removeAll", new Class[] {})); // NOI18N
+            methods[METHOD_removeAll104].setDisplayName ( "" );
+            methods[METHOD_removeNotify105] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("removeNotify", new Class[] {})); // NOI18N
+            methods[METHOD_removeNotify105].setDisplayName ( "" );
+            methods[METHOD_removePropertyChangeListener106] = new MethodDescriptor(java.awt.Component.class.getMethod("removePropertyChangeListener", new Class[] {java.lang.String.class, java.beans.PropertyChangeListener.class})); // NOI18N
+            methods[METHOD_removePropertyChangeListener106].setDisplayName ( "" );
+            methods[METHOD_repaint107] = new MethodDescriptor(java.awt.Component.class.getMethod("repaint", new Class[] {})); // NOI18N
+            methods[METHOD_repaint107].setDisplayName ( "" );
+            methods[METHOD_repaint108] = new MethodDescriptor(java.awt.Component.class.getMethod("repaint", new Class[] {long.class})); // NOI18N
             methods[METHOD_repaint108].setDisplayName ( "" );
-            methods[METHOD_repaint109] = new MethodDescriptor(java.awt.Component.class.getMethod("repaint", new Class[] {long.class})); // NOI18N
+            methods[METHOD_repaint109] = new MethodDescriptor(java.awt.Component.class.getMethod("repaint", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
             methods[METHOD_repaint109].setDisplayName ( "" );
-            methods[METHOD_repaint110] = new MethodDescriptor(java.awt.Component.class.getMethod("repaint", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_repaint110] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("repaint", new Class[] {long.class, int.class, int.class, int.class, int.class})); // NOI18N
             methods[METHOD_repaint110].setDisplayName ( "" );
-            methods[METHOD_repaint111] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("repaint", new Class[] {long.class, int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_repaint111] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("repaint", new Class[] {java.awt.Rectangle.class})); // NOI18N
             methods[METHOD_repaint111].setDisplayName ( "" );
-            methods[METHOD_repaint112] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("repaint", new Class[] {java.awt.Rectangle.class})); // NOI18N
-            methods[METHOD_repaint112].setDisplayName ( "" );
-            methods[METHOD_requestDefaultFocus113] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestDefaultFocus", new Class[] {})); // NOI18N
-            methods[METHOD_requestDefaultFocus113].setDisplayName ( "" );
-            methods[METHOD_requestFocus114] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestFocus", new Class[] {})); // NOI18N
+            methods[METHOD_requestDefaultFocus112] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestDefaultFocus", new Class[] {})); // NOI18N
+            methods[METHOD_requestDefaultFocus112].setDisplayName ( "" );
+            methods[METHOD_requestFocus113] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestFocus", new Class[] {})); // NOI18N
+            methods[METHOD_requestFocus113].setDisplayName ( "" );
+            methods[METHOD_requestFocus114] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestFocus", new Class[] {boolean.class})); // NOI18N
             methods[METHOD_requestFocus114].setDisplayName ( "" );
-            methods[METHOD_requestFocus115] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestFocus", new Class[] {boolean.class})); // NOI18N
-            methods[METHOD_requestFocus115].setDisplayName ( "" );
-            methods[METHOD_requestFocusInWindow116] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestFocusInWindow", new Class[] {})); // NOI18N
-            methods[METHOD_requestFocusInWindow116].setDisplayName ( "" );
-            methods[METHOD_resetKeyboardActions117] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("resetKeyboardActions", new Class[] {})); // NOI18N
-            methods[METHOD_resetKeyboardActions117].setDisplayName ( "" );
-            methods[METHOD_reshape118] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("reshape", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
-            methods[METHOD_reshape118].setDisplayName ( "" );
-            methods[METHOD_resize119] = new MethodDescriptor(java.awt.Component.class.getMethod("resize", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_requestFocusInWindow115] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("requestFocusInWindow", new Class[] {})); // NOI18N
+            methods[METHOD_requestFocusInWindow115].setDisplayName ( "" );
+            methods[METHOD_resetKeyboardActions116] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("resetKeyboardActions", new Class[] {})); // NOI18N
+            methods[METHOD_resetKeyboardActions116].setDisplayName ( "" );
+            methods[METHOD_reshape117] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("reshape", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_reshape117].setDisplayName ( "" );
+            methods[METHOD_resize118] = new MethodDescriptor(java.awt.Component.class.getMethod("resize", new Class[] {int.class, int.class})); // NOI18N
+            methods[METHOD_resize118].setDisplayName ( "" );
+            methods[METHOD_resize119] = new MethodDescriptor(java.awt.Component.class.getMethod("resize", new Class[] {java.awt.Dimension.class})); // NOI18N
             methods[METHOD_resize119].setDisplayName ( "" );
-            methods[METHOD_resize120] = new MethodDescriptor(java.awt.Component.class.getMethod("resize", new Class[] {java.awt.Dimension.class})); // NOI18N
-            methods[METHOD_resize120].setDisplayName ( "" );
-            methods[METHOD_revalidate121] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("revalidate", new Class[] {})); // NOI18N
-            methods[METHOD_revalidate121].setDisplayName ( "" );
-            methods[METHOD_scrollRectToVisible122] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("scrollRectToVisible", new Class[] {java.awt.Rectangle.class})); // NOI18N
-            methods[METHOD_scrollRectToVisible122].setDisplayName ( "" );
-            methods[METHOD_setBounds123] = new MethodDescriptor(java.awt.Component.class.getMethod("setBounds", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
-            methods[METHOD_setBounds123].setDisplayName ( "" );
-            methods[METHOD_setComponentZOrder124] = new MethodDescriptor(java.awt.Container.class.getMethod("setComponentZOrder", new Class[] {java.awt.Component.class, int.class})); // NOI18N
-            methods[METHOD_setComponentZOrder124].setDisplayName ( "" );
-            methods[METHOD_setDefaultLocale125] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("setDefaultLocale", new Class[] {java.util.Locale.class})); // NOI18N
-            methods[METHOD_setDefaultLocale125].setDisplayName ( "" );
-            methods[METHOD_show126] = new MethodDescriptor(java.awt.Component.class.getMethod("show", new Class[] {})); // NOI18N
+            methods[METHOD_revalidate120] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("revalidate", new Class[] {})); // NOI18N
+            methods[METHOD_revalidate120].setDisplayName ( "" );
+            methods[METHOD_scrollRectToVisible121] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("scrollRectToVisible", new Class[] {java.awt.Rectangle.class})); // NOI18N
+            methods[METHOD_scrollRectToVisible121].setDisplayName ( "" );
+            methods[METHOD_setBounds122] = new MethodDescriptor(java.awt.Component.class.getMethod("setBounds", new Class[] {int.class, int.class, int.class, int.class})); // NOI18N
+            methods[METHOD_setBounds122].setDisplayName ( "" );
+            methods[METHOD_setComponentZOrder123] = new MethodDescriptor(java.awt.Container.class.getMethod("setComponentZOrder", new Class[] {java.awt.Component.class, int.class})); // NOI18N
+            methods[METHOD_setComponentZOrder123].setDisplayName ( "" );
+            methods[METHOD_setDefaultLocale124] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("setDefaultLocale", new Class[] {java.util.Locale.class})); // NOI18N
+            methods[METHOD_setDefaultLocale124].setDisplayName ( "" );
+            methods[METHOD_show125] = new MethodDescriptor(java.awt.Component.class.getMethod("show", new Class[] {})); // NOI18N
+            methods[METHOD_show125].setDisplayName ( "" );
+            methods[METHOD_show126] = new MethodDescriptor(java.awt.Component.class.getMethod("show", new Class[] {boolean.class})); // NOI18N
             methods[METHOD_show126].setDisplayName ( "" );
-            methods[METHOD_show127] = new MethodDescriptor(java.awt.Component.class.getMethod("show", new Class[] {boolean.class})); // NOI18N
-            methods[METHOD_show127].setDisplayName ( "" );
-            methods[METHOD_size128] = new MethodDescriptor(java.awt.Component.class.getMethod("size", new Class[] {})); // NOI18N
-            methods[METHOD_size128].setDisplayName ( "" );
-            methods[METHOD_toString129] = new MethodDescriptor(java.awt.Component.class.getMethod("toString", new Class[] {})); // NOI18N
-            methods[METHOD_toString129].setDisplayName ( "" );
-            methods[METHOD_transferFocus130] = new MethodDescriptor(java.awt.Component.class.getMethod("transferFocus", new Class[] {})); // NOI18N
-            methods[METHOD_transferFocus130].setDisplayName ( "" );
-            methods[METHOD_transferFocusBackward131] = new MethodDescriptor(java.awt.Container.class.getMethod("transferFocusBackward", new Class[] {})); // NOI18N
-            methods[METHOD_transferFocusBackward131].setDisplayName ( "" );
-            methods[METHOD_transferFocusDownCycle132] = new MethodDescriptor(java.awt.Container.class.getMethod("transferFocusDownCycle", new Class[] {})); // NOI18N
-            methods[METHOD_transferFocusDownCycle132].setDisplayName ( "" );
-            methods[METHOD_transferFocusUpCycle133] = new MethodDescriptor(java.awt.Component.class.getMethod("transferFocusUpCycle", new Class[] {})); // NOI18N
-            methods[METHOD_transferFocusUpCycle133].setDisplayName ( "" );
-            methods[METHOD_unregisterKeyboardAction134] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("unregisterKeyboardAction", new Class[] {javax.swing.KeyStroke.class})); // NOI18N
-            methods[METHOD_unregisterKeyboardAction134].setDisplayName ( "" );
-            methods[METHOD_update135] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("update", new Class[] {java.awt.Graphics.class})); // NOI18N
-            methods[METHOD_update135].setDisplayName ( "" );
-            methods[METHOD_updateUI136] = new MethodDescriptor(javax.swing.JPanel.class.getMethod("updateUI", new Class[] {})); // NOI18N
-            methods[METHOD_updateUI136].setDisplayName ( "" );
-            methods[METHOD_validate137] = new MethodDescriptor(java.awt.Container.class.getMethod("validate", new Class[] {})); // NOI18N
-            methods[METHOD_validate137].setDisplayName ( "" );
+            methods[METHOD_size127] = new MethodDescriptor(java.awt.Component.class.getMethod("size", new Class[] {})); // NOI18N
+            methods[METHOD_size127].setDisplayName ( "" );
+            methods[METHOD_toString128] = new MethodDescriptor(java.awt.Component.class.getMethod("toString", new Class[] {})); // NOI18N
+            methods[METHOD_toString128].setDisplayName ( "" );
+            methods[METHOD_transferFocus129] = new MethodDescriptor(java.awt.Component.class.getMethod("transferFocus", new Class[] {})); // NOI18N
+            methods[METHOD_transferFocus129].setDisplayName ( "" );
+            methods[METHOD_transferFocusBackward130] = new MethodDescriptor(java.awt.Container.class.getMethod("transferFocusBackward", new Class[] {})); // NOI18N
+            methods[METHOD_transferFocusBackward130].setDisplayName ( "" );
+            methods[METHOD_transferFocusDownCycle131] = new MethodDescriptor(java.awt.Container.class.getMethod("transferFocusDownCycle", new Class[] {})); // NOI18N
+            methods[METHOD_transferFocusDownCycle131].setDisplayName ( "" );
+            methods[METHOD_transferFocusUpCycle132] = new MethodDescriptor(java.awt.Component.class.getMethod("transferFocusUpCycle", new Class[] {})); // NOI18N
+            methods[METHOD_transferFocusUpCycle132].setDisplayName ( "" );
+            methods[METHOD_unregisterKeyboardAction133] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("unregisterKeyboardAction", new Class[] {javax.swing.KeyStroke.class})); // NOI18N
+            methods[METHOD_unregisterKeyboardAction133].setDisplayName ( "" );
+            methods[METHOD_update134] = new MethodDescriptor(javax.swing.JComponent.class.getMethod("update", new Class[] {java.awt.Graphics.class})); // NOI18N
+            methods[METHOD_update134].setDisplayName ( "" );
+            methods[METHOD_updateUI135] = new MethodDescriptor(javax.swing.JPanel.class.getMethod("updateUI", new Class[] {})); // NOI18N
+            methods[METHOD_updateUI135].setDisplayName ( "" );
+            methods[METHOD_validate136] = new MethodDescriptor(java.awt.Container.class.getMethod("validate", new Class[] {})); // NOI18N
+            methods[METHOD_validate136].setDisplayName ( "" );
         }
         catch( Exception e) {}//GEN-HEADEREND:Methods
 
