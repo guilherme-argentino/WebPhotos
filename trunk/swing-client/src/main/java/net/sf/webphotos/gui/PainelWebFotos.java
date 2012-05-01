@@ -122,7 +122,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         scrFotos = new javax.swing.JScrollPane();
         tbFotos = new javax.swing.JTable();
         painelFormFoto = new javax.swing.JPanel();
-        painelFoto = new net.sf.webphotos.gui.PainelFoto();
+        painelFoto = new net.sf.webphotos.gui.component.PainelFoto();
         lblLegenda = new javax.swing.JLabel();
         scrLegenda = new javax.swing.JScrollPane();
         txtLegenda = new javax.swing.JTextArea();
@@ -1308,7 +1308,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     private static javax.swing.JPanel painelControle;
     private static javax.swing.JPanel painelDadosAlbum;
     private static javax.swing.JPanel painelFormFoto;
-    private static net.sf.webphotos.gui.PainelFoto painelFoto;
+    private static net.sf.webphotos.gui.component.PainelFoto painelFoto;
     private static javax.swing.JPanel painelInfoAlbum;
     private static net.sf.webphotos.gui.component.PainelPesquisa painelPesquisa;
     private static javax.swing.JPanel painelToolBar;
