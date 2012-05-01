@@ -23,6 +23,8 @@ package net.sf.webphotos.gui.component;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import net.sf.webphotos.action.AcaoPesquisa;
 import net.sf.webphotos.action.AcaoPopup;
 
 /**
@@ -33,8 +35,8 @@ import net.sf.webphotos.action.AcaoPopup;
  */
 public class PainelPesquisa extends JPanel implements Serializable {
     
-    private AcaoPopup acaoPesquisa;
-
+    private AcaoPesquisa acaoPesquisa;
+    
     /**
      * Construtor da classe. Chama o método initComponents(), responsável por
      * gerar o painel. Trata os eventos e as ações de pesquisa.
@@ -45,13 +47,15 @@ public class PainelPesquisa extends JPanel implements Serializable {
         // ACAO PESQUISA
         // TODO: Reformular esse trecho (ver versão anterior)
         //acaoPesquisa = new AcaoPesquisa(lstCategoriasPesquisa, txtPesquisa, tbAlbuns);
-        //btPesquisar.addActionListener(acaoPesquisa);
-//        txtPesquisa.registerKeyboardAction(acaoPesquisa,
-//                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
-//                javax.swing.JComponent.WHEN_FOCUSED);
+        //registerResearchActionComponent(acaoPesquisa);
 
-        // XXX: Incompatível como componente
-        //popupAction = (AcaoPopup) ApplicationContextResource.getBean("acaoPopup");;;
+    }
+
+    private void registerResearchActionComponent(AcaoPesquisa acaoPesquisa) {
+        btPesquisar.addActionListener(acaoPesquisa);
+        txtPesquisa.registerKeyboardAction(acaoPesquisa,
+                javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0),
+                javax.swing.JComponent.WHEN_FOCUSED);
     }
 
     /**
@@ -129,7 +133,7 @@ public class PainelPesquisa extends JPanel implements Serializable {
     }
 
     /**
-     * Seta a {@link javax.swing.ComboBoxModel ComboBoxModel}
+     * Sets a {@link javax.swing.ComboBoxModel ComboBoxModel}
      * categoriasPesquisaComboBoxModel.
      *
      * @param lstCategoriasPesquisaModel Modelo de lista de categorias para a
@@ -157,14 +161,15 @@ public class PainelPesquisa extends JPanel implements Serializable {
     /**
      * @return the acaoPesquisa
      */
-    public AcaoPopup getAcaoPesquisa() {
+    public AcaoPesquisa getAcaoPesquisa() {
         return acaoPesquisa;
     }
 
     /**
      * @param acaoPesquisa the acaoPesquisa to set
      */
-    public void setAcaoPesquisa(AcaoPopup acaoPesquisa) {
+    public synchronized void setAcaoPesquisa(AcaoPesquisa acaoPesquisa) {
         this.acaoPesquisa = acaoPesquisa;
+        registerResearchActionComponent(this.acaoPesquisa);        
     }
 }

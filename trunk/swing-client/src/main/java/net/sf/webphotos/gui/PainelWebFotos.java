@@ -214,13 +214,12 @@ public class PainelWebFotos extends javax.swing.JPanel {
         menuAlbum.add(menuItemAlbumDelete);
 
         setLayout(new java.awt.GridBagLayout());
-
-        painelPesquisa.setAcaoPesquisa((AcaoPopup) ApplicationContextResource.getBean("acaoPopup"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 1.0;
         add(painelPesquisa, gridBagConstraints);
+        painelPesquisa.addPopupMouseListener((AcaoPopup) ApplicationContextResource.getBean("acaoPopup"));
 
         painelAlbuns.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         painelAlbuns.setPreferredSize(new java.awt.Dimension(462, 150));
@@ -521,6 +520,11 @@ public class PainelWebFotos extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         add(painelControle, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+    
+    /**
+     * 
+     * @param evt the ActionEvent triggered
+     */
     private void menuItemAlbumRedoJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAlbumRedoJSActionPerformed
 
         (new SwingWorker<Void, Object>() {
@@ -559,6 +563,10 @@ public class PainelWebFotos extends javax.swing.JPanel {
         
     }//GEN-LAST:event_menuItemAlbumRedoJSActionPerformed
 
+    /**
+     * 
+     * @param evt the ActionEvent triggered
+     */
     private void menuItemAlbumRedoXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAlbumRedoXMLActionPerformed
 
         (new SwingWorker<Void, Object>() {
@@ -789,7 +797,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         ((javax.swing.MutableComboBoxModel) painelPesquisa.getCategoriasPesquisaComboBoxModel()).setSelectedItem(painelPesquisa.getCategoriasPesquisaComboBoxModel().getElementAt(0));
 
         // prepara outras variáveis utilizadas pelo sistema
-        DocumentListener acaoDocumentListener = (DocumentListener) ApplicationContextResource.getBean("acaoDocumentListener");;
+        DocumentListener acaoDocumentListener = (DocumentListener) ApplicationContextResource.getBean("acaoDocumentListener");
 
         txtTitulo.getDocument().addDocumentListener(acaoDocumentListener);
         txtData.getDocument().addDocumentListener(acaoDocumentListener);
