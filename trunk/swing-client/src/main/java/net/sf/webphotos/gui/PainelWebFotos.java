@@ -25,19 +25,19 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
-import javax.swing.Action;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
-import javax.swing.SwingWorker;
+import java.util.logging.Level;
+import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Photo;
 import net.sf.webphotos.action.*;
+import net.sf.webphotos.dao.jpa.CategoryDAO;
 import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.gui.util.TableSorter;
+import net.sf.webphotos.model.CategoryVO;
 import net.sf.webphotos.tools.Thumbnail;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
@@ -114,6 +114,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         txtTitulo = new javax.swing.JTextField();
         lblCategoria = new javax.swing.JLabel();
         lstCategoriasAlbum = new javax.swing.JComboBox();
+        buttonAddCategory = new net.sf.webphotos.gui.component.BotaoIcone();
         lblData = new javax.swing.JLabel();
         txtData = new javax.swing.JFormattedTextField();
         lblDescricao = new javax.swing.JLabel();
@@ -297,14 +298,28 @@ public class PainelWebFotos extends javax.swing.JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         painelInfoAlbum.add(lstCategoriasAlbum, gridBagConstraints);
 
-        lblData.setText("Data:");
+        buttonAddCategory.setIconPrefix("plus");
+        buttonAddCategory.setLabel("");
+        buttonAddCategory.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        buttonAddCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddCategoryActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        painelInfoAlbum.add(buttonAddCategory, gridBagConstraints);
+
+        lblData.setText("Data:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -313,7 +328,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         txtData.setMinimumSize(new java.awt.Dimension(11, 22));
         txtData.setPreferredSize(new java.awt.Dimension(72, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -357,6 +372,8 @@ public class PainelWebFotos extends javax.swing.JPanel {
         scrFotos.setViewportView(tbFotos);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 10.0;
@@ -623,7 +640,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     }//GEN-LAST:event_tbAlbunsPopupCalled
 
     private void menuItemFotoDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFotoDeleteActionPerformed
-// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_menuItemFotoDeleteActionPerformed
 
     private void menuItemFotoRedoThumbsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFotoRedoThumbsActionPerformed
@@ -697,6 +714,21 @@ public class PainelWebFotos extends javax.swing.JPanel {
         tbAlbunsItemSelected();
     }//GEN-LAST:event_tbAlbunsMouseClicked
 
+    private void buttonAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCategoryActionPerformed
+        String categoryName = JOptionPane.showInputDialog(this, "Type the new category name", "New Category", JOptionPane.INFORMATION_MESSAGE);
+        CategoryVO categoryVO = new CategoryVO();
+        categoryVO.setNmcategoria(categoryName);
+        
+        CategoryDAO categoryDAO = (CategoryDAO) ApplicationContextResource.getBean("categoryDAO");
+        try {
+            categoryDAO.save(categoryVO);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Can't add category, see aplication log for details", "Error", JOptionPane.ERROR_MESSAGE);
+            java.util.logging.Logger.getLogger(PainelWebFotos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // TODO: Add event handling for combos
+    }//GEN-LAST:event_buttonAddCategoryActionPerformed
+
     /**
      * Retorna a instância de PainelWebFotos.
      * Caso não exista o objeto, instancia um.
@@ -742,6 +774,10 @@ public class PainelWebFotos extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Bad Design. Move it's responsabilites to another place.
+     * @throws Exception 
+     */
     private static void rotinasExtras() throws Exception {
         /* Extras - Ações */
         // TECLAS DE ATALHO GLOBAL
@@ -1280,6 +1316,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     private static net.sf.webphotos.gui.component.BotaoIcone btFTP;
     private static javax.swing.JButton btNovo;
     private static net.sf.webphotos.gui.component.BotaoIcone btUpload;
+    private static net.sf.webphotos.gui.component.BotaoIcone buttonAddCategory;
     private static javax.swing.JLabel lblAlbum;
     private static javax.swing.JLabel lblCategoria;
     private static javax.swing.JLabel lblData;
