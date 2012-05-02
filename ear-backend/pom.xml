@@ -35,7 +35,7 @@
                 <artifactId>maven-ear-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <version>1.5</version>
+                    <version>5</version>
                     <modules>
                         <ejbModule>
                             <groupId>net.sf.webphotos</groupId>
