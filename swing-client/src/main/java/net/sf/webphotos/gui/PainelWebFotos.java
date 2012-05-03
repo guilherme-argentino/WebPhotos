@@ -724,9 +724,11 @@ public class PainelWebFotos extends javax.swing.JPanel {
             categoryDAO.save(categoryVO);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Can't add category, see aplication log for details", "Error", JOptionPane.ERROR_MESSAGE);
-            java.util.logging.Logger.getLogger(PainelWebFotos.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelWebFotos.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
         // TODO: Add event handling for combos
+        lstCategoriasAlbum.setModel(new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray(Boolean.TRUE)));
+        painelPesquisa.setCategoriasPesquisaComboBoxModel(new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray(Boolean.TRUE)));
     }//GEN-LAST:event_buttonAddCategoryActionPerformed
 
     /**

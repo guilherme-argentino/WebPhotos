@@ -20,14 +20,7 @@
 package net.sf.webphotos.model;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -41,9 +34,12 @@ import javax.persistence.Table;
 public class CategoryVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "CATEGORIAID", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer categoriaID;
+    
     @Column(name = "NMCATEGORIA", nullable = false)
     private String nmcategoria;
     @ManyToOne(optional = true)
@@ -53,8 +49,8 @@ public class CategoryVO implements Serializable {
     public CategoryVO() {
     }
 
-    public CategoryVO(Integer categoriaid) {
-        this.categoriaID = categoriaid;
+    public CategoryVO(Integer categoriaID) {
+        this.categoriaID = categoriaID;
     }
 
     public CategoryVO(Integer categoriaID, String nmcategoria) {
