@@ -266,7 +266,6 @@
             <Component class="net.sf.webphotos.gui.component.BotaoIcone" name="buttonAddCategory">
               <Properties>
                 <Property name="iconPrefix" type="java.lang.String" value="plus"/>
-                <Property name="label" type="java.lang.String" value=""/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[2, 2, 2, 2]"/>
                 </Property>

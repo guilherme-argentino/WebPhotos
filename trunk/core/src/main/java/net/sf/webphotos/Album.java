@@ -269,6 +269,10 @@ public class Album {
     public String[] getFotosColunas() {
         return new String[]{"ID", "Legenda", "Credito"};
     }
+    
+    public String[] getCategoriasArray() {
+        return getCategoriasArray(Boolean.FALSE);
+    }
 
     /**
      * Retorna um vetor que armazena as categorias. Checa se categoria é
@@ -277,9 +281,9 @@ public class Album {
      *
      * @return Retorna as categorias do albúm.
      */
-    public String[] getCategoriasArray() {
+    public String[] getCategoriasArray(Boolean force) {
         int tamanho;
-        if (categorias == null) {
+        if (categorias == null || force == true) {
             try {
                 log.info("Populando Categorias");
                 populaCategorias();
@@ -468,7 +472,6 @@ public class Album {
                             log.error("Erro na exclusão de " + BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivos[j]);
                             sucesso = false;
                         }
-                        arquivo = null;
                     }
                 }
                 if (diretorio.delete() == true) {

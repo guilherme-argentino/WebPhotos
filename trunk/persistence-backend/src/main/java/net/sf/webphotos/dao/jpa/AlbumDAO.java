@@ -15,8 +15,8 @@
  */
 package net.sf.webphotos.dao.jpa;
 
-import net.sf.webphotos.model.AlbumVO;
 import java.util.List;
+import net.sf.webphotos.model.AlbumVO;
 
 /**
  * @author Guilherme

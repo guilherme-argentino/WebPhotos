@@ -19,7 +19,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.Transient;
 
 /**
  *
@@ -29,7 +28,6 @@ public class WebPhotosDAO<E, I> {
 
     @PersistenceContext
     protected EntityManager entityManager;
-
     private Class<E> entityClass;
 
     public WebPhotosDAO(Class<E> entityClass) {
@@ -38,6 +36,7 @@ public class WebPhotosDAO<E, I> {
 
     /**
      * Workarround for a rapid migration from RowSet
+     *
      * @param query
      * @return
      * @deprecated
@@ -52,25 +51,15 @@ public class WebPhotosDAO<E, I> {
     }
 
     public void save(E object) throws Exception {
-        try {
-            if (getEntityManager().find(object.getClass(), object) != null) {
-                getEntityManager().merge(object);
-            } else {
-                getEntityManager().persist(object);
-            }
-        } catch (Exception e) {
-            getEntityManager().getTransaction().rollback();
-            throw e;
-        }
+//        if (object.equals(entityManager.find(object.getClass(), object))) {
+            entityManager.merge(object);
+//        } else {
+//            entityManager.persist(object);
+//        }
     }
 
     public void remove(E object) throws Exception {
-        try {
-            getEntityManager().remove(object);
-        } catch (Exception e) {
-            getEntityManager().getTransaction().rollback();
-            throw e;
-        }
+        getEntityManager().remove(object);
     }
 
     /**
@@ -86,9 +75,10 @@ public class WebPhotosDAO<E, I> {
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-    
+
     /**
      * Workarround for a rapid migration from RowSet
+     *
      * @param query
      * @return
      * @deprecated
