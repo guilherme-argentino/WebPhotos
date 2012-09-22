@@ -22,20 +22,29 @@ package net.sf.webphotos.netbeans;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import org.openide.awt.ActionID;
+import org.openide.awt.ActionReference;
+import org.openide.awt.ActionRegistration;
+import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
-import org.openide.util.Utilities;
+import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponent;
 
 /**
  * Action which shows WebPhotosForm component.
  */
+@ActionID(id = "net.sf.webphotos.netbeans.WebPhotosFormAction", category = "Window")
+@ActionRegistration(lazy = false, displayName = "#CTL_WebPhotosFormAction")
+@ActionReference(path = "Menu/Window", name = "WebPhotosFormAction")
+@Messages("CTL_WebPhotosFormAction=WebPhotosForm")
 public class WebPhotosFormAction extends AbstractAction {
 
     public WebPhotosFormAction() {
         super(NbBundle.getMessage(WebPhotosFormAction.class, "CTL_WebPhotosFormAction"));
-        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(WebPhotosFormTopComponent.ICON_PATH, true)));
+        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage(WebPhotosFormTopComponent.ICON_PATH, true)));
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
         TopComponent win = WebPhotosFormTopComponent.findInstance();
         win.open();
