@@ -32,6 +32,16 @@ public interface Constants {
         public static final String CONFIG_WEBPHOTOS_PROPERTIES = "config/webphotos.properties";
         public static final String ALBUNS_WEBPHOTOS_XML = "albuns/webphotos.xml";
         public static final String EMPTY_WEBPHOTOS_PROJECT_WIZARD_PANEL = "net.sf.webphotos.netbeans.project.empty.EmptyWebPhotosProjectWizardPanel";
+        
+        public interface EmptyProject {
+            
+            public static final String PROJECT_DISPLAY_MANE = "net.sf.webphotos.netbeans.project.Bundle#Templates/Project/WebPhotos/EmptyWebPhotosProjectProject.zip";
+            public static final String PROJECT_ICON_BASE = "net/sf/webphotos/netbeans/project/projectIcon.png";
+            public static final String PROJECT_FOLDER = "Project/WebPhotos";
+            public static final String PROJECT_DESCRIPTION = "/net/sf/webphotos/netbeans/project/empty/EmptyWebPhotosProjectDescription.html";
+            public static final String PROJECT_CONTENT = "/net/sf/webphotos/netbeans/project/EmptyWebPhotosProjectProject.zip";
+            
+        }
  
     }
 }
