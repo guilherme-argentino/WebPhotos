@@ -19,8 +19,11 @@ import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.netbeans.api.project.Project;
@@ -71,7 +74,6 @@ public class WebPhotosProject implements Project {
 
     @Override
     public Lookup getLookup() {
-        //throw new UnsupportedOperationException("Not supported yet.");
         if (lkp == null) {
             lkp = Lookups.fixed(new Object[]{
                         state, //allow outside code to mark the project as needing saving
@@ -87,30 +89,43 @@ public class WebPhotosProject implements Project {
 
     private final class ActionProviderImpl implements ActionProvider {
 
-        private String[] supported = new String[]{
-            ActionProvider.COMMAND_DELETE,
-            ActionProvider.COMMAND_COPY
-        };
+        private Map<String, Runnable> supportedOps = new HashMap<String, Runnable>();
+
+        /**
+         * It builds a map with supported commands
+         */
+        public ActionProviderImpl() {
+            supportedOps.put(ActionProvider.COMMAND_COPY, new Runnable() {
+
+                @Override
+                public void run() {
+                    DefaultProjectOperations.performDefaultCopyOperation(WebPhotosProject.this);
+                }
+            });
+            supportedOps.put(ActionProvider.COMMAND_DELETE, new Runnable() {
+
+                @Override
+                public void run() {
+                    DefaultProjectOperations.performDefaultDeleteOperation(WebPhotosProject.this);
+                }
+            });
+        }
+        
+        
 
         @Override
         public String[] getSupportedActions() {
-            return supported;
+            return supportedOps.keySet().toArray(new String[supportedOps.keySet().size()]);
         }
 
         @Override
         public void invokeAction(String action, Lookup lookup) throws IllegalArgumentException {
-            if (action.equalsIgnoreCase(ActionProvider.COMMAND_DELETE)) {
-                DefaultProjectOperations.performDefaultDeleteOperation(WebPhotosProject.this);
-            } else if (action.equalsIgnoreCase(ActionProvider.COMMAND_COPY)) {
-                DefaultProjectOperations.performDefaultCopyOperation(WebPhotosProject.this);
-            }
+            supportedOps.get(action).run();
         }
 
         @Override
         public boolean isActionEnabled(String command, Lookup lookup) throws IllegalArgumentException {
-            if ((command.equals(ActionProvider.COMMAND_DELETE))) {
-                return true;
-            } else if ((command.equals(ActionProvider.COMMAND_COPY))) {
+            if (Arrays.binarySearch(getSupportedActions(), command) >= 0) {
                 return true;
             } else {
                 throw new IllegalArgumentException(command);
