@@ -46,6 +46,9 @@ public class WebPhotosProjectFactory implements ProjectFactory {
      */
     @Override
     public boolean isProject(FileObject projectDirectory) {
+        if(projectDirectory == null) {
+            return false;
+        }
         boolean isProject = true;
         for (String file : PROJECT_ARCHIVES) {
             isProject = (isProject && projectDirectory.getFileObject(file) != null);
@@ -60,7 +63,7 @@ public class WebPhotosProjectFactory implements ProjectFactory {
 
     @Override
     public void saveProject(Project project) throws IOException, ClassCastException {
-        if (!isProject(project.getProjectDirectory())) {
+        if (project != null && !isProject(project.getProjectDirectory())) {
             throw new IOException("Project dir " + project.getProjectDirectory().getPath()
                     + " deleted,"
                     + " cannot save project");

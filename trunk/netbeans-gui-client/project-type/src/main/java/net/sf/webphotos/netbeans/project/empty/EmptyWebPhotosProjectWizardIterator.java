@@ -48,6 +48,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.InstantiatingIterator {
+    public static final String PROP_PROJECT_DIR = "projdir";
+    public static final String PROP_PROJECT_NAME = "name";
 
     private int index;
     private WizardDescriptor.Panel[] panels;
@@ -80,7 +82,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
     @Override
     public Set<FileObject> instantiate() throws IOException {
         Set<FileObject> resultSet = new LinkedHashSet<FileObject>();
-        File dirF = FileUtil.normalizeFile((File) wiz.getProperty("projdir"));
+        File dirF = FileUtil.normalizeFile((File) wiz.getProperty(PROP_PROJECT_DIR));
         dirF.mkdirs();
 
         FileObject template = Templates.getTemplate(wiz);
@@ -133,8 +135,8 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
 
     @Override
     public void uninitialize(WizardDescriptor wiz) {
-        this.wiz.putProperty("projdir", null);
-        this.wiz.putProperty("name", null);
+        this.wiz.putProperty(PROP_PROJECT_DIR, null);
+        this.wiz.putProperty(PROP_PROJECT_NAME, null);
         this.wiz = null;
         panels = null;
     }
@@ -221,7 +223,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             FileUtil.copy(str, baos);
             Document doc = XMLUtil.parse(new InputSource(new ByteArrayInputStream(baos.toByteArray())), false, false, null, null);
-            NodeList nl = doc.getDocumentElement().getElementsByTagName("name");
+            NodeList nl = doc.getDocumentElement().getElementsByTagName(PROP_PROJECT_NAME);
             if (nl != null) {
                 for (int i = 0; i < nl.getLength(); i++) {
                     Element el = (Element) nl.item(i);
