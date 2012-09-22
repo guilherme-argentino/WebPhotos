@@ -22,13 +22,6 @@
             <url>http://bits.netbeans.org/maven2</url>
         </repository>
     </repositories>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
     <build>
         <pluginManagement>
             <plugins>
@@ -40,11 +33,10 @@
                     <configuration>
                         <descriptor>src/main/nbm/module.xml</descriptor>
                         <brandingToken>${brandingToken}</brandingToken>
-                        <cluster>webphotos</cluster>
+                        <cluster>${brandingToken}</cluster>
                     </configuration>
                 </plugin>
 
-                <!-- netbeans modules in 5.5+ are 1.5 compatible -->
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.3.2</version>
@@ -54,7 +46,7 @@
                     </configuration>
                 </plugin>
                 
-                <plugin> <!-- required since nbm-plugin 3.0-->
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>2.3.1</version>
@@ -88,7 +80,7 @@
         <module>application</module>
     </modules>
     <properties>
-        <netbeans.version>RELEASE68</netbeans.version>
+        <netbeans.version>RELEASE72</netbeans.version>
         <brandingToken>webphotos</brandingToken>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

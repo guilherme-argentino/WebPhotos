@@ -1,5 +1,5 @@
-/*
- * Copyright 2012 Guilherme.
+/**
+ * Copyright 2008 WebPhotos
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import net.sf.webphotos.netbeans.project.Constants.ProjectFactory;
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
@@ -37,6 +38,7 @@ public class EmptyWebPhotosProjectWizardPanel implements WizardDescriptor.Panel,
     public EmptyWebPhotosProjectWizardPanel() {
     }
 
+    @Override
     public Component getComponent() {
         if (component == null) {
             component = new EmptyWebPhotosProjectPanelVisual(this);
@@ -45,22 +47,26 @@ public class EmptyWebPhotosProjectWizardPanel implements WizardDescriptor.Panel,
         return component;
     }
 
+    @Override
     public HelpCtx getHelp() {
-        return new HelpCtx(EmptyWebPhotosProjectWizardPanel.class);
+        return new HelpCtx(ProjectFactory.EMPTY_WEBPHOTOS_PROJECT_WIZARD_PANEL);
     }
 
+    @Override
     public boolean isValid() {
         getComponent();
         return component.valid(wizardDescriptor);
     }
     private final Set<ChangeListener> listeners = new HashSet<ChangeListener>(1); // or can use ChangeSupport in NB 6.0
 
+    @Override
     public final void addChangeListener(ChangeListener l) {
         synchronized (listeners) {
             listeners.add(l);
         }
     }
 
+    @Override
     public final void removeChangeListener(ChangeListener l) {
         synchronized (listeners) {
             listeners.remove(l);
@@ -78,20 +84,24 @@ public class EmptyWebPhotosProjectWizardPanel implements WizardDescriptor.Panel,
         }
     }
 
+    @Override
     public void readSettings(Object settings) {
         wizardDescriptor = (WizardDescriptor) settings;
         component.read(wizardDescriptor);
     }
 
+    @Override
     public void storeSettings(Object settings) {
         WizardDescriptor d = (WizardDescriptor) settings;
         component.store(d);
     }
 
+    @Override
     public boolean isFinishPanel() {
         return true;
     }
 
+    @Override
     public void validate() throws WizardValidationException {
         getComponent();
         component.validate(wizardDescriptor);

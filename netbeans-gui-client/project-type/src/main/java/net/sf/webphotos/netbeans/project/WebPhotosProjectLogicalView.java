@@ -90,7 +90,7 @@ class WebPhotosProjectLogicalView implements LogicalViewProvider {
         @Override
         public Action[] getActions(boolean arg0) {
             Action[] nodeActions = new Action[7];
-            nodeActions[0] = CommonProjectActions.renameProjectAction();
+            nodeActions[0] = CommonProjectActions.newFileAction();
             nodeActions[1] = CommonProjectActions.copyProjectAction();
             nodeActions[2] = CommonProjectActions.deleteProjectAction();
             nodeActions[5] = CommonProjectActions.setAsMainProjectAction();
