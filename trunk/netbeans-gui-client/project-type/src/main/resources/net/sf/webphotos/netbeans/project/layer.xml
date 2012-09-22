@@ -18,17 +18,4 @@
 -->
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
-    <folder name="Templates">
-        <folder name="Project">
-            <folder name="WebPhotos">
-                <file name="EmptyWebPhotosProjectProject.zip" url="EmptyWebPhotosProjectProject.zip">
-                    <attr name="displayName" bundlevalue="net.sf.webphotos.netbeans.project.Bundle#Templates/Project/WebPhotos/EmptyWebPhotosProjectProject.zip"/>
-                    <attr name="instantiatingIterator" methodvalue="net.sf.webphotos.netbeans.project.empty.EmptyWebPhotosProjectWizardIterator.createIterator"/>
-                    <attr name="instantiatingWizardURL" urlvalue="nbresloc:/net/sf/webphotos/netbeans/project/empty/EmptyWebPhotosProjectDescription.html"/>
-                    <attr name="iconBase" stringvalue="net/sf/webphotos/netbeans/project/projectIcon.png"/>
-                    <attr name="template" boolvalue="true"/>
-                </file>
-            </folder>
-        </folder>
-    </folder>
 </filesystem>

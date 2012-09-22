@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.netbeans.project.empty;
 
@@ -31,7 +31,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
+import net.sf.webphotos.netbeans.project.Constants.ProjectFactory.EmptyProject;
 import org.netbeans.api.project.ProjectManager;
+import org.netbeans.api.templates.TemplateRegistration;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
 import org.openide.WizardDescriptor;
@@ -45,7 +47,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*Progress*/InstantiatingIterator {
+public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.InstantiatingIterator {
 
     private int index;
     private WizardDescriptor.Panel[] panels;
@@ -54,6 +56,12 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
     public EmptyWebPhotosProjectWizardIterator() {
     }
 
+    @TemplateRegistration(
+            folder = EmptyProject.PROJECT_FOLDER, 
+            content = EmptyProject.PROJECT_CONTENT, 
+            displayName = EmptyProject.PROJECT_DISPLAY_MANE, 
+            iconBase = EmptyProject.PROJECT_ICON_BASE, 
+            description = EmptyProject.PROJECT_DESCRIPTION)
     public static EmptyWebPhotosProjectWizardIterator createIterator() {
         return new EmptyWebPhotosProjectWizardIterator();
     }
@@ -69,7 +77,8 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
                 };
     }
 
-    public Set/*<FileObject>*/ instantiate(/*ProgressHandle handle*/) throws IOException {
+    @Override
+    public Set<FileObject> instantiate() throws IOException {
         Set<FileObject> resultSet = new LinkedHashSet<FileObject>();
         File dirF = FileUtil.normalizeFile((File) wiz.getProperty("projdir"));
         dirF.mkdirs();
@@ -97,6 +106,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
         return resultSet;
     }
 
+    @Override
     public void initialize(WizardDescriptor wiz) {
         this.wiz = wiz;
         index = 0;
@@ -122,6 +132,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
         }
     }
 
+    @Override
     public void uninitialize(WizardDescriptor wiz) {
         this.wiz.putProperty("projdir", null);
         this.wiz.putProperty("name", null);
@@ -129,19 +140,23 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
         panels = null;
     }
 
+    @Override
     public String name() {
         return MessageFormat.format("{0} of {1}",
                 new Object[]{new Integer(index + 1), new Integer(panels.length)});
     }
 
+    @Override
     public boolean hasNext() {
         return index < panels.length - 1;
     }
 
+    @Override
     public boolean hasPrevious() {
         return index > 0;
     }
 
+    @Override
     public void nextPanel() {
         if (!hasNext()) {
             throw new NoSuchElementException();
@@ -149,6 +164,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
         index++;
     }
 
+    @Override
     public void previousPanel() {
         if (!hasPrevious()) {
             throw new NoSuchElementException();
@@ -156,14 +172,17 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor./*P
         index--;
     }
 
+    @Override
     public WizardDescriptor.Panel current() {
         return panels[index];
     }
 
     // If nothing unusual changes in the middle of the wizard, simply:
+    @Override
     public final void addChangeListener(ChangeListener l) {
     }
 
+    @Override
     public final void removeChangeListener(ChangeListener l) {
     }
 
