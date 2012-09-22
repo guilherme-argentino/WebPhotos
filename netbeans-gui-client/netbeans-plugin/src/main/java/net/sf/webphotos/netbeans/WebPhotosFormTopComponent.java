@@ -22,10 +22,10 @@ package net.sf.webphotos.netbeans;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.openide.util.Utilities;
 
 /**
  * Top component which displays something.
@@ -41,7 +41,7 @@ final class WebPhotosFormTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(WebPhotosFormTopComponent.class, "CTL_WebPhotosFormTopComponent"));
         setToolTipText(NbBundle.getMessage(WebPhotosFormTopComponent.class, "HINT_WebPhotosFormTopComponent"));
-        setIcon(Utilities.loadImage(ICON_PATH, true));
+        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
 
     }
 
