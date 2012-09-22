@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.netbeans.project.empty;
 
@@ -26,7 +26,7 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.filesystems.FileUtil;
 
-public class EmptyWebPhotosProjectPanelVisual extends JPanel implements DocumentListener {
+public class EmptyWebPhotosProjectPanelVisual extends JPanel {
 
     public static final String PROP_PROJECT_NAME = "projectName";
     private EmptyWebPhotosProjectWizardPanel panel;
@@ -35,8 +35,9 @@ public class EmptyWebPhotosProjectPanelVisual extends JPanel implements Document
         initComponents();
         this.panel = panel;
         // Register listener on the textFields to make the automatic updates
-        projectNameTextField.getDocument().addDocumentListener(this);
-        projectLocationTextField.getDocument().addDocumentListener(this);
+        EmptyWebPhotosProjectPanelVisualDocumentListener documentListener = new EmptyWebPhotosProjectPanelVisualDocumentListener();
+        projectNameTextField.getDocument().addDocumentListener(documentListener);
+        projectLocationTextField.getDocument().addDocumentListener(documentListener);
     }
 
     public String getProjectName() {
@@ -121,8 +122,7 @@ public class EmptyWebPhotosProjectPanelVisual extends JPanel implements Document
         String command = evt.getActionCommand();
         if ("BROWSE".equals(command)) {
             JFileChooser chooser = new JFileChooser();
-            FileUtil.preventFileChooserSymlinkTraversal(chooser, null);
-            chooser.setDialogTitle("Select Project Location");
+            chooser.setDialogTitle(java.util.ResourceBundle.getBundle("net/sf/webphotos/netbeans/project/empty/Bundle").getString("LBL_CreateProjectStep_DialogTitle"));
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             String path = this.projectLocationTextField.getText();
             if (path.length() > 0) {
@@ -160,14 +160,14 @@ public class EmptyWebPhotosProjectPanelVisual extends JPanel implements Document
 
         if (projectNameTextField.getText().length() == 0) {
             // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_ERROR_MESSAGE:
-            wizardDescriptor.putProperty("WizardPanel_errorMessage",
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE,
                     "Project Name is not a valid folder name.");
             return false; // Display name not specified
         }
         File f = FileUtil.normalizeFile(new File(projectLocationTextField.getText()).getAbsoluteFile());
         if (!f.isDirectory()) {
             String message = "Project Folder is not a valid path.";
-            wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, message);
             return false;
         }
         final File destFolder = FileUtil.normalizeFile(new File(createdFolderTextField.getText()).getAbsoluteFile());
@@ -177,25 +177,25 @@ public class EmptyWebPhotosProjectPanelVisual extends JPanel implements Document
             projLoc = projLoc.getParentFile();
         }
         if (projLoc == null || !projLoc.canWrite()) {
-            wizardDescriptor.putProperty("WizardPanel_errorMessage",
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE,
                     "Project Folder cannot be created.");
             return false;
         }
 
         if (FileUtil.toFileObject(projLoc) == null) {
             String message = "Project Folder is not a valid path.";
-            wizardDescriptor.putProperty("WizardPanel_errorMessage", message);
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, message);
             return false;
         }
 
         File[] kids = destFolder.listFiles();
         if (destFolder.exists() && kids != null && kids.length > 0) {
             // Folder exists and is not empty
-            wizardDescriptor.putProperty("WizardPanel_errorMessage",
+            wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE,
                     "Project Folder already exists and is not empty.");
             return false;
         }
-        wizardDescriptor.putProperty("WizardPanel_errorMessage", "");
+        wizardDescriptor.putProperty(WizardDescriptor.PROP_ERROR_MESSAGE, "");
         return true;
     }
 
@@ -228,46 +228,52 @@ public class EmptyWebPhotosProjectPanelVisual extends JPanel implements Document
         // nothing to validate
     }
 
-    // Implementation of DocumentListener --------------------------------------
-    public void changedUpdate(DocumentEvent e) {
-        updateTexts(e);
-        if (this.projectNameTextField.getDocument() == e.getDocument()) {
-            firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
+    private class EmptyWebPhotosProjectPanelVisualDocumentListener implements DocumentListener {
+
+        // Implementation of DocumentListener --------------------------------------
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            updateTexts(e);
+            if (projectNameTextField.getDocument() == e.getDocument()) {
+                firePropertyChange(PROP_PROJECT_NAME, null, projectNameTextField.getText());
+            }
         }
-    }
 
-    public void insertUpdate(DocumentEvent e) {
-        updateTexts(e);
-        if (this.projectNameTextField.getDocument() == e.getDocument()) {
-            firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            updateTexts(e);
+            if (projectNameTextField.getDocument() == e.getDocument()) {
+                firePropertyChange(PROP_PROJECT_NAME, null, projectNameTextField.getText());
+            }
         }
-    }
 
-    public void removeUpdate(DocumentEvent e) {
-        updateTexts(e);
-        if (this.projectNameTextField.getDocument() == e.getDocument()) {
-            firePropertyChange(PROP_PROJECT_NAME, null, this.projectNameTextField.getText());
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            updateTexts(e);
+            if (projectNameTextField.getDocument() == e.getDocument()) {
+                firePropertyChange(PROP_PROJECT_NAME, null, projectNameTextField.getText());
+            }
         }
-    }
 
-    /**
-     * Handles changes in the Project name and project directory,
-     */
-    private void updateTexts(DocumentEvent e) {
+        /**
+         * Handles changes in the Project name and project directory,
+         */
+        private void updateTexts(DocumentEvent e) {
 
-        Document doc = e.getDocument();
+            Document doc = e.getDocument();
 
-        if (doc == projectNameTextField.getDocument() || doc == projectLocationTextField.getDocument()) {
-            // Change in the project name
+            if (doc == projectNameTextField.getDocument() || doc == projectLocationTextField.getDocument()) {
+                // Change in the project name
 
-            String projectName = projectNameTextField.getText();
-            String projectFolder = projectLocationTextField.getText();
+                String projectName = projectNameTextField.getText();
+                String projectFolder = projectLocationTextField.getText();
 
-            //if (projectFolder.trim().length() == 0 || projectFolder.equals(oldName)) {
-            createdFolderTextField.setText(projectFolder + File.separatorChar + projectName);
-            //}
+                //if (projectFolder.trim().length() == 0 || projectFolder.equals(oldName)) {
+                createdFolderTextField.setText(projectFolder + File.separatorChar + projectName);
+                //}
 
+            }
+            panel.fireChangeEvent(); // Notify that the panel changed
         }
-        panel.fireChangeEvent(); // Notify that the panel changed
     }
 }
