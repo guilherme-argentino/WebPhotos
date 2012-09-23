@@ -226,7 +226,7 @@ public class Album {
      * @return Retorna a coleção de fotos.
      */
     public Photo[] getFotos() {
-        return fotos.toArray(new Photo[0]);
+        return fotos.toArray(new Photo[fotos.size()]);
     }
 
     /**
