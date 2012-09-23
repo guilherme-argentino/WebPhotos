@@ -93,7 +93,7 @@ texto.corFundo=255,255,255
 # jdbc.driver=org.apache.derby.jdbc.EmbeddedDriver
 jdbc.driver=org.apache.derby.jdbc.ClientDriver
 # jdbc.url=jdbc:mysql://gui-vmw2k3-db/webphotos
-# jdbc.url=jdbc:derby:${sys:user.home}/webfotos/database;create=true
+# jdbc.url=jdbc:derby:${user.home}/webfotos/database;create=true
 jdbc.url=jdbc:derby://localhost:15270/${sys:user.home}/webfotos/database/webfotos;create=true
 
 # Additional information to create an server instance inside the application
