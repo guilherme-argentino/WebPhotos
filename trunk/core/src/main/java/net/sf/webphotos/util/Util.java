@@ -18,8 +18,6 @@ package net.sf.webphotos.util;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.Iterator;
-import java.util.Properties;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -32,7 +30,6 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.DefaultConfigurationBuilder;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.FactoryBean;
 
 /**
  * Esta classe armazena alguns métodos de utilidade para o funcionamento de todo
@@ -52,7 +49,7 @@ public class Util {
      */
     private static JTextArea saida;
     private static File albunsRoot = null;
-    private static CombinedConfiguration config;
+    private static Configuration config;
     /**
      * Para desviar a saída padrão de texto (em produção).
      */
@@ -72,7 +69,8 @@ public class Util {
         String userHome = "";
         try {
             configurationBuilder.setFileName("Configuration.xml");
-            config = configurationBuilder.getConfiguration(true);
+            CombinedConfiguration auxConfig = configurationBuilder.getConfiguration(true);
+            config = auxConfig.interpolatedConfiguration();
             userHome = config.getString("user.home");
         } catch (Exception e) {
             log.error("Can't load preferences");
