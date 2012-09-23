@@ -15,17 +15,13 @@
  */
 package net.sf.webphotos;
 
-import net.sf.webphotos.BancoImagem;
 import java.io.File;
 import java.io.PrintWriter;
 import java.net.InetAddress;
-import org.apache.derby.drda.NetworkServerControl;
-
-
-import org.apache.log4j.Logger;
-
 import net.sf.webphotos.gui.FrameWebFotos;
 import net.sf.webphotos.util.Util;
+import org.apache.derby.drda.NetworkServerControl;
+import org.apache.log4j.Logger;
 
 /**
  * Classe responsável pelo inicio do sistema WebPhotos.

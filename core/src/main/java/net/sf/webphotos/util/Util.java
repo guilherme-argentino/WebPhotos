@@ -18,6 +18,8 @@ package net.sf.webphotos.util;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Iterator;
+import java.util.Properties;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -30,6 +32,7 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.DefaultConfigurationBuilder;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.FactoryBean;
 
 /**
  * Esta classe armazena alguns métodos de utilidade para o funcionamento de todo
@@ -44,20 +47,16 @@ public class Util {
     private static final String WEBPHOTOS_USER_CONFIG = "webfotos.xml";
     public static final String WEBPHOTOS_DEFAULT_CONFIG = "webphotos.dat";
     private static Util instancia = new Util();
-
     /**
      * caixa de texto para dar saída ao log
      */
     private static JTextArea saida;
-    
     private static File albunsRoot = null;
     private static CombinedConfiguration config;
-    
     /**
      * Para desviar a saída padrão de texto (em produção).
      */
     public static PrintStream out;
-    
     /**
      * Para desviar a saída padrão de texto (em produção).
      */
@@ -113,7 +112,8 @@ public class Util {
     /**
      * Retorna o diretório raiz de albuns. Checa se a variável albunsRoot já
      * possui o valor, caso não, busca o arquivo nas propriedades através do
-     * método {@link net.sf.webphotos.util.Util#getProperty(String) getProperty}(String
+     * método
+     * {@link net.sf.webphotos.util.Util#getProperty(String) getProperty}(String
      * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
      * esteja correto, retorna o diretório.
      *
@@ -138,7 +138,8 @@ public class Util {
     /**
      * Retorna o diretório raiz de albuns. Checa se a variável albunsRoot já
      * possui o valor, caso não, busca o arquivo nas propriedades através do
-     * método {@link net.sf.webphotos.util.Util#getProperty(String) getProperty}(String
+     * método
+     * {@link net.sf.webphotos.util.Util#getProperty(String) getProperty}(String
      * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
      * esteja correto, retorna o diretório.
      *
