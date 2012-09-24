@@ -24,14 +24,8 @@
     <class>net.sf.webphotos.model.CreditsVO</class>
     <class>net.sf.webphotos.model.PhotoVO</class>
     <properties>
-      <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
       <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
-      <!--            <property name="hibernate.connection.username" value="root"/>-->
-      <!--            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>-->
       <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>
-      <!--            <property name="hibernate.connection.password" value="root"/>-->
-      <!--            <property name="hibernate.connection.url" value="jdbc:derby:${sys:user.home}/webfotos/database;create=true"/>-->
-      <!--            <property name="hibernate.connection.url" value="jdbc:derby://localhost:15270/${sys:user.home}/webfotos/database/webfotos;create=true"/>-->
       <property name="hibernate.hbm2ddl.auto" value="create-drop" />
       <property name="hibernate.show_sql" value="true" />
     </properties>

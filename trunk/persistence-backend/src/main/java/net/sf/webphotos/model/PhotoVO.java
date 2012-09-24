@@ -20,6 +20,7 @@
 package net.sf.webphotos.model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import javax.persistence.*;
 
 /**
@@ -34,7 +35,7 @@ import javax.persistence.*;
     @NamedQuery(name = "PhotoVO.findByNmfoto", query = "SELECT f FROM PhotoVO f WHERE f.nmfoto = :nmfoto"),
     @NamedQuery(name = "PhotoVO.findByLegenda", query = "SELECT f FROM PhotoVO f WHERE f.legenda = :legenda"),
     @NamedQuery(name = "PhotoVO.findByCreditoid", query = "SELECT f FROM PhotoVO f WHERE f.creditos.creditoid = :creditoid")})
-public class PhotoVO implements Serializable {
+public class PhotoVO implements Serializable, Comparable<PhotoVO> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -123,8 +124,18 @@ public class PhotoVO implements Serializable {
         PhotoVO other = (PhotoVO) object;
         if ((this.fotoid == null && other.fotoid != null) || (this.fotoid != null && !this.fotoid.equals(other.fotoid))) {
             return false;
+        } else {
+            return this.caminhoArquivo.equals(other.caminhoArquivo);
         }
-        return true;
+    }
+
+    @Override
+    public int compareTo(PhotoVO o2) {
+        if(this.fotoid != null && o2.fotoid != null) {
+            return this.fotoid - o2.fotoid;
+        } else {
+            return this.caminhoArquivo.compareTo(o2.caminhoArquivo);
+        }
     }
 
     @Override
