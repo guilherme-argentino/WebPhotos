@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.action;
 
@@ -59,12 +59,11 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * Contrutor da classe. Recebe como parâmetro dois botões, um para alteração
      * e o outro para implementação nova. Seta os valores dos botões da classe a
      * partir dos recebidos e seta as tabelas de albúns e fotos a partir de
-     * métodos get da classe {@link net.sf.webphotos.gui.PainelWebFotos PainelWebFotos}.
+     * métodos get da classe
+     * {@link net.sf.webphotos.gui.PainelWebFotos PainelWebFotos}.
      *
-     * @param botaoNovo
-     *            Botão para identificar a ação de implementação novo.
-     * @param botaoAlterar
-     *            Botão para identificar a ação de alteração.
+     * @param botaoNovo Botão para identificar a ação de implementação novo.
+     * @param botaoAlterar Botão para identificar a ação de alteração.
      */
     public AcaoAlterarAlbum(JButton botaoNovo, JButton botaoAlterar) {
         btAlterar = botaoAlterar;
@@ -84,8 +83,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * atualização do álbum, coletando os valores dos controles GUI, validando
      * os dados e atualizando o objeto.
      *
-     * @param ev
-     *            Evento de ação.
+     * @param ev Evento de ação.
      */
     @Override
     public void actionPerformed(ActionEvent ev) {
@@ -181,6 +179,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
 
     /**
      * PASSO 4 - Fazer Thumbs e Adicionar em FTP
+     *
      * @param fotos
      * @param albumID
      * @param caminhoAlbum
@@ -420,7 +419,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         if (albumID == 0) {
             // álbum ainda não registrado obtém um ID
             try {
-                
+
                 sql = "SELECT MAX(albumID) FROM albuns";
                 rowSet.setCommand(sql);
                 rowSet.execute();

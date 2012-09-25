@@ -1,55 +1,53 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.action;
 
 import java.awt.event.ActionEvent;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Iterator;
-
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 import net.sf.webphotos.Album;
 import net.sf.webphotos.gui.PainelWebFotos;
 import net.sf.webphotos.gui.util.TableModelFoto;
-import net.sf.webphotos.util.Util;
 import net.sf.webphotos.gui.util.TableSorter;
-import java.io.*;
+import net.sf.webphotos.util.Util;
 import org.apache.log4j.Logger;
 
 /**
- * Exclui fotos.
- * Possui os dados tabela de fotos e largura da coluna de fotos.
- * Seu construtor seta esses dados para serem utilizados posteriormente pelo método que implementa a ação.
+ * Exclui fotos. Possui os dados tabela de fotos e largura da coluna de fotos.
+ * Seu construtor seta esses dados para serem utilizados posteriormente pelo
+ * método que implementa a ação.
  */
 public class AcaoExcluirFoto extends AbstractAction {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -6690995860578985531L;
     private static final Logger log = Logger.getLogger(AcaoExcluirFoto.class);
-
     private JTable tbFotos;
     private String larguraColunasFotos;
 
     /**
-     * Construtor da classe.
-     * Seta os valores da tabela de fotos por um parâmetro recebido e através da tabela seta o valor da largura da coluna.
+     * Construtor da classe. Seta os valores da tabela de fotos por um parâmetro
+     * recebido e através da tabela seta o valor da largura da coluna.
+     *
      * @param tabela Tabela de fotos.
      */
     public AcaoExcluirFoto(JTable tabela) {
@@ -58,13 +56,19 @@ public class AcaoExcluirFoto extends AbstractAction {
     }
 
     /**
-     * Método responsável pela exclusão de fotos.
-     * Identifica os IDs e nomes das fotos selecionadas. Armazena quais e quantas linhas foram selecionadas.
-     * Checa se existe apenas uma foto no albúm e mostra ao usuário que se a foto for excluída, o albúm também será. Pede confirmação e efetua a ação.
-     * Faz um controle de exclusão de no máximo 20 fotos por vez.
-     * Lista os albúns selecionados ao usuário e pede uma confirmação de exclusão.
-     * Caso o usuário confirme, exclui as fotos selecionadas com o método {@link net.sf.webphotos.Album#excluirFotos(int[]) excluirFotos(albunsID)} da classe Album.
-     * Ao ser iniciado o método que implementa a ação, checa se a foto não é recente, se já possui registro no banco. Então cria um array com os IDs das fotos. Cria um arquivo javascript. E por último atualiza a lista e área das fotos no programa.
+     * Método responsável pela exclusão de fotos. Identifica os IDs e nomes das
+     * fotos selecionadas. Armazena quais e quantas linhas foram selecionadas.
+     * Checa se existe apenas uma foto no albúm e mostra ao usuário que se a
+     * foto for excluída, o albúm também será. Pede confirmação e efetua a ação.
+     * Faz um controle de exclusão de no máximo 20 fotos por vez. Lista os
+     * albúns selecionados ao usuário e pede uma confirmação de exclusão. Caso o
+     * usuário confirme, exclui as fotos selecionadas com o método
+     * {@link net.sf.webphotos.Album#excluirFotos(int[]) excluirFotos(albunsID)}
+     * da classe Album. Ao ser iniciado o método que implementa a ação, checa se
+     * a foto não é recente, se já possui registro no banco. Então cria um array
+     * com os IDs das fotos. Cria um arquivo javascript. E por último atualiza a
+     * lista e área das fotos no programa.
+     *
      * @param e Evento de ação de exclusão de fotos.
      */
     @Override
