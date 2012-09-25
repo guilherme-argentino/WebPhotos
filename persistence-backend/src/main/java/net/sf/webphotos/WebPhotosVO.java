@@ -1,5 +1,5 @@
-/**
- * Copyright 2008 WebPhotos
+/*
+ * Copyright 2012 Guilherme.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.sf.webphotos.dao.jpa;
-
-import net.sf.webphotos.model.CategoryVO;
+package net.sf.webphotos;
 
 /**
  *
  * @author Guilherme
  */
-public class CategoryDAO extends WebPhotosDAO<CategoryVO, Integer> {
-
-    public CategoryDAO() {
-        super(CategoryVO.class, Integer.class);
-    }
+public interface WebPhotosVO<I> {
+    
+    public I getId();
     
 }

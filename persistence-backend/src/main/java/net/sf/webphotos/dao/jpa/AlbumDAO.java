@@ -25,7 +25,7 @@ import net.sf.webphotos.model.AlbumVO;
 public class AlbumDAO extends WebPhotosDAO<AlbumVO, Integer> {
 
     public AlbumDAO() {
-        super(AlbumVO.class);
+        super(AlbumVO.class, Integer.class);
     }
 
     public List<AlbumVO> findAll() {

@@ -61,10 +61,11 @@
                       expression="within(net.sf.webphotos.dao.jpa..*)"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
     </aop:config>
-
+    
     <tx:advice id="txAdvice" transaction-manager="myTxManager">
         <tx:attributes>
-            <tx:method name="save" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
         </tx:attributes>
     </tx:advice>
     <tx:annotation-driven transaction-manager="myTxManager" mode="proxy" />
@@ -72,11 +73,14 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="jse_webphotos_pu" />
         <property name="persistenceUnitManager" ref="persistenceUnitManager" />
+        <property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+        </property>
     </bean>
     
     <bean id="dataSource"
        class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-       p:driverClassName="${jdbc.driver}" p:url="${jdbc.url}"/>
+       p:driverClassName="${jdbc.driver}" p:url="${jdbc.url}" />
 
     
     <bean id="persistenceUnitManager"
@@ -97,5 +101,7 @@
     <bean id="myTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
+    
+    <context:load-time-weaver weaver-class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
 
 </beans>

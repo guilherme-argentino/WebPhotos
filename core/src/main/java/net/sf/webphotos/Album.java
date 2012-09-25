@@ -629,8 +629,8 @@ public class Album {
 
         int ct = 0;
         for (Object[] objects : tableData) {
-            categorias[ct][0] = objects[1].toString();
-            categorias[ct][1] = objects[2].toString();
+            categorias[ct][0] = objects[0].toString();
+            categorias[ct][1] = objects[1].toString();
             ct++;
         }
     }
