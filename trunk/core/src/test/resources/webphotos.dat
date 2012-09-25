@@ -107,7 +107,7 @@ sql1=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pau
 colunas1=35\,100\,*\,60
 
 # lista de categorias - sem parametros (forma a lista combo box)
-sql2=SELECT categoriaID\, NmCategoria FROM categorias WHERE subcategoria=1 ORDER BY NmCategoria
+sql2=SELECT categoriaID\, NmCategoria FROM categorias WHERE CATEGORIAPAI=1 ORDER BY NmCategoria
 
 # instrucao para pesquisa - [?1 palavra chave] [?2 categoriaID]
 sql3=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data FROM albuns LEFT JOIN categorias USING(categoriaID) WHERE MATCH (NmAlbum\,Descricao) AGAINST('?1')

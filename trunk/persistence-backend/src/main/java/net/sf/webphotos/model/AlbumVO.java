@@ -33,6 +33,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import net.sf.webphotos.WebPhotosVO;
 
 /**
  *
@@ -46,7 +47,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "AlbumVO.findByDtInsercao", query = "SELECT a FROM AlbumVO a WHERE a.dtInsercao = :dtInsercao"),
     @NamedQuery(name = "AlbumVO.findByCategoriaID", query = "SELECT a FROM AlbumVO a WHERE a.categoriasVO.categoriaID = :categoriaID")
 })
-public class AlbumVO implements Serializable {
+public class AlbumVO implements Serializable, WebPhotosVO<Integer> {
 
     private static final long serialVersionUID = 1L;
     
@@ -193,6 +194,11 @@ public class AlbumVO implements Serializable {
      */
     public boolean removePhotoBy(Integer id) {
         return this.photos.remove(getPhotoBy(id));
+    }
+
+    @Override
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

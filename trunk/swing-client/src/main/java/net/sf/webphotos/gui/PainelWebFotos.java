@@ -29,6 +29,7 @@ import java.util.logging.Level;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
+import javax.swing.text.StyledEditorKit;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Photo;
@@ -56,6 +57,18 @@ public class PainelWebFotos extends javax.swing.JPanel {
     public static final String ACAO_CANCELAR = "cancelar";
     public static final String ACAO_FINALIZAR = "finalizar";
     public static final String ACAO_ALTERAR = "alterar";
+
+    /**
+     * Extras - Pesquisa 
+     * 
+     * @param force 
+     */
+    public static void montagemComboPesquisa(Boolean force) {
+        final DefaultComboBoxModel defaultComboBoxModel = new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray(force));
+        defaultComboBoxModel.insertElementAt("Todas as Categorias", 0);
+        defaultComboBoxModel.setSelectedItem(defaultComboBoxModel.getElementAt(0));
+        painelPesquisa.setCategoriasPesquisaComboBoxModel(defaultComboBoxModel);
+    }
 
     /** Creates new form PainelWebFotos */
     public PainelWebFotos() {
@@ -716,8 +729,12 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     private void buttonAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCategoryActionPerformed
         String categoryName = JOptionPane.showInputDialog(this, "Type the new category name", "New Category", JOptionPane.INFORMATION_MESSAGE);
-        CategoryVO categoryVO = new CategoryVO();
-        categoryVO.setNmcategoria(categoryName);
+        
+        if(categoryName.isEmpty()) {
+            return;
+        }
+        
+        CategoryVO categoryVO = new CategoryVO(categoryName);
         
         CategoryDAO categoryDAO = (CategoryDAO) ApplicationContextResource.getBean("categoryDAO");
         try {
@@ -726,9 +743,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Can't add category, see aplication log for details", "Error", JOptionPane.ERROR_MESSAGE);
             java.util.logging.Logger.getLogger(PainelWebFotos.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        // TODO: Add event handling for combos
-        lstCategoriasAlbum.setModel(new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray(Boolean.TRUE)));
-        painelPesquisa.setCategoriasPesquisaComboBoxModel(new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray(Boolean.TRUE)));
+        PainelWebFotos.montagemComboPesquisa(Boolean.TRUE);
     }//GEN-LAST:event_buttonAddCategoryActionPerformed
 
     /**
@@ -828,11 +843,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         /* Extras - Tabelas */
         apresentaNumReg();
         atualizaTabelaFotos();
-
-        /* Extras - Pesquisa */
-        painelPesquisa.setCategoriasPesquisaComboBoxModel(new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray()));
-        ((javax.swing.MutableComboBoxModel) painelPesquisa.getCategoriasPesquisaComboBoxModel()).insertElementAt("Todas as Categorias", 0);
-        ((javax.swing.MutableComboBoxModel) painelPesquisa.getCategoriasPesquisaComboBoxModel()).setSelectedItem(painelPesquisa.getCategoriasPesquisaComboBoxModel().getElementAt(0));
+        montagemComboPesquisa(Boolean.FALSE);
 
         // prepara outras variáveis utilizadas pelo sistema
         DocumentListener acaoDocumentListener = (DocumentListener) ApplicationContextResource.getBean("acaoDocumentListener");

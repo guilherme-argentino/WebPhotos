@@ -20,8 +20,8 @@
 package net.sf.webphotos.model;
 
 import java.io.Serializable;
-import java.util.Comparator;
 import javax.persistence.*;
+import net.sf.webphotos.WebPhotosVO;
 
 /**
  *
@@ -35,7 +35,7 @@ import javax.persistence.*;
     @NamedQuery(name = "PhotoVO.findByNmfoto", query = "SELECT f FROM PhotoVO f WHERE f.nmfoto = :nmfoto"),
     @NamedQuery(name = "PhotoVO.findByLegenda", query = "SELECT f FROM PhotoVO f WHERE f.legenda = :legenda"),
     @NamedQuery(name = "PhotoVO.findByCreditoid", query = "SELECT f FROM PhotoVO f WHERE f.creditos.creditoid = :creditoid")})
-public class PhotoVO implements Serializable, Comparable<PhotoVO> {
+public class PhotoVO implements Serializable, Comparable<PhotoVO>, WebPhotosVO<Integer> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -172,5 +172,10 @@ public class PhotoVO implements Serializable, Comparable<PhotoVO> {
 
     public Integer getLargura() {
         return largura;
+    }
+
+    @Override
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -24,7 +24,7 @@ import net.sf.webphotos.model.PhotoVO;
 public class PhotoDAO extends WebPhotosDAO<PhotoVO, Integer> {
 
     public PhotoDAO() {
-        super(PhotoVO.class);
+        super(PhotoVO.class, Integer.class);
     }
     
 }

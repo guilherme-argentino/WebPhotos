@@ -19,19 +19,21 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import net.sf.webphotos.WebPhotosVO;
 
 /**
  *
  * @author Guilherme L A Silva
  */
-public class WebPhotosDAO<E, I> {
+public class WebPhotosDAO<E extends WebPhotosVO, I> {
 
-    @PersistenceContext
     protected EntityManager entityManager;
     private Class<E> entityClass;
+    private Class<I> keyClass;
 
-    public WebPhotosDAO(Class<E> entityClass) {
+    public WebPhotosDAO(Class<E> entityClass, Class<I> keyClass) {
         this.entityClass = entityClass;
+        this.keyClass = keyClass;
     }
 
     /**
@@ -51,15 +53,17 @@ public class WebPhotosDAO<E, I> {
     }
 
     public void save(E object) throws Exception {
-//        if (object.equals(entityManager.find(object.getClass(), object))) {
+        if (object.getId() != null && object.equals(entityManager.find(entityClass, object.getId()))) {
             entityManager.merge(object);
-//        } else {
-//            entityManager.persist(object);
-//        }
+        } else {
+            entityManager.persist(object);
+        }
+        entityManager.flush();
     }
 
     public void remove(E object) throws Exception {
-        getEntityManager().remove(object);
+        entityManager.remove(object);
+        entityManager.flush();
     }
 
     /**
@@ -72,6 +76,7 @@ public class WebPhotosDAO<E, I> {
     /**
      * @param entityManager the entityManager to set
      */
+    @PersistenceContext
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

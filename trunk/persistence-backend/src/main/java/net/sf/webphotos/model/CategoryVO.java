@@ -21,6 +21,7 @@ package net.sf.webphotos.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import net.sf.webphotos.WebPhotosVO;
 
 /**
  *
@@ -31,7 +32,7 @@ import javax.persistence.*;
 @NamedQueries({
     @NamedQuery(name = "CategoryVO.findByCategoriaID", query = "SELECT c FROM CategoryVO c WHERE c.categoriaID = :categoriaID"),
     @NamedQuery(name = "CategoryVO.findByNmcategoria", query = "SELECT c FROM CategoryVO c WHERE c.nmcategoria = :nmcategoria")})
-public class CategoryVO implements Serializable {
+public class CategoryVO implements Serializable, WebPhotosVO<Integer> {
 
     private static final long serialVersionUID = 1L;
     
@@ -43,21 +44,32 @@ public class CategoryVO implements Serializable {
     @Column(name = "NMCATEGORIA", nullable = false)
     private String nmcategoria;
     @ManyToOne(optional = true)
-    @JoinColumn(name = "SUBCATEGORIA")
+    @JoinColumn(name = "CATEGORIAPAI")
     private CategoryVO categoriaPai;
 
     public CategoryVO() {
     }
 
+    @Deprecated
     public CategoryVO(Integer categoriaID) {
         this.categoriaID = categoriaID;
     }
 
+    @Deprecated
     public CategoryVO(Integer categoriaID, String nmcategoria) {
-        this.categoriaID = categoriaID;
+        this(categoriaID);
         this.nmcategoria = nmcategoria;
     }
 
+    public CategoryVO(String nmcategoria) {
+        this.nmcategoria = nmcategoria;
+    }
+
+    public CategoryVO(String nmcategoria, CategoryVO categoriaPai) {
+        this(nmcategoria);
+        this.categoriaPai = categoriaPai;
+    }
+    
     public Integer getCategoriaID() {
         return categoriaID;
     }
@@ -111,5 +123,10 @@ public class CategoryVO implements Serializable {
     @Override
     public String toString() {
         return "br.nom.guilherme.webfotos.dao.CategoryVO[categoriaid=" + categoriaID + "]";
+    }
+
+    @Override
+    public Integer getId() {
+        return categoriaID;
     }
 }
