@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.tools;
 
@@ -32,9 +32,9 @@ import net.sf.webphotos.util.Util;
 import org.apache.commons.configuration.Configuration;
 
 /**
- * Molda diferentes tamanhos de dimensão para as imagens.
- * Controla os tamanhos máximos de cada thumb e redimensiona o tamanho das
- * fotos originais baseado nesses valores máximos.
+ * Molda diferentes tamanhos de dimensão para as imagens. Controla os tamanhos
+ * máximos de cada thumb e redimensiona o tamanho das fotos originais baseado
+ * nesses valores máximos.
  */
 public final class Thumbnail {
 
@@ -50,10 +50,10 @@ public final class Thumbnail {
 
     /**
      * Busca no arquivo de configuração, classe
-     * {@link net.sf.webphotos.util.Config Config}, os tamnahos dos 4 thumbs
-     * e seta esses valores nas variáveis desta classe.
-     * Testa se o usuário setou valores de marca d'água e texto para o thumb4,
-     * caso afirmativo, busca os valores necessários no arquivo de configuração.
+     * {@link net.sf.webphotos.util.Config Config}, os tamnahos dos 4 thumbs e
+     * seta esses valores nas variáveis desta classe. Testa se o usuário setou
+     * valores de marca d'água e texto para o thumb4, caso afirmativo, busca os
+     * valores necessários no arquivo de configuração.
      */
     private static void inicializar() {
 
@@ -98,23 +98,20 @@ public final class Thumbnail {
     }
 
     /**
-     * Cria thumbs para as imagens.
-     * Testa se já existem valores setados para o thumb,
-     * se não existir chama o método
-     * {@link net.sf.webphotos.Thumbnail#inicializar() inicializar}
-     * para setar seus valores.
-     * Abre o arquivo de imagem passado como parâmetro
-     * e checa se é uma foto válida.
-     * Obtém o tamanho original da imagem, checa se está
-     * no formato paisagem ou retrato e utiliza o método
+     * Cria thumbs para as imagens. Testa se já existem valores setados para o
+     * thumb, se não existir chama o método
+     * {@link net.sf.webphotos.Thumbnail#inicializar() inicializar} para setar
+     * seus valores. Abre o arquivo de imagem passado como parâmetro e checa se
+     * é uma foto válida. Obtém o tamanho original da imagem, checa se está no
+     * formato paisagem ou retrato e utiliza o método
      * {@link java.awt.Images#getScaledInstance(int,int,int) getScaledInstance}
-     * para calcular os thumbs.
-     * Ao final, salva as imagens.
+     * para calcular os thumbs. Ao final, salva as imagens.
+     *
      * @param caminhoCompletoImagem Caminho da imagem.
      */
     public static void makeThumbs(String caminhoCompletoImagem) {
 
-        String diretorio = "", arquivo = "";
+        String diretorio, arquivo;
         if (t1 == 0) {
             inicializar();
         }
@@ -140,7 +137,7 @@ public final class Thumbnail {
             ImageIcon ii = new ImageIcon(f.getCanonicalPath());
             Image i = ii.getImage();
 
-            Image tumb1 = null, tumb2 = null, tumb3 = null, tumb4 = null;
+            Image tumb1, tumb2, tumb3, tumb4;
 
             // obtém o tamanho da imagem original
             int iWidth = i.getWidth(null);
@@ -325,8 +322,9 @@ public final class Thumbnail {
     }
 
     /**
-     * Returns the format of the image in the file 'f'.
-     * Returns null if the format is not known.
+     * Returns the format of the image in the file 'f'. Returns null if the
+     * format is not known.
+     *
      * @param f An java.io.File
      * @return An String containing the type of Image or NULL
      */
@@ -371,8 +369,9 @@ public final class Thumbnail {
 
     /**
      * Faz um load no arquivo de configuração e chama o método
-     * {@link net.sf.webphotos.Thumbnail#makeThumbs(String) makeThumbs} para fazer
-     * thumbs de uma foto específica.
+     * {@link net.sf.webphotos.Thumbnail#makeThumbs(String) makeThumbs} para
+     * fazer thumbs de uma foto específica.
+     *
      * @param args args do método main.
      */
     public static void main(String[] args) {
@@ -383,13 +382,12 @@ public final class Thumbnail {
         //makeThumbs("d:/bancoImagem/81/315.jpg");
         //makeThumbs("D:/webfotos/460/2072.jpg");
         //executaLote();
-
     }
 
     /**
      * Abre uma conexão com o banco de dados através da classe BancoImagem,
-     * busca um lote de imagens e faz thumbs para todas as fotos.
-     * Não possui utilizações.
+     * busca um lote de imagens e faz thumbs para todas as fotos. Não possui
+     * utilizações.
      */
     public static void executaLote() {
         net.sf.webphotos.BancoImagem db = net.sf.webphotos.BancoImagem.getBancoImagem();

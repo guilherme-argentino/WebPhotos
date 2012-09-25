@@ -1,40 +1,40 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.tools;
 
 import java.sql.*;
 
 /**
- * Classe responsável por exportações no formato XML.
- * Os dados são trabalhados somente no método principal, com conexão ao banco.
+ * Classe responsável por exportações no formato XML. Os dados são trabalhados
+ * somente no método principal, com conexão ao banco.
  */
 public class XMLExport {
 
     /**
-     * Segue algumas rotinas para exportar ao formato XML.
-     * Primeiro executa uma conexão com banco de dados, caso não realizado com sucesso, retorna mensagem de erro.
-     * Após a conexão estabelecida, começa a gerar o xml.
-     * Executa uma query para buscar os dados e os imprime.
-     * Essa última parte não está finalizada.
+     * Segue algumas rotinas para exportar ao formato XML. Primeiro executa uma
+     * conexão com banco de dados, caso não realizado com sucesso, retorna
+     * mensagem de erro. Após a conexão estabelecida, começa a gerar o xml.
+     * Executa uma query para buscar os dados e os imprime. Essa última parte
+     * não está finalizada.
+     *
      * @param a Argumentos do método main.
      */
     public static void main(String a[]) {
         Connection conn = null;
-        Statement st1 = null;
-        Statement st2 = null;
+        Statement st1;
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
