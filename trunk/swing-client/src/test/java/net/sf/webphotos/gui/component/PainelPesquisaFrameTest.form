@@ -24,10 +24,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="painelPesquisa2" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoIcone1" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="painelPesquisaTest" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -36,21 +33,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="painelPesquisa2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="botaoIcone1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="187" max="32767" attributes="0"/>
+              <Component id="painelPesquisaTest" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="229" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="net.sf.webphotos.gui.component.PainelPesquisa" name="painelPesquisa2">
-    </Component>
-    <Component class="net.sf.webphotos.gui.component.BotaoIcone" name="botaoIcone1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="botaoIcone1"/>
-      </Properties>
+    <Component class="net.sf.webphotos.gui.component.PainelPesquisa" name="painelPesquisaTest">
     </Component>
   </SubComponents>
 </Form>

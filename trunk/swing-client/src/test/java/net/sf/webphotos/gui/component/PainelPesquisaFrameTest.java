@@ -1,19 +1,30 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.gui.component;
+
+import org.junit.AfterClass;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.uispec4j.Trigger;
+import org.uispec4j.UISpec4J;
+import org.uispec4j.Window;
+import org.uispec4j.interception.WindowHandler;
+import org.uispec4j.interception.WindowInterceptor;
 
 /**
  *
@@ -21,10 +32,28 @@ package net.sf.webphotos.gui.component;
  */
 public class PainelPesquisaFrameTest extends javax.swing.JFrame {
 
+    static {
+        UISpec4J.init();
+        UISpec4J.setWindowInterceptionTimeLimit(30000);
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() {
+    }
+
     /**
      * Creates new form PainelPesquisaFrameTest
      */
     public PainelPesquisaFrameTest() {
+        super("PainelPesquisaFrameTest");
         initComponents();
     }
 
@@ -37,12 +66,9 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painelPesquisa2 = new net.sf.webphotos.gui.component.PainelPesquisa();
-        botaoIcone1 = new net.sf.webphotos.gui.component.BotaoIcone();
+        painelPesquisaTest = new net.sf.webphotos.gui.component.PainelPesquisa();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        botaoIcone1.setText("botaoIcone1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,19 +76,15 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelPesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoIcone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(painelPesquisaTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelPesquisa2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoIcone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addComponent(painelPesquisaTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,7 +93,8 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    @Test
+    public void testMain() {
         /*
          * Set the Nimbus look and feel
          */
@@ -99,19 +122,21 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
+        WindowInterceptor.init(new Trigger() {
             @Override
             public void run() {
                 new PainelPesquisaFrameTest().setVisible(true);
             }
-        });
+        }).process(new WindowHandler("PainelPesquisaFrameTest") {
+            @Override
+            public Trigger process(Window window) throws Exception {
+                assertTrue(window.titleContains("PainelPesquisaFrameTest").isTrue());
+                System.out.println("Tittle: " + window.getTitle());
+                return Trigger.DO_NOTHING;
+            }
+        }).run();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private net.sf.webphotos.gui.component.BotaoIcone botaoIcone1;
-    private net.sf.webphotos.gui.component.PainelPesquisa painelPesquisa2;
+    private net.sf.webphotos.gui.component.PainelPesquisa painelPesquisaTest;
     // End of variables declaration//GEN-END:variables
 }
