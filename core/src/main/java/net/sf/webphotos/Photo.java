@@ -15,8 +15,6 @@
  */
 package net.sf.webphotos;
 
-import net.sf.webphotos.dao.jpa.PhotoDAO;
-import net.sf.webphotos.model.PhotoVO;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
 import java.io.File;
@@ -24,6 +22,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import javax.swing.ImageIcon;
+import net.sf.webphotos.dao.jpa.PhotoDAO;
+import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
 
