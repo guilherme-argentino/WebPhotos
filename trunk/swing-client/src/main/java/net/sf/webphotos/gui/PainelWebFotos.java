@@ -29,7 +29,6 @@ import java.util.logging.Level;
 import javax.swing.*;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
-import javax.swing.text.StyledEditorKit;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
 import net.sf.webphotos.Photo;
