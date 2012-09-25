@@ -43,6 +43,7 @@ public class CategoryVO implements Serializable, WebPhotosVO<Integer> {
     
     @Column(name = "NMCATEGORIA", nullable = false)
     private String nmcategoria;
+    
     @ManyToOne(optional = true)
     @JoinColumn(name = "CATEGORIAPAI")
     private CategoryVO categoriaPai;
