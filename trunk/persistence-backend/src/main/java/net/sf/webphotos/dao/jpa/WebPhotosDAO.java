@@ -58,7 +58,6 @@ public class WebPhotosDAO<E extends WebPhotosVO, I> {
         } else {
             entityManager.persist(object);
         }
-        entityManager.flush();
     }
 
     public void remove(E object) throws Exception {

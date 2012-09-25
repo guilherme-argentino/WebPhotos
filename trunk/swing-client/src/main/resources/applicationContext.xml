@@ -55,6 +55,7 @@
     <bean id="albunsDAO" class="net.sf.webphotos.dao.jpa.AlbumDAO" />
     <bean id="photosDAO" class="net.sf.webphotos.dao.jpa.PhotoDAO" />
     <bean id="categoryDAO" class="net.sf.webphotos.dao.jpa.CategoryDAO" />
+    <bean id="creditsDAO" class="net.sf.webphotos.dao.jpa.CreditsDAO" />
 
     <aop:config>
         <aop:pointcut id="serviceMethods" 
