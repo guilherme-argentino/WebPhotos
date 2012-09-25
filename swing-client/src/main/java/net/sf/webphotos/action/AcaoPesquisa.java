@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.action;
 
@@ -27,9 +27,10 @@ import net.sf.webphotos.util.Util;
 import org.apache.commons.configuration.Configuration;
 
 /**
- * Pesquisa elementos no programa.
- * Possui um método que organiza buscas através da quantidade de parâmetros passados ao construtor, com o campo de texto ou com o ID da categoria.
- * Ao terminar a pesquisa, apresenta a quantidade de registros encontrados.
+ * Pesquisa elementos no programa. Possui um método que organiza buscas através
+ * da quantidade de parâmetros passados ao construtor, com o campo de texto ou
+ * com o ID da categoria. Ao terminar a pesquisa, apresenta a quantidade de
+ * registros encontrados.
  */
 public class AcaoPesquisa extends AbstractAction {
 
@@ -42,9 +43,11 @@ public class AcaoPesquisa extends AbstractAction {
     private Configuration c = Util.getConfig();
 
     /**
-     * Construtro da classe.
-     * Recebe três parâmetros. Uma lista inicial de categorias, um campo de texto com um valor a ser pesquisado e uma tabela de albúm.
-     * Seta esses três valores em variáveis da classe que serão utilizadas posteriormente.
+     * Construtro da classe. Recebe três parâmetros. Uma lista inicial de
+     * categorias, um campo de texto com um valor a ser pesquisado e uma tabela
+     * de albúm. Seta esses três valores em variáveis da classe que serão
+     * utilizadas posteriormente.
+     *
      * @param lst Lista de categorias.
      * @param txt Campo de texto com valor a ser pesquisado.
      * @param tb Tabela de albúm.
@@ -55,10 +58,14 @@ public class AcaoPesquisa extends AbstractAction {
     }
 
     /**
-     * Faz as pesquisas ao banco utilizando os valores de ID ou com o campo de texto de pesquisa.
-     * Faz a busca com essas variáveis de quatro maneiras diferentes. Com categoria sem pesquisa, sem categoria e pesquisa, com categoria e pesquisa, e sem categoria com pesquisa.
-     * Após definir o tipo de busca, trata possíveis exceções e atualiza o modelo do albúm.
-     * Apresenta o número de registros encontrados e tira o cursor do modo de espera.
+     * Faz as pesquisas ao banco utilizando os valores de ID ou com o campo de
+     * texto de pesquisa. Faz a busca com essas variáveis de quatro maneiras
+     * diferentes. Com categoria sem pesquisa, sem categoria e pesquisa, com
+     * categoria e pesquisa, e sem categoria com pesquisa. Após definir o tipo
+     * de busca, trata possíveis exceções e atualiza o modelo do albúm.
+     * Apresenta o número de registros encontrados e tira o cursor do modo de
+     * espera.
+     *
      * @param e Evento da ação de pesquisa.
      */
     @Override
