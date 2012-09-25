@@ -54,10 +54,10 @@ public class Photo {
      * Construtor da classe Photo. Recebe e seta todos os dados da foto.
      *
      * @param ID ID da foto.
-     * @param albumID ID do albï¿½m.
+     * @param albumID ID do album.
      * @param fotoLegenda Legenda da foto.
-     * @param fotoCreditoID ID do crï¿½dito.
-     * @param fotoCreditoNome Crï¿½dito.
+     * @param fotoCreditoID ID do créito.
+     * @param fotoCreditoNome Crédito.
      * @param fotoLargura Largura da foto.
      * @param fotoAltura Altura da foto.
      */
@@ -74,9 +74,9 @@ public class Photo {
 
     /**
      * Contrutor da classe Photo. Recebe apenas nome do arquivo como
-     * parï¿½metro. Seta a legenda com o valor vazio, e seta caminhoArquivo com
-     * o nome recebido como parï¿½metro. Carrega a foto a partir do nome do
-     * arquivo, obtï¿½m medidas da foto e seta as variï¿½veis de largura e
+     * parametro. Seta a legenda com o valor vazio, e seta caminhoArquivo com
+     * o nome recebido como parametro. Carrega a foto a partir do nome do
+     * arquivo, obtem medidas da foto e seta as variaveis de largura e
      * altura.
      *
      * @param arquivo Nome ou caminho do arquivo.
@@ -151,7 +151,7 @@ public class Photo {
     }
 
     /**
-     * Retorna uma resolução especï¿½fica com os valores de altura e largura.
+     * Retorna uma resolução especifica com os valores de altura e largura.
      * Para entender melhor os conceitos de dimensão veja {@link java.awt.Dimension Dimension}
      *
      * @return Retorna uma resolução.
@@ -226,9 +226,9 @@ public class Photo {
     }
 
     /**
-     * Seta o crï¿½dito da foto e completa o creditoID.
+     * Seta o credito da foto e completa o creditoID.
      *
-     * @param nome Crï¿½dito.
+     * @param nome Credito.
      */
     public void setCreditoNome(String nome) {
         creditoNome = nome;
@@ -244,11 +244,11 @@ public class Photo {
     }
 
     /**
-     * Retorna um vetor com os valores de crï¿½dito. Checa se o vetor jï¿½
-     * possui valores, caso contrï¿½rio utiliza a função {@link net.sf.webphotos.Photo#populaCreditos() populaCreditos()}
+     * Retorna um vetor com os valores de credito. Checa se o vetor ja
+     * possui valores, caso contrario utiliza a função {@link net.sf.webphotos.Photo#populaCreditos() populaCreditos()}
      * completar os valores.
      *
-     * @return Retorna uma lista com os crï¿½ditos.
+     * @return Retorna uma lista com os creditos.
      */
     public static String[] getCreditosArray() {
         int tamanho;
@@ -329,7 +329,7 @@ public class Photo {
     }
 
     /**
-     * Retorna todos os valores das variï¿½veis de Photo em uma ï¿½nica String.
+     * Retorna todos os valores das variaveis de Photo em uma unica String.
      *
      * @return Retorna os valores da foto.
      */
@@ -339,7 +339,7 @@ public class Photo {
     }
 
     /**
-     * Limpa o valor da variï¿½vel caminhoArquivo. Seta com o campo vazio.
+     * Limpa o valor da variavel caminhoArquivo. Seta com o campo vazio.
      */
     public void resetCaminhoArquivo() {
         caminhoArquivo = "";
@@ -347,8 +347,8 @@ public class Photo {
 
     /**
      * Faz a atualização dos dados da foto. Checa se a foto já possui cadastro,
-     * caso Não possui faz inclusão e faz a atualização. Caso jï¿½ possua
-     * cadastro, sï¿½ atualiza os dados.
+     * caso Não possui faz inclusão e faz a atualização. Caso ja possua
+     * cadastro, so atualiza os dados.
      *
      * @throws java.lang.Exception Lança qualquer tipo de exceção que possa
      * interromper o fluxo da função.
@@ -398,7 +398,7 @@ public class Photo {
     }
 
     /**
-     * Retorna o ID do albï¿½m.
+     * Retorna o ID do album.
      *
      * @return Retorna um ID.
      */
@@ -407,9 +407,9 @@ public class Photo {
     }
 
     /**
-     * Seta o valor do ID do albï¿½m
+     * Seta o valor do ID do album
      *
-     * @param albumID ID do albï¿½m.
+     * @param albumID ID do album.
      */
     public void setAlbumID(int albumID) {
         this.albumID = albumID;
