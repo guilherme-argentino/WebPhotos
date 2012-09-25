@@ -25,14 +25,12 @@ import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import net.sf.webphotos.util.Util;
 
 /**
@@ -203,22 +201,6 @@ public final class Login {
         
         usuario=null; senha=null;
         telaLogin.setVisible(true);		
-    }
-
-    /**
-     * Método principal.
-     * Instancia um objeto Login para teste, checa o usuário e imprime na tela usuário e senha.
-     * @param a args do método main.
-     */
-    public static void main(String a[]) {
-        Login l=Login.getLogin("teste login");
-        String usuario="";
-
-        while(!usuario.equals("zz")) {
-            l.show(null);
-            usuario=l.getUser();
-            System.out.println ("usuario: " + usuario + "\nsenha:" + new String(l.getPassword()));
-        }
     }
 
     /**
