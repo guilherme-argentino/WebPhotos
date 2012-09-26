@@ -75,7 +75,7 @@ public class WebPhotos {
             });
 
         } catch (Exception e) {
-            log.error("Não foi possível iniciar o WebFotos", e);
+            log.error("Não foi possível iniciar o WebPhotos", e);
         }
 
     }

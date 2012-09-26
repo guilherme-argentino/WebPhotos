@@ -25,7 +25,7 @@ import net.sf.webphotos.action.AcaoToolbar;
  * Base para geração de Botões iconificados
  * (um símbolo visual no lugar de uma palavra para identificar o botão)
  *
- * Atualmente ele é base para quatro botões da tela principal do WebFotos abaixo do
+ * Atualmente ele é base para quatro botões da tela principal do WebPhotos abaixo do
  * espaço usado para por legenda e crédito.
  * </PRE>
  */

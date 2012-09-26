@@ -140,7 +140,7 @@ public class PhotoVO implements Serializable, Comparable<PhotoVO>, WebPhotosVO<I
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.dao.PhotoVO[fotoid=" + fotoid + "]";
+        return "net.sf.webphotos.dao.jpa.PhotoVO[fotoid=" + fotoid + "]";
     }
 
     public CreditsVO getCreditos() {

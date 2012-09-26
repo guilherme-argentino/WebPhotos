@@ -73,7 +73,7 @@ public interface Sync {
      * Muda o diretório.
      * @param diretorioFilho Diretório que deve ser acessado.
      * @throws java.io.IOException Erro de sincronização.
-     * @throws webfotos.sync.SyncException Erro de comunicação entre os dados.
+     * @throws net.sf.webphotos.sync.SyncException Erro de comunicação entre os dados.
      */
     void cd(String diretorioFilho) throws IOException, SyncException;
     /**

@@ -179,7 +179,7 @@ public class BancoImagem {
      * @return Retorno lógico para a operação de login.
      */
     public static boolean login() {
-        return login("WebFotos - Login BD");
+        return login("WebPhotos - Login BD");
     }
 
     /**
