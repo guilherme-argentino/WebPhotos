@@ -179,9 +179,9 @@ public class Photo {
     }
 
     /**
-     * Seta o ID do cr�dito.
+     * Seta o ID do credito.
      *
-     * @param c ID do cr�dito.
+     * @param c ID do credito.
      */
     public void setCreditoID(int c) {
         creditoID = c;

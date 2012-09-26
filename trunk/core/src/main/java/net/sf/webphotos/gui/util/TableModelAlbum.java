@@ -54,7 +54,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
 
     /**
      * Repassa para a função {@link java.util.TableModelAlbum#update(String) update(String sql)}
-     * enviando a variï¿½vel últimoSQL como parï¿½metro.
+     * enviando a variavel últimoSQL como parametro.
      */
     public void update() {
         update(getUltimoSQL());
@@ -107,7 +107,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     /**
      * Retorna o número de colunas.
      *
-     * @return Retorna o nï¿½mero de colunas.
+     * @return Retorna o numero de colunas.
      */
     @Override
     public int getColumnCount() {
@@ -166,11 +166,11 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     }
 
     /**
-     * Busca qual o tipo de uma coluna especï¿½fica e retorna sua classe. Recebe
-     * um valor numï¿½rico para indicar a coluna e busca os dados atravï¿½s do
+     * Busca qual o tipo de uma coluna especifica e retorna sua classe. Recebe
+     * um valor numerico para indicar a coluna e busca os dados atraves do
      * método {@link java.sql.ResultSet#getMetaData() getMetaData()}.
      *
-     * @param column Nï¿½mero da coluna.
+     * @param column Numero da coluna.
      * @return Retorna uma classe.
      */
     @Override

@@ -28,7 +28,7 @@ import net.sf.webphotos.util.Util;
 /**
  * Exclui albúns. Não possui dados próprios, por isso seu construtor é vazio. O
  * método que realiza a ação, instancia dados apenas para verificação e chama o
- * método de exclusão da classe Album no pacote webfotos.
+ * método de exclusão da classe Album no pacote webphotos.
  */
 public class AcaoExcluirAlbum extends AbstractAction {
 
@@ -51,7 +51,7 @@ public class AcaoExcluirAlbum extends AbstractAction {
      * exclusão. Caso o usuário confirme, exclui os albúns selecionados através
      * da função
      * {@link net.sf.webphotos.Album#excluirAlbuns(int[]) excluirAlbuns(albunsID)}
-     * em webfotos.Album e atualiza a lista e a aréa dos albúns no programa.
+     * em {@link net.sf.webphotos.Album} e atualiza a lista e a aréa dos albúns no programa.
      *
      * @param e Evento de ação de exclusão de albúns.
      */

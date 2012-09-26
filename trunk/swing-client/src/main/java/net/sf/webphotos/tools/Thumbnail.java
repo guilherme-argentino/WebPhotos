@@ -375,13 +375,13 @@ public final class Thumbnail {
      * @param args args do método main.
      */
     public static void main(String[] args) {
-        //makeThumbs("c:/temp/167.jpg");
-        //makeThumbs("d:/bancoImagem/81/312.jpg");
-        //makeThumbs("d:/bancoImagem/81/313.jpg");
-        //makeThumbs("d:/bancoImagem/81/314.jpg");
-        //makeThumbs("d:/bancoImagem/81/315.jpg");
-        //makeThumbs("D:/webfotos/460/2072.jpg");
-        //executaLote();
+        makeThumbs("c:/temp/167.jpg");
+        makeThumbs("d:/bancoImagem/81/312.jpg");
+        makeThumbs("d:/bancoImagem/81/313.jpg");
+        makeThumbs("d:/bancoImagem/81/314.jpg");
+        makeThumbs("d:/bancoImagem/81/315.jpg");
+        makeThumbs("D:/bancoImagem/460/2072.jpg");
+        executaLote();
     }
 
     /**
@@ -393,7 +393,7 @@ public final class Thumbnail {
         net.sf.webphotos.BancoImagem db = net.sf.webphotos.BancoImagem.getBancoImagem();
 
         try {
-            db.configure("jdbc:mysql://mysql.iphotel.com.br/serra45", "com.mysql.jdbc.Driver");
+            db.configure("jdbc:mysql://localhost/test", "com.mysql.jdbc.Driver");
             BancoImagem.login();
             java.sql.Connection conn = BancoImagem.getConnection();
             java.sql.Statement st = conn.createStatement();

@@ -32,7 +32,7 @@
                                 <configuration>
                                     <tasks>
                                         <delete file="${project.build.outputDirectory}/webphotos.dat" />
-                                        <copy file="src/main/resources/webfotos.test.dat" tofile="${project.build.outputDirectory}/webphotos.dat" />
+                                        <copy file="src/main/resources/webphotos.test.dat" tofile="${project.build.outputDirectory}/webphotos.dat" />
                                     </tasks>
                                 </configuration>
                             </execution>
@@ -76,7 +76,7 @@
                                 <configuration>
                                     <tasks>
                                         <delete file="${project.build.outputDirectory}/webphotos.dat" />
-                                        <copy file="src/main/resources/webfotos.prod.dat" tofile="${project.build.outputDirectory}/webphotos.dat" />
+                                        <copy file="src/main/resources/webphotos.prod.dat" tofile="${project.build.outputDirectory}/webphotos.dat" />
                                     </tasks>
                                 </configuration>
                             </execution>

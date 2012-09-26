@@ -1,25 +1,25 @@
 ###############################################
-# Arquivo de configura��o do Webfotos         #
+# Arquivo de configuracao do Webfotos         #
 ###############################################
 
-# local onde as fotos selecionada s�o descarregadas ( //pinkfloyd/fotografia/bancoimagemii/eleicoes2004)
+# local onde as fotos selecionada sao descarregadas ( //pinkfloyd/fotografia/bancoimagemii/eleicoes2004)
 diretorioAdicionarFotos=~/
 
 # diretorio do site serra ( //ledzeppelin/sites/www.serra45.org/www/bancoimagem )
 albunsRoot=~/bancoimagens/albuns
 
-chaveCripto=Soltar pipa � muito legal
+chaveCripto=Soltar pipa e muito legal
 
 # Preencher automaticamente a tela de login
 autoPreencher.Login=root
 autoPreencher.Pass=root
 
 ###############################################
-# Instru��es SQL personalizadas               #
+# Instrucoes SQL personalizadas               #
 ###############################################
 # pre-sql: select albumID as ID, categorias.nmcategoria as Categoria, nmalbum as Pauta, DATE_FORMAT(DtInsercao, '%d/%m/%y') as Data from albuns left join categorias using(categoriaID)
 
-relatorio1=�ltimos 500 �lbuns / order by albumID desc limit 500
+relatorio1=ultimos 500 albuns / order by albumID desc limit 500
 relatorio2=Por data decrescente / order by DtInsercao desc limit 500
 relatorio3=Por data crescente / order by DtInsercao limit 500
 
@@ -41,44 +41,44 @@ thumbnail2=200
 thumbnail3=250
 thumbnail4=300
 
-! Ativa a transmiss�o ao alterar/inserir/excluir um �lbum/foto
+! Ativa a transmissao ao alterar/inserir/excluir um album/foto
 autoTransferir=true
 
 ###############################################
 # Marca d'agua aplicada ao thumbnail 4        #
 ###############################################
-! imagem formato gif ou jpg que servir� como marca d'agua
+! imagem formato gif ou jpg que servira como marca d'agua
 ! pode ser utilizado um gif transparente
 marcadagua=logoA2_t.gif
 
 ! imagem para testes com posicionamento de marca d'agua
 #marcadagua.teste=images/foto.jpg
 
-! Posi��o da marca d'agua
+! Posicao da marca d'agua
 ! 1---2---3
 ! 4---5---6
 ! 7---8---9
 #marcadagua.posicao=7
 
-! margem da marca d'agua at� a borda.
-! n�o tem efeito quando o posicionamento da marca d'agua � central
+! margem da marca d'agua ate a borda.
+! nao tem efeito quando o posicionamento da marca d'agua e central
 #marcadagua.margem=0
 
-! transpar�ncia valores de 0 a 100, sendo 100 opaco e 0 transparente
+! transparencia valores de 0 a 100, sendo 100 opaco e 0 transparente
 #marcadagua.transparencia=30
 
 ###############################################
-# Informa��es textuais aplicada ao thumbnail 4#
+# Informacoes textuais aplicada ao thumbnail 4#
 ###############################################
-! para desabilitar essa fun��o, deixe o texto em branco
+! para desabilitar essa funcao, deixe o texto em branco
 texto=
 texto.posicao=8
 texto.margem=5
 
-! fam�lia da fonte
+! familia da fonte
 texto.familia=SansSerif
 
-! estilo da fonte 0 normal, 1 bold, 2 it�lico
+! estilo da fonte 0 normal, 1 bold, 2 italico
 texto.estilo=1
 texto.tamanho=15
 
@@ -90,7 +90,7 @@ texto.corFundo=255\,255\,255
 # BANCO DE DADOS                              #
 ###############################################
 jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost/webfotos
+jdbc.url=jdbc:mysql://localhost/webphotos
 
 ###############################################
 # INSTRUCOES SQL E PARAMETROS DE TABELA       #
