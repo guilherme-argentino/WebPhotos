@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("StaticNonFinalUsedInInitialization")
 public class Util {
 
-    private static final String WEBPHOTOS_USER_CONFIG = "webfotos.xml";
+    private static final String WEBPHOTOS_USER_CONFIG = "webphotos.xml";
     public static final String WEBPHOTOS_DEFAULT_CONFIG = "webphotos.dat";
     private static Util instancia = new Util();
     /**

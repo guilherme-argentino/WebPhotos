@@ -115,7 +115,7 @@ public class FrameWebFotos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WebPhotos");
-        setName("Frame WebFotos"); // NOI18N
+        setName("Frame WebPhotos"); // NOI18N
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
                 formComponentResized(evt);

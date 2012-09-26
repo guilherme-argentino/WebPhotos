@@ -154,7 +154,7 @@ public class AlbumVO implements Serializable, WebPhotosVO<Integer> {
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.dao.AlbumVO[albumid=" + albumid + "]";
+        return "net.sf.webphotos.dao.jpa.AlbumVO[albumid=" + albumid + "]";
     }
 
     /**

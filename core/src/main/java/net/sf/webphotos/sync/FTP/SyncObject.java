@@ -109,7 +109,7 @@ public class SyncObject extends FTPClient implements Sync {
      * o Util.log para trabalhar no fluxo de execução.
      *
      * @param diretorioFilho Diretório que deve ser acessado.
-     * @throws webfotos.sync.SyncException Erro de sincronização.
+     * @throws net.sf.webphotos.sync.SyncException Erro de sincronização.
      * @throws java.io.IOException Erro de comunicação entre os dados.
      */
     @Override
