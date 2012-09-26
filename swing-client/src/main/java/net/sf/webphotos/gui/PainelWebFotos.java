@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 /*
  * PainelWebFotos.java
@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import javax.swing.*;
@@ -323,7 +324,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         buttonAddCategory.setIconPrefix("plus");
         buttonAddCategory.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        buttonAddCategory.setName(""); // NOI18N
+        buttonAddCategory.setName("buttonAddCategory"); // NOI18N
         buttonAddCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddCategoryActionPerformed(evt);
@@ -451,6 +452,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         painelFormFoto.add(scrLegenda, gridBagConstraints);
 
         lstCreditos.setModel(new javax.swing.DefaultComboBoxModel(net.sf.webphotos.Photo.getCreditosArray()));
+        lstCreditos.setName("lstCreditos"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -462,7 +464,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         buttonAddCredits.setIconPrefix("plus");
         buttonAddCredits.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        buttonAddCredits.setName(""); // NOI18N
+        buttonAddCredits.setName("buttonAddCredits"); // NOI18N
         buttonAddCredits.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddCreditsActionPerformed(evt);
@@ -767,18 +769,24 @@ public class PainelWebFotos extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonAddCategoryActionPerformed
 
     private void buttonAddCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddCreditsActionPerformed
-        // TODO add your handling code here:
         String creditsName = JOptionPane.showInputDialog(this, "Type the new credits name", "New Credits", JOptionPane.INFORMATION_MESSAGE);
 
         if (creditsName.isEmpty()) {
             return;
         }
-        
+
         CreditsVO creditsVO = new CreditsVO(creditsName);
-        
+
         CreditsDAO creditsDAO = (CreditsDAO) ApplicationContextResource.getBean("creditsDAO");
+        
         try {
             creditsDAO.save(creditsVO);
+
+            // TODO format as EventHandling
+            Photo.populaCreditos();
+            final DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(Photo.getCreditosArray());
+            lstCreditos.setModel(defaultComboBoxModel);
+            lstCreditosTabelaFotos.setModel(defaultComboBoxModel);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Can't add credits, see aplication log for details", "Error", JOptionPane.ERROR_MESSAGE);
             java.util.logging.Logger.getLogger(PainelWebFotos.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
