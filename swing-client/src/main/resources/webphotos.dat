@@ -3,10 +3,10 @@
 ###############################################
 
 # raw data folder
-diretorioAdicionarFotos=${sys:user.home}/webfotos/bruto
+diretorioAdicionarFotos=${sys:user.home}/webphotos/bruto
 
 # album data folder
-albunsRoot=${sys:user.home}/webfotos/albuns
+albunsRoot=${sys:user.home}/webphotos/albuns
 
 chaveCripto=Soltar pipa é muito legal
 
@@ -93,8 +93,8 @@ texto.corFundo=255,255,255
 # jdbc.driver=org.apache.derby.jdbc.EmbeddedDriver
 jdbc.driver=org.apache.derby.jdbc.ClientDriver
 # jdbc.url=jdbc:mysql://gui-vmw2k3-db/webphotos
-# jdbc.url=jdbc:derby:${user.home}/webfotos/database;create=true
-jdbc.url=jdbc:derby://localhost:15270/${sys:user.home}/webfotos/database/webfotos;create=true
+# jdbc.url=jdbc:derby:${user.home}/webphotos/database;create=true
+jdbc.url=jdbc:derby://localhost:15270/${sys:user.home}/webphotos/database/webphotos;create=true
 
 # Additional information to create an server instance inside the application
 derby.drda.startNetworkServer=true

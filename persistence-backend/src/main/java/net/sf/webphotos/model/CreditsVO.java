@@ -104,7 +104,7 @@ public class CreditsVO implements Serializable, WebPhotosVO<Integer> {
 
     @Override
     public String toString() {
-        return "br.nom.guilherme.webfotos.CreditsVO[creditoid=" + creditoid + "]";
+        return this.getClass().getCanonicalName() + "[creditoid=" + creditoid + "]";
     }
 
     @Override

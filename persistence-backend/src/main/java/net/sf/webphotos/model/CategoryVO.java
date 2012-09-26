@@ -123,7 +123,7 @@ public class CategoryVO implements Serializable, WebPhotosVO<Integer> {
 
     @Override
     public String toString() {
-        return "net.sf.webphotos.dao.jpa.CategoryVO[categoriaid=" + categoriaID + "]";
+        return this.getClass().getCanonicalName() + "[categoriaid=" + categoriaID + "]";
     }
 
     @Override

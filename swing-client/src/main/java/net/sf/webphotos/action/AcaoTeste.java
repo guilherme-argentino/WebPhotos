@@ -46,7 +46,7 @@ public class AcaoTeste extends AbstractAction {
      * Instancia um objeto Album para receber os dados do albúm e faz um print
      * no formato XML, através da função
      * {@link net.sf.webphotos.Album#toXML() toXML()} localizada em
-     * webfotos.Album.
+     * {@link net.sf.webphotos.Album}.
      *
      * @param e Evento da ação de teste.
      */
@@ -66,7 +66,7 @@ public class AcaoTeste extends AbstractAction {
      * Instancia um objeto Album para receber os dados do albúm e faz um print
      * com uma String, através da função
      * {@link net.sf.webphotos.Album#toString() toString()} localizada em
-     * webfotos.Album.
+     * {@link net.sf.webphotos.Album}.
      */
     public void mostraAlbum() {
         Album a = Album.getAlbum();
