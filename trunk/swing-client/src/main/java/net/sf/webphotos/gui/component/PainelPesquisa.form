@@ -51,6 +51,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="lstCategoriasPesquisa">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="lstCategoriasPesquisa" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPalavras">
           <Properties>

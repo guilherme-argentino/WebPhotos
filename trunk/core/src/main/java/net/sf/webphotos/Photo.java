@@ -255,11 +255,11 @@ public class Photo {
         // executa a instrucao sql somente na primeira vez
         if (creditos == null) {
             try {
-                Util.log("[Foto.getCreditosArray]/AVISO: Populando Crï¿½ditos");
+                Util.log("[Foto.getCreditosArray]/AVISO: Populando Créditos");
                 populaCreditos();
                 tamanho = creditos.length;
             } catch (SQLException ex) {
-                Util.log("[Foto.getCreditosArray]/ERRO: Impossível popular crï¿½ditos - " + ex);
+                Util.log("[Foto.getCreditosArray]/ERRO: Impossível popular Créditos - " + ex);
                 tamanho = 0;
             }
         } else {

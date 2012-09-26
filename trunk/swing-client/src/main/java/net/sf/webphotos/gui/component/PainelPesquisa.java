@@ -86,6 +86,8 @@ public class PainelPesquisa extends JPanel implements Serializable {
 
         lblPesquisar.setText("Pesquisar em");
         painelBusca.add(lblPesquisar);
+
+        lstCategoriasPesquisa.setName("lstCategoriasPesquisa"); // NOI18N
         painelBusca.add(lstCategoriasPesquisa);
 
         lblPalavras.setText("palavra(s)");

@@ -25,24 +25,31 @@ import org.uispec4j.UISpec4J;
 import org.uispec4j.Window;
 import org.uispec4j.interception.WindowHandler;
 import org.uispec4j.interception.WindowInterceptor;
+import org.uispec4j.utils.MainClassTrigger;
 
 /**
  *
  * @author Guilherme
  */
 public class WebPhotosTest {
-    
+
     static {
         UISpec4J.init();
         UISpec4J.setWindowInterceptionTimeLimit(30000);
     }
 
+    private static Trigger initialTrigger;
+    private static Window mainWindow;
+
+
     /**
-     * 
+     *
      * @throws Exception
      */
     @BeforeClass
     public static void setUpClass() throws Exception {
+        initialTrigger = WindowInterceptor.getModalDialog(new MainClassTrigger(WebPhotos.class, "")).getButton("OK").triggerClick();
+        mainWindow = WindowInterceptor.run(initialTrigger);
     }
 
     /**
@@ -61,26 +68,50 @@ public class WebPhotosTest {
     }
 
     /**
-     * Test of main method, of class WebPhotos.
+     *  Creating a Category.
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
+    public void testAddCategory() {
+        System.out.println("Add Category");
 
-        WindowInterceptor.init(new Trigger() {
+        mainWindow.isVisible().check();
+        mainWindow.isEnabled().check();
+        WindowInterceptor.init(mainWindow.getButton("buttonAddCategory").triggerClick()).process(new ModalWindowHandler("Cat", "Geral")).run();
+        
+        mainWindow.getComboBox("lstCategoriasPesquisa").contains("Geral").check();
+    }
 
-            @Override
-            public void run() {
-                WebPhotos.main(new String[0]);
-            }
-        }).processWithButtonClick("OK").process(new WindowHandler("Web") {
+    /**
+     * Creating a Credit.
+     */
+    @Test
+    public void testAddCredits() {
+        System.out.println("Add Credits");
 
-            @Override
-            public Trigger process(Window window) throws Exception {
-                assertTrue(window.titleContains("Web").isTrue());
-                System.out.println("Tittle: " + window.getTitle());
-                return Trigger.DO_NOTHING;
-            }
-        }).run();
+        mainWindow.isVisible().check();
+        mainWindow.isEnabled().check();
+        WindowInterceptor.init(mainWindow.getButton("buttonAddCredits").triggerClick()).process(new ModalWindowHandler("Cred", "Divulgacao")).run();
+        
+        mainWindow.getComboBox("lstCreditos").contains("Divulgacao").check();
+    }
+
+    private static class ModalWindowHandler extends WindowHandler {
+
+        private String titleName;
+        private String modalText;
+
+        public ModalWindowHandler(String titleName, String modalText) {
+            this.modalText = modalText;
+            this.titleName = titleName;
+        }
+
+        @Override
+        public Trigger process(Window window) throws Exception {
+            assertTrue("Tittle: " + window.getTitle(), window.titleContains(titleName).isTrue());
+            assertTrue("Modal: " + window.getTitle(), window.isModal().isTrue());
+
+            window.getInputTextBox().setText(modalText);
+            return window.getButton("OK").triggerClick();
+        }
     }
 }
