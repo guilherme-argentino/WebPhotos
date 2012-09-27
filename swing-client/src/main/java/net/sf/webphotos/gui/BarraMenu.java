@@ -15,12 +15,19 @@
  */
 package net.sf.webphotos.gui;
 
-import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+/**
+ *
+ * @author Guilherme
+ */
 public class BarraMenu extends JMenuBar {
 
+    /**
+     *
+     */
     public BarraMenu() {
 
         JMenu mnArquivo = new JMenu("Arquivo");

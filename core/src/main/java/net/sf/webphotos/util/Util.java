@@ -42,6 +42,9 @@ import org.apache.log4j.Logger;
 public class Util {
 
     private static final String WEBPHOTOS_USER_CONFIG = "webphotos.xml";
+    /**
+     *
+     */
     public static final String WEBPHOTOS_DEFAULT_CONFIG = "webphotos.dat";
     private static Util instancia = new Util();
     /**
@@ -91,6 +94,10 @@ public class Util {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public static Configuration getConfig() {
         return config;
     }
@@ -174,7 +181,7 @@ public class Util {
         } else {
             if (texto.startsWith("[")) {
                 Util.err.println(texto);
-                texto = texto.substring(texto.indexOf("/") + 1);
+                texto = texto.substring(texto.indexOf('/') + 1);
             }
             saida.append(texto);
             saida.append("\n");
@@ -215,7 +222,7 @@ public class Util {
      */
     public static String getProperty(String chave) {
         try {
-            return (config.getString(chave) == null || config.getString(chave).equals("")) ? null : config.getString(chave);
+            return (config.getString(chave) == null || config.getString(chave).isEmpty()) ? null : config.getString(chave);
         } catch (Exception e) {
             log.error("Error trying to get a property", e);
             return null;
@@ -309,6 +316,9 @@ public class Util {
         throw new CloneNotSupportedException("Singleton Object");
     }
 
+    /**
+     *
+     */
     public static void loadSocksProxy() {
         String socksHost = getConfig().getString("socks.host");
         int socksPort = 0;
@@ -316,7 +326,7 @@ public class Util {
             socksPort = getConfig().getInt("socks.port");
         }
         //Prepara as conexões para usar Socks Proxy (se configurado)
-        if (socksHost != null && !socksHost.equals("")) {
+        if (socksHost != null && !socksHost.isEmpty()) {
             System.getProperties().put("socksProxyHost", socksHost);
             if (socksPort > 0 && socksPort < 65534) {
                 System.getProperties().put("socksProxyPort", socksPort);

@@ -15,8 +15,6 @@
  */
 package net.sf.webphotos.util.legacy;
 
-import net.sf.webphotos.util.legacy.ComandoFTP;
-import net.sf.webphotos.util.legacy.CacheFTP;
 import java.util.*;
 import org.apache.log4j.Logger;
 
@@ -125,7 +123,9 @@ public class CacheFTPTest extends MassaTesteClassesFTP {
             while(iListaArq.hasNext()) {
                 cmdFTPAtual = (ComandoFTP) iListaArq.next();
                 achou = cmdFTPAtual.equals(cmdFTPNovo);
-                if(achou) break;
+                if(achou) {
+                    break;
+                }
             }
             assertTrue("Não encontrou o Comando: " + cmdFTPNovo.toString(), achou);
         }
@@ -142,7 +142,9 @@ public class CacheFTPTest extends MassaTesteClassesFTP {
             while(iListaArq.hasNext()) {
                 cmdFTPAtual = (ComandoFTP) iListaArq.next();
                 achou = cmdFTPAtual.equals(cmdFTPNovo);
-                if(achou) break;
+                if(achou) {
+                    break;
+                }
             }
             assertFalse("Encontrou o Comando Invalido: " + cmdFTPNovo.toString(), achou);
         }

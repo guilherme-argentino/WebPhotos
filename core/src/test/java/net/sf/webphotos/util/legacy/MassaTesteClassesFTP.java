@@ -58,6 +58,7 @@ public abstract class MassaTesteClassesFTP extends TestCase {
      * @throws java.lang.Exception Lança para o programa de teste tratar todas as excessões nessa etapa.
      */
     @Before
+    @Override
     protected void setUp() throws Exception {
         
         /** Alimentando os comandos errados */

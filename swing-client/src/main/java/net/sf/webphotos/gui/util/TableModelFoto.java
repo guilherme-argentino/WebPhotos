@@ -16,7 +16,6 @@
 package net.sf.webphotos.gui.util;
 
 import javax.swing.table.*;
-
 import net.sf.webphotos.Album;
 import net.sf.webphotos.Photo;
 import net.sf.webphotos.gui.PainelWebFotos;

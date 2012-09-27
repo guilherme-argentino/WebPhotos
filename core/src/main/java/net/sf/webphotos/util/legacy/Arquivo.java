@@ -15,9 +15,9 @@
  */
 package net.sf.webphotos.util.legacy;
 
-import net.sf.webphotos.util.Util;
 import java.io.File;
 import java.util.List;
+import net.sf.webphotos.util.Util;
 
 /**
  * Objeto que contém os dados do arquivo usados na tabela FtpClient

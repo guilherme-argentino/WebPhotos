@@ -756,6 +756,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * May return null if the information should be obtained by automatic
      * analysis.
      */
+    @Override
     public BeanDescriptor getBeanDescriptor() {
         return getBdescriptor();
     }
@@ -772,6 +773,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * getPropertyDescriptors can use "instanceof" to check if a given
      * PropertyDescriptor is an IndexedPropertyDescriptor.
      */
+    @Override
     public PropertyDescriptor[] getPropertyDescriptors() {
         return getPdescriptor();
     }
@@ -784,6 +786,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * fired by this bean. May return null if the information should be obtained
      * by automatic analysis.
      */
+    @Override
     public EventSetDescriptor[] getEventSetDescriptors() {
         return getEdescriptor();
     }
@@ -796,6 +799,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * by this bean. May return null if the information should be obtained by
      * automatic analysis.
      */
+    @Override
     public MethodDescriptor[] getMethodDescriptors() {
         return getMdescriptor();
     }
@@ -809,6 +813,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * returned by getPropertyDescriptors. <P>	Returns -1 if there is no default
      * property.
      */
+    @Override
     public int getDefaultPropertyIndex() {
         return defaultPropertyIndex;
     }
@@ -820,6 +825,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * @return Index of default event in the EventSetDescriptor array returned
      * by getEventSetDescriptors. <P>	Returns -1 if there is no default event.
      */
+    @Override
     public int getDefaultEventIndex() {
         return defaultEventIndex;
     }
@@ -840,6 +846,7 @@ public class PainelFotoBeanInfo extends SimpleBeanInfo {
      * @return An image object representing the requested icon. May return null
      * if no suitable icon is available.
      */
+    @Override
     public java.awt.Image getIcon(int iconKind) {
         switch (iconKind) {
             case ICON_COLOR_16x16:

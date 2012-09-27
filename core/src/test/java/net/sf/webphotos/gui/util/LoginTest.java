@@ -18,9 +18,9 @@ package net.sf.webphotos.gui.util;
 import java.awt.Component;
 import java.awt.Rectangle;
 import net.sf.webphotos.util.Util;
+import org.junit.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import org.junit.*;
 import org.uispec4j.Trigger;
 import org.uispec4j.UISpec4J;
 import org.uispec4j.Window;
@@ -39,21 +39,38 @@ public class LoginTest {
         UISpec4J.init();
     }
 
+    /**
+     *
+     */
     public LoginTest() {
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
 
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }

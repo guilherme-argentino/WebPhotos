@@ -188,7 +188,7 @@ public final class Login {
      * @param msgErro Mensagem de erro.
      */
     public void show(String msgErro) {
-        if (msgErro != null && !msgErro.equals("")) {
+        if (msgErro != null && !msgErro.isEmpty()) {
             JOptionPane.showMessageDialog(telaLogin, msgErro, "Erro", JOptionPane.ERROR_MESSAGE);
         }
         txtSenha.setText("");

@@ -24,7 +24,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import javax.swing.*;
@@ -56,9 +55,21 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     private static Logger log = Logger.getLogger(PainelWebFotos.class);
     private static PainelWebFotos janela;
+    /**
+     *
+     */
     public static final String ACAO_NOVO = "novo";
+    /**
+     *
+     */
     public static final String ACAO_CANCELAR = "cancelar";
+    /**
+     *
+     */
     public static final String ACAO_FINALIZAR = "finalizar";
+    /**
+     *
+     */
     public static final String ACAO_ALTERAR = "alterar";
 
     /**
