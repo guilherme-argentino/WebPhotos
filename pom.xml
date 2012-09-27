@@ -10,6 +10,7 @@
     <url>http://webphotos.sf.net</url>
     <inceptionYear>2008</inceptionYear>
     <properties>
+        <org.springframework.version>3.0.6.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <licenses>
@@ -251,7 +252,7 @@
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
-                <version>1.2.15</version>
+                <version>1.2.17</version>
                 <scope>compile</scope>
                 <exclusions>
                     <exclusion>
@@ -287,17 +288,17 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-orm</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${org.springframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${org.springframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
-                <version>3.0.5.RELEASE</version>
+                <version>${org.springframework.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
