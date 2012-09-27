@@ -14,7 +14,7 @@
     <url>http://maven.apache.org</url>
     <!-- Shared version number properties -->
     <properties>
-        <org.springframework.version>3.0.5.RELEASE</org.springframework.version>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
     <profiles>
         <profile>
@@ -155,7 +155,7 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
-                    <encoding>ISO-8859-1</encoding>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             <plugin>
