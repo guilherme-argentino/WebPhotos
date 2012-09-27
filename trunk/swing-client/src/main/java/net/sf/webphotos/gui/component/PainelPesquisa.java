@@ -23,9 +23,7 @@ package net.sf.webphotos.gui.component;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import net.sf.webphotos.action.AcaoPesquisa;
-import net.sf.webphotos.action.AcaoPopup;
 
 /**
  * Desenvolve um painel para pesquisas. Através do construtor, trabalha os

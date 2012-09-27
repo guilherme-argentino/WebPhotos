@@ -19,7 +19,6 @@ import java.io.File;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
 
 import net.sf.webphotos.gui.util.ImageFilter;
 
@@ -53,7 +52,9 @@ public class AdicionarFotos {
         fc.setMultiSelectionEnabled(true);
 
         File f=new File(caminho);
-        if(f.isDirectory())	fc.setCurrentDirectory(f);
+        if(f.isDirectory()) {
+            fc.setCurrentDirectory(f);
+        }
 
         retornoFc=fc.showOpenDialog(pai);
 

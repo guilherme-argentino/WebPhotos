@@ -24,11 +24,10 @@
 
 package net.sf.webphotos.gui.util;
 
-import net.sf.webphotos.util.legacy.Arquivo;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
+import net.sf.webphotos.util.legacy.Arquivo;
 
 /**
  * Modelo da tabela de dados do frame FtpClient.

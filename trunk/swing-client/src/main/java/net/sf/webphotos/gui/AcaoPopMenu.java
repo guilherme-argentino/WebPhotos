@@ -58,6 +58,7 @@ public class AcaoPopMenu extends AbstractAction {
      * Apresenta utilização apenas na classe AcaoPopMenuTest localizada nos pacotes de teste.
      * @param e Evento da ação de construção do menu.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         PainelWebFotos.setCursorWait(true);
 

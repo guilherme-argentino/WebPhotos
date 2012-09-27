@@ -15,9 +15,9 @@
  */
 package net.sf.webphotos.util.legacy;
 
-import net.sf.webphotos.util.Util;
-import java.util.*;
 import java.io.*;
+import java.util.*;
+import net.sf.webphotos.util.Util;
 
 /**
  * Mantém uma lista (arquivo) com comandos FTP.

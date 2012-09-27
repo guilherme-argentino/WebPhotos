@@ -42,13 +42,18 @@ public class ImageFilter extends FileFilter {
      */
     @Override
     public boolean accept(File f) {
-        if (f.isDirectory()) return true;
+        if (f.isDirectory()) {
+            return true;
+        }
             String nmArquivo=f.getName();
-            int pos=nmArquivo.lastIndexOf(".");
-            if(pos > 0 && pos < nmArquivo.length()-1)
-                    ext=nmArquivo.substring(pos+1).toLowerCase();
+            int pos=nmArquivo.lastIndexOf('.');
+            if(pos > 0 && pos < nmArquivo.length()-1) {
+            ext=nmArquivo.substring(pos+1).toLowerCase();
+        }
 
-            if(ext.equals("jpg") || ext.equals("jpeg")) return true;
+            if(ext.equals("jpg") || ext.equals("jpeg")) {
+            return true;
+        }
 
             return false;
     }

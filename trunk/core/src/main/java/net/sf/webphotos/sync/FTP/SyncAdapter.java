@@ -24,10 +24,9 @@
 
 package net.sf.webphotos.sync.FTP;
 
-import org.apache.commons.net.util.ListenerList;
-
 import net.sf.webphotos.sync.SyncEvent;
 import net.sf.webphotos.sync.SyncListener;
+import org.apache.commons.net.util.ListenerList;
 
 /**
  * Adapta o listener para sincronização.
@@ -73,6 +72,7 @@ public class SyncAdapter implements SyncListener {
      * {@link net.sf.webphotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
+    @Override
     public void disconnected(SyncEvent event) { }
     
     /**
@@ -82,6 +82,7 @@ public class SyncAdapter implements SyncListener {
      * {@link net.sf.webphotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
+    @Override
     public void connected(SyncEvent event) { }
 
     /**
@@ -91,6 +92,7 @@ public class SyncAdapter implements SyncListener {
      * {@link net.sf.webphotos.gui.FtpClient FtpClient}.
      * @param event Evento de SyncEvent.
      */
+    @Override
     public void logonStarted(SyncEvent event) { }
     
 }

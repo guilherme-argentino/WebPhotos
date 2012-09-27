@@ -134,7 +134,7 @@ public class AcaoExcluirFoto extends AbstractAction {
             if (nomesArquivos.size() > 0) {
                 // passa na forma de um array de strings
                 Util.out.println("nomesArquivos: " + nomesArquivos.toString());
-                album.excluirFotos((String[]) nomesArquivos.toArray(new String[0]));
+                album.excluirFotos((String[]) nomesArquivos.toArray(new String[nomesArquivos.size()]));
             }
 
             if (fotosID.size() > 0) {

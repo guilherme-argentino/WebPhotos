@@ -15,10 +15,9 @@
  */
 package net.sf.webphotos.gui;
 
-import net.sf.webphotos.util.Util;
-import net.sf.webphotos.action.AcaoPopup;
-
 import javax.swing.*;
+import net.sf.webphotos.action.AcaoPopup;
+import net.sf.webphotos.util.Util;
 
 /**
  * Cria um menu popup com os dados do albúm.
@@ -37,7 +36,7 @@ public class PopupMenu extends JPopupMenu {
         int ct=1;
 
         while((posSQL=Util.getConfig().getString("relatorio" + ct++))!=null) {
-            int pos=posSQL.indexOf("/");
+            int pos=posSQL.indexOf('/');
             String nomeComando=posSQL.substring(0,pos).trim();
             String comando=posSQL.substring(pos+1).trim();
 

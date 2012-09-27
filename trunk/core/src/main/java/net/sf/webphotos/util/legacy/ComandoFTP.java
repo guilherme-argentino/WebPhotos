@@ -47,6 +47,7 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
      * @param o comandoFTP a ser comparado.
      * @return Retorna uma variável lógica.
      */
+    @Override
     public boolean equals(Object o) {
         ComandoFTP obj;
         try {
@@ -90,6 +91,7 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
      * @param outro Comando para comparação.
      * @return Retorna um valor numérico para comparação.
      */
+    @Override
     public int compareTo(ComandoFTP c) {
         // operações diferentes
         if (this.getOperacao() != c.getOperacao()) {
@@ -132,6 +134,7 @@ public class ComandoFTP implements Comparable<ComandoFTP> {
      * Reuni os números da operação, do albúm e da foto.
      * @return Retorna dados do comandoFTP agrupados.
      */
+    @Override
     public String toString() {
         return operacao + " " + albumID + " " + fotoID;
     }

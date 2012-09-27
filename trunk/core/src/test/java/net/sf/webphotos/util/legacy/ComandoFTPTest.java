@@ -15,7 +15,6 @@
  */
 package net.sf.webphotos.util.legacy;
 
-import net.sf.webphotos.util.legacy.ComandoFTP;
 import org.junit.Test;
 
 /**
@@ -24,6 +23,10 @@ import org.junit.Test;
  */
 public class ComandoFTPTest extends MassaTesteClassesFTP {
     
+    /**
+     *
+     * @param testName
+     */
     public ComandoFTPTest(String testName) {
         super(testName);
     }
