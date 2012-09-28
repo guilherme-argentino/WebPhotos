@@ -16,10 +16,8 @@
 package net.sf.webphotos.gui;
 
 import java.io.File;
-
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-
 import net.sf.webphotos.gui.util.ImageFilter;
 
 /**

@@ -60,7 +60,6 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
 
     @TemplateRegistration(
             folder = EmptyProject.PROJECT_FOLDER, 
-            content = EmptyProject.PROJECT_CONTENT, 
             displayName = EmptyProject.PROJECT_DISPLAY_MANE, 
             iconBase = EmptyProject.PROJECT_ICON_BASE, 
             description = EmptyProject.PROJECT_DESCRIPTION)
