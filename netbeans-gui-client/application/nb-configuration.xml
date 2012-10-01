@@ -36,5 +36,6 @@
         <org-netbeans-modules-apisupport-installer.os-linux>true</org-netbeans-modules-apisupport-installer.os-linux>
         <org-netbeans-modules-apisupport-installer.os-macosx>false</org-netbeans-modules-apisupport-installer.os-macosx>
         <org-netbeans-modules-apisupport-installer.pack200-enabled>true</org-netbeans-modules-apisupport-installer.pack200-enabled>
+        <netbeans.compile.on.save>all</netbeans.compile.on.save>
     </properties>
 </project-shared-configuration>
