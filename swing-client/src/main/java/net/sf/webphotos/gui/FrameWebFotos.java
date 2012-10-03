@@ -38,7 +38,7 @@ public class FrameWebFotos extends javax.swing.JFrame {
     private FrameWebFotos() {
         initComponents();
         // TODO: corrigir o painel para se transformar num bean totalmente funcional
-        add(PainelWebFotos.getInstance());
+        //add(PainelWebFotos.getInstance());
         pack();
         setLocationRelativeTo(null);
     }
@@ -51,6 +51,7 @@ public class FrameWebFotos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        painelWebFotos = PainelWebFotos.getInstance();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -65,6 +66,21 @@ public class FrameWebFotos extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         contentsMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("WebPhotos");
+        setName("Frame WebFotos"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
+        getContentPane().add(painelWebFotos, java.awt.BorderLayout.CENTER);
 
         fileMenu.setText("Arquivo");
 
@@ -113,19 +129,7 @@ public class FrameWebFotos extends javax.swing.JFrame {
 
         menuBar.add(helpMenu);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("WebPhotos");
-        setName("Frame WebPhotos"); // NOI18N
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                formComponentResized(evt);
-            }
-        });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
+        setJMenuBar(menuBar);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -186,6 +190,7 @@ public class FrameWebFotos extends javax.swing.JFrame {
     private static javax.swing.JMenu helpMenu;
     private static javax.swing.JMenuBar menuBar;
     private static javax.swing.JMenuItem openMenuItem;
+    private static javax.swing.JPanel painelWebFotos;
     private static javax.swing.JMenuItem pasteMenuItem;
     private static javax.swing.JMenuItem saveAsMenuItem;
     private static javax.swing.JMenuItem saveMenuItem;

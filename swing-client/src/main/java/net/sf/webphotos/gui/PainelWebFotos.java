@@ -74,11 +74,14 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
     /**
      * Extras - Pesquisa
+     * TODO: revisar processo para usar Eventos
      *
      * @param force
      */
     public static void montagemComboPesquisa(Boolean force) {
-        final DefaultComboBoxModel defaultComboBoxModel = new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray(force));
+        final String[] categoriasArray = Album.getAlbum().getCategoriasArray(force);
+        final DefaultComboBoxModel defaultComboBoxModel = new javax.swing.DefaultComboBoxModel(categoriasArray);
+        lstCategoriasAlbum.setModel(new javax.swing.DefaultComboBoxModel(categoriasArray));
         defaultComboBoxModel.insertElementAt("Todas as Categorias", 0);
         defaultComboBoxModel.setSelectedItem(defaultComboBoxModel.getElementAt(0));
         painelPesquisa.setCategoriasPesquisaComboBoxModel(defaultComboBoxModel);
@@ -87,7 +90,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     /**
      * Creates new form PainelWebFotos
      */
-    public PainelWebFotos() {
+    private PainelWebFotos() {
         /* Extras - Albuns */
         TableModelAlbum.getModel().setUltimoSQL(Util.getConfig().getString("sql1"));
 

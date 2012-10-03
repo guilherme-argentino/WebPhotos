@@ -74,7 +74,7 @@ public class PainelPesquisa extends JPanel implements Serializable {
         btFiltro = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(65534, 35));
-        setMinimumSize(new java.awt.Dimension(550, 35));
+        setMinimumSize(new java.awt.Dimension(780, 35));
         setPreferredSize(new java.awt.Dimension(780, 35));
         setLayout(new java.awt.BorderLayout());
 
