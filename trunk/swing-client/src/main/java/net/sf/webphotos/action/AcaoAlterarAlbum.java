@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
-import net.sf.webphotos.Photo;
+import net.sf.webphotos.PhotoDTO;
 import net.sf.webphotos.dao.jpa.AlbumDAO;
 import net.sf.webphotos.gui.PainelWebFotos;
 import net.sf.webphotos.gui.util.TableModelAlbum;
@@ -123,8 +123,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
     public void executaAlteracoes() {
 
         Album album = Album.getAlbum();
-        Photo[] fotos = album.getFotos();
-        Photo f;
+        PhotoDTO[] fotos = album.getFotos();
+        PhotoDTO f;
         int ultimoFotoID = -1;
         int albumID = album.getAlbumID();
         sucesso = true;
@@ -184,9 +184,9 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * @param albumID
      * @param caminhoAlbum
      */
-    private void prepareThumbsAndFTP(Photo[] fotos, int albumID,
+    private void prepareThumbsAndFTP(PhotoDTO[] fotos, int albumID,
             String caminhoAlbum) {
-        Photo f;
+        PhotoDTO f;
         // PASSO 4 - Fazer Thumbs e Adicionar em FTP
         // //////////////////////////////////////////////////////////////////////
         for (int i = 0; i < fotos.length; i++) {
@@ -210,8 +210,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
      *
      * @param fotos
      */
-    private void fireChangesToGUI(Photo[] fotos) {
-        Photo f;
+    private void fireChangesToGUI(PhotoDTO[] fotos) {
+        PhotoDTO f;
 
         // PASSO 6 - Limpar a flag CaminhoArquivo e apresentar as alterações
         // //////////////////////////////////////////////////////////////////////
@@ -298,8 +298,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * @param albumID
      * @return
      */
-    public boolean recordFotoData(Photo[] fotos, int ultimoFotoID, int albumID) {
-        Photo f;
+    public boolean recordFotoData(PhotoDTO[] fotos, int ultimoFotoID, int albumID) {
+        PhotoDTO f;
         String nomeArquivo;
         String legenda;
         int fotoID;

@@ -21,7 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import net.sf.webphotos.Album;
-import net.sf.webphotos.Photo;
+import net.sf.webphotos.PhotoDTO;
 import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.util.Util;
 
@@ -60,7 +60,7 @@ public class AcaoAtualizaLegenda extends AbstractAction {
     /**
      * Método responsável pela ação de atualização da legenda. Faz uma busca
      * pelo índice da foto e seta a variável fID. Logo após, instancia um objeto
-     * Photo e indica a foto para atualização através de fID. Seta o valor da
+     * PhotoDTO e indica a foto para atualização através de fID. Seta o valor da
      * legenda da foto, pelo valor armazenado em txtLegenda e ao final atualiza
      * os valores.
      *
@@ -70,7 +70,7 @@ public class AcaoAtualizaLegenda extends AbstractAction {
     public void actionPerformed(ActionEvent e) {
         Util.out.println("indiceFoto:" + indiceFoto);
         int fID = Integer.parseInt(tbFotos.getModel().getValueAt(tbFotos.getSelectedRow(), 0).toString());
-        Photo f = Album.getAlbum().getFoto(fID);
+        PhotoDTO f = Album.getAlbum().getFoto(fID);
         f.setLegenda(txtLegenda.getText());
         TableModelFoto.getModel().update();
         TableModelFoto.getModel().fireTableCellUpdated(tbFotos.getSelectedRow(), 1);

@@ -31,7 +31,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
-import net.sf.webphotos.Photo;
+import net.sf.webphotos.PhotoDTO;
 import net.sf.webphotos.action.*;
 import net.sf.webphotos.dao.jpa.CategoryDAO;
 import net.sf.webphotos.dao.jpa.CreditsDAO;
@@ -172,7 +172,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         btAlterar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
 
-        lstCreditosTabelaFotos.setModel(new javax.swing.DefaultComboBoxModel(net.sf.webphotos.Photo.getCreditosArray()));
+        lstCreditosTabelaFotos.setModel(new javax.swing.DefaultComboBoxModel(net.sf.webphotos.PhotoDTO.getCreditosArray()));
 
         menuItemFotoUp.setText("Enviar Foto");
         menuItemFotoUp.addActionListener(new java.awt.event.ActionListener() {
@@ -465,7 +465,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         painelFormFoto.add(scrLegenda, gridBagConstraints);
 
-        lstCreditos.setModel(new javax.swing.DefaultComboBoxModel(net.sf.webphotos.Photo.getCreditosArray()));
+        lstCreditos.setModel(new javax.swing.DefaultComboBoxModel(net.sf.webphotos.PhotoDTO.getCreditosArray()));
         lstCreditos.setName("lstCreditos"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -701,7 +701,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
                 setCursorWait(true);
                 int[] rowsID = tbFotos.getSelectedRows();
                 for (int rowID : rowsID) {
-                    Photo fotoSelecionada = Album.getAlbum().getFoto(Integer.parseInt(tbFotos.getValueAt(rowID, 0).toString()));
+                    PhotoDTO fotoSelecionada = Album.getAlbum().getFoto(Integer.parseInt(tbFotos.getValueAt(rowID, 0).toString()));
                     String caminhoAlbum = Util.getAlbunsRoot().getPath() + File.separator + Album.getAlbum().getAlbumID();
                     String caminhoArquivo = caminhoAlbum + File.separator + fotoSelecionada.getFotoID() + ".jpg";
                     log.debug("Foto: " + caminhoArquivo + " " + Integer.parseInt(tbFotos.getValueAt(tbFotos.getSelectedRow(), 0).toString()));
@@ -723,7 +723,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     }//GEN-LAST:event_menuItemFotoUpActionPerformed
 
     private void txtLegendaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLegendaFocusLost
-        Photo f;
+        PhotoDTO f;
         String nomeArquivoNovo;
         // obtém o objeto foto
         try {
@@ -735,7 +735,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
             nomeArquivoNovo = (String) tbFotos.getModel().getValueAt(indiceFoto, 0);
             f = Album.getAlbum().getFoto(nomeArquivoNovo);
         }
-        // aplica o texto da legenda ao objeto Photo e atualiza
+        // aplica o texto da legenda ao objeto PhotoDTO e atualiza
         f.setLegenda(txtLegenda.getText());
         TableModelFoto.getModel().update();
         TableModelFoto.getModel().fireTableCellUpdated(indiceFoto, 1);
@@ -797,8 +797,8 @@ public class PainelWebFotos extends javax.swing.JPanel {
             creditsDAO.save(creditsVO);
 
             // TODO format as EventHandling
-            Photo.populaCreditos();
-            final DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(Photo.getCreditosArray());
+            PhotoDTO.populaCreditos();
+            final DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(PhotoDTO.getCreditosArray());
             lstCreditos.setModel(defaultComboBoxModel);
             lstCreditosTabelaFotos.setModel(defaultComboBoxModel);
         } catch (Exception ex) {
@@ -832,7 +832,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     public static void marcaFotosFTP(int comando) {
         try {
             for (int indiceFotoSelecionada : tbFotos.getSelectedRows()) {
-                Photo fotoSelecionada = Album.getAlbum().getFotos()[indiceFotoSelecionada];
+                PhotoDTO fotoSelecionada = Album.getAlbum().getFotos()[indiceFotoSelecionada];
                 CacheFTP.getCache().addCommand(comando, Album.getAlbum().getAlbumID(), fotoSelecionada.getFotoID());
             }
         } catch (Exception e) {
@@ -1103,7 +1103,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
      */
     public static boolean atualizaAlbum() {
         Album album = Album.getAlbum();
-        Photo[] fotos = album.getFotos();
+        PhotoDTO[] fotos = album.getFotos();
         String titulo = txtTitulo.getText();
         String descricao = txtDescricao.getText();
         String data = txtData.getText();
@@ -1131,7 +1131,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         }
 
         // checar se os campos foram preenchidos para as fotos
-        Photo f;
+        PhotoDTO f;
         if (fotos.length == 0) {
             msgErro = msgErro + "\nNão existem fotos cadastradas nesse álbum";
         }
@@ -1186,14 +1186,14 @@ public class PainelWebFotos extends javax.swing.JPanel {
         int indiceCredito;
         Object indice = tbFotos.getModel().getValueAt(tbFotos.getSelectedRow(), 0);
         String caminho;
-        Photo f;
+        PhotoDTO f;
         int fotoID;
         // pode ser uma foto que acabou de ser adicionada
         try {
             fotoID = Integer.parseInt(indice.toString());
             f = Album.getAlbum().getFoto(fotoID);
             caminho = BancoImagem.getLocalPath(albumID) + File.separator + "_b" + fotoID + ".jpg";
-            indiceCredito = Photo.getLstCreditosIndex(f.getCreditoNome()) + 1;
+            indiceCredito = PhotoDTO.getLstCreditosIndex(f.getCreditoNome()) + 1;
         } catch (NumberFormatException e) {
             f = Album.getAlbum().getFoto(indice.toString());
             caminho = f.getCaminhoArquivo();
@@ -1201,7 +1201,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
             if (f.getCreditoID() == 0) {
                 indiceCredito = 0;
             } else {
-                indiceCredito = Photo.getLstCreditosIndex(f.getCreditoNome()) + 1;
+                indiceCredito = PhotoDTO.getLstCreditosIndex(f.getCreditoNome()) + 1;
             }
         }
 

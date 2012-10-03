@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 import net.sf.webphotos.Album;
 import net.sf.webphotos.BancoImagem;
-import net.sf.webphotos.Photo;
+import net.sf.webphotos.PhotoDTO;
 import net.sf.webphotos.sync.Sync;
 import net.sf.webphotos.sync.SyncEvent;
 import net.sf.webphotos.sync.SyncException;
@@ -408,7 +408,7 @@ public class SyncObject extends FTPClient implements Sync {
                 if (fotoID == 0) {
                     // O álbum inteiro
                     Album.getAlbum().loadAlbum(albumID);
-                    for (Photo atual : Album.getAlbum().getFotos()) {
+                    for (PhotoDTO atual : Album.getAlbum().getFotos()) {
                         fotoID = atual.getFotoID();
                         listaArquivos.add(new Arquivo(linha, acao, albumID, fotoID, "_a" + fotoID + ".jpg"));
                         listaArquivos.add(new Arquivo(linha, acao, albumID, fotoID, "_b" + fotoID + ".jpg"));

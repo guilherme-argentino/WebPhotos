@@ -19,7 +19,7 @@ package net.sf.webphotos;
  *
  * @author Guilherme
  */
-public interface WebPhotosVO<I> {
+public interface HasID<I> {
     
     public I getId();
     

@@ -33,7 +33,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import net.sf.webphotos.WebPhotosVO;
+import net.sf.webphotos.HasID;
 
 /**
  *
@@ -47,7 +47,7 @@ import net.sf.webphotos.WebPhotosVO;
     @NamedQuery(name = "AlbumVO.findByDtInsercao", query = "SELECT a FROM AlbumVO a WHERE a.dtInsercao = :dtInsercao"),
     @NamedQuery(name = "AlbumVO.findByCategoriaID", query = "SELECT a FROM AlbumVO a WHERE a.categoriasVO.categoriaID = :categoriaID")
 })
-public class AlbumVO implements Serializable, WebPhotosVO<Integer> {
+public class AlbumVO implements Serializable, HasID<Integer> {
 
     private static final long serialVersionUID = 1L;
     

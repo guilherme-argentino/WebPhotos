@@ -19,13 +19,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import net.sf.webphotos.WebPhotosVO;
+import net.sf.webphotos.HasID;
 
 /**
  *
  * @author Guilherme L A Silva
  */
-public class WebPhotosDAO<E extends WebPhotosVO, I> {
+public class WebPhotosDAO<E extends HasID, I> {
 
     protected EntityManager entityManager;
     private Class<E> entityClass;
