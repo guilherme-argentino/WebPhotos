@@ -33,7 +33,7 @@ import net.sf.webphotos.util.legacy.CacheFTP;
 import org.apache.log4j.Logger;
 
 /**
- * A classe Album mantém uma coleçao de fotos em um ArrayList de Photo, que pode
+ * A classe Album mantém uma coleçao de fotos em um ArrayList de PhotoDTO, que pode
  * ser manipulada através das funções da própria classe. Classe do tipo
  * Singleton, é permitido apenas uma instância da classe. O objeto é acessível
  * unicamente através da classe. Também manipula dados dos IDs, nome do albúm,
@@ -55,14 +55,18 @@ public class Album {
      * variáveis utilizadas nessa classe
      */
     private Set<PhotoVO> fotos = new HashSet<PhotoVO>();
+    /**
+     *
+     */
+    private Set<PhotoDTO> fotosNovas = new HashSet<PhotoDTO>();
     private String[][] categorias = null;
     private Logger log = Logger.getLogger(this.getClass().getName());
     private static AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
 
+    /**
+     * nunca usado publicamente (construtor private)
+     */
     private Album() {
-        /**
-         * nunca usado publicamente (construtor private)
-         */
     }
 
     /**
@@ -189,13 +193,13 @@ public class Album {
      * @param fotoID ID da foto.
      * @return Retorna uma foto.
      */
-    public Photo getFoto(int fotoID) {
+    public PhotoDTO getFoto(int fotoID) {
         Iterator<PhotoVO> iter = fotos.iterator();
 
         while (iter.hasNext()) {
             PhotoVO f = iter.next();
             if (f.getFotoid() == fotoID) {
-                return new Photo(f);
+                return new PhotoDTO(f);
             }
         }
         return null;
@@ -208,13 +212,13 @@ public class Album {
      * @param caminho Caminho do arquivo foto.
      * @return Retorna uma foto.
      */
-    public Photo getFoto(String caminho) {
-        Iterator<PhotoVO> iter = fotos.iterator();
+    public PhotoDTO getFoto(String caminho) {
+        Iterator<PhotoDTO> iter = fotosNovas.iterator();
 
         while (iter.hasNext()) {
-            PhotoVO f = iter.next();
+            PhotoDTO f = iter.next();
             if (caminho.equals(f.getCaminhoArquivo())) {
-                return new Photo(f);
+                return f;
             }
         }
         return null;
@@ -225,8 +229,8 @@ public class Album {
      *
      * @return Retorna a coleção de fotos.
      */
-    public Photo[] getFotos() {
-        return fotos.toArray(new Photo[fotos.size()]);
+    public PhotoDTO[] getFotos() {
+        return fotos.toArray(new PhotoDTO[fotos.size()]);
     }
 
     /**
@@ -236,7 +240,7 @@ public class Album {
      * @return Retorna todas as fotos e seus valores específicos.
      */
     public Object[][] getFotosArray() {
-        if (fotos == null) {
+        if (fotos == null && fotosNovas == null) {
             return null;
         }
         Object[][] resultado = new Object[fotos.size()][3];
@@ -269,7 +273,7 @@ public class Album {
     public String[] getFotosColunas() {
         return new String[]{"ID", "Legenda", "Credito"};
     }
-    
+
     public String[] getCategoriasArray() {
         return getCategoriasArray(Boolean.FALSE);
     }
@@ -378,7 +382,7 @@ public class Album {
      * @param aID ID do albúm.
      */
     public void loadAlbum(int aID) {
-        
+
         fotos.clear();
 
         AlbumVO album = ((AlbumDAO) ApplicationContextResource.getBean("albunsDAO")).findBy(aID);
@@ -568,7 +572,7 @@ public class Album {
                     iter.remove();
                 }
             }
-            
+
             for (int j = 0; j < prefixos.length; j++) {
                 nomeArquivo = BancoImagem.getLocalPath(aID) + File.separator + prefixos[j] + fotosID[i] + ".jpg";
                 File arqFoto = new File(nomeArquivo);
@@ -614,7 +618,7 @@ public class Album {
 
         for (int i = 0; i < f.length; i++) {
             File novaFoto = f[i];
-            fotos.add(new PhotoVO(novaFoto.getAbsolutePath()));
+            fotosNovas.add(new PhotoDTO(novaFoto.getAbsolutePath()));
         }
     }
 

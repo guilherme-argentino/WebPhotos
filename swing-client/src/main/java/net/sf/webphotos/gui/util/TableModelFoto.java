@@ -17,7 +17,7 @@ package net.sf.webphotos.gui.util;
 
 import javax.swing.table.*;
 import net.sf.webphotos.Album;
-import net.sf.webphotos.Photo;
+import net.sf.webphotos.PhotoDTO;
 import net.sf.webphotos.gui.PainelWebFotos;
 
 /**
@@ -136,7 +136,7 @@ public class TableModelFoto extends AbstractTableModel {
             } else {
                 Album.getAlbum().getFoto(nomeFoto).setCreditoNome((String) value);
             }
-            int indice = Photo.getLstCreditosIndex((String) value);
+            int indice = PhotoDTO.getLstCreditosIndex((String) value);
             // soma 1 ao indice, pois o primeiro value é espaço vazio
             PainelWebFotos.getLstCreditos().setSelectedIndex(indice + 1);
         }

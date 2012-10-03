@@ -28,10 +28,10 @@ import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
 
 /**
- * A classe Photo armazena dados específicos de uma foto. Dentre os dados estão
+ * A classe PhotoDTO armazena dados específicos de uma foto. Dentre os dados estão
  * ID da foto,ID do album e ID do crédito, legenda, crédito e resolução de tela.
  */
-public class Photo {
+public class PhotoDTO {
 
     private int fotoID = 0;
     private int albumID = -1;
@@ -46,12 +46,12 @@ public class Photo {
     private static PhotoDAO photosDAO = (PhotoDAO) ApplicationContextResource.getBean("photosDAO");
     private static String[][] creditos = null;
 
-    public Photo(PhotoVO photoVO) {
+    public PhotoDTO(PhotoVO photoVO) {
         this(photoVO.getFotoid(), photoVO.getAlbum().getAlbumid(), photoVO.getLegenda(), photoVO.getCreditos().getCreditoid(), photoVO.getCreditos().getNome(), 0, 0, 0);
     }
 
     /**
-     * Construtor da classe Photo. Recebe e seta todos os dados da foto.
+     * Construtor da classe PhotoDTO. Recebe e seta todos os dados da foto.
      *
      * @param ID ID da foto.
      * @param albumID ID do album.
@@ -61,7 +61,7 @@ public class Photo {
      * @param fotoLargura Largura da foto.
      * @param fotoAltura Altura da foto.
      */
-    public Photo(int ID, int albumID, String fotoLegenda, int fotoCreditoID, String fotoCreditoNome, int fotoLargura, int fotoAltura, long tamanhoBytes) {
+    public PhotoDTO(int ID, int albumID, String fotoLegenda, int fotoCreditoID, String fotoCreditoNome, int fotoLargura, int fotoAltura, long tamanhoBytes) {
         this.fotoID = ID;
         this.albumID = albumID;
         this.legenda = fotoLegenda;
@@ -73,7 +73,7 @@ public class Photo {
     }
 
     /**
-     * Contrutor da classe Photo. Recebe apenas nome do arquivo como
+     * Contrutor da classe PhotoDTO. Recebe apenas nome do arquivo como
      * parametro. Seta a legenda com o valor vazio, e seta caminhoArquivo com
      * o nome recebido como parametro. Carrega a foto a partir do nome do
      * arquivo, obtem medidas da foto e seta as variaveis de largura e
@@ -81,7 +81,7 @@ public class Photo {
      *
      * @param arquivo Nome ou caminho do arquivo.
      */
-    public Photo(String arquivo) {
+    public PhotoDTO(String arquivo) {
         legenda = "";
         caminhoArquivo = arquivo;
         // obtem medidas da foto
@@ -245,7 +245,7 @@ public class Photo {
 
     /**
      * Retorna um vetor com os valores de credito. Checa se o vetor ja
-     * possui valores, caso contrario utiliza a função {@link net.sf.webphotos.Photo#populaCreditos() populaCreditos()}
+     * possui valores, caso contrario utiliza a função {@link net.sf.webphotos.PhotoDTO#populaCreditos() populaCreditos()}
      * completar os valores.
      *
      * @return Retorna uma lista com os creditos.
@@ -329,7 +329,7 @@ public class Photo {
     }
 
     /**
-     * Retorna todos os valores das variaveis de Photo em uma unica String.
+     * Retorna todos os valores das variaveis de PhotoDTO em uma unica String.
      *
      * @return Retorna os valores da foto.
      */

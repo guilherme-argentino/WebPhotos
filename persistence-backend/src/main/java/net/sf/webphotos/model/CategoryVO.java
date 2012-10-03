@@ -21,7 +21,7 @@ package net.sf.webphotos.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import net.sf.webphotos.WebPhotosVO;
+import net.sf.webphotos.HasID;
 
 /**
  *
@@ -32,7 +32,7 @@ import net.sf.webphotos.WebPhotosVO;
 @NamedQueries({
     @NamedQuery(name = "CategoryVO.findByCategoriaID", query = "SELECT c FROM CategoryVO c WHERE c.categoriaID = :categoriaID"),
     @NamedQuery(name = "CategoryVO.findByNmcategoria", query = "SELECT c FROM CategoryVO c WHERE c.nmcategoria = :nmcategoria")})
-public class CategoryVO implements Serializable, WebPhotosVO<Integer> {
+public class CategoryVO implements Serializable, HasID<Integer> {
 
     private static final long serialVersionUID = 1L;
     
