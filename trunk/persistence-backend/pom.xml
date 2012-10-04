@@ -51,6 +51,13 @@
             <version>5.1.21</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>net.sf.webphotos</groupId>
+            <artifactId>webphotos-persistence-backend-ifc</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

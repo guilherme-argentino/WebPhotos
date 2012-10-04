@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos;
 
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import net.sf.webphotos.dao.jpa.AlbumDAO;
+import net.sf.webphotos.entity.IsPhoto;
 import net.sf.webphotos.model.AlbumVO;
 import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.util.ApplicationContextResource;
@@ -33,8 +34,8 @@ import net.sf.webphotos.util.legacy.CacheFTP;
 import org.apache.log4j.Logger;
 
 /**
- * A classe Album mantém uma coleçao de fotos em um ArrayList de PhotoDTO, que pode
- * ser manipulada através das funções da própria classe. Classe do tipo
+ * A classe Album mantém uma coleçao de fotos em um ArrayList de PhotoDTO, que
+ * pode ser manipulada através das funções da própria classe. Classe do tipo
  * Singleton, é permitido apenas uma instância da classe. O objeto é acessível
  * unicamente através da classe. Também manipula dados dos IDs, nome do albúm,
  * descrição, data de inserção e categoria.
@@ -240,25 +241,20 @@ public class Album {
      * @return Retorna todas as fotos e seus valores específicos.
      */
     public Object[][] getFotosArray() {
-        if (fotos == null && fotosNovas == null) {
-            return null;
-        }
-        Object[][] resultado = new Object[fotos.size()][3];
-        Iterator<PhotoVO> iter = fotos.iterator();
+        Set<IsPhoto> joined = new HashSet<IsPhoto>();
+        joined.addAll(fotos);
+        joined.addAll(fotosNovas);
+
+
+        Object[][] resultado = new Object[joined.size()][3];
+        Iterator<IsPhoto> iter = joined.iterator();
         int ct = 0;
 
         while (iter.hasNext()) {
-            PhotoVO f = iter.next();
-            if (f.getCaminhoArquivo().length() > 0) {
-                // imagem acabou de ser adicionada... sem ID
-                resultado[ct][0] = (Object) f.getCaminhoArquivo();
-                resultado[ct][1] = (Object) f.getLegenda();
-                resultado[ct][2] = (Object) f.getCreditos().getNome();
-            } else {
-                resultado[ct][0] = (Object) Integer.toString(f.getFotoid());
-                resultado[ct][1] = (Object) f.getLegenda();
-                resultado[ct][2] = (Object) f.getCreditos().getNome();
-            }
+            IsPhoto photo = iter.next();
+            resultado[ct][0] = photo.getKey();
+            resultado[ct][1] = photo.getLegenda();
+            resultado[ct][2] = photo.getCreditos().getNome();
             ct++;
         }
         return resultado;
@@ -609,7 +605,7 @@ public class Album {
      * Inclui fotos na coleção. Recebe uma lista de arquivos de fotos, que serão
      * implantados no ArrayList fotos.
      *
-     * @param f Lista de arquivos.
+     * @param photo Lista de arquivos.
      */
     public void adicionarFotos(File[] f) {
         if (f.length == 0) {

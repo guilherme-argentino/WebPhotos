@@ -21,7 +21,7 @@ package net.sf.webphotos.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import net.sf.webphotos.HasID;
+import net.sf.webphotos.entity.HasID;
 
 /**
  *
