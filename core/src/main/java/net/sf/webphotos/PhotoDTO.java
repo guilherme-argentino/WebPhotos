@@ -23,6 +23,9 @@ import java.sql.Statement;
 import java.util.List;
 import javax.swing.ImageIcon;
 import net.sf.webphotos.dao.jpa.PhotoDAO;
+import net.sf.webphotos.entity.IsCredits;
+import net.sf.webphotos.entity.PhotoEntity;
+import net.sf.webphotos.model.CreditsVO;
 import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
@@ -31,7 +34,7 @@ import net.sf.webphotos.util.Util;
  * A classe PhotoDTO armazena dados específicos de uma foto. Dentre os dados estão
  * ID da foto,ID do album e ID do crédito, legenda, crédito e resolução de tela.
  */
-public class PhotoDTO {
+public class PhotoDTO extends PhotoEntity {
 
     private int fotoID = 0;
     private int albumID = -1;
@@ -128,6 +131,7 @@ public class PhotoDTO {
      *
      * @return Retorna a legenda.
      */
+    @Override
     public String getLegenda() {
         return legenda;
     }
@@ -413,5 +417,15 @@ public class PhotoDTO {
      */
     public void setAlbumID(int albumID) {
         this.albumID = albumID;
+    }
+
+    @Override
+    public String getKey() {
+        return this.caminhoArquivo;
+    }
+
+    @Override
+    public IsCredits getCreditos() {
+        return new CreditsVO(this.creditoNome);
     }
 }

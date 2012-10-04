@@ -28,7 +28,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import net.sf.webphotos.HasID;
+import net.sf.webphotos.entity.HasID;
+import net.sf.webphotos.entity.IsCredits;
 
 /**
  *
@@ -39,7 +40,7 @@ import net.sf.webphotos.HasID;
 @NamedQueries({
     @NamedQuery(name = "CreditsVO.findByCreditoID", query = "SELECT c FROM CreditsVO c WHERE c.creditoid = :creditoid"),
     @NamedQuery(name = "CreditsVO.findByNome", query = "SELECT c FROM CreditsVO c WHERE c.nome = :nome")})
-public class CreditsVO implements Serializable, HasID<Integer> {
+public class CreditsVO implements Serializable, HasID<Integer>, IsCredits {
 
     private static final long serialVersionUID = 1L;
     

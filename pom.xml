@@ -320,8 +320,8 @@
         <profile>
             <id>full-build</id>
             <modules>
-                <module>core</module>
                 <module>persistence-backend-ifc</module>
+                <module>core</module>
                 <module>persistence-backend</module>
                 <module>ear-backend</module>
                 <module>swing-client</module>

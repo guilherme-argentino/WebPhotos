@@ -365,6 +365,13 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>net.sf.webphotos</groupId>
+            <artifactId>webphotos-persistence-backend-ifc</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>

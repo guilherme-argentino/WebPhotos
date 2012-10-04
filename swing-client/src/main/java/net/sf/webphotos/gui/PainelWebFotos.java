@@ -394,6 +394,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         painelInfoAlbum.add(scrDescricao, gridBagConstraints);
 
         tbFotos.setToolTipText("Use o botão direito para mais opções");
+        tbFotos.setName("tbFotos"); // NOI18N
         tbFotos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbFotosPopupCalled(evt);
@@ -544,6 +545,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         painelToolBar.add(btDownload, gridBagConstraints);
 
         btAdicionarFotos.setIconPrefix("camera");
+        btAdicionarFotos.setName("buttonAddPhotos"); // NOI18N
         btAdicionarFotos.setToolTipText("Adiciona uma nova foto ao Álbum");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
@@ -564,6 +566,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         btNovo.setText("Adicionar");
         btNovo.setToolTipText("Criar novo álbum");
         btNovo.setActionCommand(ACAO_NOVO);
+        btNovo.setName("btNovo"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;

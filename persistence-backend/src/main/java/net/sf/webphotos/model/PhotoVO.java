@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 /*
  * To change this template, choose Tools | Templates
@@ -21,7 +21,8 @@ package net.sf.webphotos.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import net.sf.webphotos.HasID;
+import net.sf.webphotos.entity.HasID;
+import net.sf.webphotos.entity.PhotoEntity;
 
 /**
  *
@@ -35,7 +36,7 @@ import net.sf.webphotos.HasID;
     @NamedQuery(name = "PhotoVO.findByNmfoto", query = "SELECT f FROM PhotoVO f WHERE f.nmfoto = :nmfoto"),
     @NamedQuery(name = "PhotoVO.findByLegenda", query = "SELECT f FROM PhotoVO f WHERE f.legenda = :legenda"),
     @NamedQuery(name = "PhotoVO.findByCreditoid", query = "SELECT f FROM PhotoVO f WHERE f.creditos.creditoid = :creditoid")})
-public class PhotoVO implements Serializable, Comparable<PhotoVO>, HasID<Integer> {
+public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,7 +54,6 @@ public class PhotoVO implements Serializable, Comparable<PhotoVO>, HasID<Integer
     private AlbumVO album;
     @Transient
     private String caminhoArquivo;
-    
     @Transient
     private Integer largura, altura;
 
@@ -100,6 +100,7 @@ public class PhotoVO implements Serializable, Comparable<PhotoVO>, HasID<Integer
         this.nmfoto = nmfoto;
     }
 
+    @Override
     public String getLegenda() {
         return legenda;
     }
@@ -109,40 +110,11 @@ public class PhotoVO implements Serializable, Comparable<PhotoVO>, HasID<Integer
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (fotoid != null ? fotoid.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PhotoVO)) {
-            return false;
-        }
-        PhotoVO other = (PhotoVO) object;
-        if ((this.fotoid == null && other.fotoid != null) || (this.fotoid != null && !this.fotoid.equals(other.fotoid))) {
-            return false;
-        } else {
-            return this.caminhoArquivo.equals(other.caminhoArquivo);
-        }
-    }
-
-    @Override
-    public int compareTo(PhotoVO o2) {
-        if(this.fotoid != null && o2.fotoid != null) {
-            return this.fotoid - o2.fotoid;
-        } else {
-            return this.caminhoArquivo.compareTo(o2.caminhoArquivo);
-        }
-    }
-
-    @Override
     public String toString() {
         return this.getClass().getCanonicalName() + "[fotoid=" + fotoid + "]";
     }
 
+    @Override
     public CreditsVO getCreditos() {
         return creditos;
     }
@@ -176,6 +148,11 @@ public class PhotoVO implements Serializable, Comparable<PhotoVO>, HasID<Integer
 
     @Override
     public Integer getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.getId();
+    }
+
+    @Override
+    public String getKey() {
+        return this.getId().toString();
     }
 }
