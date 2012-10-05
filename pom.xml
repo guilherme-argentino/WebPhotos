@@ -375,12 +375,6 @@
         </profile>
         <profile>
             <id>cloudbees</id>
-            <activation>
-                <property>
-                    <name>buildEnvironment</name>
-                    <value>cloudbees</value>
-                </property>
-            </activation>
             <modules>
                 <module>core</module>
                 <module>persistence-backend-ifc</module>
