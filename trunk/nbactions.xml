@@ -15,8 +15,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
--->
-<actions>
+--><actions>
     <action>
         <actionName>CUSTOM-Staging Site</actionName>
         <displayName>Staging Site</displayName>
@@ -46,5 +45,16 @@
             <goals>
                 <goal>license:format</goal>
             </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-CloudBees</actionName>
+            <displayName>CloudBees</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>cloudbees</activatedProfile>
+            </activatedProfiles>
         </action>
 </actions>
