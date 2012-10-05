@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 /*
  * PainelWebFotos.java
@@ -73,8 +73,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
     public static final String ACAO_ALTERAR = "alterar";
 
     /**
-     * Extras - Pesquisa
-     * TODO: revisar processo para usar Eventos
+     * Extras - Pesquisa TODO: revisar processo para usar Eventos
      *
      * @param force
      */
@@ -795,7 +794,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         CreditsVO creditsVO = new CreditsVO(creditsName);
 
         CreditsDAO creditsDAO = (CreditsDAO) ApplicationContextResource.getBean("creditsDAO");
-        
+
         try {
             creditsDAO.save(creditsVO);
 
@@ -1314,6 +1313,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
             java.text.SimpleDateFormat dataBR = new java.text.SimpleDateFormat("dd/MM/yy");
             txtData.setText(dataBR.format(new java.util.Date()));
         } catch (Exception e) {
+            Util.log("ERRO: " + e.getMessage());
         }
 
         AcaoAdicionarFoto a = new AcaoAdicionarFoto(tbFotos, lstCreditosTabelaFotos, "Criando novo álbum - Selecione os arquivos");
@@ -1368,7 +1368,11 @@ public class PainelWebFotos extends javax.swing.JPanel {
     public static void resetFoto() {
         controlarAlteracoes = false;
         txtLegenda.setText("");
-        lstCreditos.setSelectedIndex(0);
+        try {
+            lstCreditos.setSelectedIndex(0);
+        } catch (Exception e) {
+            Util.log("ERRO: " + e.getMessage());
+        }
         painelFoto.clear();
         painelFoto.getLblFotoInfo().setText("");
         onoffFoto(false);
@@ -1383,10 +1387,18 @@ public class PainelWebFotos extends javax.swing.JPanel {
         Album.getAlbum().clear();
         txtTitulo.setText("");
         txtData.setText("");
-        lstCategoriasAlbum.setSelectedIndex(0);
+        try {
+            lstCategoriasAlbum.setSelectedIndex(0);
+        } catch (Exception e) {
+            Util.log("ERRO: " + e.getMessage());
+        }
         txtDescricao.setText("");
         txtLegenda.setText("");
-        lstCreditos.setSelectedIndex(0);
+        try {
+            lstCreditos.setSelectedIndex(0);
+        } catch (Exception e) {
+            Util.log("ERRO: " + e.getMessage());
+        }
 
         TableModelFoto.getModel().update();
         TableModelFoto.getModel().fireTableDataChanged();
@@ -1398,6 +1410,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         // desabilita tudo
         onoffFoto(false);
     }
+    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(PainelWebFotos.class.getName());
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static net.sf.webphotos.gui.component.BotaoIcone btAdicionarFotos;
     private static javax.swing.JButton btAlterar;
