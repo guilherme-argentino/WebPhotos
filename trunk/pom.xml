@@ -381,6 +381,14 @@
                     <value>cloudbees</value>
                 </property>
             </activation>
+            <modules>
+                <module>core</module>
+                <module>persistence-backend-ifc</module>
+                <module>persistence-backend</module>
+                <module>ear-backend</module>
+                <module>swing-client</module>
+                <module>web-client</module>
+            </modules>
             <build>
                 <filters>
                     <filter>../src/etc/filter.cloudbees.properties</filter>
