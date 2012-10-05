@@ -11,8 +11,8 @@ albunsRoot=${sys:user.home}/webphotos/albuns
 chaveCripto=Soltar pipa eh muito legal
 
 # Preencher automaticamente a tela de login
-autoPreencher.Login=root
-autoPreencher.Pass=root
+autoPreencher.Login=${filter.autoPreencher.Login}root
+autoPreencher.Pass=${filter.autoPreencher.Pass}root
 
 ###############################################
 # Instruções SQL personalizadas               #
