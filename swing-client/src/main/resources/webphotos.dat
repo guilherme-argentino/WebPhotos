@@ -8,7 +8,7 @@ diretorioAdicionarFotos=${sys:user.home}/webphotos/bruto
 # album data folder
 albunsRoot=${sys:user.home}/webphotos/albuns
 
-chaveCripto=Soltar pipa é muito legal
+chaveCripto=Soltar pipa eh muito legal
 
 # Preencher automaticamente a tela de login
 autoPreencher.Login=root
@@ -19,7 +19,7 @@ autoPreencher.Pass=root
 ###############################################
 # pre-sql: select albumID as ID, categorias.nmcategoria as Categoria, nmalbum as Pauta, DATE_FORMAT(DtInsercao, '%d/%m/%y') as Data from albuns left join categorias using(categoriaID)
 
-relatorio1=Últimos 500 Álbuns / order by albumID desc limit 500
+relatorio1=ultimos 500 albuns / order by albumID desc limit 500
 relatorio2=Por data decrescente / order by DtInsercao desc limit 500
 relatorio3=Por data crescente / order by DtInsercao limit 500
 
@@ -90,16 +90,14 @@ texto.corFundo=255,255,255
 # BANCO DE DADOS                              #
 ###############################################
 # jdbc.driver=com.mysql.jdbc.Driver
-# jdbc.driver=org.apache.derby.jdbc.EmbeddedDriver
-jdbc.driver=org.apache.derby.jdbc.ClientDriver
+jdbc.driver=${filter.jdbc.driver}
 # jdbc.url=jdbc:mysql://gui-vmw2k3-db/webphotos
-# jdbc.url=jdbc:derby:${user.home}/webphotos/database;create=true
-jdbc.url=jdbc:derby://localhost:15270/${sys:user.home}/webphotos/database/webphotos;create=true
+jdbc.url=${filter.jdbc.url}
 
 # Additional information to create an server instance inside the application
-derby.drda.startNetworkServer=true
-derby.drda.host=localhost
-derby.drda.portNumber=15270
+derby.drda.startNetworkServer=${filter.derby.drda.startNetworkServer}
+derby.drda.host=${filter.derby.drda.host}
+derby.drda.portNumber=${filter.derby.drda.portNumber}
 
 ###############################################
 # INSTRUCOES SQL E PARAMETROS DE TABELA       #
