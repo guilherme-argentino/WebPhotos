@@ -16,7 +16,6 @@
 package net.sf.webphotos;
 
 import java.io.File;
-import junit.framework.Assert;
 import net.sf.webphotos.util.Util;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
