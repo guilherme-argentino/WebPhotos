@@ -13,9 +13,9 @@
     <name>[WP] NetBeans Platform Application</name>
     <repositories>
         <!-- this is a remote repository hosting the netbeans api artifacts.
-         the versions of the artifacts are netbeans IDE release based, eg. RELEASE65
-         You might want to use your own repository. To create one, use the nbm:populate-repository goal.
-          -->
+       the versions of the artifacts are netbeans IDE release based, eg. RELEASE65
+       You might want to use your own repository. To create one, use the nbm:populate-repository goal.
+        -->
         <repository>
             <id>netbeans</id>
             <name>repository hosting netbeans.org api artifacts</name>
@@ -82,6 +82,6 @@
     <properties>
         <netbeans.version>RELEASE72</netbeans.version>
         <brandingToken>webphotos</brandingToken>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
 </project>
