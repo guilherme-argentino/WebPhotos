@@ -138,7 +138,9 @@ public class TableModelFoto extends AbstractTableModel {
             }
             int indice = PhotoDTO.getLstCreditosIndex((String) value);
             // soma 1 ao indice, pois o primeiro value é espaço vazio
-            PainelWebFotos.getLstCreditos().setSelectedIndex(indice + 1);
+            //PainelWebFotos.getLstCreditos().setSelectedIndex(indice + 1);
+            // FIXME : Retornar comportamento original com linha em branco
+            PainelWebFotos.getLstCreditos().setSelectedIndex(indice);
         }
     }
 
