@@ -12,6 +12,8 @@
     <properties>
         <org.springframework.version>3.0.6.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <targetJdk>1.6</targetJdk>
+        <project.filter.dir>${basedir}/src/etc/</project.filter.dir>
     </properties>
     <licenses>
         <license>
@@ -43,11 +45,11 @@
         </mailingList>
     </mailingLists>
     <issueManagement>
-        <system>sourceforge</system>
-        <url>https://sourceforge.net/apps/trac/webphotos/report</url>
+        <system>Bugzilla</system>
+        <url>https://java.net/bugzilla</url>
     </issueManagement>
     <ciManagement>
-        <system>hudson</system>
+        <system>Jenkins</system>
         <url>https://rrantz.ci.cloudbees.com/</url>
     </ciManagement>
     <build>
@@ -143,7 +145,7 @@
                     <configuration>
                         <linkXref>true</linkXref>
                         <minimumTokens>100</minimumTokens>
-                        <targetJdk>1.6</targetJdk>
+                        <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -257,54 +259,11 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.dat</include>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>**/*.xml</exclude>
-                    <exclude>**/*.dat</exclude>
-                    <exclude>**/*.properties</exclude>
-                </excludes>
-            </resource>
-        </resources>
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.dat</include>
-                    <include>**/*.properties</include>
-                </includes>
-            </testResource>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>**/*.xml</exclude>
-                    <exclude>**/*.dat</exclude>
-                    <exclude>**/*.properties</exclude>
-                </excludes>
-            </testResource>
-        </testResources>
-        <filters>
-            <filter>../src/etc/filter.default.properties</filter>
-        </filters>
     </build>
     <distributionManagement>
         <site>
             <id>webphotos.sf.net</id>
-            <url>scp://shell.sourceforge.net/home/project-web/webphotos/htdocs/maven</url>
+            <url>scp://shell.sourceforge.net/home/project-web/webphotos/htdocs</url>
         </site>
     </distributionManagement>
     <dependencyManagement>

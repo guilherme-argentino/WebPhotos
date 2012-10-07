@@ -90,7 +90,7 @@
         </profile>
     </profiles>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
     <description>Project WebPhotos: EAR Pack</description>
 </project>

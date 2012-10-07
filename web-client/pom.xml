@@ -12,7 +12,7 @@
     <name>[WP] Web Client JEE5 Webapp</name>
     <properties>
         <netbeans.hint.license>apache20</netbeans.hint.license>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
