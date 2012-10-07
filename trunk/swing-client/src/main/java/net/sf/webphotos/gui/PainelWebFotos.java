@@ -80,10 +80,16 @@ public class PainelWebFotos extends javax.swing.JPanel {
     public static void montagemComboPesquisa(Boolean force) {
         final String[] categoriasArray = Album.getAlbum().getCategoriasArray(force);
         final DefaultComboBoxModel defaultComboBoxModel = new javax.swing.DefaultComboBoxModel(categoriasArray);
-        lstCategoriasAlbum.setModel(new javax.swing.DefaultComboBoxModel(categoriasArray));
-        defaultComboBoxModel.insertElementAt("Todas as Categorias", 0);
+        final DefaultComboBoxModel defaultComboBoxModelPainelPesquisa = new javax.swing.DefaultComboBoxModel(categoriasArray);
+        
+        defaultComboBoxModel.insertElementAt("", 0);
         defaultComboBoxModel.setSelectedItem(defaultComboBoxModel.getElementAt(0));
-        painelPesquisa.setCategoriasPesquisaComboBoxModel(defaultComboBoxModel);
+        
+        defaultComboBoxModelPainelPesquisa.insertElementAt("Todas as Categorias", 0);
+        defaultComboBoxModelPainelPesquisa.setSelectedItem(defaultComboBoxModelPainelPesquisa.getElementAt(0));
+        
+        lstCategoriasAlbum.setModel(defaultComboBoxModel);
+        painelPesquisa.setCategoriasPesquisaComboBoxModel(defaultComboBoxModelPainelPesquisa);
     }
 
     /**
@@ -800,9 +806,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
             // TODO format as EventHandling
             PhotoDTO.populaCreditos();
-            final DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(PhotoDTO.getCreditosArray());
-            lstCreditos.setModel(defaultComboBoxModel);
-            lstCreditosTabelaFotos.setModel(defaultComboBoxModel);
+            populateCreditsComboBox();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Can't add credits, see aplication log for details", "Error", JOptionPane.ERROR_MESSAGE);
             java.util.logging.Logger.getLogger(PainelWebFotos.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
@@ -902,10 +906,6 @@ public class PainelWebFotos extends javax.swing.JPanel {
         AcaoItemListener acaoItemListener = new AcaoItemListener(tbFotos);
         lstCreditos.addItemListener(acaoItemListener);
         lstCreditosTabelaFotos.addItemListener(acaoItemListener);
-
-        // Criando ítens em branco
-        lstCreditos.insertItemAt("", 0);
-        lstCategoriasAlbum.insertItemAt("", 0);
 
         /* Extras - Util */
         Util.setLoggingTextArea(txtLog);
@@ -1551,5 +1551,12 @@ public class PainelWebFotos extends javax.swing.JPanel {
      */
     public static void setMascaraData(javax.swing.text.MaskFormatter aMascaraData) {
         mascaraData = aMascaraData;
+    }
+
+    private void populateCreditsComboBox() {
+        final DefaultComboBoxModel defaultComboBoxModel = new DefaultComboBoxModel(PhotoDTO.getCreditosArray());
+        lstCreditos.setModel(defaultComboBoxModel);
+        lstCreditosTabelaFotos.setModel(defaultComboBoxModel);
+        lstCreditos.insertItemAt("", 0);
     }
 }
