@@ -104,7 +104,7 @@ public final class Thumbnail {
      * seus valores. Abre o arquivo de imagem passado como parâmetro e checa se
      * é uma foto válida. Obtém o tamanho original da imagem, checa se está no
      * formato paisagem ou retrato e utiliza o método
-     * {@link java.awt.Images#getScaledInstance(int,int,int) getScaledInstance}
+     * {@link java.awt.Image#getScaledInstance(int,int,int) getScaledInstance}
      * para calcular os thumbs. Ao final, salva as imagens.
      *
      * @param caminhoCompletoImagem Caminho da imagem.
