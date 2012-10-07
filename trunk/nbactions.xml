@@ -16,4 +16,46 @@
     limitations under the License.
 
 -->
+<actions>
+    <action>
+        <actionName>CUSTOM-Staging Site</actionName>
+        <displayName>Staging Site</displayName>
+        <goals>
+            <goal>site</goal>
+            <goal>site:stage</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-Validate SCM</actionName>
+        <displayName>Validate SCM</displayName>
+        <goals>
+            <goal>scm:validate</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-ChangeLog SCM</actionName>
+        <displayName>ChangeLog SCM</displayName>
+        <goals>
+            <goal>scm:changelog</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-Format Licenses</actionName>
+        <displayName>Format Licenses</displayName>
+        <recursive>false</recursive>
+        <goals>
+            <goal>license:format</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-CloudBees</actionName>
+        <displayName>CloudBees</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>install</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>cloudbees</activatedProfile>
+        </activatedProfiles>
+    </action>
 </actions>
