@@ -16,36 +16,21 @@
 package net.sf.webphotos;
 
 import java.io.File;
+import net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate;
 import net.sf.webphotos.util.Util;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.uispec4j.ComponentAmbiguityException;
-import org.uispec4j.ItemNotFoundException;
-import org.uispec4j.Table;
-import org.uispec4j.Trigger;
-import org.uispec4j.UISpec4J;
-import org.uispec4j.Window;
-import org.uispec4j.interception.FileChooserHandler;
-import org.uispec4j.interception.WindowHandler;
-import org.uispec4j.interception.WindowInterceptor;
-import org.uispec4j.utils.MainClassTrigger;
 
 /**
  *
  * @author Guilherme
  */
 public class WebPhotosTest {
-
-    static {
-        UISpec4J.init();
-        UISpec4J.setWindowInterceptionTimeLimit(30000);
-    }
-    private static Trigger initialTrigger;
-    private static Window mainWindow;
+    
+    public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = WebPhotosDelegate.getWebPhotosDelegate();
 
     /**
      *
@@ -53,8 +38,7 @@ public class WebPhotosTest {
      */
     @BeforeClass
     public static void setUpClass() throws Exception {
-        initialTrigger = WindowInterceptor.getModalDialog(new MainClassTrigger(WebPhotos.class, "")).getButton("OK").triggerClick();
-        mainWindow = WindowInterceptor.run(initialTrigger);
+        WEB_PHOTOS_DELEGATE.setUpClass();
     }
 
     /**
@@ -63,6 +47,7 @@ public class WebPhotosTest {
      */
     @AfterClass
     public static void tearDownClass() throws Exception {
+        WEB_PHOTOS_DELEGATE.tearDownClass();
     }
 
     /**
@@ -78,12 +63,10 @@ public class WebPhotosTest {
     @Test
     public void testAddCategory() {
         System.out.println("Add Category");
+        WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
+        WEB_PHOTOS_DELEGATE.fillModalWithText("buttonAddCategory", "Cat", "Geral");
 
-        mainWindow.isVisible().check();
-        mainWindow.isEnabled().check();
-        WindowInterceptor.init(mainWindow.getButton("buttonAddCategory").triggerClick()).process(new ModalWindowHandler("Cat", "Geral")).run();
-
-        mainWindow.getComboBox("lstCategoriasPesquisa").contains("Geral").check();
+        WEB_PHOTOS_DELEGATE.checkComboBoxHasText("lstCategoriasPesquisa", "Geral");
     }
 
     /**
@@ -92,21 +75,16 @@ public class WebPhotosTest {
     @Test
     public void testAddCredits() {
         System.out.println("Add Credits");
+        WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
+        WEB_PHOTOS_DELEGATE.fillModalWithText("buttonAddCredits", "Cred", "Divulgacao");
 
-        mainWindow.isVisible().check();
-        mainWindow.isEnabled().check();
-        WindowInterceptor.init(mainWindow.getButton("buttonAddCredits").triggerClick())
-                .process(new ModalWindowHandler("Cred", "Divulgacao")).run();
-
-        mainWindow.getComboBox("lstCreditos").contains("Divulgacao").check();
+        WEB_PHOTOS_DELEGATE.checkComboBoxHasText("lstCreditos", "Divulgacao");
     }
 
     @Test
     public void testCreateAlbumWithPhotos() {
         System.out.println("Create Album With Photos");
-
-        mainWindow.isVisible().check();
-        mainWindow.isEnabled().check();
+        WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
 
         final String[] fileNames = new String[2];
         fileNames[0] = Util.getProperty("user.dir") + File.separator + ".." + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "Originals" + File.separator + "GPL.jpg";
@@ -116,8 +94,7 @@ public class WebPhotosTest {
          * Primeira tentativa - Comportamento esperado: duas fotos na lista
          */
         System.out.println("First try");
-        Table tbFotos = addPhotosToAlbum(fileNames, "btNovo", Util.getFolder("diretorioAdicionarFotos"), "Criando novo \u00e1lbum - Selecione os arquivos");
-        checkPhotosTable(tbFotos, fileNames);
+        WEB_PHOTOS_DELEGATE.addPhotosToAlbumAndCheck(fileNames, "btNovo", Util.getFolder("diretorioAdicionarFotos"), "Criando novo \u00e1lbum - Selecione os arquivos");
         checkNewAlbumButton();
 
         /**
@@ -125,8 +102,7 @@ public class WebPhotosTest {
          * duas fotos ignoradas
          */
         System.out.println("Second try");
-        tbFotos = addPhotosToAlbum(fileNames, "buttonAddPhotos", new File(fileNames[0]).getParentFile(), "Adicionar fotos no \u00e1lbum");
-        checkPhotosTable(tbFotos, fileNames);
+        WEB_PHOTOS_DELEGATE.addPhotosToAlbumAndCheck(fileNames, "buttonAddPhotos", new File(fileNames[0]).getParentFile(), "Adicionar fotos no \u00e1lbum");
         checkNewAlbumButton();
     }
 
@@ -135,59 +111,8 @@ public class WebPhotosTest {
         System.out.println("Add Photos");
     }
 
-    private Table addPhotosToAlbum(final String[] fileNames, final String targetButton, final File startUpFolder, final String criando_novo_álbum__Selecione_os_arquivos) throws ComponentAmbiguityException, ItemNotFoundException {
-        FileChooserHandler openDialog = FileChooserHandler.init()
-                .titleEquals(criando_novo_álbum__Selecione_os_arquivos)
-                .assertAcceptsFilesOnly()
-                .assertMultiSelectionEnabled(true)
-                .assertCurrentDirEquals(startUpFolder);
-        WindowInterceptor.init(mainWindow.getButton(targetButton).triggerClick()).process(openDialog.select(fileNames)).run();
-        final Table tbFotos = mainWindow.getTable("tbFotos");
-        return tbFotos;
-    }
-
-    private void checkPhotosTable(Table tbFotos, final String[] fileNames) {
-        tbFotos.rowCountEquals(fileNames.length).check();
-        tbFotos.hasHeader().check();
-        tbFotos.columnCountEquals(3).check();
-        for (int i = 0; i < fileNames.length; i++) {
-            System.out.printf("fileNames[%d] = %s", i, fileNames[i]);
-            System.out.println();
-            System.out.printf("tbFotos.getContentAt(%d, 0).toString() = %s", i, tbFotos.getContentAt(i, 0).toString());
-            System.out.println();
-            tbFotos.cellEquals(i + 1, 1, fileNames[i]);
-//            final File expectedFile = new File(fileNames[i]);
-//            final File chosenFile = new File(tbFotos.getContentAt(i, 0).toString());
-//            System.out.printf("expectedFile = %s", expectedFile.getAbsolutePath());
-//            System.out.println();
-//            System.out.printf("chosenFile = %s", chosenFile.getAbsolutePath());
-//            System.out.println();
-//            Assert.assertEquals(expectedFile, chosenFile);
-        }
-    }
-
-    private void checkNewAlbumButton() throws ItemNotFoundException, ComponentAmbiguityException {
-        mainWindow.getButton("btNovo").isEnabled().check();
-        mainWindow.getButton("btNovo").textEquals("Finalizar").check();
-    }
-
-    private static class ModalWindowHandler extends WindowHandler {
-
-        private String titleName;
-        private String modalText;
-
-        public ModalWindowHandler(String titleName, String modalText) {
-            this.modalText = modalText;
-            this.titleName = titleName;
-        }
-
-        @Override
-        public Trigger process(Window window) throws Exception {
-            assertTrue("Tittle: " + window.getTitle(), window.titleContains(titleName).isTrue());
-            assertTrue("Modal: " + window.getTitle(), window.isModal().isTrue());
-
-            window.getInputTextBox().setText(modalText);
-            return window.getButton("OK").triggerClick();
-        }
+    private void checkNewAlbumButton() throws RuntimeException {
+        WEB_PHOTOS_DELEGATE.checkIsButtonEnabled("btNovo");
+        WEB_PHOTOS_DELEGATE.checkButtonHasText("btNovo", "Finalizar");
     }
 }
