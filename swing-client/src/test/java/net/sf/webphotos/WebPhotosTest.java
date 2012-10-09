@@ -55,6 +55,7 @@ public class WebPhotosTest {
      */
     @Before
     public void setUp() {
+        WEB_PHOTOS_DELEGATE.setUp();
     }
 
     /**

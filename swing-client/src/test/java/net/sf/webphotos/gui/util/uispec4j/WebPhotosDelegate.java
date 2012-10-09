@@ -32,7 +32,7 @@ import org.uispec4j.utils.MainClassTrigger;
  *
  * @author Guilherme
  */
-public class WebPhotosDelegate {
+public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDelegate {
     
     private static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = new WebPhotosDelegate();
 
@@ -49,6 +49,7 @@ public class WebPhotosDelegate {
      * @param button
      * @throws RuntimeException no errors allowed 
      */
+    @Override
     public void checkIsButtonEnabled(final String button) throws RuntimeException {
         getButton(button).isEnabled().check();
     }
@@ -59,6 +60,7 @@ public class WebPhotosDelegate {
      * @param textShown
      * @throws RuntimeException no errors allowed 
      */
+    @Override
     public void checkButtonHasText(final String button, final String textShown) throws RuntimeException {
         getButton(button).textEquals(textShown).check();
     }
@@ -69,6 +71,7 @@ public class WebPhotosDelegate {
      * @param textShown
      * @throws RuntimeException no errors allowed
      */
+    @Override
     public void checkComboBoxHasText(final String comboBoxName, final String textShown) throws RuntimeException {
         WebPhotosDelegate.mainWindow.getComboBox(comboBoxName).contains(textShown).check();
     }
@@ -76,6 +79,7 @@ public class WebPhotosDelegate {
     /**
      * Tests mainWindow
      */
+    @Override
     public void validateMainWindowIsPresent() {
         WebPhotosDelegate.mainWindow.isVisible().check();
         WebPhotosDelegate.mainWindow.isEnabled().check();
@@ -85,6 +89,7 @@ public class WebPhotosDelegate {
      * Dispose all tests
      * @throws Exception no errors allowed
      */
+    @Override
     public void tearDownClass() throws Exception {
         mainWindow.dispose();
     }
@@ -93,6 +98,7 @@ public class WebPhotosDelegate {
      * Prepare all tests
      * @throws Exception no errors allowed
      */
+    @Override
     public void setUpClass() throws Exception {
         WebPhotosDelegate.initialTrigger = WindowInterceptor.getModalDialog(new MainClassTrigger(WebPhotos.class, "")).getButton("OK").triggerClick();
         WebPhotosDelegate.mainWindow = WindowInterceptor.run(WebPhotosDelegate.initialTrigger);
@@ -106,6 +112,7 @@ public class WebPhotosDelegate {
      * @param fileDialogName
      * @throws RuntimeException no errors allowed 
      */
+    @Override
     public void addPhotosToAlbumAndCheck(final String[] fileNames, final String buttonName, final File folderNameToVerify, final String fileDialogName) throws RuntimeException {
         Table tbFotos = WebPhotosDelegate.addPhotosToAlbum(fileNames, buttonName, folderNameToVerify, fileDialogName);
         checkPhotosTable(tbFotos, fileNames);
@@ -118,6 +125,7 @@ public class WebPhotosDelegate {
      * @param data
      * @throws RuntimeException no errors allowed
      */
+    @Override
     public void fillModalWithText(final String buttonName, final String modalTittle, final String data) throws RuntimeException {
         WindowInterceptor.init(WebPhotosDelegate.mainWindowTriggerClick(buttonName)).process(new ModalWindowHandler(modalTittle, data)).run();
     }
@@ -160,5 +168,12 @@ public class WebPhotosDelegate {
      */
     public static WebPhotosDelegate getWebPhotosDelegate() {
         return WEB_PHOTOS_DELEGATE;
+    }
+
+    /**
+     * Setup one Test
+     */
+    @Override
+    public void setUp() {
     }
 }
