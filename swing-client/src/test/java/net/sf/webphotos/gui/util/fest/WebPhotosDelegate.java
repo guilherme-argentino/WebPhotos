@@ -46,7 +46,7 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
 
     private static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = new WebPhotosDelegate();
     private static final Robot robot;
-    private static final int TIMEOUT_SECONDS = 600;
+    private static final int TIMEOUT_SECONDS = 10;
     
 
     private static final Comparator<String> IGNORE_CASE_COMPARATOR = new Comparator<String>() {
