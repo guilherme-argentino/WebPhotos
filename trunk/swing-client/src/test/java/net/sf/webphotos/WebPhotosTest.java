@@ -30,8 +30,8 @@ import org.junit.Test;
  */
 public class WebPhotosTest {
     
-    //public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
-    public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.fest.WebPhotosDelegate.getWebPhotosDelegate();
+    public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
+    //public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.fest.WebPhotosDelegate.getWebPhotosDelegate();
 
     /**
      *

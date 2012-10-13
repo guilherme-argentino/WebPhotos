@@ -96,7 +96,7 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    @Ignore
+    @Test
     public void testMain() {
         /*
          * Set the Nimbus look and feel
