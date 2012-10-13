@@ -150,7 +150,7 @@
             <id>cloudbees</id>
             <build>
                 <filters>
-                    <filter>../src/etc/filter.cloudbees.properties</filter>
+                    <filter>${project.filter.dir}/filter.cloudbees.properties</filter>
                 </filters>
             </build>
             <dependencies>
