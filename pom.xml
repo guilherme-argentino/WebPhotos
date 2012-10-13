@@ -361,11 +361,6 @@
                 <module>swing-client</module>
                 <module>web-client</module>
             </modules>
-            <build>
-                <filters>
-                    <filter>../src/etc/filter.cloudbees.properties</filter>
-                </filters>
-            </build>
             <dependencies>
                 <dependency>
                     <groupId>postgresql</groupId>
