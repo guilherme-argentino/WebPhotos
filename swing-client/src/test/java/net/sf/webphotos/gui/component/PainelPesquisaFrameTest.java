@@ -19,6 +19,7 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.uispec4j.Trigger;
 import org.uispec4j.UISpec4J;
@@ -31,6 +32,7 @@ import org.uispec4j.interception.WindowInterceptor;
  * @author Guilherme
  */
 public class PainelPesquisaFrameTest extends javax.swing.JFrame {
+    public static PainelPesquisaFrameTest PAINEL_PESQUISA_FRAME_TEST;
 
     static {
         UISpec4J.init();
@@ -43,6 +45,7 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        PAINEL_PESQUISA_FRAME_TEST.dispose();
     }
 
     @Before
@@ -93,7 +96,7 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    @Test
+    @Ignore
     public void testMain() {
         /*
          * Set the Nimbus look and feel
@@ -125,7 +128,8 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
         WindowInterceptor.init(new Trigger() {
             @Override
             public void run() {
-                new PainelPesquisaFrameTest().setVisible(true);
+                PAINEL_PESQUISA_FRAME_TEST = new PainelPesquisaFrameTest();
+                PAINEL_PESQUISA_FRAME_TEST.setVisible(true);
             }
         }).process(new WindowHandler("PainelPesquisaFrameTest") {
             @Override
