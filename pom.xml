@@ -49,8 +49,8 @@
         <url>https://java.net/bugzilla</url>
     </issueManagement>
     <ciManagement>
-        <system>Jenkins</system>
-        <url>https://rrantz.ci.cloudbees.com/</url>
+        <system>hudson</system>
+        <url>https://rrantz.ci.cloudbees.com/job/Basic%20Build/</url>
     </ciManagement>
     <build>
         <pluginManagement>
