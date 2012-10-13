@@ -137,8 +137,9 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
 
     @Override
     public void tearDownClass() throws Exception {
-        mainFrame.close();
+        System.out.println("Shutting down FEST");
         noExitSecurityManagerInstaller.uninstall();
+        mainFrame.close();
     }
 
     @Override
