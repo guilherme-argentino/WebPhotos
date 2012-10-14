@@ -148,7 +148,7 @@ public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer>
 
     @Override
     public Integer getId() {
-        return this.getId();
+        return this.fotoid;
     }
 
     @Override

@@ -18,8 +18,12 @@ package net.sf.webphotos.action;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.nio.channels.FileChannel;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.RowSet;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
@@ -34,6 +38,7 @@ import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.model.AlbumVO;
 import net.sf.webphotos.model.CategoryVO;
+import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.tools.Thumbnail;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
@@ -132,8 +137,18 @@ public class AcaoAlterarAlbum extends AbstractAction {
 
         PainelWebFotos.setCursorWait(true);
 
-        albumID = recordAlbumData(album, albumID);
+        try {
+            AlbumVO albumVO = new AlbumVO(album.getNmAlbum(), album.getDescricao(), parseDate(album.getDtInsercao()), new CategoryVO(album.getCategoria(1)));
+            HashSet<PhotoVO> photosVO = new HashSet<PhotoVO>();
+            for (PhotoDTO photoDTO : fotos) {
+                photosVO.add(new PhotoVO());
+            }
+            albumVO.addPhotos(photosVO);
+        } catch (ParseException ex) {
+            Logger.getLogger(AcaoAlterarAlbum.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+        albumID = recordAlbumData(album, albumID);
         sucesso = recordFotoData(fotos, ultimoFotoID, albumID);
 
         // PASSO 3 - Mover e renomear aquivos
@@ -404,12 +419,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
         // //////////////////////////////////////////////////////////////////////
         // converte a data do álbum para ANSI
         String dtAnsi;
-        Date dateParsed;
         try {
-            SimpleDateFormat dataBR = new SimpleDateFormat("dd/MM/yy");
-            SimpleDateFormat dataAnsi = new SimpleDateFormat("yyyy-MM-dd");
-            dateParsed = dataBR.parse(album.getDtInsercao());
-            dtAnsi = dataAnsi.format(dateParsed);
+            dtAnsi = getAnsiFormat(album);
 
         } catch (Exception e) {
             Util.out.println("[AcaoAlterarAlbum.recordAlbumData]/ERRO: " + e);
@@ -421,8 +432,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
         if (albumID == 0) {
             // álbum ainda não registrado obtém um ID
             try {
-                
-                AlbumVO albumVO = new AlbumVO(album.getNmAlbum(), album.getDescricao(), dateParsed, new CategoryVO());
 
                 sql = "SELECT MAX(albumID) FROM albuns";
                 rowSet.setCommand(sql);
@@ -471,5 +480,20 @@ public class AcaoAlterarAlbum extends AbstractAction {
             return 0;
         }
         return albumID;
+    }
+
+    private String getAnsiFormat(Album album) throws ParseException {
+        String dtAnsi;
+        final String dtInsercao = album.getDtInsercao();
+        Date dateParsed = parseDate(dtInsercao);
+        SimpleDateFormat dataAnsi = new SimpleDateFormat("yyyy-MM-dd");
+        dtAnsi = dataAnsi.format(dateParsed);
+        return dtAnsi;
+    }
+
+    private Date parseDate(final String dtInsercao) throws ParseException {
+        SimpleDateFormat dataBR = new SimpleDateFormat("dd/MM/yy");
+        Date dateParsed = dataBR.parse(dtInsercao);
+        return dateParsed;
     }
 }

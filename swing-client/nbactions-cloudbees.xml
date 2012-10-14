@@ -52,4 +52,16 @@
                 <exec.classpathScope>runtime</exec.classpathScope>
             </properties>
         </action>
+        <action>
+            <actionName>run.single.main</actionName>
+            <goals>
+                <goal>process-resources</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+                <exec.classpathScope>${classPathScope}</exec.classpathScope>
+            </properties>
+        </action>
     </actions>
