@@ -269,6 +269,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         tbAlbuns.setModel(new TableSorter(TableModelAlbum.getModel(), tbAlbuns.getTableHeader()));
         tbAlbuns.setToolTipText("Use o botão direito para mais opções");
+        tbAlbuns.setName("tbAlbuns"); // NOI18N
         tbAlbuns.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbAlbunsMouseClicked(evt);

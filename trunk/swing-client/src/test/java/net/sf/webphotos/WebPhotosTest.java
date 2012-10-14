@@ -117,6 +117,8 @@ public class WebPhotosTest {
         WEB_PHOTOS_DELEGATE.fillAlbumForm("First Test - Title", "First Test - Description", "Geral", photoData);
         
         WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
+        
+        WEB_PHOTOS_DELEGATE.checkNewAlbum();
     }
 
     @Ignore

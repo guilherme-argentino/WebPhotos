@@ -231,7 +231,8 @@ public class Album {
      * @return Retorna a coleção de fotos.
      */
     public PhotoDTO[] getFotos() {
-        return fotos.toArray(new PhotoDTO[fotos.size()]);
+        final Set<IsPhoto> allPhotos = getAllPhotos();
+        return allPhotos.toArray(new PhotoDTO[allPhotos.size()]);
     }
 
     /**
@@ -241,10 +242,7 @@ public class Album {
      * @return Retorna todas as fotos e seus valores específicos.
      */
     public Object[][] getFotosArray() {
-        Set<IsPhoto> joined = new HashSet<IsPhoto>();
-        joined.addAll(fotos);
-        joined.addAll(fotosNovas);
-
+        Set<IsPhoto> joined = getAllPhotos();
 
         Object[][] resultado = new Object[joined.size()][3];
         Iterator<IsPhoto> iter = joined.iterator();
@@ -756,5 +754,12 @@ public class Album {
     @Override
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException("Singleton Object");
+    }
+
+    private Set<IsPhoto> getAllPhotos() {
+        Set<IsPhoto> joined = new HashSet<IsPhoto>();
+        joined.addAll(fotos);
+        joined.addAll(fotosNovas);
+        return joined;
     }
 }

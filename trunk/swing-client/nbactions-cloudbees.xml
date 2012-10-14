@@ -15,8 +15,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
--->
-<actions>
+--><actions>
         <action>
             <actionName>test</actionName>
             <goals>
@@ -38,6 +37,19 @@
                 <test>${packageClassName}</test>
                 <forkMode>none</forkMode>
                 <surefire.useSystemClassLoader>false</surefire.useSystemClassLoader>
+            </properties>
+        </action>
+        <action>
+            <actionName>run</actionName>
+            <goals>
+                <goal>process-resources</goal>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2:exec</goal>
+            </goals>
+            <properties>
+                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+                <exec.executable>java</exec.executable>
+                <exec.classpathScope>runtime</exec.classpathScope>
             </properties>
         </action>
     </actions>

@@ -87,11 +87,19 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         this.albumid = albumid;
     }
 
+    @Deprecated
     public AlbumVO(Integer albumid, String nmalbum, Date dtInsercao, int categoriaid) {
         this.albumid = albumid;
         this.nmalbum = nmalbum;
         this.dtInsercao = dtInsercao;
         //this.categoriaid = categoriaid;
+    }
+
+    public AlbumVO(String nmalbum, String descricao, Date dtInsercao, CategoryVO categoriasVO) {
+        this.nmalbum = nmalbum;
+        this.descricao = descricao;
+        this.dtInsercao = dtInsercao;
+        this.categoriasVO = categoriasVO;
     }
 
     public Integer getAlbumid() {

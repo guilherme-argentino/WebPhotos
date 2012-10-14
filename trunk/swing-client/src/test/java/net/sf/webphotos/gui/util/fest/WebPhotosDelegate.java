@@ -175,6 +175,11 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public void checkNewAlbum() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     private static class LoginDialogTypeMatcherImpl extends GenericTypeMatcher<Dialog> {
 
         private String dialogName;
