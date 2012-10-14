@@ -33,6 +33,7 @@ import net.sf.webphotos.gui.PainelWebFotos;
 import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.model.AlbumVO;
+import net.sf.webphotos.model.CategoryVO;
 import net.sf.webphotos.tools.Thumbnail;
 import net.sf.webphotos.util.ApplicationContextResource;
 import net.sf.webphotos.util.Util;
@@ -403,11 +404,12 @@ public class AcaoAlterarAlbum extends AbstractAction {
         // //////////////////////////////////////////////////////////////////////
         // converte a data do álbum para ANSI
         String dtAnsi;
+        Date dateParsed;
         try {
             SimpleDateFormat dataBR = new SimpleDateFormat("dd/MM/yy");
             SimpleDateFormat dataAnsi = new SimpleDateFormat("yyyy-MM-dd");
-            Date d = dataBR.parse(album.getDtInsercao());
-            dtAnsi = dataAnsi.format(d);
+            dateParsed = dataBR.parse(album.getDtInsercao());
+            dtAnsi = dataAnsi.format(dateParsed);
 
         } catch (Exception e) {
             Util.out.println("[AcaoAlterarAlbum.recordAlbumData]/ERRO: " + e);
@@ -419,6 +421,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
         if (albumID == 0) {
             // álbum ainda não registrado obtém um ID
             try {
+                
+                AlbumVO albumVO = new AlbumVO(album.getNmAlbum(), album.getDescricao(), dateParsed, new CategoryVO());
 
                 sql = "SELECT MAX(albumID) FROM albuns";
                 rowSet.setCommand(sql);
@@ -447,8 +451,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
         // atualiza o banco de dados
         try {
             sql = "SELECT usuarioID,categoriaID,NmAlbum,Descricao,DtInsercao,albumID FROM albuns WHERE albumID=" + albumID;
-
-            AlbumVO albumVO = new AlbumVO(albumID, album.getNmAlbum(), new java.sql.Date((new Date()).getTime()), album.getCategoriaID());
 
             rowSet.setCommand(sql);
             rowSet.execute();

@@ -15,21 +15,8 @@
  */
 package net.sf.webphotos.gui.util.uispec4j;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import net.sf.webphotos.WebPhotos;
 import org.uispec4j.Button;
 import org.uispec4j.ComponentAmbiguityException;
@@ -179,6 +166,12 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
         }
 
         getButton("btNovo").click();
+    }
+
+    @Override
+    public void checkNewAlbum() {
+        Table tbAlbuns = mainWindow.getTable("tbAlbuns");
+        tbAlbuns.rowCountEquals(1).check();
     }
 
     private Table addPhotosToAlbum(final String[] fileNames, final String targetButton, final File startUpFolder, final String fileChooserName) throws RuntimeException {

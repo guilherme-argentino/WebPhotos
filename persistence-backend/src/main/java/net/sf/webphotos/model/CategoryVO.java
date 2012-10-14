@@ -48,6 +48,7 @@ public class CategoryVO implements Serializable, HasID<Integer> {
     @JoinColumn(name = "CATEGORIAPAI")
     private CategoryVO categoriaPai;
 
+    @Deprecated
     public CategoryVO() {
     }
 
