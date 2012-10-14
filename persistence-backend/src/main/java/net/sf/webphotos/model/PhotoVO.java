@@ -60,28 +60,34 @@ public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer>
     /**
      * TODO: remove
      */
-    public PhotoVO() {
+    @Deprecated
+    private PhotoVO() {
         this.creditos = new CreditsVO();
         this.album = new AlbumVO();
         this.legenda = "";
     }
-
-    public PhotoVO(String caminhoArquivo) {
-        this();
-        this.caminhoArquivo = caminhoArquivo;
-    }
-
-    public PhotoVO(Integer fotoid) {
-        this();
-        this.fotoid = fotoid;
-    }
-
+    
+    @Deprecated
     public PhotoVO(Integer fotoid, int albumid, String legenda, int creditoid, Integer largura, Integer altura) {
         this();
         this.fotoid = fotoid;
         this.legenda = legenda;
         this.largura = largura;
         this.altura = altura;
+    }
+
+    /**
+     * Default Constructor
+     * @param nmfoto
+     * @param legenda
+     * @param creditos
+     * @param album 
+     */
+    public PhotoVO(String nmfoto, String legenda, CreditsVO creditos, AlbumVO album) {
+        this.nmfoto = nmfoto;
+        this.legenda = legenda;
+        this.creditos = creditos;
+        this.album = album;
     }
 
     public Integer getFotoid() {

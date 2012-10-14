@@ -13,7 +13,6 @@
         <org.springframework.version>3.0.6.RELEASE</org.springframework.version>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
         <targetJdk>1.6</targetJdk>
-        <project.filter.dir>${basedir}/src/etc/</project.filter.dir>
     </properties>
     <licenses>
         <license>
