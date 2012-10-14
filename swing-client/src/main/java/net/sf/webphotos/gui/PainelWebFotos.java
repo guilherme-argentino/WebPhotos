@@ -1134,13 +1134,12 @@ public class PainelWebFotos extends javax.swing.JPanel {
         }
 
         // checar se os campos foram preenchidos para as fotos
-        PhotoDTO f;
         if (fotos.length == 0) {
             msgErro = msgErro + "\nNão existem fotos cadastradas nesse álbum";
         }
         for (int i = 0; i < fotos.length; i++) {
-            f = fotos[i];
-            if (f.getCreditoID() == 0 || f.getLegenda().length() == 0) {
+            PhotoDTO photoDTO = fotos[i];
+            if (photoDTO.getCreditoID() == 0 || photoDTO.getLegenda().length() == 0) {
                 msgErro = msgErro + "\ninformação sobre foto na linha " + (i + 1);
             }
         }
