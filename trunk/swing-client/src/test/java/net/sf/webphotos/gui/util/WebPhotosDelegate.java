@@ -16,6 +16,7 @@
 package net.sf.webphotos.gui.util;
 
 import java.io.File;
+import java.util.Map;
 
 /**
  *
@@ -86,5 +87,14 @@ public interface WebPhotosDelegate {
      *
      */
     void setUp();
+
+    /**
+     * Fill up a new album using a pre-defined category, credits and added photos
+     * @param albumTitle
+     * @param albumDescription
+     * @param categoryName
+     * @param photoData
+     */
+    public void fillAlbumForm(String albumTitle, String albumDescription, String categoryName, Map<String, String[]> photoData);
     
 }

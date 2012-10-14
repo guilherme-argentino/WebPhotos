@@ -21,6 +21,7 @@ import static java.awt.event.KeyEvent.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Map;
 import javax.swing.JButton;
 import net.sf.webphotos.WebPhotos;
 import static org.fest.assertions.Assertions.assertThat;
@@ -167,6 +168,11 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
     private JButtonFixture clickButton(final String buttonName) {
         JButtonFixture button = mainFrame.button(new JButtonTypeMatcherImpl(JButton.class, buttonName)).click(MouseButton.LEFT_BUTTON);
         return button;
+    }
+
+    @Override
+    public void fillAlbumForm(String albumTitle, String albumDescription, String categoryName, Map<String, String[]> photoData) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private static class LoginDialogTypeMatcherImpl extends GenericTypeMatcher<Dialog> {

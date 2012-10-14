@@ -16,6 +16,8 @@
 package net.sf.webphotos;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import net.sf.webphotos.gui.util.WebPhotosDelegate;
 import net.sf.webphotos.util.Util;
 import org.junit.AfterClass;
@@ -95,7 +97,7 @@ public class WebPhotosTest {
         /**
          * Primeira tentativa - Comportamento esperado: duas fotos na lista
          */
-        System.out.println("First try");
+        System.out.println("Adding Photos - First try");
         WEB_PHOTOS_DELEGATE.addPhotosToAlbumAndCheck(fileNames, "btNovo", Util.getFolder("diretorioAdicionarFotos"), "Criando novo \u00e1lbum - Selecione os arquivos");
         checkNewAlbumButton();
 
@@ -103,9 +105,18 @@ public class WebPhotosTest {
          * Segunda tentativa - com as mesmas fotos - Comportamento esperado:
          * duas fotos ignoradas
          */
-        System.out.println("Second try");
+        System.out.println("Adding Photos - Second try");
         WEB_PHOTOS_DELEGATE.addPhotosToAlbumAndCheck(fileNames, "buttonAddPhotos", new File(fileNames[0]).getParentFile(), "Adicionar fotos no \u00e1lbum");
         checkNewAlbumButton();
+        
+        final Map<String, String[]> photoData = new HashMap<String, String[]>();
+        for (int i = 0; i < fileNames.length; i++) {
+            String fileName = fileNames[i];
+            photoData.put(fileName, new String[] { "Original Name: " + fileName, "Divulgacao" });
+        }
+        WEB_PHOTOS_DELEGATE.fillAlbumForm("First Test - Title", "First Test - Description", "Geral", photoData);
+        
+        WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
     }
 
     @Ignore
