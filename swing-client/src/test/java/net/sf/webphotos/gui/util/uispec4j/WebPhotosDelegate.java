@@ -15,7 +15,21 @@
  */
 package net.sf.webphotos.gui.util.uispec4j;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import net.sf.webphotos.WebPhotos;
 import org.uispec4j.Button;
 import org.uispec4j.ComponentAmbiguityException;
@@ -33,21 +47,21 @@ import org.uispec4j.utils.MainClassTrigger;
  * @author Guilherme
  */
 public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDelegate {
-    
+
     private static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = new WebPhotosDelegate();
 
     static {
         UISpec4J.init();
         UISpec4J.setWindowInterceptionTimeLimit(30000);
     }
-    
     private static Window mainWindow;
     private static Trigger initialTrigger;
 
     /**
      * Tests Button
+     *
      * @param button
-     * @throws RuntimeException no errors allowed 
+     * @throws RuntimeException no errors allowed
      */
     @Override
     public void checkIsButtonEnabled(final String button) throws RuntimeException {
@@ -56,9 +70,10 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
 
     /**
      * Tests Button Text
+     *
      * @param button
      * @param textShown
-     * @throws RuntimeException no errors allowed 
+     * @throws RuntimeException no errors allowed
      */
     @Override
     public void checkButtonHasText(final String button, final String textShown) throws RuntimeException {
@@ -67,6 +82,7 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
 
     /**
      * Tests Combox Text
+     *
      * @param comboBoxName
      * @param textShown
      * @throws RuntimeException no errors allowed
@@ -80,13 +96,14 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
      * Tests mainWindow
      */
     @Override
-    public void validateMainWindowIsPresent() {
+    public void validateMainWindowIsPresent() throws RuntimeException {
         WebPhotosDelegate.mainWindow.isVisible().check();
         WebPhotosDelegate.mainWindow.isEnabled().check();
     }
 
     /**
      * Dispose all tests
+     *
      * @throws Exception no errors allowed
      */
     @Override
@@ -96,6 +113,7 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
 
     /**
      * Prepare all tests
+     *
      * @throws Exception no errors allowed
      */
     @Override
@@ -105,21 +123,22 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
     }
 
     /**
-     * 
+     *
      * @param fileNames
      * @param buttonName
      * @param folderNameToVerify
      * @param fileDialogName
-     * @throws RuntimeException no errors allowed 
+     * @throws RuntimeException no errors allowed
      */
     @Override
     public void addPhotosToAlbumAndCheck(final String[] fileNames, final String buttonName, final File folderNameToVerify, final String fileDialogName) throws RuntimeException {
-        Table tbFotos = WebPhotosDelegate.addPhotosToAlbum(fileNames, buttonName, folderNameToVerify, fileDialogName);
+        Table tbFotos = addPhotosToAlbum(fileNames, buttonName, folderNameToVerify, fileDialogName);
         checkPhotosTable(tbFotos, fileNames);
     }
 
     /**
      * Writes text to a Modal Dialog
+     *
      * @param buttonName
      * @param modalTittle
      * @param data
@@ -127,21 +146,53 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
      */
     @Override
     public void fillModalWithText(final String buttonName, final String modalTittle, final String data) throws RuntimeException {
-        WindowInterceptor.init(WebPhotosDelegate.mainWindowTriggerClick(buttonName)).process(new ModalWindowHandler(modalTittle, data)).run();
+        WindowInterceptor.init(mainWindowTriggerClick(buttonName)).process(new ModalWindowHandler(modalTittle, data)).run();
     }
 
-    private static Table addPhotosToAlbum(final String[] fileNames, final String targetButton, final File startUpFolder, final String fileChooserName) throws RuntimeException {
+    /**
+     * Returns the Delegate
+     *
+     * @return
+     */
+    public static WebPhotosDelegate getWebPhotosDelegate() {
+        return WEB_PHOTOS_DELEGATE;
+    }
+
+    /**
+     * Setup one Test
+     */
+    @Override
+    public void setUp() {
+    }
+
+    @Override
+    public void fillAlbumForm(String albumTitle, String albumDescription, String categoryName, Map<String, String[]> photoData) {
+        mainWindow.getTextBox("txtTitulo").setText(albumTitle);
+        mainWindow.getTextBox("txtDescricao").setText(albumDescription);
+        mainWindow.getComboBox("lstCategoriasAlbum").select(categoryName);
+
+        final Table tbFotos = WebPhotosDelegate.mainWindow.getTable("tbFotos");
+        for (String photoName : photoData.keySet()) {
+            tbFotos.selectRowsWithText(0, photoName);
+            mainWindow.getTextBox("txtLegenda").setText(photoData.get(photoName)[0]);
+            mainWindow.getComboBox("lstCreditos").select(photoData.get(photoName)[1]);
+        }
+
+        getButton("btNovo").click();
+    }
+
+    private Table addPhotosToAlbum(final String[] fileNames, final String targetButton, final File startUpFolder, final String fileChooserName) throws RuntimeException {
         FileChooserHandler openDialog = FileChooserHandler.init().titleEquals(fileChooserName).assertAcceptsFilesOnly().assertMultiSelectionEnabled(true).assertCurrentDirEquals(startUpFolder);
         WindowInterceptor.init(getButton(targetButton).triggerClick()).process(openDialog.select(fileNames)).run();
         final Table tbFotos = WebPhotosDelegate.mainWindow.getTable("tbFotos");
         return tbFotos;
     }
 
-    private static Trigger mainWindowTriggerClick(final String buttonName) throws RuntimeException {
+    private Trigger mainWindowTriggerClick(final String buttonName) throws RuntimeException {
         return getButton(buttonName).triggerClick();
     }
 
-    private static void checkPhotosTable(Table tbFotos, final String[] fileNames) {
+    private void checkPhotosTable(Table tbFotos, final String[] fileNames) {
         tbFotos.rowCountEquals(fileNames.length).check();
         tbFotos.hasHeader().check();
         tbFotos.columnCountEquals(3).check();
@@ -154,26 +205,13 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
         }
     }
 
-    private static Button getButton(final String button) throws ItemNotFoundException, ComponentAmbiguityException {
+    private Button getButton(final String button) throws ItemNotFoundException, ComponentAmbiguityException {
         return WebPhotosDelegate.mainWindow.getButton(button);
-    }
-    
-    private WebPhotosDelegate() {
-        
-    }
-    
-    /**
-     * Returns the Delegate
-     * @return 
-     */
-    public static WebPhotosDelegate getWebPhotosDelegate() {
-        return WEB_PHOTOS_DELEGATE;
     }
 
     /**
-     * Setup one Test
+     * Private Constructor: Singleton Pattern
      */
-    @Override
-    public void setUp() {
+    private WebPhotosDelegate() {
     }
 }

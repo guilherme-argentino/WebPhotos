@@ -13,11 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * PainelWebFotos.java
- *
- * Created on 5 de Julho de 2006, 10:03
- */
 package net.sf.webphotos.gui;
 
 import java.awt.event.KeyEvent;
@@ -252,6 +247,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         menuItemAlbumDelete.setText("Apagar Album");
         menuAlbum.add(menuItemAlbumDelete);
 
+        setName("PainelWebFotos"); // NOI18N
         setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -313,6 +309,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         painelInfoAlbum.add(lblAlbum, gridBagConstraints);
 
+        txtTitulo.setName("txtTitulo"); // NOI18N
         txtTitulo.setPreferredSize(new java.awt.Dimension(477, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -332,6 +329,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
         painelInfoAlbum.add(lblCategoria, gridBagConstraints);
 
         lstCategoriasAlbum.setModel(new javax.swing.DefaultComboBoxModel(Album.getAlbum().getCategoriasArray()));
+        lstCategoriasAlbum.setName("lstCategoriasAlbum"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -386,6 +384,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         txtDescricao.setLineWrap(true);
         txtDescricao.setWrapStyleWord(true);
+        txtDescricao.setName("txtDescricao"); // NOI18N
         scrDescricao.setViewportView(txtDescricao);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -451,6 +450,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         txtLegenda.setLineWrap(true);
         txtLegenda.setWrapStyleWord(true);
+        txtLegenda.setName("txtLegenda"); // NOI18N
         txtLegenda.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtLegendaFocusGained(evt);
