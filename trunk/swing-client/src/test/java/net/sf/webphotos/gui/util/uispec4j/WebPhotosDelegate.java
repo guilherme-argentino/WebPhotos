@@ -165,7 +165,7 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
             mainWindow.getComboBox("lstCreditos").select(photoData.get(photoName)[1]);
         }
 
-        getButton("btNovo").click();
+        WindowInterceptor.run(getButton("btNovo").triggerClick());
     }
 
     @Override
