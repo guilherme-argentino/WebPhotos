@@ -140,9 +140,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         try {
             AlbumVO albumVO = new AlbumVO(album.getNmAlbum(), album.getDescricao(), parseDate(album.getDtInsercao()), new CategoryVO(album.getCategoria(1)));
             HashSet<PhotoVO> photosVO = new HashSet<PhotoVO>();
-            for (PhotoDTO photoDTO : fotos) {
-                photosVO.add(new PhotoVO());
-            }
+            
             albumVO.addPhotos(photosVO);
         } catch (ParseException ex) {
             Logger.getLogger(AcaoAlterarAlbum.class.getName()).log(Level.SEVERE, null, ex);
