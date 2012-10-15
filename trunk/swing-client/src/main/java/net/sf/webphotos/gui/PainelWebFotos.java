@@ -1117,35 +1117,40 @@ public class PainelWebFotos extends javax.swing.JPanel {
 
         // checar se os campos foram preenchidos
         if (titulo.length() < 1) {
-            msgErro = "\nÁlbum";
+            msgErro = "\n - Álbum";
         }
         if (descricao.length() < 1) {
-            msgErro = msgErro + "\nDescrição";
+            msgErro = msgErro + "\n - Descrição";
         }
         if (categoriaIndice < 1) {
-            msgErro = msgErro + "\nCategoria";
+            msgErro = msgErro + "\n - Categoria";
         }
+        
         // checagem especial para o campo data
-
         try {
             dataBR.parse(data);
         } catch (Exception e) {
-            msgErro = "\nData (" + data + ") inválida";
+            msgErro = "\n - Data (" + data + ") inválida";
+            Util.log("[PainelWebFotos.atualizaAlbum]/ERRO: " + e.getMessage());
         }
 
         // checar se os campos foram preenchidos para as fotos
         if (fotos.length == 0) {
-            msgErro = msgErro + "\nNão existem fotos cadastradas nesse álbum";
+            msgErro = msgErro + "\n - Não existem fotos cadastradas nesse álbum";
         }
         for (int i = 0; i < fotos.length; i++) {
             PhotoDTO photoDTO = fotos[i];
-            if (photoDTO.getCreditoID() == 0 || photoDTO.getLegenda().length() == 0) {
-                msgErro = msgErro + "\ninformação sobre foto na linha " + (i + 1);
+            final boolean creditoIDNotOk = photoDTO.getCreditoID() == 0;
+            final boolean legendaNotOk = photoDTO.getLegenda().isEmpty();
+            if (creditoIDNotOk || legendaNotOk) {
+                msgErro = msgErro + "\n - Informação sobre foto na linha " + (i + 1) + ": "
+                        + (creditoIDNotOk ? "\n     - Credito não foi escolhido" : "")
+                        + (legendaNotOk ? "\n     - Legenda não foi preenchida" : "");
             }
         }
 
         if (msgErro.length() > 0) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Preencha corretamente os campos\n" + msgErro, "Erro no preenchimento", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(null, "Preencha corretamente os campos:\n" + msgErro, "Erro no preenchimento", javax.swing.JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
