@@ -37,6 +37,7 @@ import net.sf.webphotos.gui.PainelWebFotos;
 import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.model.AlbumVO;
+import net.sf.webphotos.model.AlbumVOBuilder;
 import net.sf.webphotos.model.CategoryVO;
 import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.tools.Thumbnail;
@@ -138,7 +139,12 @@ public class AcaoAlterarAlbum extends AbstractAction {
         PainelWebFotos.setCursorWait(true);
 
         try {
-            AlbumVO albumVO = new AlbumVO(album.getNmAlbum(), album.getDescricao(), parseDate(album.getDtInsercao()), new CategoryVO(album.getCategoria(1)));
+            AlbumVO albumVO = AlbumVO.builder()
+                    .withAlbumName(album.getNmAlbum())
+                    .withDescription(album.getDescricao())
+                    .withCreationDate(parseDate(album.getDtInsercao()))
+                    .withCategory(new CategoryVO(album.getCategoria(1)))
+                    .create();
             HashSet<PhotoVO> photosVO = new HashSet<PhotoVO>();
             
             albumVO.addPhotos(photosVO);
