@@ -51,6 +51,8 @@ public class AlbumVO implements Serializable, HasID<Integer> {
 
     private static final long serialVersionUID = 1L;
     
+    private static final AlbumVOBuilder builder = new AlbumVOBuilder();
+    
     @Id
     @Column(name = "ALBUMID", nullable = false)
     private Integer albumid;
@@ -80,26 +82,20 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         this.categoriasVO = categoriasVO;
     }
 
+    @Deprecated
     public AlbumVO() {
     }
 
-    public AlbumVO(Integer albumid) {
-        this.albumid = albumid;
-    }
-
-    @Deprecated
-    public AlbumVO(Integer albumid, String nmalbum, Date dtInsercao, int categoriaid) {
-        this.albumid = albumid;
-        this.nmalbum = nmalbum;
-        this.dtInsercao = dtInsercao;
-        //this.categoriaid = categoriaid;
-    }
-
-    public AlbumVO(String nmalbum, String descricao, Date dtInsercao, CategoryVO categoriasVO) {
+    AlbumVO(String nmalbum, String descricao, Date dtInsercao, CategoryVO categoriasVO, Set<PhotoVO> photos) {
         this.nmalbum = nmalbum;
         this.descricao = descricao;
         this.dtInsercao = dtInsercao;
         this.categoriasVO = categoriasVO;
+        this.photos = photos;
+    }
+    
+    public static AlbumVOBuilder builder() {
+        return builder;
     }
 
     public Integer getAlbumid() {
