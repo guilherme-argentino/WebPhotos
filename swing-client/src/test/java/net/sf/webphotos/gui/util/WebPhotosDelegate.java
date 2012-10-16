@@ -95,7 +95,7 @@ public interface WebPhotosDelegate {
      * @param categoryName
      * @param photoData
      */
-    public void fillAlbumForm(String albumTitle, String albumDescription, String categoryName, Map<String, String[]> photoData);
+    public void fillAlbumForm(final String albumTitle, final String albumDescription, final String categoryName, final Map<String, String[]> photoData);
 
     /**
      * It validates album insertion

@@ -17,6 +17,9 @@ package net.sf.webphotos.gui.util.uispec4j;
 
 import java.io.File;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextArea;
 import net.sf.webphotos.WebPhotos;
 import org.uispec4j.Button;
 import org.uispec4j.ComponentAmbiguityException;
@@ -161,11 +164,17 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
         final Table tbFotos = WebPhotosDelegate.mainWindow.getTable("tbFotos");
         for (String photoName : photoData.keySet()) {
             tbFotos.selectRowsWithText(0, photoName);
-            mainWindow.getTextBox("txtLegenda").setText(photoData.get(photoName)[0]);
+            System.out.println("Line Selected (tbFotos.getAwtComponent().getSelectedRow()) : " + tbFotos.getAwtComponent().getSelectedRow());
+            tbFotos.getAwtComponent().setValueAt(photoData.get(photoName)[0], tbFotos.getAwtComponent().getSelectedRow(), 1);
+            //tbFotos.editCell(tbFotos.getAwtComponent().getSelectedRow(), 1, photoData.get(photoName)[0], true);
+            //mainWindow.getTextBox("txtLegenda").setText(photoData.get(photoName)[0]);
+            //mainWindow.findSwingComponent(JTextArea.class, "txtLegenda").setText(photoData.get(photoName)[0]);
             mainWindow.getComboBox("lstCreditos").select(photoData.get(photoName)[1]);
+            tbFotos.selectRowsWithText(0, photoName);
         }
 
         WindowInterceptor.run(getButton("btNovo").triggerClick());
+        //getButton("btNovo").click();
     }
 
     @Override
@@ -199,7 +208,7 @@ public class WebPhotosDelegate implements net.sf.webphotos.gui.util.WebPhotosDel
     }
 
     private Button getButton(final String button) throws ItemNotFoundException, ComponentAmbiguityException {
-        return WebPhotosDelegate.mainWindow.getButton(button);
+        return mainWindow.getButton(button);
     }
 
     /**
