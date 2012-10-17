@@ -22,12 +22,17 @@
     <bannerRight>
         <name>SourceForge</name>
         <src>
-            http://a.fsdn.com/con/img/sftheme/logo.png
+            http://www.userlogos.org/files/logos/jumpordie/sourceforge-2.png
         </src>
         <href>http://sourceforge.net/projects/webphotos</href>
     </bannerRight>
     <body>
-        <!--<menu ref="parent" />
+        <links>
+            <item name="${project.name}" href="${project.url}"/>
+        </links>
+        <menu ref="parent" />
+        <menu ref="modules" />
+        <menu ref="reports" />
         <menu name="Sourceforge" inherit="top">
             <item name="Project page"
                   href="http://sourceforge.net/projects/webphotos" />
@@ -36,7 +41,5 @@
             <item name="Java.net Project (Bugzilla)"
                   href="http://sourceforge.net/p/webphotos/java-net/" />
         </menu>
-        <menu ref="modules" />
-        <menu ref="reports" />-->
     </body>
 </project>
