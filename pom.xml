@@ -163,10 +163,10 @@
                     <artifactId>findbugs-maven-plugin</artifactId>
                     <version>2.5.2</version>
                 </plugin>
-                <plugin>
+<!--                <plugin>
                     <artifactId>maven-changelog-plugin</artifactId>
                     <version>2.2</version>
-                </plugin>
+                </plugin>-->
 
                 <!-- Site Configuration -->
                 <plugin>
@@ -218,9 +218,9 @@
                                 <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>findbugs-maven-plugin</artifactId>
                             </plugin>
-                            <plugin>
+<!--                            <plugin>
                                 <artifactId>maven-changelog-plugin</artifactId>
-                            </plugin>
+                            </plugin>-->
                         </reportPlugins>
                         <siteDirectory>${project.parent.basedir}/src/site</siteDirectory>
                     </configuration>
