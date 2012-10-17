@@ -15,6 +15,7 @@
  */
 package net.sf.webphotos;
 
+import com.google.common.base.Function;
 import java.awt.Dimension;
 import java.awt.MediaTracker;
 import java.io.File;
@@ -35,6 +36,13 @@ import net.sf.webphotos.util.Util;
  * ID da foto,ID do album e ID do crédito, legenda, crédito e resolução de tela.
  */
 public class PhotoDTO extends PhotoEntity {
+    
+    public static final Function<PhotoDTO, PhotoVO> FROM_PHOTODTO_PHOTOVO = new Function<PhotoDTO, PhotoVO>() {
+        @Override
+        public PhotoVO apply(PhotoDTO input) {
+            return new PhotoVO(input.getLegenda(), input.getLegenda(), new CreditsVO(input.creditoID, input.creditoNome), input.caminhoArquivo);
+        }
+    };
 
     private int fotoID = 0;
     private int albumID = -1;
@@ -426,6 +434,6 @@ public class PhotoDTO extends PhotoEntity {
 
     @Override
     public IsCredits getCreditos() {
-        return new CreditsVO(this.creditoNome);
+        return new CreditsVO(creditoID, creditoNome);
     }
 }

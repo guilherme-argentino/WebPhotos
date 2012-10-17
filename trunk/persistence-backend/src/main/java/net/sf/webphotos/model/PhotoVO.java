@@ -37,23 +37,31 @@ import net.sf.webphotos.entity.PhotoEntity;
     @NamedQuery(name = "PhotoVO.findByLegenda", query = "SELECT f FROM PhotoVO f WHERE f.legenda = :legenda"),
     @NamedQuery(name = "PhotoVO.findByCreditoid", query = "SELECT f FROM PhotoVO f WHERE f.creditos.creditoid = :creditoid")})
 public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer> {
-
+    
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "FOTOID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer fotoid;
+    
     @Column(name = "NMFOTO")
     private String nmfoto;
+    
     @Column(name = "LEGENDA", nullable = false)
     private String legenda;
+    
     @ManyToOne
     @JoinColumn(name = "CREDITOID", nullable = false)
     private CreditsVO creditos;
+    
     @ManyToOne
     @JoinColumn(name = "ALBUMID", nullable = false)
     private AlbumVO album;
+    
     @Transient
     private String caminhoArquivo;
+    
     @Transient
     private Integer largura, altura;
 
@@ -61,7 +69,7 @@ public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer>
      * TODO: remove
      */
     @Deprecated
-    private PhotoVO() {
+    public PhotoVO() {
         this.creditos = new CreditsVO();
         this.album = new AlbumVO();
         this.legenda = "";
@@ -77,16 +85,28 @@ public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer>
     }
 
     /**
-     * Default Constructor
+     * Default Constructor for new albuns
      * @param nmfoto
      * @param legenda
      * @param creditos
      * @param album 
      */
-    public PhotoVO(String nmfoto, String legenda, CreditsVO creditos, AlbumVO album) {
+    public PhotoVO(String nmfoto, String legenda, CreditsVO creditos, String caminhoArquivo) {
         this.nmfoto = nmfoto;
         this.legenda = legenda;
         this.creditos = creditos;
+        this.caminhoArquivo = caminhoArquivo;
+    }
+
+    /**
+     * Constructor to add photos to existing album
+     * @param nmfoto
+     * @param legenda
+     * @param creditos
+     * @param album 
+     */
+    public PhotoVO(String nmfoto, String legenda, CreditsVO creditos, String caminhoArquivo, AlbumVO album) {
+        this(nmfoto, legenda, creditos, caminhoArquivo);
         this.album = album;
     }
 
@@ -159,6 +179,6 @@ public class PhotoVO extends PhotoEntity implements Serializable, HasID<Integer>
 
     @Override
     public String getKey() {
-        return this.getId().toString();
+        return this.getId() != null ? this.getId().toString() : this.getCaminhoArquivo();
     }
 }
