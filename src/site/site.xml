@@ -27,7 +27,7 @@
         <href>http://sourceforge.net/projects/webphotos</href>
     </bannerRight>
     <body>
-        <menu ref="parent" />
+        <!--<menu ref="parent" />
         <menu name="Sourceforge" inherit="top">
             <item name="Project page"
                   href="http://sourceforge.net/projects/webphotos" />
@@ -37,6 +37,6 @@
                   href="http://sourceforge.net/p/webphotos/java-net/" />
         </menu>
         <menu ref="modules" />
-        <menu ref="reports" />
+        <menu ref="reports" />-->
     </body>
 </project>
