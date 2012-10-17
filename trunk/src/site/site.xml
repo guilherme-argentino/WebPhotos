@@ -16,7 +16,9 @@
     limitations under the License.
 
 -->
-<project name="WebPhotos">
+<project name="WebPhotos"  xmlns="http://maven.apache.org/DECORATION/1.3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd">
     <bannerRight>
         <name>SourceForge</name>
         <src>
@@ -33,7 +35,5 @@
             <item name="Java.net Project (Bugzilla)"
                   href="http://sourceforge.net/p/webphotos/java-net/" />
         </menu>
-        <menu ref="modules"  inherit="top"/>
-        <menu ref="reports" />
     </body>
 </project>
