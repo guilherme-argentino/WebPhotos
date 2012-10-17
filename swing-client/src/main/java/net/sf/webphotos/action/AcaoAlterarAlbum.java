@@ -158,8 +158,10 @@ public class AcaoAlterarAlbum extends AbstractAction {
                     .withPhotos(photosVO)
                     .build();
             albumDAO.save(albumVO);
+            
             albumID = albumVO.getAlbumid();
-
+            album.setAlbumID(albumID);
+            
             sucesso = true;
         } catch (Exception ex) {
             Logger.getLogger(AcaoAlterarAlbum.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,14 +183,14 @@ public class AcaoAlterarAlbum extends AbstractAction {
         }
 
         // copia os arquivos
-        for (int i = 0; i < fotos.length; i++) {
-            f = fotos[i];
+        for (Iterator<PhotoVO> it = albumVO.getPhotos().iterator(); it.hasNext();) {
+            PhotoVO photoVO = it.next();
             // copia somente arquivos ainda não cadastrados
-            if (f.getCaminhoArquivo().length() > 0) {
+            if (photoVO.getCaminhoArquivo().length() > 0) {
                 try {
-                    FileChannel canalOrigem = new FileInputStream(f.getCaminhoArquivo()).getChannel();
+                    FileChannel canalOrigem = new FileInputStream(photoVO.getCaminhoArquivo()).getChannel();
                     FileChannel canalDestino = new FileOutputStream(
-                            caminhoAlbum + File.separator + f.getFotoID() + ".jpg").getChannel();
+                            caminhoAlbum + File.separator + photoVO.getId() + ".jpg").getChannel();
                     canalDestino.transferFrom(canalOrigem, 0, canalOrigem.size());
                 } catch (Exception e) {
                     Util.log("[AcaoAlterarAlbum.executaAlteracoes.8]/ERRO: " + e);
@@ -215,11 +217,9 @@ public class AcaoAlterarAlbum extends AbstractAction {
      * @param albumID
      * @param caminhoAlbum
      */
-    private void prepareThumbsAndFTP(AlbumVO albumVO,
-            String caminhoAlbum) {
+    private void prepareThumbsAndFTP(AlbumVO albumVO, String caminhoAlbum) {
         Set<PhotoVO> photoVOs = albumVO.getPhotos();
-        // PASSO 4 - Fazer Thumbs e Adicionar em FTP
-        // //////////////////////////////////////////////////////////////////////
+        
         for (Iterator<PhotoVO> it = photoVOs.iterator(); it.hasNext();) {
             PhotoVO photoVO = it.next();
 
