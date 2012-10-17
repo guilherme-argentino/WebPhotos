@@ -329,9 +329,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
-                <module>core</module>
                 <module>persistence-backend-ifc</module>
                 <module>persistence-backend</module>
+                <module>core</module>
                 <module>ear-backend</module>
                 <module>swing-client</module>
                 <module>web-client</module>
@@ -341,8 +341,8 @@
             <id>full-build</id>
             <modules>
                 <module>persistence-backend-ifc</module>
-                <module>core</module>
                 <module>persistence-backend</module>
+                <module>core</module>
                 <module>ear-backend</module>
                 <module>swing-client</module>
                 <module>web-client</module>
@@ -353,9 +353,9 @@
         <profile>
             <id>cloudbees</id>
             <modules>
-                <module>core</module>
                 <module>persistence-backend-ifc</module>
                 <module>persistence-backend</module>
+                <module>core</module>
                 <module>ear-backend</module>
                 <module>swing-client</module>
                 <module>web-client</module>
