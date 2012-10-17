@@ -17,9 +17,6 @@ package net.sf.webphotos.gui.util.uispec4j;
 
 import java.io.File;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JTextArea;
 import net.sf.webphotos.WebPhotos;
 import org.uispec4j.Button;
 import org.uispec4j.ComponentAmbiguityException;

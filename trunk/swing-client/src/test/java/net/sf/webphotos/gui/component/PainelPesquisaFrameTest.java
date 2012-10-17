@@ -19,7 +19,6 @@ import org.junit.AfterClass;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.uispec4j.Trigger;
 import org.uispec4j.UISpec4J;
@@ -32,6 +31,9 @@ import org.uispec4j.interception.WindowInterceptor;
  * @author Guilherme
  */
 public class PainelPesquisaFrameTest extends javax.swing.JFrame {
+    /**
+     *
+     */
     public static PainelPesquisaFrameTest PAINEL_PESQUISA_FRAME_TEST;
 
     static {
@@ -39,15 +41,26 @@ public class PainelPesquisaFrameTest extends javax.swing.JFrame {
         UISpec4J.setWindowInterceptionTimeLimit(30000);
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @AfterClass
     public static void tearDownClass() throws Exception {
         PAINEL_PESQUISA_FRAME_TEST.dispose();
     }
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }

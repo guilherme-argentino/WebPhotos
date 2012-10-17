@@ -52,33 +52,62 @@ public class CreditsVO implements Serializable, HasID<Integer>, IsCredits {
     @Column(name = "NOME", nullable = false)
     private String nome;
 
+    /**
+     *
+     */
     public CreditsVO() {
         nome = "";
     }
 
+    /**
+     *
+     * @param nome
+     */
     public CreditsVO(String nome) {
         this.nome = nome;
     }
 
+    /**
+     *
+     * @param creditoid
+     */
     public CreditsVO(Integer creditoid) {
         this();
         this.creditoid = creditoid;
     }
 
+    /**
+     *
+     * @param creditoid
+     * @param nome
+     */
     public CreditsVO(Integer creditoid, String nome) {
         this();
         this.creditoid = creditoid;
         this.nome = nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCreditoid() {
         return creditoid;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
     public String getNome() {
         return nome;
     }
 
+    /**
+     *
+     * @param nome
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -108,6 +137,10 @@ public class CreditsVO implements Serializable, HasID<Integer>, IsCredits {
         return this.getClass().getCanonicalName() + "[creditoid=" + creditoid + "]";
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Integer getId() {
         return creditoid;

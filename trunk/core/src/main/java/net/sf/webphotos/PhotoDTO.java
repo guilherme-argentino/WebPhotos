@@ -37,6 +37,9 @@ import net.sf.webphotos.util.Util;
  */
 public class PhotoDTO extends PhotoEntity {
     
+    /**
+     *
+     */
     public static final Function<PhotoDTO, PhotoVO> FROM_PHOTODTO_PHOTOVO = new Function<PhotoDTO, PhotoVO>() {
         @Override
         public PhotoVO apply(PhotoDTO input) {

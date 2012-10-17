@@ -15,7 +15,6 @@
  */
 package net.sf.webphotos.model;
 
-import com.google.common.base.Predicate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
