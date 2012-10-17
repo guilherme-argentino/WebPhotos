@@ -231,6 +231,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <siteDirectory>${project.basedir}/src/site</siteDirectory>
+                </configuration>
             </plugin>
             <plugin>
                 <inherited>false</inherited>
