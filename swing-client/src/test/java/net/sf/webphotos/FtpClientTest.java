@@ -18,11 +18,8 @@ package net.sf.webphotos;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import net.sf.webphotos.gui.util.FtpClient;
-import net.sf.webphotos.gui.util.uispec4j.ModalWindowHandler;
-import net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate;
 import net.sf.webphotos.util.Util;
 import org.apache.derby.drda.NetworkServerControl;
-import org.uispec4j.interception.WindowInterceptor;
 
 /**
  *

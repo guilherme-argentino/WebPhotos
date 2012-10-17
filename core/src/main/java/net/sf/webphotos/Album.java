@@ -268,6 +268,10 @@ public class Album {
         return new String[]{"ID", "Legenda", "Credito"};
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getCategoriasArray() {
         return getCategoriasArray(Boolean.FALSE);
     }

@@ -16,7 +16,6 @@
 package net.sf.webphotos.gui.util.uispec4j;
 
 import static org.junit.Assert.assertTrue;
-import org.uispec4j.Table;
 import org.uispec4j.Trigger;
 import org.uispec4j.Window;
 import org.uispec4j.interception.WindowHandler;
@@ -30,11 +29,22 @@ public class ModalWindowHandler extends WindowHandler {
     private String titleName;
     private String modalText;
 
+    /**
+     *
+     * @param titleName
+     * @param modalText
+     */
     public ModalWindowHandler(String titleName, String modalText) {
         this.modalText = modalText;
         this.titleName = titleName;
     }
 
+    /**
+     *
+     * @param window
+     * @return
+     * @throws Exception
+     */
     @Override
     public Trigger process(Window window) throws Exception {
         assertTrue("Tittle: " + window.getTitle(), window.titleContains(titleName).isTrue());

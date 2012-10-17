@@ -108,18 +108,34 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         return new AlbumVOBuilder(key);
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAlbumid() {
         return albumid;
     }
 
+    /**
+     *
+     * @param albumid
+     */
     public void setAlbumid(Integer albumid) {
         this.albumid = albumid;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNmalbum() {
         return nmalbum;
     }
 
+    /**
+     *
+     * @param nmalbum
+     */
     public void setNmalbum(String nmalbum) {
         this.nmalbum = nmalbum;
     }
@@ -138,10 +154,18 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         this.descricao = descricao;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDtInsercao() {
         return dtInsercao;
     }
 
+    /**
+     *
+     * @param dtInsercao
+     */
     public void setDtInsercao(Date dtInsercao) {
         this.dtInsercao = dtInsercao;
     }
@@ -211,6 +235,10 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         return this.photos.remove(getPhotoBy(id));
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Integer getId() {
         return this.albumid;
