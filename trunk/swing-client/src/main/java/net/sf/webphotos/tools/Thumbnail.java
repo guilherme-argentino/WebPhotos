@@ -119,16 +119,16 @@ public final class Thumbnail {
         try {
             File f = new File(caminhoCompletoImagem);
             if (!f.isFile() || !f.canRead()) {
-                Util.out.println("Erro no caminho do arquivo " + caminhoCompletoImagem);
+                Util.err.println("[Thumbnail.makeThumbs]/ERRO: Erro no caminho do arquivo " + caminhoCompletoImagem + " incorreto");
                 return;
             }
 
             // Foto em alta corrompida 
             if (getFormatName(f) == null) {
-                Util.err.println("Foto Corrompida");
+                Util.err.println("[Thumbnail.makeThumbs]/ERRO: Foto Corrompida");
                 return;
             } else {
-                Util.out.println("Foto Ok!");
+                Util.out.println("[Thumbnail.makeThumbs]/INFO: Foto Ok!");
             }
 
             diretorio = f.getParent();
@@ -142,22 +142,22 @@ public final class Thumbnail {
             // obtém o tamanho da imagem original
             int iWidth = i.getWidth(null);
             int iHeight = i.getHeight(null);
-            int w = 0, h = 0;
+            //int w, h;
 
             if (iWidth > iHeight) {
                 tumb1 = i.getScaledInstance(t1, (t1 * iHeight) / iWidth, Image.SCALE_SMOOTH);
                 tumb2 = i.getScaledInstance(t2, (t2 * iHeight) / iWidth, Image.SCALE_SMOOTH);
                 tumb3 = i.getScaledInstance(t3, (t3 * iHeight) / iWidth, Image.SCALE_SMOOTH);
                 tumb4 = i.getScaledInstance(t4, (t4 * iHeight) / iWidth, Image.SCALE_SMOOTH);
-                w = t4;
-                h = (t4 * iHeight) / iWidth;
+                //w = t4;
+                //h = (t4 * iHeight) / iWidth;
             } else {
                 tumb1 = i.getScaledInstance((t1 * iWidth) / iHeight, t1, Image.SCALE_SMOOTH);
                 tumb2 = i.getScaledInstance((t2 * iWidth) / iHeight, t2, Image.SCALE_SMOOTH);
                 tumb3 = i.getScaledInstance((t3 * iWidth) / iHeight, t3, Image.SCALE_SMOOTH);
                 tumb4 = i.getScaledInstance((t4 * iWidth) / iHeight, t4, Image.SCALE_SMOOTH);
-                w = (t4 * iWidth) / iHeight;
-                h = t4;
+                //w = (t4 * iWidth) / iHeight;
+                //h = t4;
             }
 
             tumb4 = estampar(tumb4);
@@ -170,8 +170,8 @@ public final class Thumbnail {
             save(tumb4, diretorio + File.separator + "_d" + arquivo);
 
         } catch (Exception e) {
+            Util.err.println("[Thumbnail.makeThumbs]/ERRO: Inesperado - " + e.getMessage());
             e.printStackTrace(Util.err);
-            Util.err.println(e.getMessage());
         }
     }
 
