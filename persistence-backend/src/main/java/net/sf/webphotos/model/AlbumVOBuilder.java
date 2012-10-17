@@ -15,9 +15,11 @@
  */
 package net.sf.webphotos.model;
 
+import com.google.common.base.Predicate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Builder for Entity AlbumVO
@@ -29,10 +31,17 @@ public class AlbumVOBuilder {
     private String descricao;
     private Date dtInsercao;
     private CategoryVO categoriasVO;
-    private HashSet<PhotoVO> photoVO;
+    private HashSet<PhotoVO> photoVOs;
+    private Integer key;
 
     AlbumVOBuilder() {
-        photoVO = new HashSet<PhotoVO>();
+        photoVOs = new HashSet<PhotoVO>();
+        key = 0;
+    }
+
+    AlbumVOBuilder(Integer key) {
+        this();
+        this.key = key;
     }
 
     public AlbumVOBuilder withAlbumName(String nmalbum) {
@@ -56,17 +65,24 @@ public class AlbumVOBuilder {
     }
 
     public AlbumVOBuilder withPhoto(PhotoVO photoVO) {
-        this.photoVO.add(photoVO);
+        this.photoVOs.add(photoVO);
         return this;
     }
 
     public AlbumVOBuilder withPhotos(Collection<PhotoVO> photoVOs) {
-        this.photoVO.addAll(photoVOs);
+        this.photoVOs.addAll(photoVOs);
         return this;
     }
 
-    public AlbumVO create() {
-        return new AlbumVO(nmalbum, descricao, dtInsercao, categoriasVO, photoVO);
+    public AlbumVO build() {
+        final AlbumVO albumVO = (key > 0 ? 
+                new AlbumVO(key, nmalbum, descricao, dtInsercao, categoriasVO, photoVOs) : 
+                new AlbumVO(nmalbum, descricao, dtInsercao, categoriasVO, photoVOs));
+        for (Iterator<PhotoVO> it = photoVOs.iterator(); it.hasNext();) {
+            PhotoVO photoVO = it.next();
+            photoVO.setAlbum(albumVO);
+        }
+        return albumVO;
     }
     
 }

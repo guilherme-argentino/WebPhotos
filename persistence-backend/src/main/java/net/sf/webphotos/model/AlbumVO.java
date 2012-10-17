@@ -1,17 +1,17 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.model;
 
@@ -24,6 +24,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -48,13 +50,12 @@ import net.sf.webphotos.entity.HasID;
     @NamedQuery(name = "AlbumVO.findByCategoriaID", query = "SELECT a FROM AlbumVO a WHERE a.categoriasVO.categoriaID = :categoriaID")
 })
 public class AlbumVO implements Serializable, HasID<Integer> {
-
-    private static final long serialVersionUID = 1L;
     
-    private static final AlbumVOBuilder builder = new AlbumVOBuilder();
+    private static final long serialVersionUID = 1L;
     
     @Id
     @Column(name = "ALBUMID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer albumid;
     
     @Column(name = "NMALBUM", nullable = false)
@@ -68,7 +69,7 @@ public class AlbumVO implements Serializable, HasID<Integer> {
     private Date dtInsercao;
     
     @ManyToOne
-    @JoinColumn(name = "CATEGORIAID", nullable=false)
+    @JoinColumn(name = "CATEGORIAID", nullable = false)
     private CategoryVO categoriasVO;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "album")
@@ -93,9 +94,18 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         this.categoriasVO = categoriasVO;
         this.photos = photos;
     }
-    
+
+    AlbumVO(Integer key, String nmalbum, String descricao, Date dtInsercao, CategoryVO categoriasVO, Set<PhotoVO> photos) {
+        this(nmalbum, descricao, dtInsercao, categoriasVO, photos);
+        this.albumid = key;
+    }
+
     public static AlbumVOBuilder builder() {
-        return builder;
+        return new AlbumVOBuilder();
+    }
+
+    public static AlbumVOBuilder builder(Integer key) {
+        return new AlbumVOBuilder(key);
     }
 
     public Integer getAlbumid() {
@@ -181,18 +191,19 @@ public class AlbumVO implements Serializable, HasID<Integer> {
     public void addPhoto(PhotoVO photos) {
         this.photos.add(photos);
     }
-    
+
     /**
-     * 
+     *
      * @param id
      * @return Photo
      */
     public PhotoVO getPhotoBy(Integer id) {
         return new ArrayList<PhotoVO>(this.photos).get(id);
     }
-    
+
     /**
      * remove one photo
+     *
      * @param id
      * @return Photo
      */
@@ -202,7 +213,6 @@ public class AlbumVO implements Serializable, HasID<Integer> {
 
     @Override
     public Integer getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.albumid;
     }
-    
 }

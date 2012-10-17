@@ -1,27 +1,33 @@
 /**
  * Copyright 2008 WebPhotos
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.sf.webphotos.action;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Sets;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.RowSet;
@@ -37,7 +43,6 @@ import net.sf.webphotos.gui.PainelWebFotos;
 import net.sf.webphotos.gui.util.TableModelAlbum;
 import net.sf.webphotos.gui.util.TableModelFoto;
 import net.sf.webphotos.model.AlbumVO;
-import net.sf.webphotos.model.AlbumVOBuilder;
 import net.sf.webphotos.model.CategoryVO;
 import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.tools.Thumbnail;
@@ -132,30 +137,36 @@ public class AcaoAlterarAlbum extends AbstractAction {
         Album album = Album.getAlbum();
         PhotoDTO[] fotos = album.getFotos();
         PhotoDTO f;
-        int ultimoFotoID = -1;
         int albumID = album.getAlbumID();
         sucesso = true;
 
         PainelWebFotos.setCursorWait(true);
+        
+        AlbumVO albumVO = null;
 
+        // PASSO 1 - Carregar dados no BD
+        // //////////////////////////////////////////////////////////////////////
         try {
-            AlbumVO albumVO = AlbumVO.builder()
+            final HashSet<PhotoDTO> newHashSet = Sets.newHashSet(fotos);
+            final Collection<PhotoVO> transformedCollection = Collections2.transform(newHashSet, PhotoDTO.FROM_PHOTODTO_PHOTOVO);
+            final HashSet<PhotoVO> photosVO = new HashSet<PhotoVO>(transformedCollection);
+            albumVO = AlbumVO.builder(albumID)
                     .withAlbumName(album.getNmAlbum())
                     .withDescription(album.getDescricao())
                     .withCreationDate(parseDate(album.getDtInsercao()))
-                    .withCategory(new CategoryVO(album.getCategoria(1)))
-                    .create();
-            HashSet<PhotoVO> photosVO = new HashSet<PhotoVO>();
-            
-            albumVO.addPhotos(photosVO);
-        } catch (ParseException ex) {
+                    .withCategory(new CategoryVO(album.getCategoriaID(), album.getCategoria(album.getCategoriaID())))
+                    .withPhotos(photosVO)
+                    .build();
+            albumDAO.save(albumVO);
+            albumID = albumVO.getAlbumid();
+
+            sucesso = true;
+        } catch (Exception ex) {
             Logger.getLogger(AcaoAlterarAlbum.class.getName()).log(Level.SEVERE, null, ex);
+            sucesso = false;
         }
 
-        albumID = recordAlbumData(album, albumID);
-        sucesso = recordFotoData(fotos, ultimoFotoID, albumID);
-
-        // PASSO 3 - Mover e renomear aquivos
+        // PASSO 2 - Mover e renomear aquivos
         // //////////////////////////////////////////////////////////////////////
         String caminhoAlbum = Util.getFolder("albunsRoot").getPath() + File.separator + albumID;
 
@@ -186,7 +197,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
             }
         }// fim for
 
-        prepareThumbsAndFTP(fotos, albumID, caminhoAlbum);
+        prepareThumbsAndFTP(albumVO, caminhoAlbum);
 
         prepareExtraFiles(album, caminhoAlbum);
 
@@ -198,43 +209,66 @@ public class AcaoAlterarAlbum extends AbstractAction {
     }
 
     /**
-     * PASSO 4 - Fazer Thumbs e Adicionar em FTP
+     * PASSO 3 - Fazer Thumbs e Adicionar em FTP
      *
      * @param fotos
      * @param albumID
      * @param caminhoAlbum
      */
-    private void prepareThumbsAndFTP(PhotoDTO[] fotos, int albumID,
+    private void prepareThumbsAndFTP(AlbumVO albumVO,
             String caminhoAlbum) {
-        PhotoDTO f;
+        Set<PhotoVO> photoVOs = albumVO.getPhotos();
         // PASSO 4 - Fazer Thumbs e Adicionar em FTP
         // //////////////////////////////////////////////////////////////////////
-        for (int i = 0; i < fotos.length; i++) {
-            f = fotos[i];
+        for (Iterator<PhotoVO> it = photoVOs.iterator(); it.hasNext();) {
+            PhotoVO photoVO = it.next();
+
             String caminhoArquivo;
 
             // thumbs somente arquivos ainda não cadastrados
-            if (f.getCaminhoArquivo().length() > 0) {
-                caminhoArquivo = caminhoAlbum + File.separator + f.getFotoID() + ".jpg";
+            if (photoVO.getCaminhoArquivo().length() > 0) {
+                caminhoArquivo = caminhoAlbum + File.separator + photoVO.getId() + ".jpg";
                 Thumbnail.makeThumbs(caminhoArquivo);
 
                 // adicionar em CacheFTP
-                CacheFTP.getCache().addCommand(CacheFTP.UPLOAD, albumID,
-                        f.getFotoID());
+                CacheFTP.getCache().addCommand(CacheFTP.UPLOAD, albumVO.getAlbumid(),
+                        photoVO.getId());
             }
         }
     }
 
     /**
-     * PASSO 6 - Limpar a flag CaminhoArquivo e apresentar as alterações
+     * PASSO 4 - Preparar os arquivos adicionais
+     *
+     * @param album
+     * @param caminhoAlbum
+     */
+    private void prepareExtraFiles(Album album, String caminhoAlbum) {
+        // escreve o arquivo javaScript e o XML
+        try {
+            FileWriter out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".js");
+            out.write(album.toJavaScript());
+            out.flush();
+            out.close();
+
+            out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".xml");
+            out.write(album.toXML());
+            out.flush();
+            out.close();
+
+        } catch (IOException ex) {
+            ex.printStackTrace(Util.err);
+        }
+    }
+
+    /**
+     * PASSO 5 - Limpar a flag CaminhoArquivo e apresentar as alterações
      *
      * @param fotos
      */
     private void fireChangesToGUI(PhotoDTO[] fotos) {
         PhotoDTO f;
 
-        // PASSO 6 - Limpar a flag CaminhoArquivo e apresentar as alterações
-        // //////////////////////////////////////////////////////////////////////
         for (int i = 0; i < fotos.length; i++) {
             f = fotos[i];
             f.resetCaminhoArquivo();
@@ -261,31 +295,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
     }
 
     /**
-     * PASSO 5 - Preparar os arquivos adicionais
-     *
-     * @param album
-     * @param caminhoAlbum
-     */
-    private void prepareExtraFiles(Album album, String caminhoAlbum) {
-        // escreve o arquivo javaScript e o XML
-        try {
-            FileWriter out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".js");
-            out.write(album.toJavaScript());
-            out.flush();
-            out.close();
-
-            out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".xml");
-            out.write(album.toXML());
-            out.flush();
-            out.close();
-
-        } catch (IOException ex) {
-            ex.printStackTrace(Util.err);
-        }
-    }
-
-    /**
-     * PASSO 7 - Executar o sistema de envio por FTP
+     * PASSO 6 - Executar o sistema de envio por FTP
      */
     private void dispatchAlbum() {
 
@@ -307,192 +317,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
             t.start();
         }
 
-    }
-
-    /**
-     * PASSO 2 - Registrar fotos no banco de dados todas as fotos são
-     * registradas novamente. Fotos novas recebem um ID.
-     *
-     * @param fotos
-     * @param ultimoFotoID
-     * @param albumID
-     * @return
-     */
-    public boolean recordFotoData(PhotoDTO[] fotos, int ultimoFotoID, int albumID) {
-        PhotoDTO f;
-        String nomeArquivo;
-        String legenda;
-        int fotoID;
-        int creditoID;
-        int altura;
-        int largura;
-        String sql;
-        sucesso = false;
-
-        // PASSO 2 - Registrar fotos no banco de dados
-        // todas as fotos são registradas novamente. Fotos novas recebem um ID
-        // //////////////////////////////////////////////////////////////////////
-        for (int i = 0; i < fotos.length; i++) {
-            f = fotos[i];
-
-            fotoID = f.getFotoID();
-            creditoID = f.getCreditoID();
-            legenda = f.getLegenda();
-            altura = f.getAltura();
-            largura = f.getLargura();
-            nomeArquivo = f.getCaminhoArquivo();
-
-            // INSERT para fotos ainda não cadastradas
-            if (nomeArquivo.length() > 0) {
-                if (ultimoFotoID < 0) {
-                    try {
-                        sql = "SELECT max(fotoID) FROM fotos";
-                        rowSet.setCommand(sql);
-                        rowSet.execute();
-                        rowSet.first();
-                        ultimoFotoID = rowSet.getInt(1);
-
-                        // Inútil???
-                        sql = "SELECT fotoID FROM fotos ORDER BY albumID DESC LIMIT 1";
-                        rowSet.setCommand(sql);
-                        rowSet.execute();
-                        fotoID = ++ultimoFotoID;
-                        f.setFotoID(fotoID);
-
-                        rowSet.moveToInsertRow();
-                        rowSet.updateInt("fotoID", fotoID);
-                        rowSet.insertRow();
-                    } catch (Exception e) {
-                        Util.log("[AcaoAlterarAlbum.recordFotoData]/ERRO: " + e);
-                        e.printStackTrace(Util.err);
-                        PainelWebFotos.setCursorWait(false);
-                        sucesso = false;
-                        return sucesso;
-                    }
-                }
-            }
-            // atualiza o banco de dados
-            try {
-
-                sql = "SELECT fotoID,albumID,creditoID,legenda,altura,largura FROM fotos WHERE fotoID=" + fotoID;
-
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                rowSet.first();
-
-                rowSet.updateInt("albumID", albumID);
-                rowSet.updateInt("creditoID", creditoID);
-                rowSet.updateInt("altura", altura);
-                rowSet.updateInt("largura", largura);
-                rowSet.updateString("legenda", legenda);
-
-                rowSet.updateRow();
-
-            } catch (Exception e) {
-                Util.log("[AcaoAlterarAlbum.recordFotoData]/ERRO: " + e);
-                e.printStackTrace(Util.err);
-                PainelWebFotos.setCursorWait(false);
-                sucesso = false;
-                return sucesso;
-            }
-        } // fim for
-
-        // executa todas as instruções SQL update e insert
-        try {
-            Util.log("finalizando alterações em banco de dados");
-            rowSet.refreshRow();
-        } catch (Exception e) {
-            Util.log("[AcaoAlterarAlbum.recordFotoData]/ERRO: " + e);
-            e.printStackTrace(Util.err);
-            sucesso = false;
-        }
-        return sucesso;
-    }
-
-    /**
-     * PASSO 1 - Registrar o álbum no banco de dados
-     *
-     * @param album
-     * @param albumID
-     * @return
-     */
-    public int recordAlbumData(Album album, int albumID) {
-        String sql;
-
-        // PASSO 1 - Registrar o álbum no banco de dados
-        // //////////////////////////////////////////////////////////////////////
-        // converte a data do álbum para ANSI
-        String dtAnsi;
-        try {
-            dtAnsi = getAnsiFormat(album);
-
-        } catch (Exception e) {
-            Util.out.println("[AcaoAlterarAlbum.recordAlbumData]/ERRO: " + e);
-            PainelWebFotos.setCursorWait(false);
-            return 0;
-        }
-
-        // Se precisar, criar um novo album
-        if (albumID == 0) {
-            // álbum ainda não registrado obtém um ID
-            try {
-
-                sql = "SELECT MAX(albumID) FROM albuns";
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                rowSet.first();
-                albumID = rowSet.getInt(1);
-
-                sql = "SELECT albumID, DtInsercao FROM albuns ORDER BY albumID DESC LIMIT 1";
-                rowSet.setCommand(sql);
-                rowSet.execute();
-                album.setAlbumID(++albumID);
-                rowSet.moveToInsertRow();
-                rowSet.updateInt("albumID", albumID);
-                rowSet.updateDate("DtInsercao", new java.sql.Date((new Date()).getTime()));
-                rowSet.insertRow();
-
-            } catch (Exception e) {
-                Util.log("[AcaoAlterarAlbum.recordAlbumData]/ERRO: " + e);
-                e.printStackTrace(Util.err);
-                sucesso = false;
-                PainelWebFotos.setCursorWait(false);
-                return 0;
-            }
-
-        }
-        // atualiza o banco de dados
-        try {
-            sql = "SELECT usuarioID,categoriaID,NmAlbum,Descricao,DtInsercao,albumID FROM albuns WHERE albumID=" + albumID;
-
-            rowSet.setCommand(sql);
-            rowSet.execute();
-            rowSet.first();
-            albumID = rowSet.getInt("albumID");
-
-            rowSet.updateInt("categoriaID", album.getCategoriaID());
-            rowSet.updateInt("usuarioID", album.getUsuarioID());
-            rowSet.updateString("NmAlbum", album.getNmAlbum());
-            rowSet.updateString("Descricao", album.getDescricao());
-            rowSet.updateString("DtInsercao", dtAnsi);
-
-            rowSet.updateRow();
-        } catch (Exception e) {
-            Util.log("[AcaoAlterarAlbum.recordAlbumData]/ERRO: " + e);
-            e.printStackTrace(Util.err);
-            PainelWebFotos.setCursorWait(false);
-            return 0;
-        }
-        return albumID;
-    }
-
-    private String getAnsiFormat(Album album) throws ParseException {
-        String dtAnsi;
-        final String dtInsercao = album.getDtInsercao();
-        Date dateParsed = parseDate(dtInsercao);
-        SimpleDateFormat dataAnsi = new SimpleDateFormat("yyyy-MM-dd");
-        dtAnsi = dataAnsi.format(dateParsed);
-        return dtAnsi;
     }
 
     private Date parseDate(final String dtInsercao) throws ParseException {
