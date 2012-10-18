@@ -21,7 +21,6 @@
         <actionName>CUSTOM-Staging Site</actionName>
         <displayName>Staging Site</displayName>
         <goals>
-            <goal>clean</goal>
             <goal>site</goal>
             <goal>site:stage</goal>
         </goals>
