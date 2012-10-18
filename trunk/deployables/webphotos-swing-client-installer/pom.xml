@@ -27,7 +27,7 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>1.5.6</version>
+            <version>3.0.8</version>
         </dependency>
         <dependency>
             <groupId>net.sf.webphotos</groupId>
@@ -36,6 +36,7 @@
         </dependency>
     </dependencies>
     <build>
+        <defaultGoal>package</defaultGoal>
         <plugins>
             <!--  copy other checked resource into staging area, expected by install.xml -->
             <plugin>
@@ -44,7 +45,7 @@
                 <executions>
                     <execution>
                         <id>create-staging-area</id>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -66,7 +67,7 @@
                 <executions>
                     <execution>
                         <id>standard-installer-libs</id>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
@@ -79,7 +80,7 @@
                     </execution>
                     <execution>
                         <id>standard-installer-main</id>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
@@ -110,7 +111,7 @@
                 <executions>
                     <execution>
                         <id>standard-installer</id>
-                        <phase>install</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>izpack</goal>
                         </goals>
@@ -145,7 +146,7 @@
                         <executions>
                             <execution>
                                 <id>launch4j</id>
-                                <phase>install</phase>
+                                <phase>package</phase>
                                 <goals>
                                     <goal>launch4j</goal>
                                 </goals>
