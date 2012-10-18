@@ -15,7 +15,8 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
---><actions>
+-->
+<actions>
     <action>
         <actionName>CUSTOM-Staging Site</actionName>
         <displayName>Staging Site</displayName>
@@ -58,10 +59,10 @@
         </activatedProfiles>
     </action>
     <action>
-            <actionName>CUSTOM-Site Deploy</actionName>
-            <displayName>Site Deploy</displayName>
-            <goals>
-                <goal>site-deploy</goal>
-            </goals>
-        </action>
+        <actionName>CUSTOM-Site Deploy</actionName>
+        <displayName>Site Deploy</displayName>
+        <goals>
+            <goal>site-deploy</goal>
+        </goals>
+    </action>
 </actions>
