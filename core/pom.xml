@@ -92,6 +92,14 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <siteDirectory>${project.parent.basedir}/src/site</siteDirectory>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <properties>
