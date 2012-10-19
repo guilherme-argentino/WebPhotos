@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAlbumVOTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAlbumVOEmpty}" rendered="#{albumVOController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{albumVOController.items.rowCount > 0}">
+                    <h:outputText value="#{albumVOController.pagination.pageFirstItem + 1}..#{albumVOController.pagination.pageLastItem + 1}/#{albumVOController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{albumVOController.previous}" value="#{bundle.Previous} #{albumVOController.pagination.pageSize}" rendered="#{albumVOController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{albumVOController.next}" value="#{bundle.Next} #{albumVOController.pagination.pageSize}" rendered="#{albumVOController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{albumVOController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_categoriasVO}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categoriasVO}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_albumid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.albumid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_nmalbum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nmalbum}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_descricao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_dtInsercao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dtInsercao}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_photoBy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.photoBy}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlbumVOTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{albumVOController.prepareView}" value="#{bundle.ListAlbumVOViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{albumVOController.prepareEdit}" value="#{bundle.ListAlbumVOEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{albumVOController.destroy}" value="#{bundle.ListAlbumVODestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{albumVOController.prepareCreate}" value="#{bundle.ListAlbumVOCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAlbumVOIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
