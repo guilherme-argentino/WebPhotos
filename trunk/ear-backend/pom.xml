@@ -41,6 +41,10 @@
                             <groupId>net.sf.webphotos</groupId>
                             <artifactId>webphotos-persistence-backend</artifactId>
                         </ejbModule>
+                        <jarModule>
+                            <groupId>net.sf.webphotos</groupId>
+                            <artifactId>webphotos-persistence-backend-ifc</artifactId>
+                        </jarModule>
                     </modules>
                 </configuration>
             </plugin>

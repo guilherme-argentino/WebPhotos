@@ -75,7 +75,7 @@ public class WebPhotosDAO<E extends HasID, I> {
     /**
      * @param entityManager the entityManager to set
      */
-    @PersistenceContext
+    @PersistenceContext(name="jee_webphotos_pu")
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
