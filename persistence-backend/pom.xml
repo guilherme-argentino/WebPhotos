@@ -71,6 +71,12 @@
             <artifactId>guava</artifactId>
             <version>13.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>3.1.1</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
