@@ -15,7 +15,6 @@
  */
 package net.sf.webphotos;
 
-import com.sun.rowset.JdbcRowSetImpl;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,38 +39,20 @@ public class BancoImagem {
 
     private static Logger log = Logger.getLogger(BancoImagem.class);
     private static final BancoImagem instancia = new BancoImagem();
-    private static String titulo;
-    private static String descricao;
-    private static int categoriaID;
     private static String url;
     private static String driver;
     private static Connection conn;
     private static File albunsRoot;
-    // informações sobre uso da ponte www
-    private static boolean utilizarPonteWWW;
-    private static String webServer;
-    private static String chaveCripto;
     // usuário principal do sistema
     private static String usuario = null;
     private static char[] senha = null;
     // caso o usuário ftp seja diferente...
     private static String usuarioFTP = null;
     private static char[] senhaFTP = null;
-    private static Login login;
-    @Deprecated
-    private static RowSet rSet;
 
     // inicializa o banco de dados
     private BancoImagem() {
-        Configuration c = Util.getConfig();
         log.info("inicializando banco de imagem...");
-        webServer = c.getString("enderecoWWW");
-        chaveCripto = c.getString("chaveCripto");
-
-        if (webServer != null && chaveCripto != null) {
-            log.info("utilizando ponte http");
-            utilizarPonteWWW = true;
-        }
     }
 
     /**
@@ -206,13 +187,6 @@ public class BancoImagem {
             senha = l.getPassword();
             try {
                 conn = DriverManager.getConnection(url, usuario, (new String(senha)));
-
-                rSet = new JdbcRowSetImpl(conn);
-                rSet.setReadOnly(false);
-                rSet.setType(ResultSet.TYPE_SCROLL_INSENSITIVE);
-                rSet.setConcurrency(ResultSet.CONCUR_UPDATABLE);
-                ((JdbcRowSet) rSet).setAutoCommit(false);
-
                 conectado = true;
             } catch (Exception e) {
                 String msg = "Erro na conexão ao banco de dados";
@@ -277,28 +251,6 @@ public class BancoImagem {
      */
     public void setPasswordFTP(char[] p) {
         senhaFTP = p;
-    }
-
-    /**
-     * Retorna o {@link javax.sql.RowSet RowSet} rSet da instancia de
-     * BancoImagem.
-     *
-     * @return Retorna o {@link javax.sql.RowSet RowSet} da instância.
-     */
-    @Deprecated
-    public static RowSet getRSet() {
-        return rSet;
-    }
-
-    /**
-     * Altera o {@link javax.sql.RowSet RowSet} rSet da instancia de
-     * BancoImagem.
-     *
-     * @param aRSet o novo {@link javax.sql.RowSet RowSet} da instância.
-     */
-    @Deprecated
-    public static void setRSet(RowSet aRSet) {
-        rSet = aRSet;
     }
 
     @Override

@@ -62,7 +62,6 @@ public class AcaoAlterarAlbum extends AbstractAction {
     private static final long serialVersionUID = 7297664420604720262L;
     JButton btAlterar, btNovo;
     JTable tbAlbuns, tbFotos;
-    private RowSet rowSet = BancoImagem.getRSet();
     private AlbumDAO albumDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
     private boolean sucesso;
 
