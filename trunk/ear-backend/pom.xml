@@ -99,6 +99,7 @@
     </profiles>
     <properties>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
     <description>Project WebPhotos: EAR Pack</description>
 </project>

@@ -243,4 +243,8 @@ public class AlbumVO implements Serializable, HasID<Integer> {
     public Integer getId() {
         return this.albumid;
     }
+
+    public void setPhotos(Set<PhotoVO> photos) {
+        this.photos = photos;
+    }
 }
