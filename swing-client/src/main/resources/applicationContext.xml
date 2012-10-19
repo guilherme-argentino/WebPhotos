@@ -72,7 +72,7 @@
     <tx:annotation-driven transaction-manager="myTxManager" mode="proxy" />
     
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="jse_webphotos_pu" />
+        <property name="persistenceUnitName" value="jee_webphotos_pu" />
         <property name="persistenceUnitManager" ref="persistenceUnitManager" />
         <property name="loadTimeWeaver">
             <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
