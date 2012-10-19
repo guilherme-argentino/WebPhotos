@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAlbumVOTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_categoriasVO}" for="categoriasVO" />
+                    <h:selectOneMenu id="categoriasVO" value="#{albumVOController.selected.categoriasVO}" title="#{bundle.EditAlbumVOTitle_categoriasVO}" required="true" requiredMessage="#{bundle.EditAlbumVORequiredMessage_categoriasVO}">
+                        <f:selectItems value="#{categoryVOController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_albumid}" for="albumid" />
+                    <h:inputText id="albumid" value="#{albumVOController.selected.albumid}" title="#{bundle.EditAlbumVOTitle_albumid}" required="true" requiredMessage="#{bundle.EditAlbumVORequiredMessage_albumid}"/>
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_nmalbum}" for="nmalbum" />
+                    <h:inputText id="nmalbum" value="#{albumVOController.selected.nmalbum}" title="#{bundle.EditAlbumVOTitle_nmalbum}" required="true" requiredMessage="#{bundle.EditAlbumVORequiredMessage_nmalbum}"/>
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{albumVOController.selected.descricao}" title="#{bundle.EditAlbumVOTitle_descricao}" />
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_dtInsercao}" for="dtInsercao" />
+                    <h:inputText id="dtInsercao" value="#{albumVOController.selected.dtInsercao}" title="#{bundle.EditAlbumVOTitle_dtInsercao}" required="true" requiredMessage="#{bundle.EditAlbumVORequiredMessage_dtInsercao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_photoBy}" for="photoBy" />
+                    <h:inputText id="photoBy" value="#{albumVOController.selected.photoBy}" title="#{bundle.EditAlbumVOTitle_photoBy}" />
+                    <h:outputLabel value="#{bundle.EditAlbumVOLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{albumVOController.selected.id}" title="#{bundle.EditAlbumVOTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{albumVOController.update}" value="#{bundle.EditAlbumVOSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAlbumVOViewLink}"/>
+                <br />
+                <h:commandLink action="#{albumVOController.prepareList}" value="#{bundle.EditAlbumVOShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAlbumVOIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

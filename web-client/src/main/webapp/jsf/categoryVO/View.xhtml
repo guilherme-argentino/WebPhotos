@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCategoryVOTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCategoryVOLabel_categoriaID}"/>
+                    <h:outputText value="#{categoryVOController.selected.categoriaID}" title="#{bundle.ViewCategoryVOTitle_categoriaID}"/>
+                    <h:outputText value="#{bundle.ViewCategoryVOLabel_nmcategoria}"/>
+                    <h:outputText value="#{categoryVOController.selected.nmcategoria}" title="#{bundle.ViewCategoryVOTitle_nmcategoria}"/>
+                    <h:outputText value="#{bundle.ViewCategoryVOLabel_categoriaPai}"/>
+                    <h:outputText value="#{categoryVOController.selected.categoriaPai}" title="#{bundle.ViewCategoryVOTitle_categoriaPai}"/>
+                    <h:outputText value="#{bundle.ViewCategoryVOLabel_id}"/>
+                    <h:outputText value="#{categoryVOController.selected.id}" title="#{bundle.ViewCategoryVOTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{categoryVOController.destroyAndView}" value="#{bundle.ViewCategoryVODestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCategoryVOEditLink}"/>
+                <br />
+                <h:commandLink action="#{categoryVOController.prepareCreate}" value="#{bundle.ViewCategoryVOCreateLink}" />
+                <br />
+                <h:commandLink action="#{categoryVOController.prepareList}" value="#{bundle.ViewCategoryVOShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCategoryVOIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

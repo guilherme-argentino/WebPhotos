@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePhotoVOTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_fotoid}" for="fotoid" />
+                    <h:inputText id="fotoid" value="#{photoVOController.selected.fotoid}" title="#{bundle.CreatePhotoVOTitle_fotoid}" required="true" requiredMessage="#{bundle.CreatePhotoVORequiredMessage_fotoid}"/>
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_nmfoto}" for="nmfoto" />
+                    <h:inputText id="nmfoto" value="#{photoVOController.selected.nmfoto}" title="#{bundle.CreatePhotoVOTitle_nmfoto}" />
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_legenda}" for="legenda" />
+                    <h:inputText id="legenda" value="#{photoVOController.selected.legenda}" title="#{bundle.CreatePhotoVOTitle_legenda}" required="true" requiredMessage="#{bundle.CreatePhotoVORequiredMessage_legenda}"/>
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_creditos}" for="creditos" />
+                    <h:selectOneMenu id="creditos" value="#{photoVOController.selected.creditos}" title="#{bundle.CreatePhotoVOTitle_creditos}" required="true" requiredMessage="#{bundle.CreatePhotoVORequiredMessage_creditos}">
+                        <f:selectItems value="#{creditsVOController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_album}" for="album" />
+                    <h:selectOneMenu id="album" value="#{photoVOController.selected.album}" title="#{bundle.CreatePhotoVOTitle_album}" required="true" requiredMessage="#{bundle.CreatePhotoVORequiredMessage_album}">
+                        <f:selectItems value="#{albumVOController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_caminhoArquivo}" for="caminhoArquivo" />
+                    <h:inputText id="caminhoArquivo" value="#{photoVOController.selected.caminhoArquivo}" title="#{bundle.CreatePhotoVOTitle_caminhoArquivo}" />
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_altura}" for="altura" />
+                    <h:inputText id="altura" value="#{photoVOController.selected.altura}" title="#{bundle.CreatePhotoVOTitle_altura}" />
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_largura}" for="largura" />
+                    <h:inputText id="largura" value="#{photoVOController.selected.largura}" title="#{bundle.CreatePhotoVOTitle_largura}" />
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{photoVOController.selected.id}" title="#{bundle.CreatePhotoVOTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreatePhotoVOLabel_key}" for="key" />
+                    <h:inputText id="key" value="#{photoVOController.selected.key}" title="#{bundle.CreatePhotoVOTitle_key}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{photoVOController.create}" value="#{bundle.CreatePhotoVOSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{photoVOController.prepareList}" value="#{bundle.CreatePhotoVOShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePhotoVOIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

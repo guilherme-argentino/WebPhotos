@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPhotoVOTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPhotoVOEmpty}" rendered="#{photoVOController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{photoVOController.items.rowCount > 0}">
+                    <h:outputText value="#{photoVOController.pagination.pageFirstItem + 1}..#{photoVOController.pagination.pageLastItem + 1}/#{photoVOController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{photoVOController.previous}" value="#{bundle.Previous} #{photoVOController.pagination.pageSize}" rendered="#{photoVOController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{photoVOController.next}" value="#{bundle.Next} #{photoVOController.pagination.pageSize}" rendered="#{photoVOController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{photoVOController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_fotoid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fotoid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_nmfoto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nmfoto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_legenda}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.legenda}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_creditos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.creditos}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_album}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.album}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_caminhoArquivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.caminhoArquivo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_altura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.altura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_largura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.largura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPhotoVOTitle_key}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.key}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{photoVOController.prepareView}" value="#{bundle.ListPhotoVOViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{photoVOController.prepareEdit}" value="#{bundle.ListPhotoVOEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{photoVOController.destroy}" value="#{bundle.ListPhotoVODestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{photoVOController.prepareCreate}" value="#{bundle.ListPhotoVOCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPhotoVOIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

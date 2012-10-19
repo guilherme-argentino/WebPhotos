@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAlbumVOTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_categoriasVO}"/>
+                    <h:outputText value="#{albumVOController.selected.categoriasVO}" title="#{bundle.ViewAlbumVOTitle_categoriasVO}"/>
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_albumid}"/>
+                    <h:outputText value="#{albumVOController.selected.albumid}" title="#{bundle.ViewAlbumVOTitle_albumid}"/>
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_nmalbum}"/>
+                    <h:outputText value="#{albumVOController.selected.nmalbum}" title="#{bundle.ViewAlbumVOTitle_nmalbum}"/>
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_descricao}"/>
+                    <h:outputText value="#{albumVOController.selected.descricao}" title="#{bundle.ViewAlbumVOTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_dtInsercao}"/>
+                    <h:outputText value="#{albumVOController.selected.dtInsercao}" title="#{bundle.ViewAlbumVOTitle_dtInsercao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_photoBy}"/>
+                    <h:outputText value="#{albumVOController.selected.photoBy}" title="#{bundle.ViewAlbumVOTitle_photoBy}"/>
+                    <h:outputText value="#{bundle.ViewAlbumVOLabel_id}"/>
+                    <h:outputText value="#{albumVOController.selected.id}" title="#{bundle.ViewAlbumVOTitle_id}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{albumVOController.destroyAndView}" value="#{bundle.ViewAlbumVODestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAlbumVOEditLink}"/>
+                <br />
+                <h:commandLink action="#{albumVOController.prepareCreate}" value="#{bundle.ViewAlbumVOCreateLink}" />
+                <br />
+                <h:commandLink action="#{albumVOController.prepareList}" value="#{bundle.ViewAlbumVOShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAlbumVOIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
