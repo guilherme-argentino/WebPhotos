@@ -253,19 +253,10 @@ public final class Thumbnail {
                 file.delete();
                 file = new File(nmArquivo);
             }
-//            FileOutputStream out = new FileOutputStream(file);
 
-            // encodes image as a JPEG data stream
-//            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-//            com.sun.image.codec.jpeg.JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bufferedImage);
+            // encodes image as a JPEG file
             ImageIO.write(bufferedImage, IMAGE_FORMAT, file);
 
-            // writeParam = new JPEGImageWriteParam(null);
-            // writeParam.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
-            //writeParam.setProgressiveMode(JPEGImageWriteParam.MODE_DEFAULT);
-//            param.setQuality(1.0f, true);
-//            encoder.setJPEGEncodeParam(param);
-//            encoder.encode(bufferedImage);
             return true;
         } catch (IOException ioex) {
             ioex.printStackTrace(Util.err);
