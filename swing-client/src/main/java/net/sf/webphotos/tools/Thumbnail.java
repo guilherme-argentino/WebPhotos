@@ -15,12 +15,9 @@
  */
 package net.sf.webphotos.tools;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
@@ -41,12 +38,13 @@ public final class Thumbnail {
     // tam máximo de cada thumb
     private static int t1, t2, t3, t4;
     // marca d´agua e texto aplicado ao thumbnail 4
-    private static String marcadagua, mdTeste;
+    private static String marcadagua;
     private static String texto;
     private static int mdPosicao, mdMargem, mdTransparencia;
     private static String txFamilia;
     private static int txTamanho, txPosicao, txMargem, txEstilo;
     private static Color txCorFrente, txCorFundo;
+    public static final String IMAGE_FORMAT = "jpg";
 
     /**
      * Busca no arquivo de configuração, classe
@@ -73,7 +71,6 @@ public final class Thumbnail {
             mdPosicao = c.getInt("marcadagua.posicao");
             mdMargem = c.getInt("marcadagua.margem");
             mdTransparencia = c.getInt("marcadagua.transparencia");
-            mdTeste = c.getString("marcadagua.teste");
         } catch (Exception ex) {
             ex.printStackTrace(Util.err);
         }
@@ -223,6 +220,8 @@ public final class Thumbnail {
             //return (Image) buf;
             return Toolkit.getDefaultToolkit().createImage(buf.getSource());
         } catch (Exception e) {
+            Util.err.println("[Thumbnail.estampar]/ERRO: Inesperado - " + e.getMessage());
+            e.printStackTrace(Util.err);
             return im;
         }
     }
@@ -254,18 +253,19 @@ public final class Thumbnail {
                 file.delete();
                 file = new File(nmArquivo);
             }
-            FileOutputStream out = new FileOutputStream(file);
+//            FileOutputStream out = new FileOutputStream(file);
 
             // encodes image as a JPEG data stream
-            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-            com.sun.image.codec.jpeg.JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bufferedImage);
+//            JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+//            com.sun.image.codec.jpeg.JPEGEncodeParam param = encoder.getDefaultJPEGEncodeParam(bufferedImage);
+            ImageIO.write(bufferedImage, IMAGE_FORMAT, file);
 
             // writeParam = new JPEGImageWriteParam(null);
             // writeParam.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
             //writeParam.setProgressiveMode(JPEGImageWriteParam.MODE_DEFAULT);
-            param.setQuality(1.0f, true);
-            encoder.setJPEGEncodeParam(param);
-            encoder.encode(bufferedImage);
+//            param.setQuality(1.0f, true);
+//            encoder.setJPEGEncodeParam(param);
+//            encoder.encode(bufferedImage);
             return true;
         } catch (IOException ioex) {
             ioex.printStackTrace(Util.err);
@@ -319,23 +319,6 @@ public final class Thumbnail {
         }
 
         return new Point(x, y);
-    }
-
-    /**
-     * Returns the format of the image in the file 'f'. Returns null if the
-     * format is not known.
-     *
-     * @param f An java.io.File
-     * @return An String containing the type of Image or NULL
-     */
-    private static String getFormatInFile(File f) {
-        return getFormatName(f);
-    }
-
-    // Returns the format of the image in the input stream 'is'.
-    // Returns null if the format is not known.
-    private static String getFormatFromStream(java.io.InputStream is) {
-        return getFormatName(is);
     }
 
     // Returns the format name of the image in the object 'o'.
