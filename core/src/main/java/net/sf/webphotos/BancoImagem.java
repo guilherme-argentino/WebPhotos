@@ -18,15 +18,12 @@ package net.sf.webphotos;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.RowSet;
-import javax.sql.rowset.JdbcRowSet;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import net.sf.webphotos.gui.util.Login;
 import net.sf.webphotos.util.Util;
-import org.apache.commons.configuration.Configuration;
 import org.apache.log4j.Logger;
 
 /**
@@ -258,16 +255,25 @@ public class BancoImagem {
         throw new CloneNotSupportedException("Singleton Object");
     }
 
+    /**
+     *
+     */
     public static void loadUIManager() {
         String lookAndFeel = Util.getConfig().getString("UIManager.lookAndFeel");
         try {
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (Exception e) {
             log.warn("Caution: Theme not correctly configured");
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         }
     }
 
+    /**
+     *
+     * @throws IllegalAccessException
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     */
     public static void loadDBDriver() throws IllegalAccessException, SQLException, ClassNotFoundException, InstantiationException {
         // obtém driver do db
         url = Util.getConfig().getString("jdbc.url");

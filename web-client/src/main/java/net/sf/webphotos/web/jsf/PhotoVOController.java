@@ -1,10 +1,5 @@
 package net.sf.webphotos.web.jsf;
 
-import net.sf.webphotos.model.PhotoVO;
-import net.sf.webphotos.web.jsf.util.JsfUtil;
-import net.sf.webphotos.web.jsf.util.PaginationHelper;
-import net.sf.webphotos.web.controller.PhotoVOJpaController;
-
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import javax.annotation.Resource;
@@ -20,6 +15,10 @@ import javax.faces.model.SelectItem;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
+import net.sf.webphotos.model.PhotoVO;
+import net.sf.webphotos.web.controller.PhotoVOJpaController;
+import net.sf.webphotos.web.jsf.util.JsfUtil;
+import net.sf.webphotos.web.jsf.util.PaginationHelper;
 
 @ManagedBean(name = "photoVOController")
 @SessionScoped
@@ -199,6 +198,7 @@ public class PhotoVOController implements Serializable {
     @FacesConverter(forClass = PhotoVO.class)
     public static class PhotoVOControllerConverter implements Converter {
 
+        @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
@@ -215,11 +215,12 @@ public class PhotoVOController implements Serializable {
         }
 
         String getStringKey(java.lang.Integer value) {
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
         }
 
+        @Override
         public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
             if (object == null) {
                 return null;
