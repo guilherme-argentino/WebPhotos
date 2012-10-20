@@ -29,11 +29,18 @@ public class AlbumVOFacade extends AbstractFacade<AlbumVO> implements AlbumVOFac
     @PersistenceContext(unitName = "jee_webphotos_pu")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public AlbumVOFacade() {
         super(AlbumVO.class);
     }

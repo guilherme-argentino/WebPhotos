@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="jee_webphotos_pu" transaction-type="JTA">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <provider>oracle.toplink.essentials.PersistenceProvider</provider>
     <jta-data-source>webphotos_ds</jta-data-source>
     <jar-file>webphotos-persistence-backend-1.0-SNAPSHOT.jar</jar-file>
     <class>net.sf.webphotos.model.AlbumVO</class>
@@ -9,7 +9,7 @@
     <class>net.sf.webphotos.model.CreditsVO</class>
     <class>net.sf.webphotos.model.PhotoVO</class>
     <properties>
-      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      <property name="toplink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

@@ -430,11 +430,19 @@ public class PhotoDTO extends PhotoEntity {
         this.albumID = albumID;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getKey() {
         return this.caminhoArquivo;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public IsCredits getCreditos() {
         return new CreditsVO(creditoID, creditoNome);

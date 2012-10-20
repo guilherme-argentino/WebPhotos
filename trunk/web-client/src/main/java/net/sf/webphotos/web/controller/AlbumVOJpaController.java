@@ -16,19 +16,19 @@
 package net.sf.webphotos.web.controller;
 
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import net.sf.webphotos.model.PhotoVO;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import net.sf.webphotos.model.AlbumVO;
+import net.sf.webphotos.model.PhotoVO;
 import net.sf.webphotos.web.controller.exceptions.IllegalOrphanException;
 import net.sf.webphotos.web.controller.exceptions.NonexistentEntityException;
 import net.sf.webphotos.web.controller.exceptions.RollbackFailureException;
@@ -89,6 +89,14 @@ public class AlbumVOJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param albumVO
+     * @throws IllegalOrphanException
+     * @throws NonexistentEntityException
+     * @throws RollbackFailureException
+     * @throws Exception
+     */
     public void edit(AlbumVO albumVO) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
@@ -150,6 +158,14 @@ public class AlbumVOJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws IllegalOrphanException
+     * @throws NonexistentEntityException
+     * @throws RollbackFailureException
+     * @throws Exception
+     */
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
@@ -189,10 +205,20 @@ public class AlbumVOJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<AlbumVO> findAlbumVOEntities() {
         return findAlbumVOEntities(true, -1, -1);
     }
 
+    /**
+     *
+     * @param maxResults
+     * @param firstResult
+     * @return
+     */
     public List<AlbumVO> findAlbumVOEntities(int maxResults, int firstResult) {
         return findAlbumVOEntities(false, maxResults, firstResult);
     }
@@ -213,6 +239,11 @@ public class AlbumVOJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public AlbumVO findAlbumVO(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -222,6 +253,10 @@ public class AlbumVOJpaController implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAlbumVOCount() {
         EntityManager em = getEntityManager();
         try {
