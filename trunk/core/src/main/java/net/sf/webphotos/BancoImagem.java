@@ -177,7 +177,8 @@ public class BancoImagem {
         do {
             l.show();
             if (l.getUser() == null) {
-                System.exit(0);
+                //System.exit(0);
+                throw new IllegalArgumentException("User equals null");
             }
 
             usuario = l.getUser();
