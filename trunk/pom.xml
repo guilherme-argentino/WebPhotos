@@ -265,7 +265,7 @@
                     <strictCheck>true</strictCheck>
                     <useDefaultExcludes>true</useDefaultExcludes>
                     <properties>
-                        <year>${project.inceptionYear}</year>
+                        <year>2012</year>
                         <owner>${project.name}</owner>
                     </properties>
                     <excludes>
@@ -278,7 +278,9 @@
                         <exclude>**/*.form</exclude>
                         <exclude>**/CacheFTP.txt</exclude>
                         <exclude>**/*.mf</exclude>
+                        <exclude>**/nb-configuration.xml</exclude>
                     </excludes>
+                    <skipExistingHeaders>true</skipExistingHeaders>
                 </configuration>
                 <executions>
                     <execution>
