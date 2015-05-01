@@ -30,6 +30,7 @@ import org.junit.Test;
  *
  * @author Guilherme
  */
+@Ignore
 public class WebPhotosTest {
     
     public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
@@ -110,8 +111,7 @@ public class WebPhotosTest {
         checkNewAlbumButton();
         
         final Map<String, String[]> photoData = new HashMap<String, String[]>();
-        for (int i = 0; i < fileNames.length; i++) {
-            String fileName = fileNames[i];
+        for (String fileName : fileNames) {
             photoData.put(fileName, new String[] { "Original Name: " + fileName, "Divulgacao" });
         }
         WEB_PHOTOS_DELEGATE.fillAlbumForm("First Test - Title", "First Test - Description", "Geral", photoData);

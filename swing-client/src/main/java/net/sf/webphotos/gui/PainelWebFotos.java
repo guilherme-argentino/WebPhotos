@@ -1396,6 +1396,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
             lstCategoriasAlbum.setSelectedIndex(0);
         } catch (Exception e) {
             Util.log("[PainelWebPhotos.resetAlbum()]/ERRO: " + e.getMessage());
+            log.debug(e);
         }
         txtDescricao.setText("");
         txtLegenda.setText("");
@@ -1403,6 +1404,7 @@ public class PainelWebFotos extends javax.swing.JPanel {
             lstCreditos.setSelectedIndex(0);
         } catch (Exception e) {
             Util.log("[PainelWebPhotos.resetAlbum()]/ERRO: " + e.getMessage());
+            log.debug(e);
         }
 
         TableModelFoto.getModel().update();
