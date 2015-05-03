@@ -95,7 +95,7 @@
         <module>application</module>
     </modules>
     <properties>
-        <netbeans.version>RELEASE72</netbeans.version>
+        <netbeans.version>RELEASE731</netbeans.version>
         <brandingToken>webphotos</brandingToken>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
