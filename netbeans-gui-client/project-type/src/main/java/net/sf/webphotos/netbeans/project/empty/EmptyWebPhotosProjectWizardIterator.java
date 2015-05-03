@@ -62,7 +62,8 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
             folder = EmptyProject.PROJECT_FOLDER, 
             displayName = EmptyProject.PROJECT_DISPLAY_MANE, 
             iconBase = EmptyProject.PROJECT_ICON_BASE, 
-            description = EmptyProject.PROJECT_DESCRIPTION)
+            description = EmptyProject.PROJECT_DESCRIPTION,
+            content = EmptyProject.PROJECT_CONTENT)
     public static EmptyWebPhotosProjectWizardIterator createIterator() {
         return new EmptyWebPhotosProjectWizardIterator();
     }
