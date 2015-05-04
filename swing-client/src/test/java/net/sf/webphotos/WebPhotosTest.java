@@ -30,7 +30,6 @@ import org.junit.Test;
  *
  * @author Guilherme
  */
-@Ignore
 public class WebPhotosTest {
     
     public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
@@ -87,6 +86,7 @@ public class WebPhotosTest {
     }
 
     @Test
+    @Ignore
     public void testCreateAlbumWithPhotos() {
         System.out.println("Create Album With Photos");
         WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
