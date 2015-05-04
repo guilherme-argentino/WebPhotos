@@ -49,8 +49,8 @@
         <dependency>
             <groupId>org.uispec4j</groupId>
             <artifactId>uispec4j</artifactId>
-            <version>2.4</version>
             <scope>test</scope>
+            <classifier>jdk7</classifier>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
