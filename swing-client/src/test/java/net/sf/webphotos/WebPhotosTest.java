@@ -30,6 +30,7 @@ import org.junit.Test;
  *
  * @author Guilherme
  */
+@Ignore
 public class WebPhotosTest {
     
     public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
