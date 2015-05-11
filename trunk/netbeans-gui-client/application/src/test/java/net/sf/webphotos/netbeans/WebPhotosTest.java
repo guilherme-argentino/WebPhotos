@@ -15,35 +15,25 @@
  */
 package net.sf.webphotos.netbeans;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import javax.swing.JDialog;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
 import junit.framework.Test;
 import org.netbeans.jellytools.JellyTestCase;
-import org.netbeans.jellytools.OptionsOperator;
 import org.netbeans.jellytools.TopComponentOperator;
 import org.netbeans.jellytools.actions.Action;
-import org.netbeans.jemmy.ComponentChooser;
-import org.netbeans.jemmy.QueueTool;
 import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JListOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
-import org.netbeans.jemmy.operators.JTabbedPaneOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;
 import org.netbeans.jemmy.operators.JTextPaneOperator;
 import org.netbeans.jemmy.operators.JTreeOperator;
-import org.netbeans.jemmy.operators.TextComponentOperator;
 import org.netbeans.jemmy.util.Dumper;
-import org.netbeans.jemmy.util.NameComponentChooser;
 import org.netbeans.jemmy.util.PNGEncoder;
 import org.netbeans.junit.NbModuleSuite;
 import org.netbeans.junit.NbModuleSuite.Configuration;
