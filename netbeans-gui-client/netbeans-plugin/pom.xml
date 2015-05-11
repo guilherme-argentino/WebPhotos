@@ -37,13 +37,6 @@
             <artifactId>org-netbeans-api-annotations-common</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.webphotos</groupId>
-            <artifactId>webphotos-swing-client</artifactId>
-            <version>${project.version}</version>
-            <scope>compile</scope>
-            <type>jar</type>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
