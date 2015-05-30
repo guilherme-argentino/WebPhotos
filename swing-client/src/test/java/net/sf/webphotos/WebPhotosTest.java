@@ -30,7 +30,6 @@ import org.junit.Test;
  *
  * @author Guilherme
  */
-@Ignore
 public class WebPhotosTest {
     
     public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
@@ -43,6 +42,18 @@ public class WebPhotosTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         WEB_PHOTOS_DELEGATE.setUpClass();
+        // display new properties
+        System.getProperties().list(System.out);
+        recreateDirs("diretorioAdicionarFotos");
+        recreateDirs("albunsRoot");
+    }
+
+    private static void recreateDirs(String diretorioAdicionarFotosParm) {
+        File diretorioAdicionarFotos = new File(Util.getProperty(diretorioAdicionarFotosParm));
+        if(diretorioAdicionarFotos.exists()){
+            diretorioAdicionarFotos.delete();
+        }
+        diretorioAdicionarFotos.mkdirs();
     }
 
     /**
@@ -87,7 +98,6 @@ public class WebPhotosTest {
     }
 
     @Test
-    @Ignore
     public void testCreateAlbumWithPhotos() {
         System.out.println("Create Album With Photos");
         WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
