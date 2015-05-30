@@ -41,11 +41,11 @@ public class WebPhotosTest {
      */
     @BeforeClass
     public static void setUpClass() throws Exception {
-        WEB_PHOTOS_DELEGATE.setUpClass();
         // display new properties
         System.getProperties().list(System.out);
         recreateDirs("diretorioAdicionarFotos");
         recreateDirs("albunsRoot");
+        WEB_PHOTOS_DELEGATE.setUpClass();
     }
 
     private static void recreateDirs(String diretorioAdicionarFotosParm) {
@@ -121,7 +121,7 @@ public class WebPhotosTest {
         WEB_PHOTOS_DELEGATE.addPhotosToAlbumAndCheck(fileNames, "buttonAddPhotos", new File(fileNames[0]).getParentFile(), "Adicionar fotos no \u00e1lbum");
         checkNewAlbumButton();
         
-        final Map<String, String[]> photoData = new HashMap<String, String[]>();
+        final Map<String, String[]> photoData = new HashMap<>();
         for (String fileName : fileNames) {
             photoData.put(fileName, new String[] { "Original Name: " + fileName, "Divulgacao" });
         }
