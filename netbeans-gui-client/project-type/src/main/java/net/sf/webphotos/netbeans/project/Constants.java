@@ -13,11 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.sf.webphotos.netbeans.project;
+
+import org.netbeans.api.annotations.common.StaticResource;
 
 /**
  *
@@ -25,6 +23,7 @@ package net.sf.webphotos.netbeans.project;
  */
 public interface Constants {
 
+    @StaticResource
     public static final String PROJECT_ICON = "net/sf/webphotos/netbeans/project/projectIcon.png";
 
     public interface ProjectFactory {
@@ -36,6 +35,7 @@ public interface Constants {
         public interface EmptyProject {
             
             public static final String PROJECT_DISPLAY_MANE = "net.sf.webphotos.netbeans.project.Bundle#Templates/Project/WebPhotos/EmptyWebPhotosProjectProject.zip";
+            @StaticResource
             public static final String PROJECT_ICON_BASE = "net/sf/webphotos/netbeans/project/projectIcon.png";
             public static final String PROJECT_FOLDER = "Project/WebPhotos";
             public static final String PROJECT_DESCRIPTION = "/net/sf/webphotos/netbeans/project/empty/EmptyWebPhotosProjectDescription.html";

@@ -23,13 +23,16 @@ import net.sf.webphotos.util.Util;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author Guilherme
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class WebPhotosTest {
     
     public static final WebPhotosDelegate WEB_PHOTOS_DELEGATE = net.sf.webphotos.gui.util.uispec4j.WebPhotosDelegate.getWebPhotosDelegate();
@@ -77,7 +80,7 @@ public class WebPhotosTest {
      * Creating a Category.
      */
     @Test
-    public void testAddCategory() {
+    public void test1AddCategory() {
         System.out.println("Add Category");
         WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
         WEB_PHOTOS_DELEGATE.fillModalWithText("buttonAddCategory", "Cat", "Geral");
@@ -89,7 +92,7 @@ public class WebPhotosTest {
      * Creating a Credit.
      */
     @Test
-    public void testAddCredits() {
+    public void test2AddCredits() {
         System.out.println("Add Credits");
         WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
         WEB_PHOTOS_DELEGATE.fillModalWithText("buttonAddCredits", "Cred", "Divulgacao");
@@ -98,7 +101,7 @@ public class WebPhotosTest {
     }
 
     @Test
-    public void testCreateAlbumWithPhotos() {
+    public void test3CreateAlbumWithPhotos() {
         System.out.println("Create Album With Photos");
         WEB_PHOTOS_DELEGATE.validateMainWindowIsPresent();
 
