@@ -46,18 +46,11 @@ public class WebPhotosTest {
     public static void setUpClass() throws Exception {
         // display new properties
         System.getProperties().list(System.out);
-        recreateDirs("diretorioAdicionarFotos");
-        recreateDirs("albunsRoot");
+        net.sf.webphotos.cli.Util.recreateDirs("diretorioAdicionarFotos");
+        net.sf.webphotos.cli.Util.recreateDirs("albunsRoot");
         WEB_PHOTOS_DELEGATE.setUpClass();
     }
 
-    private static void recreateDirs(String diretorioAdicionarFotosParm) {
-        File diretorioAdicionarFotos = new File(Util.getProperty(diretorioAdicionarFotosParm));
-        if(diretorioAdicionarFotos.exists()){
-            diretorioAdicionarFotos.delete();
-        }
-        diretorioAdicionarFotos.mkdirs();
-    }
 
     /**
      *
