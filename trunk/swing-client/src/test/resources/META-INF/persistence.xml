@@ -26,7 +26,7 @@
     <properties>
       <property name="hibernate.dialect" value="${filter.hibernate.dialect}"/>
       <property name="hibernate.connection.driver_class" value="${filter.hibernate.connection.driver_class}"/>
-      <property name="hibernate.hbm2ddl.auto" value="${filter.hibernate.hbm2ddl.auto}" />
+      <property name="hibernate.hbm2ddl.auto" value="create-drop" />
       <property name="hibernate.show_sql" value="true" />
     </properties>
   </persistence-unit>

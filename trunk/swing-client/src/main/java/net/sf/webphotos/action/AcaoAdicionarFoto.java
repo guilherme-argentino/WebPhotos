@@ -38,10 +38,10 @@ public class AcaoAdicionarFoto extends AbstractAction {
     private static final long serialVersionUID = 8331561928830049243L;
     private static File diretorioInicial;
     private JFileChooser fileChooser;
-    private JTable tbFotos;
-    private String larguraColunasFotos;
-    private String titulo;
-    private JComboBox lstCreditosTabelaFotos;
+    private final JTable tbFotos;
+    private final String larguraColunasFotos;
+    private final String titulo;
+    private final JComboBox lstCreditosTabelaFotos;
 
     /**
      * Construtor da classe. Recebe 3 parâmetros. A tabela de fotos, um combobox
