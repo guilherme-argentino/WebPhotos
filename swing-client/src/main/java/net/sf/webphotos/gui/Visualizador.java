@@ -33,7 +33,7 @@ import javax.swing.JDialog;
  */
 public class Visualizador extends JDialog implements ActionListener {
 
-    private Image foto;
+    private final Image foto;
     private int largura;
     private int altura;
 

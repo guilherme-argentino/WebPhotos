@@ -32,13 +32,15 @@ public class Resolucao {
 
 class TelaResolucao extends JFrame {
 
-    private JTextArea texto;
-    private JTextArea instrucao;
-    private JLabel contador = new JLabel("0/0");
-    private JLabel bons = new JLabel("0");
-    private JLabel maus = new JLabel("0");
+    private final JTextArea texto;
+    private final JTextArea instrucao;
+    private final JLabel contador;
+    private final JLabel bons;
+    private final JLabel maus = new JLabel("0");
 
     public TelaResolucao() {
+        this.bons = new JLabel("0");
+        this.contador = new JLabel("0/0");
         setSize(470, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -87,12 +89,10 @@ class TelaResolucao extends JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection(url, "root", "");
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select count(*) from fotos");
-            rs.first();
-            totalRegistros = rs.getInt(1);
-            rs.close();
-            st.close();
+            try (Statement st = conn.createStatement(); ResultSet rs = st.executeQuery("select count(*) from fotos")) {
+                rs.first();
+                totalRegistros = rs.getInt(1);
+            }
 
             st1 = conn.createStatement();
             rs1 = st1.executeQuery("select albumID from albuns order by albumID");
@@ -137,7 +137,7 @@ class TelaResolucao extends JFrame {
                 rs2.close();
             }
 
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             texto.append("erro na leitura do driver " + e);
         }
     }

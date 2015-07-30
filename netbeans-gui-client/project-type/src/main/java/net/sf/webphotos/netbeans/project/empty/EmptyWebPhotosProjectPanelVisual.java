@@ -29,7 +29,7 @@ import org.openide.filesystems.FileUtil;
 public class EmptyWebPhotosProjectPanelVisual extends JPanel {
 
     public static final String PROP_PROJECT_NAME = "projectName";
-    private EmptyWebPhotosProjectWizardPanel panel;
+    private final EmptyWebPhotosProjectWizardPanel panel;
 
     public EmptyWebPhotosProjectPanelVisual(EmptyWebPhotosProjectWizardPanel panel) {
         initComponents();

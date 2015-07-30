@@ -57,7 +57,7 @@ public class EmptyWebPhotosProjectWizardPanel implements WizardDescriptor.Panel,
         getComponent();
         return component.valid(wizardDescriptor);
     }
-    private final Set<ChangeListener> listeners = new HashSet<ChangeListener>(1); // or can use ChangeSupport in NB 6.0
+    private final Set<ChangeListener> listeners = new HashSet<>(1); // or can use ChangeSupport in NB 6.0
 
     @Override
     public final void addChangeListener(ChangeListener l) {
@@ -76,7 +76,7 @@ public class EmptyWebPhotosProjectWizardPanel implements WizardDescriptor.Panel,
     protected final void fireChangeEvent() {
         Set<ChangeListener> ls;
         synchronized (listeners) {
-            ls = new HashSet<ChangeListener>(listeners);
+            ls = new HashSet<>(listeners);
         }
         ChangeEvent ev = new ChangeEvent(this);
         for (ChangeListener l : ls) {

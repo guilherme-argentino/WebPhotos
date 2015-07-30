@@ -89,7 +89,7 @@ public class WebPhotosProject implements Project {
 
     private final class ActionProviderImpl implements ActionProvider {
 
-        private Map<String, Runnable> supportedOps = new HashMap<String, Runnable>();
+        private final Map<String, Runnable> supportedOps = new HashMap<>();
 
         /**
          * It builds a map with supported commands
@@ -145,13 +145,13 @@ public class WebPhotosProject implements Project {
 
         @Override
         public List<FileObject> getMetadataFiles() {
-            List<FileObject> dataFiles = new ArrayList<FileObject>();
+            List<FileObject> dataFiles = new ArrayList<>();
             return dataFiles;
         }
 
         @Override
         public List<FileObject> getDataFiles() {
-            List<FileObject> dataFiles = new ArrayList<FileObject>();
+            List<FileObject> dataFiles = new ArrayList<>();
             return dataFiles;
         }
     }
