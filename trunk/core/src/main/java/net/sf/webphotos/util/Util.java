@@ -16,6 +16,7 @@
 package net.sf.webphotos.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.StringTokenizer;
@@ -27,6 +28,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import org.apache.commons.configuration.CombinedConfiguration;
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.DefaultConfigurationBuilder;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.log4j.Logger;
@@ -88,7 +90,7 @@ public class Util {
             savedUserPrefs.append(configuration);
             savedUserPrefs.setEncoding("ISO-8859-1");
             savedUserPrefs.save(new FileOutputStream(userHome + File.separatorChar + WEBPHOTOS_USER_CONFIG));
-        } catch (Exception e) {
+        } catch (ConfigurationException | FileNotFoundException e) {
             log.warn("Can't save preferences");
             log.debug("Stack Trace : ", e);
         }
@@ -148,6 +150,7 @@ public class Util {
      * chave) e faz um teste para checar se é um diretório mesmo. Caso tudo
      * esteja correto, retorna o diretório.
      *
+     * @param param
      * @return Retorna um diretório.
      */
     public static File getFolder(String param) {
@@ -250,11 +253,14 @@ public class Util {
                 try {
                     modeloColunas.getColumn(ct).setPreferredWidth(Integer.parseInt(l));
                 } catch (NumberFormatException nE) {
-                    if (l.equals("*")) {
-                        log.info("Packing column " + ct);
-                        packColumn(tabela, ct, 1);
-                    } else if (l.equals("R")) {
-                        temR = ct;
+                    switch (l) {
+                        case "*":
+                            log.info("Packing column " + ct);
+                            packColumn(tabela, ct, 1);
+                            break;
+                        case "R":
+                            temR = ct;
+                            break;
                     }
                 } catch (Exception e) {
                 }

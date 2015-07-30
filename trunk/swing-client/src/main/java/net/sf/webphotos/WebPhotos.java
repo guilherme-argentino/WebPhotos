@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
  */
 public class WebPhotos {
 
-    private static Logger log = Logger.getLogger(WebPhotos.class);
+    private static final Logger log = Logger.getLogger(WebPhotos.class);
 
     /**
      * Contêm uma série de rotinas para inicialização do programa. No primeiro

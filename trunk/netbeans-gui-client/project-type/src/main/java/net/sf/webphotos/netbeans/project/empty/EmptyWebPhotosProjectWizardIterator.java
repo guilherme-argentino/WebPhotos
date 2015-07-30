@@ -81,7 +81,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
 
     @Override
     public Set<FileObject> instantiate() throws IOException {
-        Set<FileObject> resultSet = new LinkedHashSet<FileObject>();
+        Set<FileObject> resultSet = new LinkedHashSet<>();
         File dirF = FileUtil.normalizeFile((File) wiz.getProperty(PROP_PROJECT_DIR));
         dirF.mkdirs();
 
@@ -126,7 +126,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
             if (c instanceof JComponent) { // assume Swing components
                 JComponent jc = (JComponent) c;
                 // Step #.
-                jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, new Integer(i));
+                jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, i);
                 // Step name (actually the whole list for reference).
                 jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DATA, steps);
             }
@@ -144,7 +144,7 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
     @Override
     public String name() {
         return MessageFormat.format("{0} of {1}",
-                new Object[]{new Integer(index + 1), new Integer(panels.length)});
+                new Object[]{index + 1, panels.length});
     }
 
     @Override
@@ -210,11 +210,8 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
     }
 
     private static void writeFile(ZipInputStream str, FileObject fo) throws IOException {
-        OutputStream out = fo.getOutputStream();
-        try {
+        try (OutputStream out = fo.getOutputStream()) {
             FileUtil.copy(str, out);
-        } finally {
-            out.close();
         }
     }
 
@@ -236,11 +233,8 @@ public class EmptyWebPhotosProjectWizardIterator implements WizardDescriptor.Ins
                     }
                 }
             }
-            OutputStream out = fo.getOutputStream();
-            try {
+            try (OutputStream out = fo.getOutputStream()) {
                 XMLUtil.write(doc, out, "UTF-8");
-            } finally {
-                out.close();
             }
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
