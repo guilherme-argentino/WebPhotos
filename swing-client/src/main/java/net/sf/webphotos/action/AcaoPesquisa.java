@@ -38,9 +38,9 @@ public class AcaoPesquisa extends AbstractAction {
      *
      */
     private static final long serialVersionUID = -3050139194212291060L;
-    private JComboBox lstCategoriasPesquisa;
-    private JTextField txtPesquisa;
-    private Configuration c = Util.getConfig();
+    private final JComboBox lstCategoriasPesquisa;
+    private final JTextField txtPesquisa;
+    private final Configuration c = Util.getConfig();
 
     /**
      * Construtro da classe. Recebe três parâmetros. Uma lista inicial de

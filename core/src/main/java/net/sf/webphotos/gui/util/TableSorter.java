@@ -120,8 +120,8 @@ public final class TableSorter extends AbstractTableModel {
     private JTableHeader tableHeader;
     private MouseListener mouseListener;
     private TableModelListener tableModelListener;
-    private Map<Class<?>, Comparator<?>> columnComparators = new HashMap<Class<?>, Comparator<?>>();
-    private List<Directive> sortingColumns = new ArrayList<Directive>();
+    private Map<Class<?>, Comparator<?>> columnComparators = new HashMap<>();
+    private List<Directive> sortingColumns = new ArrayList<>();
 
     /**
      *

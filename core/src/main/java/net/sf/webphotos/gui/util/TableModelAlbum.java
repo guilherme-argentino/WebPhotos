@@ -16,11 +16,16 @@
 package net.sf.webphotos.gui.util;
 
 // Modelo de tabela para bases de dados com suporte a cursores rolantes (MYSQL)
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Parameter;
+import javax.persistence.Query;
 import javax.sql.RowSetEvent;
 import javax.sql.RowSetListener;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 import net.sf.webphotos.dao.jpa.AlbumDAO;
 import net.sf.webphotos.util.ApplicationContextResource;
 import org.apache.log4j.Logger;
@@ -28,15 +33,16 @@ import org.apache.log4j.Logger;
 /**
  * Gera o modelo da tabela de albuns.
  */
-public class TableModelAlbum extends AbstractTableModel implements RowSetListener {
+public class TableModelAlbum extends AbstractTableModel implements TableModel {
 
     private static final long serialVersionUID = 8393087620197315052L;
     private static final TableModelAlbum instancia = new TableModelAlbum();
     private String ultimoSQL;
     
     private List<Object[]> tableData = null;
-    private static Logger log = Logger.getLogger(TableModelAlbum.class);
-    private static AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
+    private List<Parameter<?>> tableHead = null;
+    private static final Logger log = Logger.getLogger(TableModelAlbum.class);
+    private static final AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
 
     // construtor
     private TableModelAlbum() {
@@ -57,7 +63,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      * enviando a variavel últimoSQL como parametro.
      */
     public void update() {
-        update(getUltimoSQL());
+        update(ultimoSQL);
     }
 
     /**
@@ -67,11 +73,13 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      *
      * @param sql Comando de sql.
      */
-    public void update(String sql) {
+    public synchronized void update(String sql) {
         try {
             ultimoSQL = sql;
             log.debug("Executando - " + ultimoSQL);
-            tableData = albunsDAO.findByNativeQuery(ultimoSQL);
+            final Query createNativeQuery = albunsDAO.createNativeQuery(ultimoSQL);
+            tableHead = new ArrayList<>(createNativeQuery.getParameters());
+            tableData = createNativeQuery.getResultList();
         } catch (Exception ex) {
             log.error("Ocorreu um erro durante a leitura do álbum no banco de dados", ex);
             int selecao = JOptionPane.showConfirmDialog(null,
@@ -97,7 +105,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     @Override
     public String getColumnName(int col) {
         try {
-            return albunsDAO.createNativeQuery(ultimoSQL).getParameter(col).getName();
+            if(tableData == null && ultimoSQL != null) update();
+            return tableHead.get(col).getName();
         } catch (Exception e) {
             log.error("Error trying to get column name", e);
             return "Error";
@@ -112,6 +121,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     @Override
     public int getColumnCount() {
         try {
+            if(tableData == null && ultimoSQL != null) update();
             return albunsDAO.createNativeQuery(ultimoSQL).getParameters().size();
         } catch (Exception e) {
             log.error("Error trying to get column count", e);
@@ -127,7 +137,8 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     @Override
     public int getRowCount() {
         try {
-            return albunsDAO.createNativeQuery(ultimoSQL).getResultList().size();
+            if(tableData == null && ultimoSQL != null) update();
+            return tableData.size();
         } catch (Exception e) {
             log.error("Error trying to get row count", e);
             return 0;
@@ -144,6 +155,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     @Override
     public Object getValueAt(int row, int col) {
         try {
+            if(tableData == null && ultimoSQL != null) update();
             return tableData.get(row)[col];
         } catch (Exception e) {
             log.error("Error trying to get value at (" + row + "," + col + ")", e);
@@ -176,6 +188,7 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
     @Override
     public Class<?> getColumnClass(int column) {
         try {
+            if(tableData == null && ultimoSQL != null) update();
             return albunsDAO.createNativeQuery(ultimoSQL).getParameter(column).getParameterType();
         } catch (Exception e) {
             log.warn("Error getting column class, returning SuperType information", e);
@@ -199,36 +212,21 @@ public class TableModelAlbum extends AbstractTableModel implements RowSetListene
      */
     public void setUltimoSQL(String ultimoSQL) {
         this.ultimoSQL = ultimoSQL;
+        update();
     }
 
-    /**
-     * Notifica aos listenners que a estrutura da tabela foi modificada. Apenas
-     * chama o método {@link javax.swing.table.AbstractTableModel#fireTableStructureChanged() fireTableStructureChanged()}.
-     *
-     * @param event Evento de ação na tabela.
-     */
     @Override
-    public void rowSetChanged(RowSetEvent event) {
-        fireTableStructureChanged();
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    /**
-     * Notifica que a estrutura da tabela foi modificada, porém informa qual a
-     * função foi feita (insert, delete ou update).
-     *
-     * @param event Evento de ação na tabela.
-     */
     @Override
-    public void rowChanged(RowSetEvent event) {
-        fireTableDataChanged();
+    public void addTableModelListener(TableModelListener l) {
+        super.addTableModelListener(l);
     }
 
-    /**
-     * Não possui corpo. TODO: avaliar a exclusão dessa função.
-     *
-     * @param event Evento.
-     */
     @Override
-    public void cursorMoved(RowSetEvent event) {
+    public void removeTableModelListener(TableModelListener l) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
