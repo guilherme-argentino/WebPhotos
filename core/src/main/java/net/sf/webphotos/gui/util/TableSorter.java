@@ -219,8 +219,8 @@ public final class TableSorter extends AbstractTableModel {
     }
 
     private Directive getDirective(int column) {
-        for (int i = 0; i < sortingColumns.size(); i++) {
-            Directive directive = (Directive) sortingColumns.get(i);
+        for (Directive sortingColumn : sortingColumns) {
+            Directive directive = (Directive) sortingColumn;
             if (directive.column == column) {
                 return directive;
             }
@@ -391,19 +391,17 @@ public final class TableSorter extends AbstractTableModel {
             this.modelIndex = index;
         }
 
-        @SuppressWarnings("unchecked")
         @Override
         public int compareTo(Row o) {
             int row1 = modelIndex;
             int row2 = o.modelIndex;
 
-            for (Iterator<Directive> it = sortingColumns.iterator(); it.hasNext();) {
-                Directive directive = (Directive) it.next();
+            for (Directive directive : sortingColumns) {
                 int column = directive.column;
                 Object o1 = tableModel.getValueAt(row1, column);
                 Object o2 = tableModel.getValueAt(row2, column);
 
-                int comparison = 0;
+                int comparison;
                 // Define null less than everything, except null.
                 if (o1 == null && o2 == null) {
                     comparison = 0;
@@ -502,9 +500,9 @@ public final class TableSorter extends AbstractTableModel {
 
     private static class Arrow implements Icon {
 
-        private boolean descending;
-        private int size;
-        private int priority;
+        private final boolean descending;
+        private final int size;
+        private final int priority;
 
         public Arrow(boolean descending, int size, int priority) {
             this.descending = descending;

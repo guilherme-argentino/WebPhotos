@@ -48,7 +48,7 @@ import org.apache.log4j.Logger;
  */
 public class PainelWebFotos extends javax.swing.JPanel {
 
-    private static Logger log = Logger.getLogger(PainelWebFotos.class);
+    private static final Logger log = Logger.getLogger(PainelWebFotos.class);
     private static PainelWebFotos janela;
     /**
      *

@@ -42,10 +42,10 @@ public class FtpClient extends JFrame implements Runnable {
     private static final int ONE_SECOND = 1000;
     private static final Logger log = Logger.getLogger(FtpClient.class);
     private String ftpRoot = Util.getProperty("FTPRoot");
-    private static File albunsRoot = Util.getAlbunsRoot();
+    private static final File albunsRoot = Util.getAlbunsRoot();
     private Container cp;
-    private JScrollPane scrTabela;
-    private JTable tabela;
+    private final JScrollPane scrTabela;
+    private final JTable tabela;
     private JTextArea txtLog = new JTextArea();
     private JScrollPane scrLog = new JScrollPane(txtLog);
     private JProgressBar barra = new JProgressBar(0, 100);
@@ -55,7 +55,7 @@ public class FtpClient extends JFrame implements Runnable {
     private JLabel lblKbytes = new JLabel("0 Kb");
     private JLabel lblKbytesArquivoAtual = new JLabel("0 Kb");
     private JButton btFechar = new JButton("fechar");
-    private FTPTabelModel modeloTabela;
+    private final FTPTabelModel modeloTabela;
     private Modal modal;
     private Sync ftp;
     private int reply;
@@ -316,131 +316,132 @@ public class FtpClient extends JFrame implements Runnable {
             }
 
             // UPLOAD
-            if (acao.equals("enviar")) {
-                if (diretorioDownload == null) {
-                    diretorioDownload = albunsRoot.getAbsolutePath() + File.separator + albumID;
-                }
-                arqOrigem = diretorioDownload + File.separator + arquivo;
-                Util.out.println(arqOrigem + " -> " + arquivo);
-                try {
-                    streamOrigem = new FileInputStream(arqOrigem);
-                    streamDestino = new BufferedOutputStream(ftp.storeFileStream(arquivo), ftp.getBufferSize());
-                    this.transfereArquivo((InputStream) streamOrigem, (OutputStream) streamDestino, Long.parseLong(tabela.getValueAt(i, 5).toString()));
-                    tabela.setValueAt("ok", i, 0);
-                } catch (FileNotFoundException ioE) {
-                    Util.log("[FtpClient.run]/AVISO: " + arqOrigem + " não foi encontrado.");
-                    tabela.setValueAt("ok - ne", i, 0);
-                } catch (IOException ioE) {
-                    Util.log("[FtpClient.run]/ERRO: erro na transmissão de " + arqOrigem);
-                    ioE.printStackTrace(Util.out);
-                    tabela.setValueAt("erro", i, 0);
-                } catch (Exception e) {
-                    Util.err.println("Erro inexperado: " + e.getMessage());
-                    e.printStackTrace(Util.out);
-                    tabela.setValueAt("erro", i, 0);
-                } finally {
-                    try {
-                        ftp.printWorkingDirectory();
-                    } catch (IOException e) {
-                    }
-                    try {
-                        ((OutputStream) streamDestino).close();
-                        ((InputStream) streamOrigem).close();
-                    } catch (Exception e) {
-                    }
-                }
-                posTransfer(i);
-
-                // DELETE
-            } else if (acao.equals("apagar")) {
-
-                // apaga o diretorio inteiro
-                if (arquivo.equals("* todos")) {
-                    try {
-                        for (FTPFile remote : remoteFiles) {
-                            ftp.deleteFile(remote.getName());
-                            Util.log("Removendo arquivo remoto " + remote.getName());
-                            transmitido += remote.getSize();
-                            Util.out.println("Processado " + transmitido + " de " + totalBytes);
-                            barra.setValue((int) transmitido);
-                            lblKbytes.setText(Math.round((float) transmitido / 1024) + " Kb");
-                        }
-
-                        // Volta para o diretório principal
-                        ftp.changeWorkingDirectory(ftpRoot);
-                        // finalmente remove o diretorio
-                        ftp.removeDirectory(albumID);
-                        tabela.setValueAt("ok", i, 0);
-
-                    } catch (Exception e) {
-                        tabela.setValueAt("erro", i, 0);
-                        log.error(e);
-                    }
-                    // apaga somente uma foto
-                } else {
-                    for (FTPFile remote : remoteFiles) {
-                        if (remote.getName().equals(arquivo)) {
-                            remoteFile = remote;
-                            break;
-                        }
-                    }
-                    //remoteFile=RemoteFile.findRemoteFile(remoteFiles,arquivo);
-                    if (remoteFile == null) {
-                        tabela.setValueAt("ok - ne", i, 0);
-                    } else {
-                        tabela.setValueAt(Long.toString(remoteFile.getSize()), i, 5);
-                        try {
-                            ftp.deleteFile(arquivo);
-                            tabela.setValueAt("ok", i, 0);
-
-                            posTransfer(i);
-                        } catch (Exception e) {
-                            tabela.setValueAt("erro", i, 0);
-                        }
-                    }
-                }
-
-                // DOWNLOAD - recebe os arquivos (pré listado e calculado)
-            } else if (acao.equals("receber")) {
-                try {
-                    // cada vez que muda o diretório, a variável diretórioDownload é nula
+            switch (acao) {
+                case "enviar":
                     if (diretorioDownload == null) {
                         diretorioDownload = albunsRoot.getAbsolutePath() + File.separator + albumID;
-                        File temp = new File(diretorioDownload);
-
-                        if (!temp.isDirectory()) {
-                            temp.mkdir();
-                            Util.log("Criando diretório " + diretorioDownload);
+                    }   arqOrigem = diretorioDownload + File.separator + arquivo;
+                    Util.out.println(arqOrigem + " -> " + arquivo);
+                    try {
+                        streamOrigem = new FileInputStream(arqOrigem);
+                        streamDestino = new BufferedOutputStream(ftp.storeFileStream(arquivo), ftp.getBufferSize());
+                        this.transfereArquivo((InputStream) streamOrigem, (OutputStream) streamDestino, Long.parseLong(tabela.getValueAt(i, 5).toString()));
+                        tabela.setValueAt("ok", i, 0);
+                    } catch (FileNotFoundException ioE) {
+                        Util.log("[FtpClient.run]/AVISO: " + arqOrigem + " não foi encontrado.");
+                        tabela.setValueAt("ok - ne", i, 0);
+                    } catch (IOException ioE) {
+                        Util.log("[FtpClient.run]/ERRO: erro na transmissão de " + arqOrigem);
+                        ioE.printStackTrace(Util.out);
+                        tabela.setValueAt("erro", i, 0);
+                    } catch (NumberFormatException e) {
+                        Util.err.println("Erro inexperado: " + e.getMessage());
+                        e.printStackTrace(Util.out);
+                        tabela.setValueAt("erro", i, 0);
+                    } finally {
+                        try {
+                            ftp.printWorkingDirectory();
+                        } catch (IOException e) {
                         }
-                        temp = null;
+                        try {
+                            ((OutputStream) streamDestino).close();
+                            ((InputStream) streamOrigem).close();
+                        } catch (Exception e) {
+                        }
+                    }   posTransfer(i);
+                    
+                    // DELETE
+                    break;
+                case "apagar":
+                    // apaga o diretorio inteiro
+                    if (arquivo.equals("* todos")) {
+                        try {
+                            for (FTPFile remote : remoteFiles) {
+                                ftp.deleteFile(remote.getName());
+                                Util.log("Removendo arquivo remoto " + remote.getName());
+                                transmitido += remote.getSize();
+                                Util.out.println("Processado " + transmitido + " de " + totalBytes);
+                                barra.setValue((int) transmitido);
+                                lblKbytes.setText(Math.round((float) transmitido / 1024) + " Kb");
+                            }
+                            
+                            // Volta para o diretório principal
+                            ftp.changeWorkingDirectory(ftpRoot);
+                            // finalmente remove o diretorio
+                            ftp.removeDirectory(albumID);
+                            tabela.setValueAt("ok", i, 0);
+
+                        } catch (Exception e) {
+                            tabela.setValueAt("erro", i, 0);
+                            log.error(e);
+                        }
+                        // apaga somente uma foto
+                    } else {
+                        for (FTPFile remote : remoteFiles) {
+                            if (remote.getName().equals(arquivo)) {
+                                remoteFile = remote;
+                                break;
+                            }
+                        }
+                        //remoteFile=RemoteFile.findRemoteFile(remoteFiles,arquivo);
+                        if (remoteFile == null) {
+                            tabela.setValueAt("ok - ne", i, 0);
+                        } else {
+                            tabela.setValueAt(Long.toString(remoteFile.getSize()), i, 5);
+                            try {
+                                ftp.deleteFile(arquivo);
+                                tabela.setValueAt("ok", i, 0);
+                                
+                                posTransfer(i);
+                            } catch (IOException | NumberFormatException e) {
+                                tabela.setValueAt("erro", i, 0);
+                            }
+                        }
                     }
-                    arqDestino = diretorioDownload + File.separator + arquivo;
-                    Util.out.println(arquivo + " -> " + arqDestino);
-
-                    streamOrigem =
-                            new BufferedInputStream(
-                            ftp.retrieveFileStream(arquivo),
-                            ftp.getBufferSize());
-
-                    streamDestino =
-                            new FileOutputStream(arqDestino);
-
-                    this.transfereArquivo((InputStream) streamOrigem, (OutputStream) streamDestino, Long.parseLong(tabela.getValueAt(i, 5).toString()));
-                    tabela.setValueAt("ok", i, 0);
-
-                    // calcula porcentagem e atualiza barra
-                    posTransfer(i);
-
-                } catch (IOException ioE) {
-                    Util.err.println("Erro de transmissão: " + ioE.getMessage() + " "
-                            + ((CopyStreamException) ioE).getIOException().getMessage());
-                    tabela.setValueAt("erro", i, 0);
-                    log.error(ioE);
-                } catch (Exception e) {
-                    Util.err.println("Erro: ");
-                    log.error(e);
-                    tabela.setValueAt("erro", i, 0);
-                } finally {
+                    
+                    // DOWNLOAD - recebe os arquivos (pré listado e calculado)
+                    break;
+                    // fim if
+                case "receber":
+                    try {
+                        // cada vez que muda o diretório, a variável diretórioDownload é nula
+                        if (diretorioDownload == null) {
+                            diretorioDownload = albunsRoot.getAbsolutePath() + File.separator + albumID;
+                            File temp = new File(diretorioDownload);
+                            
+                            if (!temp.isDirectory()) {
+                                temp.mkdir();
+                                Util.log("Criando diretório " + diretorioDownload);
+                            }
+                            temp = null;
+                        }
+                        arqDestino = diretorioDownload + File.separator + arquivo;
+                        Util.out.println(arquivo + " -> " + arqDestino);
+                        
+                        streamOrigem =
+                                new BufferedInputStream(
+                                        ftp.retrieveFileStream(arquivo),
+                                        ftp.getBufferSize());
+                        
+                        streamDestino =
+                                new FileOutputStream(arqDestino);
+                        
+                        this.transfereArquivo((InputStream) streamOrigem, (OutputStream) streamDestino, Long.parseLong(tabela.getValueAt(i, 5).toString()));
+                        tabela.setValueAt("ok", i, 0);
+                        
+                        // calcula porcentagem e atualiza barra
+                        posTransfer(i);
+                        
+                    } catch (IOException ioE) {
+                        Util.err.println("Erro de transmissão: " + ioE.getMessage() + " "
+                                + ((CopyStreamException) ioE).getIOException().getMessage());
+                        tabela.setValueAt("erro", i, 0);
+                        log.error(ioE);
+                    } catch (NumberFormatException e) {
+                        Util.err.println("Erro: ");
+                        log.error(e);
+                        tabela.setValueAt("erro", i, 0);
+                    } finally {
                     try {
                         ftp.printWorkingDirectory();
                     } catch (IOException e) {
@@ -450,8 +451,8 @@ public class FtpClient extends JFrame implements Runnable {
                         ((OutputStream) streamDestino).close();
                     } catch (IOException e) {
                     }
-                }
-            }// fim if
+                }   break;
+            }
 
             ultimoID = albumID;
         } // fim for
@@ -492,7 +493,7 @@ public class FtpClient extends JFrame implements Runnable {
                     } catch (SyncException se) {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         log.error(e);
                     }
                 } else {
@@ -510,7 +511,7 @@ public class FtpClient extends JFrame implements Runnable {
                     } catch (SyncException se) {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         log.error(e);
                     }
                 }
@@ -530,7 +531,7 @@ public class FtpClient extends JFrame implements Runnable {
                     } catch (SyncException se) {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         log.error(e);
                     }
                 } else {
@@ -548,7 +549,7 @@ public class FtpClient extends JFrame implements Runnable {
                     } catch (SyncException se) {
                         Util.log(se.getMessage());
                         ftp.disconnect("não foi possivel entrar no diretorio");
-                    } catch (Exception e) {
+                    } catch (IOException e) {
                         log.error(e);
                     }
                 }

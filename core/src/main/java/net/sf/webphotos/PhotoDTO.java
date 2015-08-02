@@ -74,6 +74,7 @@ public class PhotoDTO extends PhotoEntity {
      * @param fotoCreditoNome Crédito.
      * @param fotoLargura Largura da foto.
      * @param fotoAltura Altura da foto.
+     * @param tamanhoBytes
      */
     public PhotoDTO(int ID, int albumID, String fotoLegenda, int fotoCreditoID, String fotoCreditoNome, int fotoLargura, int fotoAltura, long tamanhoBytes) {
         this.fotoID = ID;
@@ -249,9 +250,9 @@ public class PhotoDTO extends PhotoEntity {
         creditoNome = nome;
         // pesquisa no array creditos e completa creditoID
         if (creditos != null) {
-            for (int i = 0; i < creditos.length; i++) {
-                if (creditoNome.equals(creditos[i][1])) {
-                    creditoID = Integer.parseInt(creditos[i][0]);
+            for (String[] credito : creditos) {
+                if (creditoNome.equals(credito[1])) {
+                    creditoID = Integer.parseInt(credito[0]);
                     break;
                 }
             }
@@ -313,9 +314,9 @@ public class PhotoDTO extends PhotoEntity {
      * @return Retorna um ID numérico.
      */
     public static int getLstCreditosID(String nomeCredito) {
-        for (int i = 0; i < creditos.length; i++) {
-            if (nomeCredito.equals(creditos[i][1])) {
-                return Integer.parseInt(creditos[i][0]);
+        for (String[] credito : creditos) {
+            if (nomeCredito.equals(credito[1])) {
+                return Integer.parseInt(credito[0]);
             }
         }
         return 0;
@@ -379,7 +380,7 @@ public class PhotoDTO extends PhotoEntity {
                 sql = "select max(fotoID) from fotos";
                 Integer tableData = (Integer) photosDAO.createNativeQuery(sql).getSingleResult();
 
-                ultimoFotoID = tableData.intValue();
+                ultimoFotoID = tableData;
             } catch (Exception ex) {
                 Util.log("[Foto.atualizaFoto]/ERRO: " + ex);
             }
