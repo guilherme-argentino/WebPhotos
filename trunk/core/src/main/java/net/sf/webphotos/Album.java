@@ -55,14 +55,14 @@ public class Album {
     /**
      * variáveis utilizadas nessa classe
      */
-    private Set<PhotoVO> fotos = new HashSet<PhotoVO>();
+    private Set<PhotoVO> fotos = new HashSet<>();
     /**
      *
      */
-    private Set<PhotoDTO> fotosNovas = new HashSet<PhotoDTO>();
+    private final Set<PhotoDTO> fotosNovas = new HashSet<>();
     private String[][] categorias = null;
-    private Logger log = Logger.getLogger(this.getClass().getName());
-    private static AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
+    private final Logger log = Logger.getLogger(this.getClass().getName());
+    private static final AlbumDAO albunsDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
 
     /**
      * nunca usado publicamente (construtor private)
@@ -281,6 +281,7 @@ public class Album {
      * diferente de null. Caso afirmativo, armazena seus valores no vetor criado
      * para retorno.
      *
+     * @param force
      * @return Retorna as categorias do albúm.
      */
     public String[] getCategoriasArray(Boolean force) {
@@ -347,9 +348,9 @@ public class Album {
      * @return Retorna um ID.
      */
     public int getLstCategoriasID(String nomeCategoria) {
-        for (int i = 0; i < categorias.length; i++) {
-            if (nomeCategoria.equals(categorias[i][1])) {
-                return Integer.parseInt(categorias[i][0]);
+        for (String[] categoria : categorias) {
+            if (nomeCategoria.equals(categoria[1])) {
+                return Integer.parseInt(categoria[0]);
             }
         }
         return -1;
@@ -466,12 +467,12 @@ public class Album {
                 String[] arquivos = diretorio.list();
                 if (arquivos.length > 0) {
                     // apagamos os arquivos desse diretorio
-                    for (int j = 0; j < arquivos.length; j++) {
-                        File arquivo = new File(BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivos[j]);
+                    for (String arquivo1 : arquivos) {
+                        File arquivo = new File(BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivo1);
                         if (arquivo.delete() == true) {
-                            log.info(BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivos[j] + " excluído com sucesso");
+                            log.info(BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivo1 + " excluído com sucesso");
                         } else {
-                            log.error("Erro na exclusão de " + BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivos[j]);
+                            log.error("Erro na exclusão de " + BancoImagem.getLocalPath(albunsID[i]) + File.separator + arquivo1);
                             sucesso = false;
                         }
                     }
@@ -503,10 +504,9 @@ public class Album {
         String nome;
         PhotoVO foto;
 
-        for (int i = 0; i < nomes.length; i++) {
+        for (String nome1 : nomes) {
             Iterator<PhotoVO> iter = fotos.iterator();
-            nome = nomes[i];
-
+            nome = nome1;
             while (iter.hasNext()) {
                 foto = iter.next();
                 if (nome.equals(foto.getCaminhoArquivo())) {
@@ -571,10 +571,9 @@ public class Album {
                 }
             }
 
-            for (int j = 0; j < prefixos.length; j++) {
-                nomeArquivo = BancoImagem.getLocalPath(aID) + File.separator + prefixos[j] + fotosID[i] + ".jpg";
+            for (String prefixo : prefixos) {
+                nomeArquivo = BancoImagem.getLocalPath(aID) + File.separator + prefixo + fotosID[i] + ".jpg";
                 File arqFoto = new File(nomeArquivo);
-
                 if (arqFoto.isFile()) {
                     if (arqFoto.delete()) {
                         log.info(nomeArquivo + " excluído com sucesso");
@@ -607,15 +606,14 @@ public class Album {
      * Inclui fotos na coleção. Recebe uma lista de arquivos de fotos, que serão
      * implantados no ArrayList fotos.
      *
-     * @param photo Lista de arquivos.
+     * @param f Lista de arquivos.
      */
     public void adicionarFotos(File[] f) {
         if (f.length == 0) {
             return;
         }
 
-        for (int i = 0; i < f.length; i++) {
-            File novaFoto = f[i];
+        for (File novaFoto : f) {
             fotosNovas.add(new PhotoDTO(novaFoto.getAbsolutePath()));
         }
     }
@@ -761,7 +759,7 @@ public class Album {
     }
 
     private Set<IsPhoto> getAllPhotos() {
-        Set<IsPhoto> joined = new HashSet<IsPhoto>();
+        Set<IsPhoto> joined = new HashSet<>();
         joined.addAll(fotos);
         joined.addAll(fotosNovas);
         return joined;

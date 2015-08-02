@@ -15,21 +15,26 @@
  */
 package net.sf.webphotos.dao.jpa;
 
+import java.sql.Connection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import net.sf.webphotos.entity.HasID;
+import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Guilherme L A Silva
+ * @param <E>
+ * @param <I>
  */
 public class WebPhotosDAO<E extends HasID, I> {
 
     protected EntityManager entityManager;
-    private Class<E> entityClass;
-    private Class<I> keyClass;
+    private final Class<E> entityClass;
+    private final Class<I> keyClass;
 
     public WebPhotosDAO(Class<E> entityClass, Class<I> keyClass) {
         this.entityClass = entityClass;
@@ -70,6 +75,12 @@ public class WebPhotosDAO<E extends HasID, I> {
      */
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+    
+    @Transactional
+    @Deprecated
+    public Session getSession() {
+        return ((Session) this.entityManager.getDelegate()).getSessionFactory().openSession();
     }
 
     /**

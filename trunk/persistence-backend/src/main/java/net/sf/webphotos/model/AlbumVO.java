@@ -184,10 +184,7 @@ public class AlbumVO implements Serializable, HasID<Integer> {
             return false;
         }
         AlbumVO other = (AlbumVO) object;
-        if ((this.albumid == null && other.albumid != null) || (this.albumid != null && !this.albumid.equals(other.albumid))) {
-            return false;
-        }
-        return true;
+        return !((this.albumid == null && other.albumid != null) || (this.albumid != null && !this.albumid.equals(other.albumid)));
     }
 
     @Override
@@ -222,7 +219,7 @@ public class AlbumVO implements Serializable, HasID<Integer> {
      * @return Photo
      */
     public PhotoVO getPhotoBy(Integer id) {
-        return new ArrayList<PhotoVO>(this.photos).get(id);
+        return new ArrayList<>(this.photos).get(id);
     }
 
     /**

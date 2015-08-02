@@ -19,9 +19,9 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.sql.RowSet;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.webphotos.gui.util.Login;
 import net.sf.webphotos.util.Util;
 import org.apache.log4j.Logger;
@@ -34,7 +34,7 @@ import org.apache.log4j.Logger;
  */
 public class BancoImagem {
 
-    private static Logger log = Logger.getLogger(BancoImagem.class);
+    private static final Logger log = Logger.getLogger(BancoImagem.class);
     private static final BancoImagem instancia = new BancoImagem();
     private static String url;
     private static String driver;
@@ -265,6 +265,7 @@ public class BancoImagem {
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (Exception e) {
             log.warn("Caution: Theme not correctly configured");
+            log.debug(e);
         }
     }
 
