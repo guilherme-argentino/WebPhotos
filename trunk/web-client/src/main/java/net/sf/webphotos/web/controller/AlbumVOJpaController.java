@@ -51,9 +51,6 @@ public class AlbumVOJpaController implements Serializable {
     }
 
     public void create(AlbumVO albumVO) throws RollbackFailureException, Exception {
-        if (albumVO.getPhotos() == null) {
-            albumVO.setPhotos(new HashSet<PhotoVO>());
-        }
         EntityManager em = null;
         try {
             utx.begin();
@@ -63,7 +60,7 @@ public class AlbumVOJpaController implements Serializable {
                 photosPhotoVOToAttach = em.getReference(photosPhotoVOToAttach.getClass(), photosPhotoVOToAttach.getFotoid());
                 attachedPhotos.add(photosPhotoVOToAttach);
             }
-            albumVO.setPhotos(attachedPhotos);
+            albumVO.addPhotos(attachedPhotos);
             em.persist(albumVO);
             for (PhotoVO photosPhotoVO : albumVO.getPhotos()) {
                 AlbumVO oldAlbumOfPhotosPhotoVO = photosPhotoVO.getAlbum();
@@ -123,7 +120,7 @@ public class AlbumVOJpaController implements Serializable {
                 attachedPhotosNew.add(photosNewPhotoVOToAttach);
             }
             photosNew = attachedPhotosNew;
-            albumVO.setPhotos(photosNew);
+            albumVO.addPhotos(photosNew);
             albumVO = em.merge(albumVO);
             for (PhotoVO photosNewPhotoVO : photosNew) {
                 if (!photosOld.contains(photosNewPhotoVO)) {

@@ -28,5 +28,6 @@
     <properties>
       <property name="toplink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
+<!--    <mapping-file>META-INF/orm.xml</mapping-file>-->
   </persistence-unit>
 </persistence>

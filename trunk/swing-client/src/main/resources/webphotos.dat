@@ -1,5 +1,5 @@
 ###############################################
-# Arquivo de configuraÃ§Ã£o do WebPhotos        #
+# Arquivo de configuração do WebPhotos        #
 ###############################################
 
 # raw data folder
@@ -15,9 +15,9 @@ autoPreencher.Login=${filter.autoPreencher.Login}
 autoPreencher.Pass=${filter.autoPreencher.Pass}
 
 ###############################################
-# InstruÃ§Ãµes SQL personalizadas               #
+# Instruções SQL personalizadas               #
 ###############################################
-# pre-sql: select albumID as ID, categorias.nmcategoria as Categoria, nmalbum as Pauta, DATE_FORMAT(DtInsercao, '%d/%m/%y') as Data from albuns left join categorias using(categoriaID)
+# pre-sql: select albumID as ID, categorias.nmcategoria as Categoria, nmalbum as Pauta, DATE_FORMAT(DtInsercao, '%d/%m/%y'), categoriaID as Data from albuns left join categorias using(categoriaID)
 
 relatorio1=ultimos 500 albuns / order by albumID desc limit 500
 relatorio2=Por data decrescente / order by DtInsercao desc limit 500
@@ -41,44 +41,44 @@ thumbnail2=200
 thumbnail3=250
 thumbnail4=300
 
-! Ativa a transmissÃ£o ao alterar/inserir/excluir um Ã¡lbum/foto
+! Ativa a transmissão ao alterar/inserir/excluir um álbum/foto
 autoTransferir=true
 
 ###############################################
 # Marca d'agua aplicada ao thumbnail 4        #
 ###############################################
-# imagem formato gif ou jpg que servirÃ¡ como marca d'agua
+# imagem formato gif ou jpg que servirá como marca d'agua
 # pode ser utilizado um gif transparente
 marcadagua=
 
 # imagem para testes com posicionamento de marca d'agua
 marcadagua.teste=
 
-# PosiÃ§Ã£o da marca d'agua
+# Posição da marca d'agua
 # 1---2---3
 # 4---5---6
 # 7---8---9
 marcadagua.posicao=7
 
-# margem da marca d'agua atÃ© a borda.
-# nÃ£o tem efeito quando o posicionamento da marca d'agua ï¿½ central
+# margem da marca d'agua até a borda.
+# não tem efeito quando o posicionamento da marca d'agua ? central
 marcadagua.margem=0
 
-! transparÃªncia valores de 0 a 100, sendo 100 opaco e 0 transparente
+! transparência valores de 0 a 100, sendo 100 opaco e 0 transparente
 marcadagua.transparencia=30
 
 ###############################################
-# InformaÃ§Ãµes textuais aplicada ao thumbnail  #
+# Informações textuais aplicada ao thumbnail  #
 ###############################################
-! para desabilitar essa funÃ§Ã£o, deixe o texto em branco
+! para desabilitar essa função, deixe o texto em branco
 texto=
 texto.posicao=8
 texto.margem=5
 
-! famÃ­lia da fonte
+! família da fonte
 texto.familia=SansSerif
 
-! estilo da fonte 0 normal, 1 bold, 2 itÃ¡lico
+! estilo da fonte 0 normal, 1 bold, 2 itálico
 texto.estilo=1
 texto.tamanho=15
 
@@ -106,8 +106,8 @@ derby.drda.portNumber=${filter.derby.drda.portNumber}
 # exatamente a funcao de cada uma
 
 # indice da tabela - sem parametros (primeira opcao de listagem.. nao deve retornar um numero muito grande de registros)
-#sql1=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data FROM albuns LEFT JOIN categorias ON categorias.categoriaID=albuns.categoriaID LIMIT 100
-sql1=SELECT * FROM (SELECT ROW_NUMBER() OVER() AS rownum\, albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DtInsercao AS Data FROM albuns LEFT JOIN categorias ON categorias.categoriaID=albuns.categoriaID) AS tmp WHERE rownum <= 100
+#sql1=SELECT albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DATE_FORMAT(DtInsercao\, '%d/%m/%y') AS Data\, albuns.categoriaID as categoriaID FROM albuns LEFT JOIN categorias ON categorias.categoriaID=albuns.categoriaID LIMIT 100
+sql1=SELECT * FROM (SELECT ROW_NUMBER() OVER() AS rownum\, albumID AS ID\, categorias.nmcategoria AS Categoria\, nmalbum AS Pauta\, DtInsercao AS Data\, albuns.categoriaID as categoriaID FROM albuns LEFT JOIN categorias ON categorias.categoriaID=albuns.categoriaID) AS tmp WHERE rownum <= 100
 
 # define a largura inicial de cada coluna (o mesmo numero de parametros retornados por sqls 1,3,4 e 5) 760
 #colunas1=35,100,550,60

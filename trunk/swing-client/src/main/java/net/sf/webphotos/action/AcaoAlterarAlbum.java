@@ -25,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,7 +59,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
     private static final long serialVersionUID = 7297664420604720262L;
     JButton btAlterar, btNovo;
     JTable tbAlbuns, tbFotos;
-    private AlbumDAO albumDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
+    private final AlbumDAO albumDAO = (AlbumDAO) ApplicationContextResource.getBean("albunsDAO");
     private boolean sucesso;
 
     /**
@@ -145,7 +144,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         try {
             final HashSet<PhotoDTO> newHashSet = Sets.newHashSet(fotos);
             final Collection<PhotoVO> transformedCollection = Collections2.transform(newHashSet, PhotoDTO.FROM_PHOTODTO_PHOTOVO);
-            final HashSet<PhotoVO> photosVO = new HashSet<PhotoVO>(transformedCollection);
+            final HashSet<PhotoVO> photosVO = new HashSet<>(transformedCollection);
             albumVO = AlbumVO.builder(albumID)
                     .withAlbumName(album.getNmAlbum())
                     .withDescription(album.getDescricao())
@@ -179,8 +178,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
         }
 
         // copia os arquivos
-        for (Iterator<PhotoVO> it = albumVO.getPhotos().iterator(); it.hasNext();) {
-            PhotoVO photoVO = it.next();
+        final Set<PhotoVO> photosVO = albumVO.getPhotos();
+        for (PhotoVO photoVO : photosVO) {
             // copia somente arquivos ainda não cadastrados
             if (photoVO.getCaminhoArquivo().length() > 0) {
                 try {
@@ -193,7 +192,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
                     sucesso = false;
                 }
             }
-        }// fim for
+        } // fim for
 
         prepareThumbsAndFTP(albumVO, caminhoAlbum);
 
@@ -216,9 +215,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
     private void prepareThumbsAndFTP(AlbumVO albumVO, String caminhoAlbum) {
         Set<PhotoVO> photoVOs = albumVO.getPhotos();
         
-        for (Iterator<PhotoVO> it = photoVOs.iterator(); it.hasNext();) {
-            PhotoVO photoVO = it.next();
-
+        for (PhotoVO photoVO : photoVOs) {
             String caminhoArquivo;
 
             // thumbs somente arquivos ainda não cadastrados
@@ -265,8 +262,8 @@ public class AcaoAlterarAlbum extends AbstractAction {
     private void fireChangesToGUI(PhotoDTO[] fotos) {
         PhotoDTO f;
 
-        for (int i = 0; i < fotos.length; i++) {
-            f = fotos[i];
+        for (PhotoDTO foto : fotos) {
+            f = foto;
             f.resetCaminhoArquivo();
         }
 

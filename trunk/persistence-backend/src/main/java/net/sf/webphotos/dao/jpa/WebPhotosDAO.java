@@ -20,6 +20,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import net.sf.webphotos.entity.HasID;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +52,20 @@ public class WebPhotosDAO<E extends HasID, I> {
     @Deprecated
     public Query createNativeQuery(String query) {
         return entityManager.createNativeQuery(query);
+    }
+
+    /**
+     * Workarround for a rapid migration from RowSet
+     *
+     * @param query
+     * @return
+     */
+    public Query createTypedNativeQuery(String query) {
+        return entityManager.createNativeQuery(query, entityClass);
+    }
+    
+    public Query createTypedNativeQuery(String query, String mapping) {
+        return entityManager.createNativeQuery(query, mapping);
     }
 
     public E findBy(I id) {

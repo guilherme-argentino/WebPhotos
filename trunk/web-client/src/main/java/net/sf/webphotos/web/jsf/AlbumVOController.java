@@ -40,9 +40,9 @@ import net.sf.webphotos.web.jsf.util.PaginationHelper;
 public class AlbumVOController implements Serializable {
 
     @Resource
-    private UserTransaction utx = null;
+    private final UserTransaction utx = null;
     @PersistenceUnit(unitName = "jee_webphotos_pu")
-    private EntityManagerFactory emf = null;
+    private final EntityManagerFactory emf = null;
     private AlbumVO current;
     private DataModel items = null;
     private AlbumVOJpaController jpaController = null;
