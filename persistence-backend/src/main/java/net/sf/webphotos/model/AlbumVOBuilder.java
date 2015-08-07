@@ -34,7 +34,7 @@ public class AlbumVOBuilder {
     private Integer key;
 
     AlbumVOBuilder() {
-        photoVOs = new HashSet<PhotoVO>();
+        photoVOs = new HashSet<>();
         key = 0;
     }
 
@@ -77,8 +77,7 @@ public class AlbumVOBuilder {
         final AlbumVO albumVO = (key > 0 ? 
                 new AlbumVO(key, nmalbum, descricao, dtInsercao, categoriasVO, photoVOs) : 
                 new AlbumVO(nmalbum, descricao, dtInsercao, categoriasVO, photoVOs));
-        for (Iterator<PhotoVO> it = photoVOs.iterator(); it.hasNext();) {
-            PhotoVO photoVO = it.next();
+        for (PhotoVO photoVO : photoVOs) {
             photoVO.setAlbum(albumVO);
         }
         return albumVO;

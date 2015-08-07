@@ -18,8 +18,8 @@ package net.sf.webphotos.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -73,7 +73,7 @@ public class AlbumVO implements Serializable, HasID<Integer> {
     private CategoryVO categoriasVO;
     
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "album")
-    private Set<PhotoVO> photos;
+    private final Set<PhotoVO> photos;
 
     public CategoryVO getCategoriasVO() {
         return categoriasVO;
@@ -83,16 +83,22 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         this.categoriasVO = categoriasVO;
     }
 
+    /**
+     * Compatibility
+     * @deprecated
+     */
     @Deprecated
     public AlbumVO() {
+        this.photos = new TreeSet<>();
     }
 
     AlbumVO(String nmalbum, String descricao, Date dtInsercao, CategoryVO categoriasVO, Set<PhotoVO> photos) {
+        this();
         this.nmalbum = nmalbum;
         this.descricao = descricao;
         this.dtInsercao = dtInsercao;
         this.categoriasVO = categoriasVO;
-        this.photos = photos;
+        this.photos.addAll(photos);
     }
 
     AlbumVO(Integer key, String nmalbum, String descricao, Date dtInsercao, CategoryVO categoriasVO, Set<PhotoVO> photos) {
@@ -202,7 +208,7 @@ public class AlbumVO implements Serializable, HasID<Integer> {
     /**
      * @param photos the photos to add
      */
-    public void addPhotos(HashSet<PhotoVO> photos) {
+    public void addPhotos(Set<PhotoVO> photos) {
         this.photos.addAll(photos);
     }
 
@@ -241,7 +247,14 @@ public class AlbumVO implements Serializable, HasID<Integer> {
         return this.albumid;
     }
 
+    /**
+     * Set Photos
+     * @param photos
+     * @deprecated
+     */
+    @Deprecated
     public void setPhotos(Set<PhotoVO> photos) {
-        this.photos = photos;
+        this.photos.clear();
+        this.photos.addAll(photos);
     }
 }

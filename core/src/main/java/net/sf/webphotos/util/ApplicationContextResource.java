@@ -29,7 +29,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ApplicationContextResource {
 
-    private static ApplicationContext applicationContext;
+    private static final ApplicationContext applicationContext;
 
     static {
         String[] configLocations = {"classpath*:applicationContext.xml", "applicationContext.xml"};

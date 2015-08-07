@@ -24,5 +24,6 @@
     <class>net.sf.webphotos.model.CategoryVO</class>
     <class>net.sf.webphotos.model.CreditsVO</class>
     <class>net.sf.webphotos.model.PhotoVO</class>
+<!--    <mapping-file>META-INF/orm.xml</mapping-file>-->
   </persistence-unit>
 </persistence>

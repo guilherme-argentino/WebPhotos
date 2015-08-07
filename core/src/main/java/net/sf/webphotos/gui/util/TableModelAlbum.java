@@ -28,6 +28,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import net.sf.webphotos.dao.jpa.AlbumDAO;
+import net.sf.webphotos.model.AlbumVO;
 import net.sf.webphotos.util.ApplicationContextResource;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -83,6 +84,8 @@ public class TableModelAlbum extends AbstractTableModel implements TableModel {
             log.debug("Executando - " + ultimoSQL);
             final Query createNativeQuery = albunsDAO.createNativeQuery(ultimoSQL);
             tableData = createNativeQuery.getResultList();
+            
+            List<AlbumVO> parsedTableData = albunsDAO.createTypedNativeQuery(ultimoSQL, "AlbumMappingSQL1Xml").getResultList();
 
             /**
              * WORKARROUND : I didn't find another way to get column name from

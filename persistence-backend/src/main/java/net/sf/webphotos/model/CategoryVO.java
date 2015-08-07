@@ -116,10 +116,7 @@ public class CategoryVO implements Serializable, HasID<Integer> {
             return false;
         }
         CategoryVO other = (CategoryVO) object;
-        if ((this.categoriaID == null && other.categoriaID != null) || (this.categoriaID != null && !this.categoriaID.equals(other.categoriaID))) {
-            return false;
-        }
-        return true;
+        return !((this.categoriaID == null && other.categoriaID != null) || (this.categoriaID != null && !this.categoriaID.equals(other.categoriaID)));
     }
 
     @Override
