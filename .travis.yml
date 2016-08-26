@@ -2,4 +2,4 @@ language: java
 jdk:
  - openjdk7
 sudo: false
-script: mvn -Pci-headless clean verify
+script: mvn -Pdefault-build,ci-headless clean test
