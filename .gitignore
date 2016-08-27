@@ -1,0 +1,9 @@
+/core/target/
+/swing-client/target/
+/ear-backend/target/
+/persistence-backend-ifc/target/
+/persistence-backend/target/
+/web-client/target/
+swing-client/logs/app.log
+swing-client/derby.log
+core/logs/app.log
