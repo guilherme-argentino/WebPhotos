@@ -21,7 +21,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import net.sf.webphotos.gui.util.Login;
 import net.sf.webphotos.util.Util;
 import org.apache.log4j.Logger;
@@ -34,8 +33,8 @@ import org.apache.log4j.Logger;
  */
 public class BancoImagem {
 
-    private static final Logger log = Logger.getLogger(BancoImagem.class);
-    private static final BancoImagem instancia = new BancoImagem();
+    private static final Logger LOG = Logger.getLogger(BancoImagem.class);
+    private static final BancoImagem INSTANCE = new BancoImagem();
     private static String url;
     private static String driver;
     private static Connection conn;
@@ -49,7 +48,7 @@ public class BancoImagem {
 
     // inicializa o banco de dados
     private BancoImagem() {
-        log.info("inicializando banco de imagem...");
+        LOG.info("inicializando banco de imagem...");
     }
 
     /**
@@ -58,7 +57,7 @@ public class BancoImagem {
      * @return Retorna o objeto BancoImagem.
      */
     public static BancoImagem getBancoImagem() {
-        return instancia;
+        return INSTANCE;
     }
 
     /**
@@ -101,7 +100,7 @@ public class BancoImagem {
         url = dbUrl;
         driver = dbDriver;
         Class.forName(dbDriver).newInstance();
-        log.info("Driver " + dbDriver + " carregado");
+        LOG.info("Driver " + dbDriver + " carregado");
     }
 
     /**
@@ -119,18 +118,18 @@ public class BancoImagem {
             if (conn != null
                     && conn.isClosed() == false) {
 
-                log.debug("Usando a conexão existente");
+                LOG.debug("Usando a conexão existente");
                 return conn;
             }
         } catch (AbstractMethodError amE) {
-            log.warn("Error getting conection", amE);
+            LOG.warn("Error getting conection", amE);
         }
         // conexão fechada...	
         if (usuario == null) {
             login();
         }
         conn = DriverManager.getConnection(url, usuario, (new String(senha)));
-        log.debug("Usando uma nova conexão");
+        LOG.debug("Usando uma nova conexão");
         return conn;
     }
 
@@ -145,7 +144,7 @@ public class BancoImagem {
         if (conn.isClosed() == false) {
             conn.close();
         }
-        log.debug("Conexao ao banco de dados fechada");
+        LOG.debug("Conexao ao banco de dados fechada");
     }
 
     /**
@@ -162,7 +161,7 @@ public class BancoImagem {
 
     /**
      * Inicia o login partir de um nome passado como parâmetro. Esse nome
-     * realizará alteração na instancia da classe
+     * realizará alteração na INSTANCE da classe
      * {@link net.sf.webphotos.gui.util.Login Login}. Faz a comparação com o
      * banco de dados através do {@link javax.sql.RowSet RowSet} e retorna uma
      * variável lógica para informar se o login ocorreu com sucesso.
@@ -188,7 +187,7 @@ public class BancoImagem {
                 conectado = true;
             } catch (Exception e) {
                 String msg = "Erro na conexão ao banco de dados";
-                log.error(msg, e);
+                LOG.error(msg, e);
                 JOptionPane.showMessageDialog(null, e.getMessage(), msg, JOptionPane.ERROR_MESSAGE);
             }
         } while (!conectado);
@@ -264,8 +263,8 @@ public class BancoImagem {
         try {
             UIManager.setLookAndFeel(lookAndFeel);
         } catch (Exception e) {
-            log.warn("Caution: Theme not correctly configured");
-            log.debug(e);
+            LOG.warn("Caution: Theme not correctly configured");
+            LOG.debug(e);
         }
     }
 

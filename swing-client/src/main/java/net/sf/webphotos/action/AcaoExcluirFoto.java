@@ -151,8 +151,8 @@ public class AcaoExcluirFoto extends AbstractAction {
 
                 // escreve o arquivo javaScript
                 String caminhoAlbum = Util.getFolder("albunsRoot").getPath() + File.separator + album.getAlbumID();
-                try {
-                    FileWriter out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".js");
+                try (FileWriter out = new FileWriter(caminhoAlbum + File.separator + album.getAlbumID() + ".js")) {
+                    
                     out.write(album.toJavaScript());
                     out.flush();
                     Util.out.println("escrevendo: " + album.toJavaScript());

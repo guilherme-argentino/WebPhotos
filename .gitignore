@@ -7,3 +7,5 @@
 swing-client/logs/app.log
 swing-client/derby.log
 core/logs/app.log
+/target/
+/core/CacheFTP.txt

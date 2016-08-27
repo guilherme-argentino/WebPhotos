@@ -136,7 +136,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
         sucesso = true;
 
         PainelWebFotos.setCursorWait(true);
-        
+
         AlbumVO albumVO = null;
 
         // PASSO 1 - Carregar dados no BD
@@ -153,10 +153,10 @@ public class AcaoAlterarAlbum extends AbstractAction {
                     .withPhotos(photosVO)
                     .build();
             albumDAO.save(albumVO);
-            
+
             albumID = albumVO.getAlbumid();
             album.setAlbumID(albumID);
-            
+
             sucesso = true;
         } catch (Exception ex) {
             Logger.getLogger(AcaoAlterarAlbum.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,10 +182,11 @@ public class AcaoAlterarAlbum extends AbstractAction {
         for (PhotoVO photoVO : photosVO) {
             // copia somente arquivos ainda não cadastrados
             if (photoVO.getCaminhoArquivo().length() > 0) {
-                try {
-                    FileChannel canalOrigem = new FileInputStream(photoVO.getCaminhoArquivo()).getChannel();
-                    FileChannel canalDestino = new FileOutputStream(
-                            caminhoAlbum + File.separator + photoVO.getId() + ".jpg").getChannel();
+                try (final FileInputStream photoVOInputStream = new FileInputStream(photoVO.getCaminhoArquivo());
+                        final FileOutputStream photoVOOutputStream = new FileOutputStream(caminhoAlbum + File.separator + photoVO.getId() + ".jpg")) {
+                    FileChannel canalOrigem = photoVOInputStream.getChannel();
+
+                    FileChannel canalDestino = photoVOOutputStream.getChannel();
                     canalDestino.transferFrom(canalOrigem, 0, canalOrigem.size());
                 } catch (Exception e) {
                     Util.log("[AcaoAlterarAlbum.executaAlteracoes.8]/ERRO: " + e);
@@ -214,7 +215,7 @@ public class AcaoAlterarAlbum extends AbstractAction {
      */
     private void prepareThumbsAndFTP(AlbumVO albumVO, String caminhoAlbum) {
         Set<PhotoVO> photoVOs = albumVO.getPhotos();
-        
+
         for (PhotoVO photoVO : photoVOs) {
             String caminhoArquivo;
 
