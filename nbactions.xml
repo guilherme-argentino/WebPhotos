@@ -15,8 +15,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 
--->
-<actions>
+--><actions>
     <action>
         <actionName>CUSTOM-Staging Site</actionName>
         <displayName>Staging Site</displayName>
@@ -65,4 +64,16 @@
             <goal>site-deploy</goal>
         </goals>
     </action>
+    <action>
+            <actionName>CUSTOM-SONAR-LOCAL</actionName>
+            <displayName>SONAR-LOCAL</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+                <goal>sonar:sonar</goal>
+            </goals>
+            <properties>
+                <sonar.host.url>http://192.168.99.100:9000</sonar.host.url>
+            </properties>
+        </action>
 </actions>

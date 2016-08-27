@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>WebPhotos</name>
     <description>Project WebPhotos</description>
-    <url>http://webphotos.sf.net</url>
+    <url>https://github.com/rrantz/WebPhotos</url>
     <inceptionYear>2008</inceptionYear>
     <properties>
         <org.springframework.version>3.0.7.RELEASE</org.springframework.version>
@@ -24,41 +24,25 @@
     </licenses>
     <scm>
         <connection>scm:git:git://github.com/rrantz/WebPhotos.git</connection>
-        <developerConnection>scm:svn:https://svn.code.sf.net/p/webphotos/code/trunk</developerConnection>
+        <developerConnection>scm:git:git@github.com:rrantz/WebPhotos.git</developerConnection>
         <url>https://github.com/rrantz/webphotos/</url>
     </scm>
-    <mailingLists>
-        <mailingList>
-            <name>WebPhotos Development Mailing list</name>
-            <subscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-development</subscribe>
-            <unsubscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-development</unsubscribe>
-            <!-- <archive>http://sourceforge.net/mailarchive/forum.php?forum_id=40831</archive> -->
-            <post>webphotos-development@lists.sourceforge.net</post>
-        </mailingList>
-        <mailingList>
-            <name>WebPhotos User Mailing list</name>
-            <subscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-users</subscribe>
-            <unsubscribe>http://lists.sourceforge.net/mailman/listinfo/webphotos-users</unsubscribe>
-            <!-- <archive>http://sourceforge.net/mailarchive/forum.php?forum_id=40830</archive> -->
-            <post>webphotos-users@lists.sourceforge.net</post>
-        </mailingList>
-    </mailingLists>
     <issueManagement>
         <system>Github Issues</system>
-        <url>https://github.com/kevinsawicki/github-maven-example/issues</url>
+        <url>https://github.com/rrantz/WebPhotos/issues</url>
     </issueManagement>
     <ciManagement>
-        <system>hudson</system>
-        <url>https://rrantz.ci.cloudbees.com/job/Basic%20Build/</url>
+        <system>Travis-CI</system>
+        <url>https://travis-ci.org/rrantz/WebPhotos</url>
     </ciManagement>
-	<developers>
-		<developer>
-			<email>rrantz@gmail.com</email>
-			<name>Guilherme Argentino</name>
-			<url>https://github.com/rrantz</url>
-			<id>rrantz</id>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <email>rrantz@gmail.com</email>
+            <name>Guilherme Argentino</name>
+            <url>https://github.com/rrantz</url>
+            <id>rrantz</id>
+        </developer>
+    </developers>
     <build>
         <pluginManagement>
             <plugins>
