@@ -46,12 +46,46 @@
                         <JarModule>
                             <groupId>net.sf.webphotos</groupId>
                             <artifactId>webphotos-persistence-backend-ifc</artifactId>
-                            <unpack>true</unpack>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>aopalliance</groupId>
+                            <artifactId>aopalliance</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>commons-logging</groupId>
+                            <artifactId>commons-logging</artifactId>
                         </JarModule>
                         <JarModule>
                             <groupId>com.google.guava</groupId>
                             <artifactId>guava</artifactId>
-                            <unpack>true</unpack>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-tx</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aop</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-asm</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-beans</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-context</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-expression</artifactId>
+                        </JarModule>
+                        <JarModule>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-core</artifactId>
                         </JarModule>
                     </modules>
                 </configuration>
