@@ -1,5 +1,5 @@
 language: java
 jdk:
- - openjdk7
+ - openjdk8
 sudo: false
 script: mvn -Pdefault-build,ci-headless clean test
