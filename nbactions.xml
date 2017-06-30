@@ -58,6 +58,18 @@
         </activatedProfiles>
     </action>
     <action>
+        <actionName>CUSTOM-Travis CI</actionName>
+        <displayName>Travis CI</displayName>
+        <goals>
+            <goal>clean</goal>
+            <goal>install</goal>
+        </goals>
+        <activatedProfiles>
+            <activatedProfile>ci-headless</activatedProfile>
+            <activatedProfile>default-build</activatedProfile>
+        </activatedProfiles>
+    </action>
+    <action>
         <actionName>CUSTOM-Site Deploy</actionName>
         <displayName>Site Deploy</displayName>
         <goals>
